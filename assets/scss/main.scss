@@ -1,0 +1,66 @@
+// Imports SCSS theme
+// Vendors variables override and path
+@import "themes/theme";
+@import "vendors/variables";
+@import "base/path";
+@import "vendors/vendor";
+@import "components/component";
+@import "base/placeholder";
+@import "base/utility";
+@import "base/base";
+
+
+html{
+    margin:0 !important;
+    padding:0 !important;
+}
+
+body{
+    margin:0 !important;
+    padding:0 !important;
+    background:#ffffff !important;
+    font-family: 'Josefin Sans', sans-serif !important;
+    position:relative;
+    overflow-x: hidden !important;
+  }
+
+/* mobile bar */
+.mobilebar{
+    position:fixed;
+    top:90%;
+    width:100vw;
+    height: 10%;
+    background: rgba(9,66,117,0.8) ;
+    z-index: 1;
+  }
+  .icon{
+    height:100px;
+    width: 100px;
+  }
+  .br-1{
+    border-right: 1px solid black;
+  }
+  .align-center-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .align-center-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+.breadcrumb-link{
+    text-transform:uppercase;
+    text-decoration:none;
+    color:#094275;
+
+    &:hover{
+        color:#094275;
+        text-decoration:none;
+    }
+}

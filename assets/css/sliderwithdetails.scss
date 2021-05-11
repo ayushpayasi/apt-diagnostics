@@ -1,0 +1,112 @@
+.centermode-testcard{
+    width:200px;
+    // background: rgba(10, 66, 117,1);
+    height:40px;
+    border-radius: 2px;
+    border:1px solid rgba(10, 66, 117,1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:2px;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.5);
+    div{
+        border-right: 1px solid rgba(10, 66, 117,1);
+        width:70%;
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height:100%;
+        // text-align: justify;
+    }
+    span{
+        background:rgba(10, 66, 117,1);
+        width:30%;
+        height:100%;
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        color:white;
+    }
+    &:hover{
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+        cursor: pointer;
+    }
+}
+.sliderwithdetails{
+    // border:1px solid #0a4275;
+    padding: 2px;
+    text-align: justify;
+
+    .align-center-column > button{
+        // background-color:#0a4275;
+        border-radius: 5px;
+    }
+}
+.border{
+  border:1px solid blue;
+  border-radius: 5px;
+}
+
+.color{
+    color:#0a4275;
+}
+.messageout-enter {
+    position: absolute;
+    top: 0;
+    left: calc(13% + 5px);
+    right: calc(13% + 5px);
+    opacity: 0.01;
+    // transform: translateY(0%) scale(0.01);
+  }
+  
+  /* ending ENTER animation */
+  .messageout-enter-active {
+    opacity: 1;
+    // transform: translateY(0%) scale(1);
+    transition: all 200ms ease-in-out;
+  }
+  
+  /* starting EXIT animation */
+  .messageout-exit {
+    opacity: 1;
+    // transform: scale(1.01);
+  }
+  
+  /* ending EXIT animation */
+  .messageout-exit-active {
+    opacity: 0;
+    // transform: scale(4);
+    transition: all 200ms ease-in-out;
+  }
+
+  
+
+.messagefade-enter {
+    // position: absolute;
+    // top: 0;
+    // left: calc(13% + 5px);
+    // right: calc(13% + 5px);
+    opacity: 0.01;
+    // transform: translateY(0%) scale(0.01);
+  }
+  
+  /* ending ENTER animation */
+  .messagefade-enter-active {
+    opacity: 1;
+    // transform: translateY(0%) scale(1);
+    transition: all 500ms ease-in-out;
+  }
+  
+  /* starting EXIT animation */
+  .messagefade-exit {
+    opacity: 1;
+    // transform: scale(1.01);
+  }
+  
+  /* ending EXIT animation */
+  .messagefade-exit-active {
+    opacity: 0;
+    // transform: scale(4);
+    transition: all 500ms ease-in-out;
+  }

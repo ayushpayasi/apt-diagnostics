@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
+:root {
+  --font-size: 16px;
+  --n-1: 0.25rem;
+  --n-2: 0.5rem;
+  --n-3: 0.75rem;
+  --n-4: 1rem;
+  --n-5: 1.25rem;
+  --n-6: 1.5rem;
+  --n-7: 1.75rem;
+  --n-8: 2rem;
+  --n-9: 2.25rem;
+  --n-10: 2.5rem;
+  --n-11: 2.75rem;
+  --n-12: 3rem;
+  --n-13: 3.25rem;
+  --n-14: 3.5rem;
+  --n-15: 3.75rem;
+  --n-16: 4rem;
+  --button-color: #ff6363;
+  --button-color-light: #e0c0c0;
+  --button-color-dark: #ff6363;
+}
+
+
+.sub {
+  --width: calc(100vw - var(--n-16));
+  background-image: linear-gradient(20deg, #0a4275, #0a3041);
+  width: var(--width);
+  height: var(--height);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--n-4);
+  box-shadow: 0 var(--n-3) var(--n-5) rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.sub-text, .sub-form {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sub-text {
+  padding: var(--n-8);
+  padding-bottom: var(--n-2);
+}
+.sub-text h2 {
+  font-size: var(--n-8);
+}
+.sub-text h2, .sub-text p {
+  margin: 0;
+  margin-bottom: var(--n-4);
+}
+.sub-text h2:last-child, .sub-text p:last-child {
+  margin-bottom: 0;
+}
+
+.sub-form {
+  padding: var(--n-2) 0 var(--n-6);
+}
+.sub-form .field {
+  padding: var(--n-2) var(--n-8);
+}
+.sub-form .field input[type=email], .sub-form .field a {
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+  padding: var(--n-3);
+  border: 0;
+  margin: 0;
+  outline: none;
+  border-radius: var(--n-2);
+  box-sizing: border-box;
+}
+.sub-form .field input[type=email] {
+  background-color: #ffffff;
+}
+.sub-form .field a {
+  color: #5c4400;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--button-color);
+  display: inline-block;
+  transition: all 128ms ease-out;
+}
+.sub-form .field a:hover {
+  background-color: var(--button-color-light);
+}
+.sub-form .field a:active {
+  background-color: var(--button-color-dark);
+}
+.sub-form .field a:focus {
+  box-shadow: 0 0 0 var(--n-1) rgba(255, 240, 89, 0.6);
+}
+.sub-form .field a span {
+  margin-left: var(--n-1);
+}
+
+.sub-mask {
+  background-image: linear-gradient(20deg, #0a4275, #0a3041);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: scale(0);
+}
+
+.sub-check-circle {
+  fill: transparent;
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 8;
+  stroke-dasharray: 0 282.7433388231;
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg) scaleY(-1);
+}
+
+.sub-check {
+  --width: 0%;
+  --height: 0%;
+  width: 30%;
+  height: 20%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-55deg);
+}
+.sub-check span {
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+.sub-check span:first-child {
+  width: 16%;
+  height: var(--height);
+  top: 0;
+  left: 0;
+}
+.sub-check span:last-child {
+  width: var(--width);
+  height: 24%;
+  bottom: 0;
+  left: 16%;
+}
+
+@media screen and (min-width: 768px) {
+  .sub {
+    --width: 720px;
+    width: var(--width);
+    max-width: var(--width);
+    max-height: var(--width);
+    flex-direction: row;
+  }
+
+  .sub-text {
+    flex-shrink: 1;
+    padding-bottom: var(--n-8);
+  }
+
+  .sub-form {
+    width: 360px;
+    padding: var(--n-6) 0;
+    flex-shrink: 0;
+  }
+}

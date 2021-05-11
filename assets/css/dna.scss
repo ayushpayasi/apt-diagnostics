@@ -1,0 +1,183 @@
+$bg:  #292929;
+$blue: #094275;
+$gray:  rgb(214, 200, 200);
+$time:0;
+
+@mixin animation-delay($time) {
+	animation-delay: $time;
+}
+
+*, *:before, *:after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.dnaBox{
+    position: relative;
+    // display:flex;
+    // align-items: center;
+    // justify-content: center;
+    // background:red;
+    height:450px;
+    width: 450px;
+    top:100px;
+}
+
+
+.dnaHolder-outer{
+    padding:10px;
+    // margin-top: 100px;
+    // background:rgba(240,213,192,0.3);
+    border:1px solid rgba(22, 22, 22, 0.3);
+    border-radius: 50%;
+    height:400px;
+    width:400px;
+    position: absolute;
+    // box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.6);
+    animation-name: rotate-holder2;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+
+    &:before{
+        content:"";
+        position: absolute;
+        background: rgba(34, 31, 28, 0.9);
+        height:20px;
+        width:20px;
+        border-radius: 50%;
+        top:-3%;
+        left:50%;
+
+    }
+}
+.dnaHolder{
+    // transform: rotate(40deg);
+    // padding:10px;
+    // margin-top: 100px;
+    // background:rgba(240,213,192,0.3);
+    border:1px solid rgba(22, 22, 22, 0.3);
+    border-radius: 50%;
+    height:380px;
+    width:380px;
+    position: absolute;
+    top:10px;
+    left:10px;
+    // box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.6);
+    animation-name: rotate-holder;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+
+    &:before{
+        content:"";
+        position: absolute;
+        background: rgba(34, 31, 28, 0.9);
+        height:20px;
+        width:20px;
+        border-radius: 50%;
+        top:-3%;
+        left:50%;
+
+    }
+}
+
+.strain {
+	width: 155px;
+	height: 1px;
+	background-color: $gray;
+	position: relative;
+	margin: 0px auto;
+	margin-top: 28px;
+	margin-bottom: 28px;
+	animation-name: rotate-strain;
+	animation-duration: 1.7s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-play-state: running;
+	
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		background-color: $blue;
+		left: 0;
+		margin-top: -9px;
+		margin-left: -9px;
+		animation-name: strain-size-left;
+		animation-duration: 1.7s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-play-state: running;
+	}
+	
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		background-color: $blue;
+		right: 0;
+		margin-top: -9px;
+		margin-right: -9px;
+		animation-name: strain-size-right;
+		animation-duration: 1.7s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-play-state: running;
+	}
+	
+	@for $i from 1 through 12 {
+		&:nth-child(#{$i}), &:nth-child(#{$i}):before, &:nth-child(#{$i}):after {
+			@include animation-delay((.15s * $i));
+		}
+	}	
+}
+@keyframes rotate-holder {
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+@keyframes rotate-holder2 {
+    from{
+        transform:rotate(360deg);
+    }
+    to{
+        transform:rotate(0deg);
+    }
+}
+
+@keyframes rotate-strain {
+	0% {width: 155px;}
+	25% {width: 0;}	
+	50% {width: 155px;}	
+	75% {width: 0;}
+	100% {width: 155px;}
+}
+
+@keyframes strain-size-left {
+	0% {transform: scale(1) translateX(0px);}	
+	25% {transform: scale(.5);}	
+	50% {transform: scale(1) translateX(155px);}	
+	75% {transform: scale(1.5);}	
+	100% {transform: scale(1) translateX(0px);}
+}
+
+@keyframes strain-size-right {
+	0% {transform: scale(1) translateX(0px);}	
+	25% {transform: scale(1.5);}	
+	50% {transform: scale(1) translateX(-155px);}	
+	75% {transform: scale(.5);}	
+	100% {transform: scale(1) translateX(0px);}
+}

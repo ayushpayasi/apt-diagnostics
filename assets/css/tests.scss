@@ -1,0 +1,157 @@
+
+.category-m {
+    .slick-slide {
+      >div {
+        margin: 0 10px;
+      }
+    }
+  
+    .category-wrapper {
+      border: 1px solid #dddada;
+      margin: 0 auto;
+      text-align: center;
+      justify-content: center;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      position: relative;
+  
+      >div {
+  
+        &:after,
+        &:before {
+          content: "";
+          width: 1px;
+          height: 0;
+          position: absolute;
+          transition: all 0.2s linear;
+          background: var(--theme-deafult);
+          transition-delay: 0s;
+        }
+  
+        &:before {
+          left: 0;
+          top: 0;
+        }
+  
+        &:after {
+          right: 0;
+          bottom: 0;
+        }
+      }
+  
+      &:after,
+      &:before {
+        content: "";
+        width: 0;
+        height: 1px;
+        position: absolute;
+        transition: all 0.2s linear;
+        background: var(--theme-deafult);
+      }
+  
+      &:before {
+        right: 0;
+        top: 0;
+      }
+  
+      &:after {
+        left: 0;
+        bottom: 0;
+      }
+  
+      &:hover {
+        transition: all 0.5s ease;
+  
+        &:after,
+        &:before {
+          transition-delay: 0s;
+          width: 100%;
+        }
+  
+        >div {
+  
+          &:after,
+          &:before {
+            transition-delay: 0.2s;
+            height: 100%;
+          }
+        }
+      }
+  
+      img {
+        display: inline;
+      }
+  
+      h4 {
+        text-transform: uppercase;
+        color: #393230;
+        font-weight: 700;
+        margin-bottom: 0;
+        padding-bottom: 25px;
+        padding-top: 25px;
+      }
+  
+      .btn {
+        margin-top: 20px;
+      }
+  
+      .category-link {
+        li {
+          display: block;
+          text-transform: capitalize;
+          margin-top: 5px;
+  
+          &:first-child {
+            margin-top: 0;
+          }
+  
+          a {
+            color: #948e8c;
+  
+            &:hover {
+              color: var(--theme-deafult);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  
+.no-arrow {
+
+    .slick-next,
+    .slick-prev {
+      display: none !important;
+    }
+  }
+
+.test-carousel-card{
+  max-width: 250px;
+  display: block;
+  border-radius: 5px;
+}
+.slick-slide {
+  &>div{
+    &>div{
+    display:flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  }
+}
+.test-card-button{
+  background:#094275 ;
+  border-radius: 2px;
+  &:hover{
+    background:#ff6363;
+  }
+}
+
+@media only screen and (max-width:580px) {
+  
+.test-carousel-card{
+  max-width:100%;
+}
+  
+}
