@@ -19,7 +19,7 @@
     "Ayush Payasi <ayushpayasi@gmail.com> (https://ayushpayasi.github.io/)"
   ],
   "scripts": {
-    "dev": "next dev ",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "export": "npm run build && next export -o _static"
