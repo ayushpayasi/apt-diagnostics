@@ -1,0 +1,124 @@
+
+.test-banner{
+    img{
+      width:100%;
+      height:400px;
+    }
+  }
+
+// container tab
+
+  .tab-search{
+    overflow: hidden !important;
+    input{
+      border-radius: 20px;
+    }
+    img{
+      width:20px;
+      height:20px;
+    }
+  }
+
+  .tab-items{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+.price-detail-card{
+    box-shadow: none !important;
+    border:none;
+    .card-title{
+        text-align: right;
+        font-weight: 700;
+    }
+    .card-subtitle{
+        // text-align: right;
+        font-weight: 600;
+    }
+    .card-text{
+        font-size: 0.8rem;
+    }
+    .list-group{
+        border:none !important;
+        padding:0px;
+    }
+    .list-group-item{
+        border:none !important;
+        padding: 2px;
+    }
+}  
+  
+.centermode-testcard{
+    margin:10px;
+    width:300px;
+    // background: rgba(10, 66, 117,1);
+    height:40px;
+    border-radius: 2px;
+    border:1px solid rgba(10, 66, 117,1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:2px;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.5);
+    div{
+        border-right: 1px solid rgba(10, 66, 117,1);
+        width:70%;
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height:100%;
+        // text-align: justify;
+    }
+    span{
+        background:rgba(10, 66, 117,1);
+        width:30%;
+        height:100%;
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        color:white;
+    }
+    &:hover{
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+        cursor: pointer;
+    }
+  }
+  
+.packages-card{
+    border-radius: 5px;
+    button{
+        border-radius: 5px;
+    }
+}
+
+.iconGenerator{
+    // max-width: 50%;
+    padding:2px;
+    .col-3{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    img{
+        height: 30px;
+        width:30px;
+    }
+    h4{
+        font-size: 0.6rem;
+        font-weight: 500;
+    }
+    h5{
+        font-weight:600;
+        font-size: 0.8rem;
+
+    }
+}
+
+.detail-card{
+    overflow: hidden;
+    border-radius: 5px;
+    .card-title{
+        font-weight: 700;
+    }
+}

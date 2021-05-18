@@ -13,25 +13,7 @@ export default function Diagnostics() {
     return (
         <React.Fragment>
             <NavBar/>
-            <BreadCrumb links={["home","diagnostics"]}/>
-            <Container>
-                <Row>
-                    <Col>
-                        <h4 style={{color:"#ff6363",fontWeight:"600",textTransform:"uppercase"}}>Diagnostics</h4>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <p style={{color:"grey",margin:0,padding:0}}>Check your Symtopms and find the optimal tests suitable for you!</p>
-                        {/* <p style={{margin:0,padding:0}}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora, enim!</p> */}
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <CenterMode/>
-                    </Col>
-                </Row>
-            </Container>
+            <Container></Container>
             {isMobile?<MobileMenu/>:<React.Fragment/>}
         </React.Fragment>
     )

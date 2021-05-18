@@ -1,5 +1,6 @@
 import React from 'react'
-import {Row,Col} from "reactstrap"
+import "../assets/css/blogcomp.scss"
+import {Col} from "reactstrap"
 import {
     FacebookShareButton,
     PinterestShareButton,
@@ -13,21 +14,18 @@ import {
     WhatsappIcon,
 } from "react-share"
 
-import "../assets/css/blogcomp.scss"
-export default function Blog(props) {
+export default function BigBlog() {
     const shareUrl="abcd.com"
     const title = "abcd"
     return (
         <>
-            <Row style={{background:props.bgcolor,color:props.color}} className="blog-row iofade">
-                <Col sm="4">
-                    <img className="ioleft" src="images/profile3.jpg" alt="profile"/>
+            <Col sm="4" className="blog-col iofade">
+                    <img className="ioleft" src="images/bgcheck2.jpeg" alt="profile"/>
                 </Col>
                 <Col sm="8">
-                    
-                    <h5 className="ioright">Lorem ipsum</h5>
-                    <p className="ioright">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, eligendi perspiciatis? Magni, nulla fuga sed expedita ipsa est eum veniam!</p>
-                    <div className="links ioright">
+                    <h5 className="ioright">Lorem ipsum dolor sit.</h5>
+                    <p className="ioright">labore officia tempora impedit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, impedit. Culpa nisi harum a dignissimos neque quia dolores dolorem illum sequi ab. amet consectetur adipisicing elit. Veritatis, eligendi perspiciatis? Magni, nulla fuga sed expedita ipsa est eum veniam!</p>
+                    <div className="links iofade">
                         <FacebookShareButton
                         url={shareUrl}
                         quote={title}
@@ -67,7 +65,6 @@ export default function Blog(props) {
             </div>
        
                 </Col>
-            </Row>
-            </>
+        </>
     )
 }

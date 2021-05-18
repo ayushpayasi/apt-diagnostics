@@ -1,0 +1,38 @@
+.payments-cart-data{
+    &>div{
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        overflow: hidden;
+    }
+}
+.total-payments-cart-data{
+    &>div{
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        text-decoration: none;
+        color:red;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+}
+.payment-total-card{
+    border-radius: 20px;
+    li{
+        padding:5px;
+    }
+}
+
+.align-center-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submission-card{
+    border-radius: 20px;
+    button{
+        border-radius: 20px;
+    }
+}

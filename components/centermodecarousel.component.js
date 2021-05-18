@@ -69,11 +69,11 @@ export default function CenterMode(props){
         <Slider ref={ref=>{setSlider(ref)}} {...settings}>
           <div>
             <div onClick={()=>{slider.slickGoTo(7)}} style={{border:"1px solid #094275",borderRadius:"5px"}}>
-                <CardImg style={{height:"100px",width:"100%",margin:0,padding:0}}  id="diagnosticsimg1" src="/svg/brain-inactive.svg"></CardImg>
+                <CardImg style={{height:"100px",width:"100px",margin:0,padding:0}}  id="diagnosticsimg1" src="/svg/brain-inactive.svg"></CardImg>
             </div>
         </div>
           <div>
-          <div onClick={()=>{slider.slickGoTo(8)}} style={{border:"1px solid #094275",borderRadius:"5px"}}>
+          <div onClick={()=>{slider.slickGoTo(8)}} style={{border:"1px solid #094275",borderRadius:"5px",width:"100%",margin:0,padding:0}}>
                 <CardImg style={{height:"100px",width:"100%",margin:0,padding:0}} id="diagnosticsimg2" src="/svg/female_reproductive_system-inactive.svg"></CardImg>
           </div ></div>
           <div>

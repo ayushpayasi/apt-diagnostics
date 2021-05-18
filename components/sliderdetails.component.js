@@ -185,7 +185,7 @@ export default function SliderDetails() {
         <div className="sliderwithdetails">
             <Row>
                 <Col>
-                    <h4 className="text-center color mt-2 iofade">Diagnose For Specific Organ </h4>
+                    <h4 className="text-center color mt-4 mb-4 iofade">Diagnose For Specific Organ </h4>
                 </Col>
             </Row>
             <Row>
@@ -201,7 +201,7 @@ export default function SliderDetails() {
           > */}
             <Row>
                 <Col >
-                    <h4 className="text-center iofade color">{data[currSlide].name}</h4>
+                    <h4 className="text-center mt-4 mb-4 iofade color">{data[currSlide].name}</h4>
                 </Col>
             </Row>
             {/* </CSSTransition></SwitchTransition> */}
@@ -217,7 +217,7 @@ export default function SliderDetails() {
                 <Col md="6">
                     <Row>
                         <Col>
-                            <h5 className="text-center iofade color">Symptoms</h5>
+                            <h5 className="text-center mt-4 mb-4 iofade color">Symptoms</h5>
                         </Col>
                     </Row>
                     <Row >
@@ -230,7 +230,7 @@ export default function SliderDetails() {
                 <Col md="6">
                     <Row>
                         <Col>
-                            <h5 className="text-center color iofade">Tests</h5>
+                            <h5 className="text-center color mt-4 mb-4 iofade">Tests</h5>
                         </Col>
                     </Row>
                     <Row>
@@ -252,7 +252,7 @@ export default function SliderDetails() {
             classNames="messagefade"
           > */}
             <Row>
-                <Col className="align-center-column mt-2 mb-1 iofade">
+                <Col className="align-center-column mt-4 mb-4 iofade">
                     <Button color="primary" onClick={()=>{}} variant="contained" >Want to Know More!</Button>
                 </Col>
             </Row>

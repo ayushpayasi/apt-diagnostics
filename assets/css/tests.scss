@@ -126,10 +126,133 @@
     }
   }
 
+.test-banner{
+  img{
+    width:100%;
+    height:400px;
+  }
+}
+.tab-items{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.centermode-testcard{
+  margin:10px;
+  width:300px;
+  // background: rgba(10, 66, 117,1);
+  height:40px;
+  border-radius: 2px;
+  border:1px solid rgba(10, 66, 117,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:2px;
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.5);
+  div{
+      border-right: 1px solid rgba(10, 66, 117,1);
+      width:70%;
+      display: flex; 
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height:100%;
+      // text-align: justify;
+  }
+  span{
+      background:rgba(10, 66, 117,1);
+      width:30%;
+      height:100%;
+      display: flex; 
+      align-items: center;
+      justify-content: center;
+      color:white;
+  }
+  &:hover{
+      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+      cursor: pointer;
+  }
+}
+
+
+.book-home-collection-card{
+  border-radius: 10px;
+  padding:10px;
+  margin-top: 50px;
+  img{
+    height: 80px;
+    width:80px;
+    padding:5px;
+  }
+  .col-4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    p{
+      width:200px;
+      text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    }
+  }
+  button{
+    background-color: #e0e0e0;
+    border:None;
+    color:Black;
+    border-radius: 3px;
+  }
+  p{
+    font-weight: 800;
+    color: #094275;
+    text-align: center;
+    margin-top: 5px;
+  }
+}
+
 .test-carousel-card{
   max-width: 250px;
   display: block;
   border-radius: 5px;
+  height:250px;
+  .card-title{
+    font-weight: 600;
+  }
+  h5{
+    padding: 0;
+    margin: 0;
+  }
+  p{
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.tab-search{
+  overflow: hidden !important;
+  input{
+    border-radius: 20px;
+  }
+  img{
+    width:20px;
+    height:20px;
+  }
 }
 .slick-slide {
   &>div{
@@ -142,16 +265,101 @@
 }
 .test-card-button{
   background:#094275 ;
+  font-size: 1rem;
   border-radius: 2px;
   &:hover{
     background:#ff6363;
   }
 }
+.detail-card{
+  img{
+  width:200px;
+  height:200px;
+  image-rendering: optimizeSpeed;
+  background-position: center;
+  padding:10px 5px;
+}
+button{
+  color:#094275;
+  // background:#094275;
+  border-color: #094275;
+}
+}
+.icons-holder{
+  margin-top: 10px;
+  img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:30px;
+    width:30px;
+    margin:0;
+    padding:0;
+  }
+  p{
+    font-size: 0.9rem;
+    margin:0;
+    padding:0;
+  }
+  .row{
+    padding:0;
+  }
+}
+
+.details-screen{
+  overflow: hidden;
+  width:100vw;
+  height:100vh;
+  position: relative;
+  
+  .rightimage{
+    // width:10px;
+    // height:10px;
+    // position: relative;
+    svg{
+      position: absolute;
+      top:0%;
+      left:45%;
+      transform: rotate(45deg);
+      z-index: -1;
+    }
+  }
+}
+.testdetails-button{
+  border-radius: 10px;
+  background: #e0e0e0 !important;
+}
+.h1{
+  font-size: 4rem;
+  // color:rgb(71, 68, 68);
+  color:#094275;
+  font-weight: 800;
+}
+.h2{
+  font-size: 2rem;
+  color:rgb(126, 109, 109);
+  font-weight: 800;
+}
+.sampleReport{
+  width:100%;
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+.faq-button{
+  background:#094275 !important;
+  color:white !important;
+}
+
 
 @media only screen and (max-width:580px) {
   
 .test-carousel-card{
   max-width:100%;
 }
-  
+.book-home-collection-card{
+    p{
+      width:70px !important;
+    font-size: 0.7rem !important;
+    }
+}
 }

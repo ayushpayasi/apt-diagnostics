@@ -48,43 +48,43 @@ const Slider4 = {
         <Container>
                             <Slider {...Slider4} >
                                 <div className="align-center-column">
-                                <Card className="test-carousel-card">
-                                    <CardTitle className="text-center card-title mt-1">{item.head}</CardTitle>
-                                    <h5 className="text-left" style={{color:"grey"}}>{item.price}</h5>
-                                    <CardBody>{item.body}</CardBody>
-                                    <CardFooter className="align-center-row" style={{width:"100%"}}><Button className="test-card-button">Book Test</Button></CardFooter>
+                                <Card className="test-carousel-card text-center">
+                                    <CardTitle className="text-center card-title">{item.head}</CardTitle>
+                                    {/* <h5 className="text-left" style={{color:"grey"}}>{item.price}</h5> */}
+                                    <CardBody><p>{item.body}</p></CardBody>
+                                    <Button className="test-card-button">Book Test</Button>
                                 </Card>
                                 </div>
                                 <div>
-                                <Card className="test-carousel-card">
-                                    <CardTitle className="text-center card-title mt-1">{item.head}</CardTitle>
-                                    <h5 className="text-left" style={{color:"grey"}}>{item.price}</h5>
-                                    <CardBody>{item.body}</CardBody>
-                                    <CardFooter className="align-center-row" style={{width:"100%"}}><Button className="test-card-button">Book Test</Button></CardFooter>
+                                <Card className="test-carousel-card text-center">
+                                    <CardTitle className="text-center card-title">{item.head}</CardTitle>
+                                    {/* <h5 className="text-left" style={{color:"grey"}}>{item.price}</h5> */}
+                                    <CardBody><p>{item.body}</p></CardBody>
+                                    <Button className="test-card-button">Book Test</Button>
                                 </Card>
                                 </div>
                                 <div>
-                                <Card className="test-carousel-card">
-                                    <CardTitle className="text-center card-title mt-1">{item.head}</CardTitle>
-                                    <h5 className="text-left" style={{color:"grey"}}>{item.price}</h5>
-                                    <CardBody>{item.body}</CardBody>
-                                    <CardFooter className="align-center-row" style={{width:"100%"}}><Button className="test-card-button">Book Test</Button></CardFooter>
+                                <Card className="test-carousel-card text-center">
+                                    <CardTitle className="text-center card-title">{item.head}</CardTitle>
+                                    {/* <h5 className="text-left" style={{color:"grey"}}>{item.price}</h5> */}
+                                    <CardBody><p>{item.body}</p></CardBody>
+                                    <Button className="test-card-button">Book Test</Button>
                                 </Card>
                                 </div>
                                 <div>
-                                <Card className="test-carousel-card">
-                                    <CardTitle className="text-center card-title mt-1">{item.head}</CardTitle>
-                                    <h5 className="text-left" style={{color:"grey"}}>{item.price}</h5>
-                                    <CardBody>{item.body}</CardBody>
-                                    <CardFooter className="align-center-row" style={{width:"100%"}}><Button className="test-card-button">Book Test</Button></CardFooter>
+                                <Card className="test-carousel-card text-center">
+                                    <CardTitle className="text-center card-title">{item.head}</CardTitle>
+                                    {/* <h5 className="text-left" style={{color:"grey"}}>{item.price}</h5> */}
+                                    <CardBody><p>{item.body}</p></CardBody>
+                                    <Button className="test-card-button">Book Test</Button>
                                 </Card>
                                 </div>
                                 <div>
-                                <Card className="test-carousel-card">
-                                    <CardTitle className="text-center card-title mt-1">{item.head}</CardTitle>
-                                    <h5 className="text-left" style={{color:"grey"}}>{item.price}</h5>
-                                    <CardBody>{item.body}</CardBody>
-                                    <CardFooter className="align-center-row" style={{width:"100%"}}><Button className="test-card-button">Book Test</Button></CardFooter>
+                                <Card className="test-carousel-card text-center">
+                                    <CardTitle className="text-center card-title">{item.head}</CardTitle>
+                                    {/* <h5 className="text-left" style={{color:"grey"}}>{item.price}</h5> */}
+                                    <CardBody><p>{item.body}</p></CardBody>
+                                    <Button className="test-card-button">Book Test</Button>
                                 </Card>
                                 </div>
                             </Slider>

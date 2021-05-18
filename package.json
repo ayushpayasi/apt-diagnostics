@@ -19,27 +19,31 @@
     "Ayush Payasi <ayushpayasi@gmail.com> (https://ayushpayasi.github.io/)"
   ],
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev ",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "npm run build && next export -o _static"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",
+    "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "bootstrap": "^4.4.1",
     "classnames": "^2.3.1",
     "cssnano": "^4.1.10",
     "gsap": "^3.6.1",
     "jquery": "^3.6.0",
+    "moment": "^2.29.1",
     "next": "9.3.2",
     "next-redux-wrapper": "^5.0.0",
     "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "16.12.0",
     "react-client-captcha": "^1.0.3",
+    "react-datetime": "^3.0.4",
     "react-device-detect": "^1.17.0",
     "react-dom": "16.12.0",
     "react-redux": "^7.2.0",

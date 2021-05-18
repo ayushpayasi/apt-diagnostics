@@ -7,13 +7,16 @@ import{Container,
     CardBody,
     CardFooter} from "reactstrap"
 import ImgCarousel from "../components/carousel.component"
+// import Card from "@material-ui/core/Card"
+// import CardActionArea from "@material-ui/core/CardActionArea"
+// import CardActions from "@material-ui/core/CardActions"
 import "../assets/css/index.scss"
 import NavBar from "../components/navbar.component"
 import {isMobile} from "react-device-detect";
 import MobileMenu from "../components/mobilemenu.component"
-import Subscribe from "../components/subscribe.component"
-import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
-import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
+// import Subscribe from "../components/subscribe.component"
+// import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
+// import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
 // import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import ClientCaptcha from "react-client-captcha";
 import RadioGroup from '@material-ui/core/RadioGroup'
@@ -27,6 +30,8 @@ import Button  from "@material-ui/core/Button"
 import CallIcon from '@material-ui/icons/Call';
 import "../assets/css/animate.scss";
 import Blog from "../components/blog.component"
+import BigBlog from "../components/bigblog.component"
+import HealthCheckCarousel from "../components/healthcheckcarousel.component"
 
 
 export default function Home() {
@@ -159,7 +164,7 @@ export default function Home() {
     return (<React.Fragment>
                 <NavBar/>
                 <div className="carousel-index-container">
-                <Container fluid >
+                <Container  >
                     <Row>
                         <Col md="12" lg="8" className="mt-4 mb-4 ioleft">
                             <ImgCarousel/>
@@ -179,7 +184,7 @@ export default function Home() {
                                     <Col xs="6">
                                         <FormControlLabel
                                         value="home"
-                                        control={<Radio color="primary" />}
+                                        control={<Radio />}
                                         style={{textAlign:"center",color:"#0a4275"}}
                                         label="Home Appointment"
                                         name="type"
@@ -189,7 +194,7 @@ export default function Home() {
                                     <Col xs="6">
                                         <FormControlLabel
                                         value="lab"
-                                        control={<Radio color="primary" />}
+                                        control={<Radio />}
                                         style={{textAlign:"center",color:"#0a4275"}}
                                         label="Lab Appointment"
                                         name="type"
@@ -246,10 +251,10 @@ export default function Home() {
                                 </Row>
                                 <Row  className="ml-1 mr-1 mt-2 mb-1" >
                                     <Col className="align-center-column">
-                                <Button  variant="contained" style={{width:"100%"}} >Book Now</Button>
+                                <Button  variant="contained" style={{width:"100%",color:"#fff !important",background:"linear-gradient(to right, #8faec9, #175d9c, #3375b0, #8faec9) !important"}} >Book Now</Button>
                                     </Col>
                                 </Row>
-                                {/* color="primary" background:"#ababab" ,color:"white"*/}
+                                {/* background:"#ababab" ,color:"white"*/}
                             </CardBody>
 
                             </Card>
@@ -263,7 +268,7 @@ export default function Home() {
                 <Container className="lazyload" style={{overflowX:"hidden"}}>
                 <Row className="mt-4">
                     <Col>
-                        <h2 className="landing-h2 iofade">
+                        <h2 className="landing-h2 mt-2 mb-4 iofade">
                             SARS-CoV-2 Tests
                         </h2>
                     </Col>
@@ -273,28 +278,31 @@ export default function Home() {
                         <Card className="test-card ioleft">
                             <CardTitle className="text-center card-title mt-1">Covid 19 RT-PCR Test</CardTitle>
                             <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio et vel quisquam! Sit mollitia voluptatem labore voluptatibus, velit alias dicta!</CardBody>
-                            <CardFooter className="align-center-row"><Button color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
+                            <CardFooter className="align-center-row">
+                                <Button variant="contained" className="test-card-button mr-1">Book Test</Button>
+                                <Button variant="contained" className="test-card-button">Add To Cart</Button>
+                            </CardFooter>
                         </Card>
                     </Col>
                     <Col>
                         <Card className="test-card ioleft">
                             <CardTitle className="text-center card-title mt-1">D-Dimer Test</CardTitle>
                             <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
+                            <CardFooter className="align-center-row"><Button variant="contained" className="test-card-button">Book Test</Button></CardFooter>
                         </Card>
                     </Col>
                     <Col>
                         <Card className="test-card ioright">
                             <CardTitle className="text-center card-title mt-1">COVID Antibody Test</CardTitle>
                             <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button  color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
+                            <CardFooter className="align-center-row"><Button  variant="contained" className="test-card-button">Book Test</Button></CardFooter>
                         </Card>
                     </Col>
                     <Col>
                         <Card className="test-card ioright">
                             <CardTitle className="text-center card-title mt-1">CoviProfile Test</CardTitle>
                             <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
+                            <CardFooter className="align-center-row"><Button variant="contained" className="test-card-button">Book Test</Button></CardFooter>
                         </Card>
                     </Col>
                 </Row>
@@ -302,52 +310,18 @@ export default function Home() {
                 <Container>
                     <SliderDetails/>
                 </Container>
-                <div className="colored-container">
-                <Container >
-                <Row>
-                    <Col className="mt-4">
-                        <h2 className="landing-h2-dark iofade">
-                            Popular Tests
+
+                <Container>
+                <Row className="mt-4">
+                    <Col>
+                        <h2 className="landing-h2 mt-2 mb-4 iofade">
+                            Our Curated Heath Packages
                         </h2>
                     </Col>
                 </Row>
-                <Row className="mb-4">
-                    <Col>
-                    <p className="container-p text-center iofade"> Browse through our most popular tests that ensure your good health!</p>
-                    </Col>
-                </Row>
-                <Row className="ml-2 mr-2"> 
-                    <Col>
-                        <Card className="test-card ioleft">
-                            <CardTitle className="text-center card-title mt-1">Covid 19 RT-PCR Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio et vel quisquam! Sit mollitia voluptatem labore voluptatibus, velit alias dicta!</CardBody>
-                            <CardFooter className="align-center-row"><Button color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="test-card ioleft">
-                            <CardTitle className="text-center card-title mt-1">D-Dimer Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="test-card ioright">
-                            <CardTitle className="text-center card-title mt-1">COVID Antibody Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="test-card ioright">
-                            <CardTitle className="text-center card-title mt-1">CoviProfile Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
-                        </Card>
-                    </Col>
-                </Row>
+                    <HealthCheckCarousel/>
                 </Container>
-                </div>
+
                 <div className="accreditations">
                 <Container fluid>
                     <Row>
@@ -400,7 +374,7 @@ export default function Home() {
                                 </Row>
                                 <Row>
                                     <Col className="align-center-row">
-                                        <img className="ioleft" src="images/profile1.jpg" alt="profile"/><h5 className="ioright">Lorem, ipsum.</h5>
+                                        <img className="ioleft" src="images/profile1.jpg" alt="profile"/><h6 className="ioright">Lorem, ipsum.</h6>
                                     </Col>
                                 </Row>
                         </Col>
@@ -417,7 +391,7 @@ export default function Home() {
                                 </Row>
                                 <Row>
                                     <Col className="align-center-row">
-                                        <img className="ioright" src="images/profile1.jpg" alt="profile"/><h5 className="ioright">Lorem, ipsum.</h5>
+                                        <img className="ioright" src="images/profile1.jpg" alt="profile"/><h6 className="ioright">Lorem, ipsum.</h6>
                                     </Col>
                                 </Row>
                         </Col>
@@ -425,24 +399,37 @@ export default function Home() {
                     <Row>
                     </Row>
                 </Container>
-                <Container>
+                <div className="blogs-holder">
+                <Container className="blogs-container">
                     <Row>
                         <Col>
-                                <Blog/>
-                        </Col>
-                        <Col>
-                                <Blog/>
+                            <h4 className="text-center mt-3 mb-3 blog-heading">Blogs</h4>
                         </Col>
                     </Row>
+                    <Row>
+                        <Col>
+                                <Blog bgcolor="#0a4275" color="#fff"/>
+                        </Col>
+                        <Col>
+                                <Blog bgcolor="#fff" color="#0a4275"/>
+                        </Col>
+                    </Row>
+                    <Row className="big-blog-holder">
+                        <BigBlog/>
+                    </Row>
                 </Container>
-                <Container className="mt-2 mb-2">
+                </div>
+
+                {/* <Container className="mt-2 mb-2">
                 <Row>
                     <Col className="align-center-row">
                         <Subscribe/>
                     </Col>
                 </Row>
-                </Container>
-
+                </Container> */}
+                <div style={{height:"100vh"}}>
+                    footer
+                </div>
                 {isMobile?<MobileMenu/>:<React.Fragment/>}
             </React.Fragment>
     )
