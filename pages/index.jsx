@@ -5,6 +5,7 @@ import{Container,
     Card,
     CardTitle,
     CardBody,
+    CardText,
     CardFooter} from "reactstrap"
 import ImgCarousel from "../components/carousel.component"
 // import Card from "@material-ui/core/Card"
@@ -32,6 +33,7 @@ import "../assets/css/animate.scss";
 import Blog from "../components/blog.component"
 import BigBlog from "../components/bigblog.component"
 import HealthCheckCarousel from "../components/healthcheckcarousel.component"
+import Footer from "../components/footer.component"
 
 
 export default function Home() {
@@ -164,7 +166,7 @@ export default function Home() {
     return (<React.Fragment>
                 <NavBar/>
                 <div className="carousel-index-container">
-                <Container  >
+                <Container className="mt-3" >
                     <Row>
                         <Col md="12" lg="8" className="mt-4 mb-4 ioleft">
                             <ImgCarousel/>
@@ -187,7 +189,7 @@ export default function Home() {
                                         control={<Radio />}
                                         style={{textAlign:"center",color:"#0a4275"}}
                                         label="Home Appointment"
-                                        name="type"
+                                        name="type2"
                                         labelPlacement="bottom"
                                         />
                                     </Col>
@@ -197,7 +199,7 @@ export default function Home() {
                                         control={<Radio />}
                                         style={{textAlign:"center",color:"#0a4275"}}
                                         label="Lab Appointment"
-                                        name="type"
+                                        name="type1"
                                         labelPlacement="bottom"
                                         />
                                     </Col>
@@ -223,7 +225,7 @@ export default function Home() {
                                             options={top100Films}
                                             getOptionLabel={(option) => option.title}
                                             style={{ width: "100%"}}
-                                            renderInput={(params) => <TextField  {...params} label="Find Your Test" size="small" variant="outlined" />}
+                                            renderInput={(params) => <TextField  {...params} placeholder="Find Your Test" size="small" variant="outlined" />}
                                             />
                                         <div className="results">
                                             
@@ -243,7 +245,7 @@ export default function Home() {
                                     <Col md="2" className="align-center-column">
                                     <CallIcon style={{color:"#000",height:"2.7rem",width:"2.7rem",padding:0,margin:0}}/>
                                     </Col>
-                                    <Col md="10"><TextField type="number" size="small" pattern="[0-9]{10}" label="Your Contact Number!" variant="outlined" /></Col>
+                                    <Col md="10"><TextField type="number" size="small" pattern="[0-9]{10}" placeholder="Your Contact Number!" variant="outlined" /></Col>
                                 </Row>
                                 <Row  className="ml-1 mr-1 mt-2 mb-3" >
                                     <Col className="division">
@@ -265,6 +267,27 @@ export default function Home() {
                     </Row>
                 </Container>
                 </div>
+                <Container>
+                    <Row>
+                    <Col><Card className="features-card">
+                        <Row><Col className="landing-h2 iofade">Our Features</Col></Row>
+                        <Row>
+                            <Col md="4"><CardBody className="ioleft"><CardTitle>Who are we?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Col>
+                            <Col md="4"><CardBody className="iofade"><CardTitle>What we do?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Col>
+                            <Col md="4"><CardBody className="ioright"><CardTitle>Why us?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Col>
+
+                        </Row>
+                                        {/* <CardBody><CardTitle>Who are we?</CardTitle><CardText>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody> */}
+                                        </Card></Col>
+                        {/* <Col>
+                                <Row>
+
+                                    <Col></Col>
+                                    <Col></Col>
+                                </Row>
+                        </Col> */}
+                    </Row>
+                </Container>
                 <Container className="lazyload" style={{overflowX:"hidden"}}>
                 <Row className="mt-4">
                     <Col>
@@ -277,32 +300,35 @@ export default function Home() {
                     <Col>
                         <Card className="test-card ioleft">
                             <CardTitle className="text-center card-title mt-1">Covid 19 RT-PCR Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio et vel quisquam! Sit mollitia voluptatem labore voluptatibus, velit alias dicta!</CardBody>
-                            <CardFooter className="align-center-row">
-                                <Button variant="contained" className="test-card-button mr-1">Book Test</Button>
-                                <Button variant="contained" className="test-card-button">Add To Cart</Button>
-                            </CardFooter>
+                            <CardBody >
+                                <CardText className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia libero ad rerum in repudiandae laborum quibusdam impedit officiis a eum. ipsum dolor sit amet consectetur adipisicing elit. Optio et vel quisquam! Sit mollitia voluptatem labore voluptatibus, velit alias dicta!</CardText>
+                            <div className="align-center-row "><Button variant="outlined" fullWidth className="test-card-button">Book Test</Button></div></CardBody>
+                            
                         </Card>
                     </Col>
                     <Col>
                         <Card className="test-card ioleft">
                             <CardTitle className="text-center card-title mt-1">D-Dimer Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button variant="contained" className="test-card-button">Book Test</Button></CardFooter>
+                            <CardBody >
+                                <CardText className="body-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates a sunt amet facere ducimus dolore rerum dicta repellat labore repellendus. ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardText>
+                            <div className="align-center-row "><Button variant="outlined" fullWidth className="test-card-button">Book Test</Button></div></CardBody>
+                            
                         </Card>
                     </Col>
                     <Col>
                         <Card className="test-card ioright">
                             <CardTitle className="text-center card-title mt-1">COVID Antibody Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button  variant="contained" className="test-card-button">Book Test</Button></CardFooter>
+                            <CardBody>
+                                <CardText className="body-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, odio. ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, a. ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardText>
+                            <div className="align-center-row "><Button variant="outlined" fullWidth className="test-card-button">Book Test</Button></div></CardBody>
                         </Card>
                     </Col>
                     <Col>
                         <Card className="test-card ioright">
                             <CardTitle className="text-center card-title mt-1">CoviProfile Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button variant="contained" className="test-card-button">Book Test</Button></CardFooter>
+                            <CardBody >
+                                <CardText className="body-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, expedita. ipsum dolor sit, amet consectetur adipisicing elit. Iusto, excepturi. ipsum dolor sit amet consectetur adipisicing elit. Inventore, dicta. ipsum dolor sit amet consectetur adipisicing elit. Quam, nisi? ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardText>
+                            <div className="align-center-row "><Button variant="outlined" fullWidth className="test-card-button">Book Test</Button></div></CardBody>
                         </Card>
                     </Col>
                 </Row>
@@ -369,19 +395,20 @@ export default function Home() {
                                     <h1 className="ioleft color">“</h1>
                                     </Col>
                                     <Col md="9">
-                                        <p className="ioleft text-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius incidunt recusandae quidem ut soluta, minima alias eum illum suscipit quis cum doloribus beatae, enim ipsum, porro rem inventore debitis quaerat nisi odio earum reprehenderit sit molestiae? Quia est odio ipsum!</p>
+                                        <p className="ioleft symptoms-text text-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius incidunt recusandae quidem ut soluta, minima alias eum illum suscipit quis cum doloribus beatae, enim ipsum, porro rem inventore debitis quaerat nisi odio earum reprehenderit sit molestiae? Quia est odio ipsum!</p>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col className="align-center-row">
-                                        <img className="ioleft" src="images/profile1.jpg" alt="profile"/><h6 className="ioright">Lorem, ipsum.</h6>
+                                        {/* <img className="ioleft" src="images/profile1.jpg" alt="profile"/> */}
+                                        <h5 className="ioright card-title">Lorem ipsum dolar, FOUNDER</h5>
                                     </Col>
                                 </Row>
                         </Col>
                         <Col>
                                 <Row>
                                     <Col md="9">
-                                        <p className="ioright text-left">
+                                        <p className="ioright symptoms-text text-left">
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil consequatur cupiditate laboriosam assumenda porro neque ratione recusandae earum fugiat suscipit quos, aliquid, velit dicta repellendus aut tempora perferendis. Voluptatibus totam quas fugit unde, repudiandae, quaerat corporis sed dolorem laudantium maiores iusto hic neque aperiam voluptas, nulla exercitationem excepturi optio non.
                                         </p>
                                     </Col>
@@ -391,7 +418,8 @@ export default function Home() {
                                 </Row>
                                 <Row>
                                     <Col className="align-center-row">
-                                        <img className="ioright" src="images/profile1.jpg" alt="profile"/><h6 className="ioright">Lorem, ipsum.</h6>
+                                        {/* <img className="ioright" src="images/profile1.jpg" alt="profile"/> */}
+                                        <h5 className="ioright card-title">Lorem ipsum ipsum.CUSTOMER</h5>
                                     </Col>
                                 </Row>
                         </Col>
@@ -406,16 +434,16 @@ export default function Home() {
                             <h4 className="text-center mt-3 mb-3 blog-heading">Blogs</h4>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row >
                         <Col>
                                 <Blog bgcolor="#0a4275" color="#fff"/>
                         </Col>
                         <Col>
-                                <Blog bgcolor="#fff" color="#0a4275"/>
+                                <Blog bgcolor="#0a4275" color="#fff"/>
                         </Col>
-                    </Row>
-                    <Row className="big-blog-holder">
-                        <BigBlog/>
+                        <Col>
+                                <Blog bgcolor="#0a4275" color="#fff"/>
+                        </Col>
                     </Row>
                 </Container>
                 </div>
@@ -427,8 +455,9 @@ export default function Home() {
                     </Col>
                 </Row>
                 </Container> */}
+                
                 <div style={{height:"100vh"}}>
-                    footer
+                    <Footer/>
                 </div>
                 {isMobile?<MobileMenu/>:<React.Fragment/>}
             </React.Fragment>

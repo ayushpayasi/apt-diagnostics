@@ -110,3 +110,23 @@
     // transform: scale(4);
     transition: all 500ms ease-in-out;
   }
+
+  .symptoms-text{
+    font-size: .85rem;
+    line-height: 16.8px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 150px;
+    font-weight: 500;
+    &:after {
+      content: "";
+      text-align: right;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 70%;
+      height:1.3rem;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
+    }
+  }

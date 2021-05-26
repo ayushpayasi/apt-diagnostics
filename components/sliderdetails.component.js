@@ -185,7 +185,7 @@ export default function SliderDetails() {
         <div className="sliderwithdetails">
             <Row>
                 <Col>
-                    <h4 className="text-center color mt-4 mb-4 iofade">Diagnose For Specific Organ </h4>
+                    <h2 className=" landing-h2 text-center color mt-4 mb-4 iofade">Diagnose For Specific Organ </h2>
                 </Col>
             </Row>
             <Row>
@@ -201,7 +201,7 @@ export default function SliderDetails() {
           > */}
             <Row>
                 <Col >
-                    <h4 className="text-center mt-4 mb-4 iofade color">{data[currSlide].name}</h4>
+                    <h4 className="text-center card-title mt-4 mb-4 iofade color">{data[currSlide].name}</h4>
                 </Col>
             </Row>
             {/* </CSSTransition></SwitchTransition> */}
@@ -217,11 +217,11 @@ export default function SliderDetails() {
                 <Col md="6">
                     <Row>
                         <Col>
-                            <h5 className="text-center mt-4 mb-4 iofade color">Symptoms</h5>
+                            <h4 className="text-center card-title mt-4 mb-4 iofade color">Symptoms</h4>
                         </Col>
                     </Row>
                     <Row >
-                        <Col className="ioleft" style={{overflow:"hidden",height:"250px"}}>
+                        <Col className="ioleft symptoms-text">
                             {data[currSlide].symptoms}
                             
                         </Col>
@@ -230,7 +230,7 @@ export default function SliderDetails() {
                 <Col md="6">
                     <Row>
                         <Col>
-                            <h5 className="text-center color mt-4 mb-4 iofade">Tests</h5>
+                            <h4 className="text-center card-title color mt-4 mb-4 iofade">Tests</h4>
                         </Col>
                     </Row>
                     <Row>

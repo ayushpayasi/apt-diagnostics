@@ -1,0 +1,29 @@
+.reports-container{
+    h5{
+        color:#0a4275;
+        font-weight: 600;
+    }
+}
+
+.reports-cart-data{
+    font-weight: 600;
+    button{
+        margin:5px 0px;
+        border-radius: 10px;
+        background: transparent;
+        border: 1px solid #0a4275;
+        color:#0a4275 ; 
+    }
+}
+.reports-list-heading{
+    font-weight: 700;
+    color:#0a4275;
+}
+
+
+@media only screen and (max-width:425px) {
+    
+.reports-list-heading{
+    display: none;
+}
+}

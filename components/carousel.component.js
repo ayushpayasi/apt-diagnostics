@@ -6,15 +6,15 @@ import {
   CarouselCaption,
 } from 'reactstrap';
 
-
+// src: "images/carouselImgx.jpg",
 const items = [
   {
-    src: "images/carouselImgx.jpg",
+    src: "images/homeslider1.png",
     altText: 'Slide 1',
     caption: 'Slide 1'
   },
   {
-    src: "images/carouselImgy.jpg",
+    src: "images/homeslider2.png",
     altText: 'Slide 2',
     caption: 'Slide 2'
   },
@@ -54,7 +54,7 @@ const ImgCarousel = (props) => {
         key={item.src}
       >
         <img src={item.src}  className="carouselImg" alt={item.altText} />
-        <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+        {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
       </CarouselItem>
     );
   });

@@ -5,3 +5,86 @@
     font-family:initial!important;
     color:#094275; 
 }
+
+.organ-image-holder{
+    position: relative;
+    height:450px;
+    .organ-image-desktop{
+    background: url("/images/bgcheck2.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    right:0;
+    top:0;
+    height:450px;
+    width:600px;
+}
+.organ-image-mobile{
+    background: url("/images/bgcheck2.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    right:0;
+    top:0;
+    height:300px;
+    width:250px;
+}
+.diagnostics-pagetitle{
+    position: absolute;
+    
+    h5{font-size:2rem;
+        font-weight: 700;
+    max-width:250px;
+    margin-left: 100px;}
+    // position: absolute;
+    top:50%;
+    
+}
+}
+.tabs-container{
+    // border:1px solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 10px;
+    .organ-description-col{
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 400px;
+    }
+}
+.organs-tabs{
+    width:200px;
+    .MuiTab-wrapper{
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: none;
+    }
+}
+
+@media only screen and (max-width:"1440px") {
+    .organ-image-mobile{
+        display: none;
+    }
+    .organ-image-desktop{
+        display: block;
+    }
+}
+
+@media only screen and (max-width:"768px") {
+    .organ-image-mobile{
+        display: block;
+    }
+    .organ-image-desktop{
+        display: none;
+    }
+    .organ-image-holder{
+        height: 300px;
+    }
+    .diagnostics-pagetitle {
+        top:30% !important;
+        h5{font-size:1.2rem !important;
+            font-weight: 700 !important;
+        max-width:150px !important;
+        margin-left: 5px !important;}
+    }
+    
+}

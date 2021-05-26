@@ -1,5 +1,8 @@
 import React from 'react'
-import {Row,Col, CardImg,CardBody,Card,CardTitle} from "reactstrap"
+import "../assets/css/footer.scss"
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import EmailIcon from '@material-ui/icons/Email';
+import CallIcon from '@material-ui/icons/Call';
 import {
     FacebookShareButton,
     PinterestShareButton,
@@ -13,23 +16,51 @@ import {
     WhatsappIcon,
 } from "react-share"
 
-import "../assets/css/blogcomp.scss"
-export default function Blog(props) {
+
+export default function Footer() {
     const shareUrl="abcd.com"
     const title = "abcd"
-    // style={{background:props.bgcolor,color:props.color}}
     return (
         <>
-            <Card className="blog-row iofade">
-
-                <CardImg className="ioleft" src="images/profile3.jpg" alt="profile"></CardImg>
-                    
-                <CardBody>
-                    <h5 className="ioright">Lorem ipsum</h5>
-                   
-                    <p className="ioright">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, eligendi perspiciatis? Magni, nulla fuga sed expedita ipsa est eum veniam!</p>
-
-                     
+        <div className="footer-holder"> </div>
+        <div className="footer-end">
+            <div>
+                <h5>APT Diagnostics</h5>
+                <ul>
+                    <li>About Us</li>
+                    <li></li>
+                    <li>Lorem, ipsum.</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h5>Services</h5>
+                <ul>
+                    <li>Test Booking</li>
+                    <li>Blogs</li>
+                    <li>Test Packages</li>
+                    <li>Report Download</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Support</h5>
+                <ul>
+                    <li>Help Center</li>
+                    <li>Query Resolve</li>
+                    <li>Import Links</li>
+                    <li>Site Map</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Cupiditate, nostrum.</h5>
+                <ul>
+                    <li style={{color:"#0a4275",fontWeight:"500"}}><LocationOnIcon style={{padding:0,margin:0,color:"#ff6363"}}/>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas!</li>
+                    <li style={{color:"#0a4275",fontWeight:"500"}}><EmailIcon style={{color:"#ff6363"}}/>support@aptdiagnosstics.com</li>
+                    <li style={{color:"#0a4275",fontWeight:"500"}}><CallIcon style={{color:"#ff6363"}}/>Contact Us</li>
+                </ul>
+                <h5 style={{marginTop:"20px"}}> Follow Us</h5>
+                <ul>
+                    <li>                     
                     <div className="links ioright">
                         <FacebookShareButton
                         url={shareUrl}
@@ -68,9 +99,11 @@ export default function Blog(props) {
                             <PinterestIcon size={25} round />
                         </PinterestShareButton>
             </div>
-                    
-                </CardBody> 
-            </Card>
-            </>
+                    </li>
+                </ul>
+            </div>
+            <p style={{marginTop:"20px"}}> © Copyright APT Diagnostics All Rights Reserved. 2021</p>
+        </div>
+        </>
     )
 }

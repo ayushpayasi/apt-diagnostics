@@ -5,15 +5,18 @@ import IconButton from "@material-ui/core/IconButton"
 import CancelOutlined from "@material-ui/icons/CancelOutlined"
 import Loading from "../../components/loading.component"
 import "../../assets/css/payments.scss"
-// import DateTimePicker from 'react-datetime-picker';
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import { Button } from 'reactstrap'
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Typography from "@material-ui/core/Typography"
 import MyLocationIcon from '@material-ui/icons/MyLocation';
+import MobileStepper from "@material-ui/core/MobileStepper"
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import {isMobile} from "react-device-detect";
+import MobileMenu from "../../components/mobilemenu.component"
 
 const tempData = [{
     id:"0",
@@ -37,8 +40,9 @@ export default function Confirm() {
     const [cartData,setCartData] = useState(null);
     const [selectedDateTime, setSelectedDateTime] = useState(new Date());
     const [activeStep, setActiveStep] = React.useState(0);
-    const steps=["Review Your Items","Fill Details","Book Slot","Confirm Payment"]
+    const steps=["Review Your Items","Fill Details","Book Slot"]
     const [skipped, setSkipped] = React.useState(new Set());
+    const [showCalender,setShowCalender] = useState(true);
     const isStepOptional = (step) => {
         return step === 1;
       };
@@ -86,8 +90,9 @@ export default function Confirm() {
             </CardBody>
             </Card>)
           case 1:
-            return (
-                <Container>
+            return (<Card className="payment-total-card">
+                <CardBody>
+                  <CardTitle><h5>Fill Information</h5></CardTitle>
                 <Row>
                     <Col sm="6">
                         <FormGroup>
@@ -136,12 +141,36 @@ export default function Confirm() {
                         </FormGroup>
                     </Col>
                 </Row>
-                </Container>
-            )
+                </CardBody>
+                </Card>)
           case 2:
-            return 'This is the bit I really care about!';
+            return (<Card>
+              <CardBody>
+               <CardTitle><h5>Fill Slots</h5></CardTitle>
+                <Row>
+                  <Col><FormGroup>
+                    <Label for="slotdate">Select Date</Label>
+                  <Datetime disableClock={true} timeFormat={false} inputProps={{id:"slotdate",autocomplete:"off"}} closeOnSelect />
+                  </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <FormGroup>
+                    <Label for="slotdate">Select Time Slot</Label>
+                    <Datetime disableCalender={true} dateFormat={false} inputProps={{id:"slot-start-time",autocomplete:"off"}} closeOnSelect />
+                  </FormGroup>
+                </Col>
+                </Row>
+                </CardBody>
+              </Card>);
           default:
-            return 'Unknown stepIndex';
+            return (<Card><Row>
+                <Col>
+                  <Button>Pay</Button>
+                </Col>
+                </Row></Card>
+            );
         }
     }  
 
@@ -199,45 +228,48 @@ export default function Confirm() {
 
         {cartData === null ? <Loading/>:
          <Container>
-             <Row className="mt-5">
+             <Row className="mt-3">
                  <Col>
                  
         <div>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
+          {isMobile?
+        <MobileStepper 
+          style={{ background:"transparent"}}
+          activeStep={activeStep} 
+          steps={steps.length} 
+          position="static" 
+          nextButton={<IconButton 
+                      disabled={activeStep === steps.length } 
+                      onClick={handleNext}><NavigateNextIcon/></IconButton>} 
+          backButton={<IconButton 
+                      disabled={activeStep === 0} 
+                      onClick={handleBack}><NavigateBeforeIcon/></IconButton>}>
+        </MobileStepper>
+      :<Stepper  
+          activeStep={activeStep}>
+          {steps.map((label, index) => {
           return (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
             </Step>
           );
         })}
-      </Stepper>
+      </Stepper>} 
       <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography >
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button className="button" onClick={handleReset} >
-              Reset
-            </Button>
-          </div>
-        ) : (
-            <div id="stepperData">
+            <div id="stepperData" style={{minHeight:"60vh"}}>
                 {getStepContent(activeStep)}
             <div>
-
-            <Row>
+            {isMobile?<React.Fragment/>:<Row className="mt-4">
                 <Col className="align-center-row">
                     <Button className="button" onClick={handleBack} > Back</Button>
                 </Col>
                 <Col className="align-center-row">
-                <Button className="button" onClick={handleNext}> {activeStep === steps.length - 1 ? 'Confirm' : 'Proceed'}</Button>
+                <Button className="button" onClick={handleNext}> {activeStep === steps.length - 1 ? 'Pay' : 'Proceed'}</Button>
                 </Col>
-            </Row>
+            </Row>}
+            
             </div>
           </div>
-        )}
       </div>
     </div>
 
@@ -245,6 +277,7 @@ export default function Confirm() {
                  </Col>
              </Row>
          </Container>}
+         {isMobile?<MobileMenu/>:<React.Fragment/>}
          </>
 
         

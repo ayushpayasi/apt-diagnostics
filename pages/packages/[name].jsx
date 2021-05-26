@@ -5,13 +5,14 @@ import "../../assets/css/packages.scss"
 import {Container,Col,Row,Card,Button,Collapse,ListGroup,ListGroupItem,CardBody,CardTitle,CardText, CardSubtitle} from "reactstrap"
 import IconButton from "@material-ui/core/IconButton"
 import ArrowDownwardRounded from "@material-ui/icons/ArrowDownwardRounded"
+import NavBar from "../../components/navbar.component"
 
 const data=[
     {name:"First",
 description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quae dicta mollitia eveniet fugiat perferendis.",
 testsIncluded:["Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit"],
 packagePrice:"2000",
-preRequisites:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
+preRequisites:[`Lorem ipsum dolor sit Lorem ipsum dolor sit`,"Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
 idealFor:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
 },
 {name:"Second",
@@ -123,7 +124,8 @@ export default function Display({details}) {
 
     return (
         <>
-        <SmallNavbar/>
+        {/* <SmallNavbar/> */}
+        <NavBar/>
         <Container className="mt-4">
             <Row>
                 <Col>

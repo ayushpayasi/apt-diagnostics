@@ -14,8 +14,10 @@ import {
   CardTitle,
   ListGroup,
   ListGroupItem,
-  Button
+  Button,
 } from 'reactstrap';
+import axios from "axios";
+import testList from "../public/test.json"
 // import TextField from '@material-ui/core/TextField';
 // import Autocomplete from '@material-ui/lab/Autocomplete';
 import "../assets/css/navbar.scss"
@@ -26,14 +28,26 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 // import IconButton from '@material-ui/core/IconButton';
 import PublishIcon from '@material-ui/icons/Publish';
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown"
+import SearchIcon from '@material-ui/icons/Search';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputAdornment from "@material-ui/core/InputAdornment";
+// import SearchIcon from '@material-ui/icons/Search';
+// import Autocomplete from "@material-ui/lab/Autocomplete"
+// import TextField from "@material-ui/core/TextField"
 
 // import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 
 // import CloseIcon from '@material-ui/icons/Close';
+import $ from "jquery"
 
 const Navigation = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [panelIsOpen,setPanelIsOpen] = useState(false);
+
+
+
+
   const leftPanelToggle =()=> {
     if(panelIsOpen){
       document.getElementById("left-panel").style.left = "-41%"
@@ -48,6 +62,7 @@ const Navigation = (props) => {
     }
   }
   useEffect(() => {
+    $("#navbar-search").click((obj)=>{$(obj).toggleClass("search-navbar-active")})
       var prevScrollpos = window.pageYOffset;
         window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
@@ -175,6 +190,18 @@ const Navigation = (props) => {
             <NavItem className="m-2">
               <NavLink className="nav-link" href="/components/" ><PublishIcon style={{color:"#ff6363"}} /><span style={{verticalAlign:"bottom",textTransform:"capitalize"}}>Upload Prescription</span></NavLink>
             </NavItem>
+            <NavItem className="m-3">
+                <Input  
+                id="navbar-search"
+                className="search-navbar"
+                placeholder="Search Test/Package"
+                disableUnderline
+                startAdornment={
+                <InputAdornment position="start">
+                  <SearchIcon style={{color:"#ff6363"}} />
+                </InputAdornment>
+                }/>
+              </NavItem>
             {/* <NavItem className="m-2">
             <NavLink className="nav-link" href="/components/">Components</NavLink>
             </NavItem> */}
@@ -209,7 +236,7 @@ const Navigation = (props) => {
         </Collapse>
       </Navbar>
       <div id="topSpace" className="top-space">
-        <Container fluid>
+        <Container>
         <Row>
         <Col md="7">
           <Row>
@@ -217,10 +244,10 @@ const Navigation = (props) => {
              <a href="/about">About</a>
             </Col>
             <Col md="2" className="p0 m0 align-center-column">
-            <a href="/packages"> Packages </a>
+            <a href="/packages">Packages</a>
             </Col>
             <Col md="2" className="p0 m0 align-center-column">
-              <a href="/diagnostics"> Covid-19 </a>
+              <a href="/diagnostics"> <img src="/images/bacteria.png" style={{ width:"15px",height:"15px",margin:"3px"}}/> Covid-19</a>
             </Col>
             <Col md="2" className="p0 m0 align-center-column">
             <span className="dropDown">Patients<ArrowDropDown/>
@@ -296,41 +323,17 @@ const Navigation = (props) => {
             </Row>
             <Row>
               <Col>
-                <h6 className="sidebar-text text-center">Request</h6>
-                <h6 className="sidebar-text text-center">Callback</h6>
+                <h6 className="sidebar-text text-center">Request Callback</h6>
+                {/* <h6 className="sidebar-text text-center">Callback</h6> */}
               </Col>
             </Row>
             </Col></Row>
         </div>
-      {/* <span id="panel-toggle-button" className="left-panel-button">
-       <h6 onClick={()=>{leftPanelToggle()}} className="left-panel-text">VIEW REPORT </h6>
-      <IconButton onClick={()=>{leftPanelToggle()}}> <ArrowForwardIosRoundedIcon className="arrow-button"/> </IconButton>
-      </span> */}
+      <div id="right-panel" className="right-panel">
+        <p>Contact Us </p>
+      </div>
     </React.Fragment>
   );
 }
 
 export default Navigation;
-
-
-
-            {/* <Col xs="6">
-              <NavLink className="sidebar-navlink" href="/coupons">COUPONS</NavLink>
-            </Col> */}
-            {/* <Col xs="6"><h7 className="shigning-text">New</h7></Col> */}
-          
-          {/* <Row >
-            <Col >
-              <NavLink className="sidebar-navlink" href="/login">Download Reports</NavLink>
-            </Col>
-          </Row>
-          <Row >
-            <Col >
-              <NavLink className="sidebar-navlink" href="/login">Login</NavLink>
-            </Col>
-          </Row>
-          <Row > */}
-            {/* <Col >
-              <NavLink className="sidebar-navlink" href="/findtest">Find A Test</NavLink>
-            </Col>
-          </Row> */}

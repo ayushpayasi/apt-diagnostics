@@ -1,10 +1,56 @@
 
 .test-banner{
+    position: relative;
+    border: none;
+    margin-top: 50px;
+    width:98%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 2px rgba(10, 66, 117,0.4) !important;
+    &>div{
+        padding:50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+.prev-btn{
+    position: absolute;
+    left:40px;
+    border:2px solid #ebebed;
+    padding:0px;
+    margin:0px;
+}
+
+.next-btn{
+    position: absolute;
+    border:2px solid #ebebed;
+    padding:0px;
+    margin:0px;
+    left:93%;
+}
+    
+}
+
+
     img{
-      width:100%;
-      height:400px;
+      width:90%;
+      height:300px;
+      border-radius: 10px;
+      
+    //   border:5px solid rgba(10, 66, 117,1);
+      box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.5);
     }
   }
+
+  
+.package-banner-container-holder{
+    
+    // background:url("/images/bgcheck.jpg");
+    // background-position: center;
+    // background-repeat: no-repeat;
+    border:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 // container tab
 

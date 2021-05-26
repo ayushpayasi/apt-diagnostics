@@ -10,6 +10,10 @@ import {Container,Row,Col,Button,Input,Card,CardImg,CardBody,CardTitle,CardText,
 import MobileMenu from "../../components/mobilemenu.component"
 import HealthCheckCarousel from "../../components/healthcheckcarousel.component"
 import "../../assets/css/packages.scss"
+import PackageSlider from "../../components/packageslider.component"
+import IconButton from "@material-ui/core/IconButton"
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 export default function Index() {
     const [value, setValue] = useState(0);
@@ -69,14 +73,21 @@ export default function Index() {
         <>
             <NavBar/>
             {/* <BreadCrumb links={["home","tests"]}/> */}
-            <Container fluid>
-            <Row className="test-banner">
+            {/* <Card > */}
+            <Container className="package-banner-container-holder">
+                
+            <Row className="test-banner card">
                     <Col>
-                        <img src="/images/carouselimgx.jpg"></img>
-                    </Col>
+                {/* <PackageSlider/> */}
+                <img src="/images/carouselimgx.jpg"></img>
+                <IconButton className="prev-btn"><NavigateBeforeIcon style={{color:"#0a4275",width:"30px",height:"30px"}}/></IconButton>
+                <IconButton className="next-btn"><NavigateNextIcon style={{color:"#0a4275",width:"30px",height:"30px"}}/></IconButton>
+                {/* <img className="leftArrow" src=""></img>
+                <img className="leftArrow" scr=""></img> */}
+                </Col>
                 </Row>
             </Container>
-      
+            {/* </Card> */}
             <Container >
                 
                 <Row>

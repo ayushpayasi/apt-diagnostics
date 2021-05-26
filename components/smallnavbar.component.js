@@ -14,11 +14,10 @@ const SmallNavbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-  console.log(props.color)
 
   return (
     <div>
-     <Navbar fixed className={props.color==="white"?"navbarsmall-a":"navbarsmall"} light expand="lg">
+     <Navbar className={props.color==="white"?"navbarsmall-a sticky-top":"navbarsmall sticky-top"} light expand="lg">
         <NavbarBrand href="/"><img alt="logo" className="logo-img-small" src="/images/logotype2.jpg"/></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>

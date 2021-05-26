@@ -1,7 +1,7 @@
 .top-space{
     padding: 0;
     margin:0;
-    height:1.5rem;
+    height:1.9rem;
     width:100vw;
     position: fixed;
     z-index:1;
@@ -10,6 +10,7 @@
 .top-space div a{
     color:#094275;
     font-size: 1rem;
+    padding:5px;
 }
 .top-space div a:hover{
     color:#ff6363;
@@ -200,6 +201,7 @@
 
 .dropDown{
     position: relative;
+    padding:5px;
     
     .dropdownMenu{
         position: absolute;
@@ -227,6 +229,56 @@
         }
     }
     &:hover .dropdownMenu{ display: flex;} 
+}
+
+.search-navbar{
+    color:rgb(230, 148, 148);
+    // border-radius: 10px;
+    border-radius: 10px;
+    width:500px;
+    background: #fff;
+    box-shadow: 0px 0px 2px 0px rgba(230, 148, 148,0.8);
+&:hover{
+    border:3px solid #ff6363;
+}
+
+}
+.search-navbar-active{
+    border:3px solid #ff6363 !important;
+}
+
+
+.right-panel{
+    position: fixed;
+    z-index: 1;
+    width:40px;
+    height:100px;
+    background:#fff;
+    border-radius: 5px;
+    box-shadow:2px 2px 10px 5px rgba(0,0,0,0.5);
+    right:-10px;
+    top:40vh;
+    overflow: hidden;
+    transition: right 500ms;
+    cursor: pointer;
+    &:hover{
+        right:-5px;
+    }
+    p{
+        // position: absolute;
+        height:100px;
+        text-align: center;
+        // vertical-align:text-bottom;
+        width:100px;
+        padding:5px;
+        margin:0px;
+        font-size: 13px;
+        letter-spacing: 1px;
+        font-weight:400;
+        transform: rotate(-90deg);
+        color:#fff;
+        background-color: rgba(10, 66, 117,1);
+    }
 }
 
 // .sidebar-navlink{
@@ -287,8 +339,17 @@
     .left-panel{
         display:none
     }
+    .right-panel{
+        display:none
+    }
     .left-panel-button{
         display: none;
+    }
+    .logo-img-small{
+        margin-left: 10px;
+        height:50px;
+        width:120px;
+        margin-top: 0px;
     }
 }
 
