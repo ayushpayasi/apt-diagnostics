@@ -14,6 +14,8 @@ import PackageSlider from "../../components/packageslider.component"
 import IconButton from "@material-ui/core/IconButton"
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Head from "next/head"
+
 
 export default function Index() {
     const [value, setValue] = useState(0);
@@ -71,6 +73,7 @@ export default function Index() {
 
     return (
         <>
+        <Head>APT DIAGNOSTICS | PACKAGES</Head>
             <NavBar/>
             {/* <BreadCrumb links={["home","tests"]}/> */}
             {/* <Card > */}

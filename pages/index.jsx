@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import{Container,
     Col,
     Row,
@@ -6,7 +6,11 @@ import{Container,
     CardTitle,
     CardBody,
     CardText,
-    CardFooter} from "reactstrap"
+    CardFooter,
+    FormGroup,
+    Input,
+    CardSubtitle,
+    Label} from "reactstrap"
 import ImgCarousel from "../components/carousel.component"
 // import Card from "@material-ui/core/Card"
 // import CardActionArea from "@material-ui/core/CardActionArea"
@@ -33,12 +37,59 @@ import "../assets/css/animate.scss";
 import Blog from "../components/blog.component"
 import BigBlog from "../components/bigblog.component"
 import HealthCheckCarousel from "../components/healthcheckcarousel.component"
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Footer from "../components/footer.component"
-
+import {apiLinks} from "../connection.config"
+import axios from 'axios'
+import {useRouter} from "next/router"
 
 export default function Home() {
+    const [testList,setTestList] = useState(null)
+    const [radioValue,setRadioValue] = useState(null);
+    const [selectedTest,setSelectedTest] = useState(null);
+    const [otpVerification,setOtpVerification] = useState(false);
+    const [mobile,setMobile] = useState(null)
+    const router = useRouter()
+
+    const retryOTPHandler = ()=>{
+
+    }
+
+    const handleOTPVerification =()=>{
+        setOtpVerification(false)
+        router.push("/payments/confirm")
+    }
+
+    const bookAppointmentHandler = ()=>{
+        const mobile = document.getElementById("appointmentBookingMobilenumber").value
+        setMobile(mobile)
+        console.log()
+        sessionStorage.setItem("directBooking",`${JSON.stringify({
+            appointmentType : radioValue,
+            test:selectedTest,
+            contact:mobile
+        })}`)
+        
+        setOtpVerification(true)
+    }
+    const getData = async()=>{
+        try{
+        const response = await axios.get(apiLinks.priceList,{params:{coupon:"priceList"}})
+        if (response.data[0].code === 200){
+            setTestList(Object.values(response.data[1]))
+        }
+    }
+        catch(err){
+            console.log(err)
+        }
+    }
+
+
 
     useEffect(() => {
+
+        getData()
+
         const fadeInLeft = document.querySelectorAll(".ioleft")
         const fadeInRight = document.querySelectorAll(".ioright")
         const fade = document.querySelectorAll(".iofade")
@@ -56,7 +107,7 @@ export default function Home() {
             fade.forEach(item=>observer3.observe(item))
         
 
-    }, [])
+    },[])
 
 
     const top100Films = [
@@ -165,6 +216,19 @@ export default function Home() {
 
     return (<React.Fragment>
                 <NavBar/>
+                {otpVerification?<div className="otp-verification-window">
+                    <Card className="otp-verification-card">
+                        <CardBody>
+                            <CardTitle className="text-center">Verify OTP</CardTitle>
+                            <CardText>An OTP has been sent to {mobile} !</CardText> 
+                            <FormGroup>
+                                <Label for="otpField">Please Enter Your OTP</Label>
+                                <Input id="otpFiled" type="text" />
+                            </FormGroup>
+                            <CardSubtitle>Not Recieved an OTP <span onClick={()=>{retryOTPHandler()}}>Retry! </span> </CardSubtitle>
+                            <div className="text-center"><Button onClick={()=>{handleOTPVerification()}} variant="outlined" style={{color:"rgba(18, 73, 124,1)",margin:"5px",fontWeight:"600",fontSize:"0.9rem",borderColor:"rgba(18, 73, 124,1)"}}>Verify</Button></div>
+                        </CardBody>
+                    </Card></div>:<React.Fragment/>}
                 <div className="carousel-index-container">
                 <Container className="mt-3" >
                     <Row>
@@ -174,7 +238,7 @@ export default function Home() {
                         <Col lg="4" md="0" className="mt-4 mb-4">
                         <Row className="ml-1 mr-1"><Col>
                             <Card className="indexCarouselCard ioright">
-                            <CardBody>
+                            {testList === null ?<div className="align-center-column" style={{height:"100%"}}><CircularProgress color="secondary" /></div>: <CardBody>
                                 <Row>
                                     <Col>
                                         <h4 className="text-center mt-1 report-heading">Book An Appointment</h4>
@@ -186,20 +250,20 @@ export default function Home() {
                                     <Col xs="6">
                                         <FormControlLabel
                                         value="home"
-                                        control={<Radio />}
+                                        control={<Radio onChange={(event)=>{setRadioValue(event.target.value)}} />}
                                         style={{textAlign:"center",color:"#0a4275"}}
                                         label="Home Appointment"
-                                        name="type2"
+                                        name="appointmentType"
                                         labelPlacement="bottom"
                                         />
                                     </Col>
                                     <Col xs="6">
                                         <FormControlLabel
                                         value="lab"
-                                        control={<Radio />}
+                                        control={<Radio onChange={(event)=>{setRadioValue(event.target.value)}} />}
                                         style={{textAlign:"center",color:"#0a4275"}}
                                         label="Lab Appointment"
-                                        name="type1"
+                                        name="appointmentType"
                                         labelPlacement="bottom"
                                         />
                                     </Col>
@@ -209,23 +273,18 @@ export default function Home() {
                                     <Col className="division">
                                     </Col>
                                 </Row>
-                                {/* <Row className="ml-1 mr-1 mt-2">
-                                    <Col>
-                                        <h6 className=" mt-1 ml-1">Find Your Test</h6>
-                                    </Col>
-                                </Row> */}
                                 <Row  className="ml-1 mr-1 mt-2" >
                                     <Col md="2" className="align-center-column">
                                             <img style={{color:"#094275",height:"2.7rem",width:"2.7rem",padding:0,margin:0}} src="images/labicon.png"/>
-                                            {/* <CallIcon/> */}
                                     </Col>
                                     <Col className="search-widget" md="10">
                                         <Autocomplete
                                             id="combo-box-demo"
-                                            options={top100Films}
-                                            getOptionLabel={(option) => option.title}
+                                            options={testList}
+                                            getOptionLabel={(option) => option["testName"]}
                                             style={{ width: "100%"}}
-                                            renderInput={(params) => <TextField  {...params} placeholder="Find Your Test" size="small" variant="outlined" />}
+                                            onChange = {(event,value)=>{setSelectedTest(value)}}
+                                            renderInput={(params) => <TextField {...params} placeholder="Find Your Test" size="small" variant="outlined" />}
                                             />
                                         <div className="results">
                                             
@@ -236,16 +295,11 @@ export default function Home() {
                                     <Col className="division">
                                     </Col>
                                 </Row>
-                                {/* <Row className="mt-2 ">
-                                    <Col>
-                                        <h6 className=" mt-1 ml-1">Enter Your Number</h6>
-                                    </Col>
-                                </Row> */}
                                 <Row  className="ml-1 mr-1 mt-2" >
                                     <Col md="2" className="align-center-column">
                                     <CallIcon style={{color:"#000",height:"2.7rem",width:"2.7rem",padding:0,margin:0}}/>
                                     </Col>
-                                    <Col md="10"><TextField type="number" size="small" pattern="[0-9]{10}" placeholder="Your Contact Number!" variant="outlined" /></Col>
+                                    <Col md="10"><TextField id="appointmentBookingMobilenumber" type="number" size="small" pattern="[0-9]{10}" placeholder="Your Contact Number!" variant="outlined" /></Col>
                                 </Row>
                                 <Row  className="ml-1 mr-1 mt-2 mb-3" >
                                     <Col className="division">
@@ -253,13 +307,13 @@ export default function Home() {
                                 </Row>
                                 <Row  className="ml-1 mr-1 mt-2 mb-1" >
                                     <Col className="align-center-column">
-                                <Button  variant="contained" style={{width:"100%",color:"#fff !important",background:"linear-gradient(to right, #8faec9, #175d9c, #3375b0, #8faec9) !important"}} >Book Now</Button>
+                                <Button onClick={()=>{bookAppointmentHandler()}} variant="contained" style={{width:"100%",color:"#fff !important",background:"linear-gradient(to right, #8faec9, #175d9c, #3375b0, #8faec9) !important"}} >Book Now</Button>
                                     </Col>
                                 </Row>
                                 {/* background:"#ababab" ,color:"white"*/}
                             </CardBody>
 
-                            </Card>
+                            }</Card>
                             </Col></Row>
 
                         </Col>
@@ -272,9 +326,9 @@ export default function Home() {
                     <Col><Card className="features-card">
                         <Row><Col className="landing-h2 iofade">Our Features</Col></Row>
                         <Row>
-                            <Col md="4"><CardBody className="ioleft"><CardTitle>Who are we?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Col>
-                            <Col md="4"><CardBody className="iofade"><CardTitle>What we do?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Col>
-                            <Col md="4"><CardBody className="ioright"><CardTitle>Why us?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Col>
+                            <Col md="4"><Card className="flip-cards"><CardBody className="ioleft"><CardTitle >Who are we?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Card></Col>
+                            <Col md="4"><Card className="flip-cards"><CardBody className="iofade"><CardTitle >What we do?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Card></Col>
+                            <Col md="4"><Card className="flip-cards"><CardBody className="ioright"><CardTitle>Why us?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Card></Col>
 
                         </Row>
                                         {/* <CardBody><CardTitle>Who are we?</CardTitle><CardText>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody> */}

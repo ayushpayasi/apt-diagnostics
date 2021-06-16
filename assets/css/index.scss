@@ -145,11 +145,49 @@
 
   }
 }
+
+.otp-verification-window{
+  width:100vw;height:100vh;
+  position: absolute;
+  top:0px;
+  left:0px;
+  background-color: rgba(18, 73, 124,0.5);
+  z-index: 1;
+  .otp-verification-card{
+    position: absolute;
+    border-radius: 10px;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width:300px;
+    height:250px;
+    .card-text{
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    label{
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+    .card-subtitle{
+      font-size: 0.8rem;
+      font-weight: 500;
+      color:#ff6363;
+    }
+    input{
+      border-radius: 10px;
+    }
+  }
+}
   
 .packages-card{
   border: none;
   border-radius: 5px;
   transition: box-shadow 0.5s;
+  p{
+    font-weight: 500;
+    font-size: 0.8rem;
+  }
   button{
       border-radius: 5px;
   }
@@ -228,8 +266,29 @@
 }
 
 .features-card{
-  border-radius: 10px;
+  // border-radius: 10px;
+  padding:5px;
   border:none;
+  box-shadow: none !important;
+  background: transparent !important;
+  .flip-cards{
+    position: relative;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.3);
+    background: linear-gradient(to left, #0a4275, #195e9e );
+    color:white;
+    .card-title{
+      color:white;
+    }
+    &:hover{
+      background: #fff;
+      color:#0a4275;
+      .card-title{
+        color:#0a4275;
+      }
+    }
+  }
+
 }
 
 .features-body-text{

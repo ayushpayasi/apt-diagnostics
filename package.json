@@ -22,7 +22,7 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "start:prod":"next start -p 80",
+    "start:prod": "next start -p 80",
     "export": "npm run build && next export"
   },
   "dependencies": {
@@ -34,6 +34,7 @@
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
+    "ckeditor4-react": "^1.4.2",
     "classnames": "^2.3.1",
     "cssnano": "^4.1.10",
     "gsap": "^3.6.1",
@@ -51,6 +52,7 @@
     "react-redux": "^7.2.0",
     "react-share": "^4.4.0",
     "react-slick": "^0.26.1",
+    "react-toastify": "^7.0.4",
     "react-transition-group": "^4.4.1",
     "reactstrap": "^8.4.1",
     "redux": "^4.0.5",

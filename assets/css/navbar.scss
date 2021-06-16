@@ -175,14 +175,21 @@
 .navbarsmall{
     // background: linear-gradient(to right , #0a4275 , rgba(10, 66, 117,0.7) , rgba(10, 66, 117,0.3), rgba(10, 66, 117,0.1),rgba(10, 66, 117,0))  !important;
     background: transparent;
+    height:60px;
+
     a{
         color:black !important;
     }
 }
 .navbarsmall-a{
     background: transparent;
+    // height:60px;
+    .navbar-collapse{
+        margin-top: 5px;
+    }
     a{
-        color:white !important;
+        color:#000 !important;
+        font-weight: 700;
     }
 }
 
@@ -191,8 +198,8 @@
     border-radius: 15px;
     opacity: 0.99;
     margin-left: 150px;
-    margin-top: 15px;
-    transform: scale(1);
+    // margin-top: px;
+    // transform: scale(1);
     height:70px;
     width:250px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.8);
@@ -344,6 +351,9 @@
     }
     .left-panel-button{
         display: none;
+    }
+    .search-navbar{
+        width:200px;
     }
     .logo-img-small{
         margin-left: 10px;

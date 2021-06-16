@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {Container,Col,Row,Card,ListGroup,ListGroupItem,CardBody,CardTitle,FormGroup,Label,Input,InputGroup,InputGroupAddon} from "reactstrap"
+import {Container,Col,Row,Card,ListGroup,ListGroupItem,CardBody,Collapse,CardTitle,FormGroup,Label,Input,InputGroup,InputGroupAddon} from "reactstrap"
 import NavBar from "../../components/navbar.component"
 import IconButton from "@material-ui/core/IconButton"
 import CancelOutlined from "@material-ui/icons/CancelOutlined"
@@ -17,32 +17,31 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import {isMobile} from "react-device-detect";
 import MobileMenu from "../../components/mobilemenu.component"
-
-const tempData = [{
-    id:"0",
-    name:"package 1",
-    price:200,
-},{
-    id:"1",
-    name:"package 2",
-    price:200,
-},{
-    id:"2",
-    name:"package 3",
-    price:200,
-},{
-    id:"3",
-    name:"package 4",
-    price:200,
-}]
+import axios from 'axios'
+import {apiLinks} from "../../connection.config"
+var tempData = []
 
 export default function Confirm() {
     const [cartData,setCartData] = useState(null);
     const [selectedDateTime, setSelectedDateTime] = useState(new Date());
     const [activeStep, setActiveStep] = React.useState(0);
-    const steps=["Review Your Items","Fill Details","Book Slot"]
+    const steps=["Fill Details","Review Your Items","Book Slot"]
     const [skipped, setSkipped] = React.useState(new Set());
     const [showCalender,setShowCalender] = useState(true);
+    const [finalPrice,setFinalPrice] = useState();
+    const [isOpen,setIsOpen] = useState(false)
+ 
+
+    const applyCouponHandler = async()=>{
+      const coupon = document.getElementById("coupon").value
+      const response = await axios.get(apiLinks.priceList,{params:{coupon:coupon}})
+      if (response.data[0].code == "200"){
+        let list = []
+        cartData.forEach(item=>list.push(item.testID))
+        setCartData(response.data[1].filter((item)=>list.includes(item.testID)))
+      }
+    }
+
     const isStepOptional = (step) => {
         return step === 1;
       };
@@ -62,15 +61,95 @@ export default function Confirm() {
         }
       }  
 
-
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
       };
 
+    const handlePayment = ()=>{
+
+    }
+
+    const applyCoupon = ()=>{
+      setCartData()
+    }
+
+    const toggle =()=>{
+      setIsOpen(!isOpen)
+    }
 
       function getStepContent(stepIndex) {
         switch (stepIndex) {
           case 0:
+            return (<Card className="payment-total-card">
+            <CardBody>
+              <CardTitle><h5>Fill Information</h5></CardTitle>
+              <Row>
+                <Col sm="4">
+                <h7 onClick={toggle} style={{ marginBottom: '1rem',fontWeight:"500",fontSize:"0.9rem",color:"#f63636",cursor:"pointer" }}>Booking For Someone else?</h7>
+                  <Collapse isOpen={isOpen}>
+                  <FormGroup>
+                      <Label for="savedFamilyMembers">Saved Family Members!</Label>
+                      <Input type="select" name="select" id="savedFamilyMembers">
+                        <option>Member 1</option>
+                        <option>Member 2</option>
+                        <option>Member 3</option>
+                      </Input>
+                    </FormGroup>
+                  </Collapse>
+                </Col>
+              </Row>
+            <Row>
+                <Col sm="7">
+                    <FormGroup>
+                        <Label for="name">Full Name</Label>
+                        <Input id="name" placeholder="Full Name"></Input>
+                    </FormGroup>
+                </Col>
+                <Col sm="5">
+                    <FormGroup>
+                        <Label for ="dob"> DOB </Label>
+                    <Datetime disableClock={true} timeFormat={false} inputProps={{
+                    placeholder:"Select Your Date Of Birth",
+                    id:"dob",
+                    autocomplete:"false"
+                    }}/>
+                    </FormGroup>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <FormGroup>
+                        <Label for="address">Address</Label>
+                        <InputGroup>
+                        <Input id="address" placeholder="Address"></Input>
+                        <InputGroupAddon addonType="append">
+                        <Button onClick={()=>{getLocation()}} id="locate"><MyLocationIcon/></Button>
+                        </InputGroupAddon>
+                    </InputGroup>
+                    </FormGroup>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                <FormGroup>
+                    <Label for="gender">Gender</Label>
+                    <Input type="select" name="select" id="gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Others</option>
+                    </Input>
+                </FormGroup>
+                </Col>
+                <Col sm="4">
+                    <FormGroup>
+                        <Label for="age">Age</Label>
+                        <Input id="age" placeholder="Age"></Input>
+                    </FormGroup>
+                </Col>
+            </Row>
+            </CardBody>
+            </Card>)
+          case 1:
             return (<Card className="payment-total-card">
             <CardBody>
                 <CardTitle>
@@ -86,63 +165,10 @@ export default function Confirm() {
                     </ListGroupItem>
                     {cartData.map(item=>fillCart(item))}
                     {fillTotal(cartData)}
+                    <Row><Col></Col><Col><Row><Col md="6"><FormGroup><Label for="coupon"><h7>Got A Coupon Code?</h7></Label><Input type="text" id="coupon" placeholder="Coupon"></Input></FormGroup></Col><Col md="6" className="align-center-column"><Button onClick={()=>{applyCouponHandler()}}>Apply</Button></Col></Row></Col></Row>
                 </ListGroup>
             </CardBody>
             </Card>)
-          case 1:
-            return (<Card className="payment-total-card">
-                <CardBody>
-                  <CardTitle><h5>Fill Information</h5></CardTitle>
-                <Row>
-                    <Col sm="6">
-                        <FormGroup>
-                            <Label for="fname">First Name</Label>
-                            <Input id="fname" placeholder="First Name"></Input>
-                        </FormGroup>
-                    </Col>
-                    <Col>
-                        <FormGroup>
-                            <Label for="lname">Last Name</Label>
-                            <Input id="lname" placeholder="Last Name"></Input>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <FormGroup>
-                            <Label for="address">Address</Label>
-                            <InputGroup>
-                            <Input id="address" placeholder="Address"></Input>
-                            <InputGroupAddon addonType="append">
-                            <Button onClick={()=>{getLocation()}} id="locate"><MyLocationIcon/></Button>
-                            </InputGroupAddon>
-                        </InputGroup>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                    <FormGroup>
-                        <Label for="gender">Gender</Label>
-                        <Input type="select" name="select" id="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Others</option>
-                        </Input>
-                    </FormGroup>
-                    </Col>
-                    <Col xs="4">
-                        <FormGroup>
-                            <Label for ="dob"> DOB </Label>
-                        <Datetime disableClock={true} timeFormat={false} inputProps={{
-                        placeholder:"Select Your Date Of Birth",
-                        id:"dob"
-                        }}/>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                </CardBody>
-                </Card>)
           case 2:
             return (<Card>
               <CardBody>
@@ -164,6 +190,7 @@ export default function Confirm() {
                 </Row>
                 </CardBody>
               </Card>);
+          
           default:
             return (<Card><Row>
                 <Col>
@@ -190,7 +217,16 @@ export default function Confirm() {
     };
 
     useEffect(() => {
-        setCartData(tempData)
+    if(sessionStorage.getItem("directBooking") !== null){
+      tempData = [JSON.parse(sessionStorage.getItem("directBooking")).test]
+      setCartData(tempData)
+    }
+    else if(sessionStorage.getItem("cart") !== null){
+        setCartData([JSON.parse(sessionStorage.getItem("cart")).test])
+    }
+    else{
+      setCartData([])
+    }
     }, [])
 
     const handleRemove = (value)=>{
@@ -202,17 +238,22 @@ export default function Confirm() {
         return(
             <ListGroupItem>
             <Row className="payments-cart-data">
-                <Col xs="6">{obj.name}</Col>
-                <Col xs="3">{obj.price}</Col>
+                <Col xs="6">{obj.testName}</Col>
+                <Col xs="3">{obj.testAmount}</Col>
                 <Col xs="3" ><IconButton style={{color:"#0a4275"}} onClick={()=>{handleRemove(obj.id)}}><CancelOutlined/></IconButton></Col>
             </Row>
         </ListGroupItem>
         )
     }
 
+    const calculateTotal = (obj)=>{
+      var total = 0
+      obj.map(item=>total+=parseInt(item.testAmount))
+      return total
+    }
+
     const fillTotal = (obj)=>{
-        var total =0
-        obj.map(item=>total+=parseInt(item.price))
+        const total = calculateTotal(obj)
         return<ListGroupItem>
         <Row className="total-payments-cart-data">
             <Col xs="6" style={{color:"#000"}}>TOTAL PAYABLE </Col>
@@ -221,12 +262,19 @@ export default function Confirm() {
     </ListGroupItem>
     }
 
+    
     return (
         <>
         <NavBar/>
 
 
-        {cartData === null ? <Loading/>:
+        {cartData === null ? <Loading/>: cartData.length === 0 ? <Container>
+          <Row>
+            <Col className="mt-5">
+              <h4 className="text-center">Your Cart is empty!</h4>
+            </Col>
+          </Row>
+          </Container>:
          <Container>
              <Row className="mt-3">
                  <Col>
@@ -264,7 +312,7 @@ export default function Confirm() {
                     <Button className="button" onClick={handleBack} > Back</Button>
                 </Col>
                 <Col className="align-center-row">
-                <Button className="button" onClick={handleNext}> {activeStep === steps.length - 1 ? 'Pay' : 'Proceed'}</Button>
+                <Button className="button" onClick={activeStep === steps.length - 1 ?handlePayment:handleNext}> {activeStep === steps.length - 1 ? 'Pay' : 'Proceed'}</Button>
                 </Col>
             </Row>}
             

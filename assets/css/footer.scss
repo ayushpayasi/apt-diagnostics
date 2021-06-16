@@ -1,10 +1,20 @@
 .footer-holder{
     display: flex;
-    background: url("/images/footer.png");
+    position: relative;
+    background: url("/images/footer3.png");
     background-repeat: no-repeat;
     background-position: center;
-    height: 800px;
+    height: 400px;
     width:100%;
+    margin:0;
+    padding:0;
+    p{
+        position: absolute;
+        font-size: 0.9rem;
+        font-weight: 500;
+        top:20%;
+        left:50%;
+    }
 }
 
 .footer-end{

@@ -18,7 +18,6 @@ export default function CenterMode(props){
 
     const handleChange = (e)=>{
       props.setSlide(e)
-        console.log(e)
         // const item = document.getElementById(`diagnosticsimg${e}`)
         // console.log(item.src)
         // const regex = /(.*\/)(.*)\-/
@@ -31,14 +30,14 @@ export default function CenterMode(props){
         className: "center iofade",
         infinite: true,
         slidesToShow: 9,
+        centerMode:true,
+        centerPadding: "10px",
         autoplay:true,
         autoplaySpeed:5000,
         arrows:false,
         initialSlide:0,
-        infinite:true,
-        slidesToScroll:1,
-        afterChange:handleChange,
-        speed: 500,
+      //   afterChange:handleChange,
+      //   speed: 500,
         responsive: [
           {
               breakpoint: 1200,
@@ -68,49 +67,44 @@ export default function CenterMode(props){
       <div>
         <Slider ref={ref=>{setSlider(ref)}} {...settings}>
           <div>
-            <div onClick={()=>{slider.slickGoTo(7)}} style={{border:"1px solid #094275",borderRadius:"5px",}}>
-                <CardImg style={{height:"100px",width:"100px",margin:0}}  id="diagnosticsimg1" src="/svg/brain-inactive.svg"></CardImg>
+            <div onClick={()=>{slider.slickGoTo(0)}} >
+                <img  style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/allergy.svg"></img>
             </div>
         </div>
           <div>
-          <div onClick={()=>{slider.slickGoTo(8)}} style={{border:"1px solid #094275",borderRadius:"5px",width:"100%",margin:0,padding:0}}>
-                <CardImg style={{height:"100px",width:"100%",margin:0,padding:0}} id="diagnosticsimg2" src="/svg/female_reproductive_system-inactive.svg"></CardImg>
+          <div onClick={()=>{slider.slickGoTo(1)}}>
+          <img style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/brain.svg"></img>
+          </div ></div>
+          <div onClick={()=>{slider.slickGoTo(2)}}>
+          <img style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/female_reproductive.svg"></img>
+          </div>
+          <div>
+          <div onClick={()=>{slider.slickGoTo(3)}}>
+          <img style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/heart.svg"></img>
           </div ></div>
           <div>
-          <div onClick={()=>{slider.slickGoTo(9)}} style={{border:"1px solid #094275",borderRadius:"5px"}}>
-                <CardImg style={{height:"100px",width:"100%",margin:0,padding:0}}  id="diagnosticsimg3" src="/svg/heart-inactive.svg"></CardImg>
+          <div onClick={()=>{slider.slickGoTo(4)}}>
+          <img style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/kidney.svg"></img>
           </div ></div>
           <div>
-          <div onClick={()=>{slider.slickGoTo(10)}} style={{border:"1px solid #094275",borderRadius:"5px"}}>
-                <CardImg style={{height:"100px",width:"100%",margin:0,padding:0}}  id="diagnosticsimg4" src="/svg/intestines-inactive.svg"></CardImg>
+          <div onClick={()=>{slider.slickGoTo(5)}}>
+          <img style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/liver.svg"></img>
           </div ></div>
           <div>
-          <div onClick={()=>{slider.slickGoTo(0)}} style={{border:"1px solid #094275",borderRadius:"5px"}}>
-                <CardImg style={{height:"100px",width:"100%"}}  id="diagnosticsimg5" src="/svg/kidney-inactive.svg"></CardImg>
+          <div onClick={()=>{slider.slickGoTo(6)}}>
+          <img style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/lungs.svg"></img>
           </div ></div>
           <div>
-          <div onClick={()=>{slider.slickGoTo(1)}} style={{border:"1px solid #094275",borderRadius:"5px"}}>
-                <CardImg style={{height:"100px",width:"100%"}}  id="diagnosticsimg6" src="/svg/liver.svg"></CardImg>
+          <div onClick={()=>{slider.slickGoTo(7)}}>
+          <img style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/virus.svg"></img>
           </div ></div>
           <div>
-          <div onClick={()=>{slider.slickGoTo(2)}} style={{border:"1px solid #094275",borderRadius:"5px"}}>
-                <CardImg style={{height:"100px",width:"100%"}}  id="diagnosticsimg7" src="/svg/lungs.svg"></CardImg>
+          <div onClick={()=>{slider.slickGoTo(8)}}>
+          <img style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/dark/virus.svg"></img>
           </div ></div>
           <div>
-          <div onClick={()=>{slider.slickGoTo(3)}} style={{border:"1px solid #094275",borderRadius:"5px"}}>
-                <CardImg style={{height:"100px",width:"100%"}}  id="diagnosticsimg8" src="/svg/male_reproductive_system-inactive.svg"></CardImg>
-          </div ></div>
-          <div>
-          <div onClick={()=>{slider.slickGoTo(4)}} style={{border:"1px solid #094275",borderRadius:"5px"}}>
-                <CardImg style={{height:"100px",width:"100%"}}  id="diagnosticsimg9" src="/svg/pancreas-inactive.svg"></CardImg>
-          </div ></div>
-          <div>
-          <div onClick={()=>{slider.slickGoTo(5)}} style={{border:"1px solid #094275",borderRadius:"5px"}}>
-                <CardImg style={{height:"100px",width:"100%"}}  id="diagnosticsimg10" src="/svg/stomach-inactive.svg"></CardImg>
-          </div ></div>
-          <div>
-          <div onClick={()=>{slider.slickGoTo(6)}} style={{border:"1px solid #094275",borderRadius:"5px"}}>
-                <CardImg style={{height:"100px",width:"100%"}}  id="diagnosticsimg11" src="/svg/thyroid-inactive.svg"></CardImg>
+          <div onClick={()=>{slider.slickGoTo(9)}}>
+          <img style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/vitamins.svg"></img>
           </div ></div>
         </Slider>
       </div>

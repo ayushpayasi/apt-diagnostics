@@ -16,18 +16,18 @@
     position: absolute;
     right:0;
     top:0;
-    height:450px;
-    width:600px;
+    // height:450px;
+    width:100%;
 }
 .organ-image-mobile{
     background: url("/images/bgcheck2.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
-    right:0;
+    // right:0;
     top:0;
-    height:300px;
-    width:250px;
+    // height:300px;
+    width:100%;
 }
 .diagnostics-pagetitle{
     position: absolute;
@@ -35,9 +35,9 @@
     h5{font-size:2rem;
         font-weight: 700;
     max-width:250px;
-    margin-left: 100px;}
+    margin-left: 150px;}
     // position: absolute;
-    top:50%;
+    top:35%;
     
 }
 }
@@ -81,10 +81,10 @@
     }
     .diagnostics-pagetitle {
         top:30% !important;
-        h5{font-size:1.2rem !important;
+        h5{font-size:0.9rem !important;
             font-weight: 700 !important;
-        max-width:150px !important;
-        margin-left: 5px !important;}
+        max-width:120px !important;
+        margin-left: 25px !important;}
     }
     
 }

@@ -22,15 +22,15 @@ const SmallNavbar = (props) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem className="m-2">
+            <NavItem className="ml-2 mr-2">
               <NavLink className="nav-link" href="/about">About</NavLink>
             </NavItem>
-            <NavItem className="m-2">
+            <NavItem className="ml-2 mr-2">
             <NavLink className="nav-link" href="/tests">Packages</NavLink>
-            </NavItem><NavItem className="m-2">
+            </NavItem><NavItem className="ml-2 mr-2">
               <NavLink className="nav-link" href="/diagnostics">Covid-19</NavLink>
             </NavItem>
-            <NavItem className="m-2">
+            <NavItem className="ml-2 mr-2">
             <NavLink className="nav-link" href="/partner">Patients</NavLink>
             </NavItem>
            </Nav>

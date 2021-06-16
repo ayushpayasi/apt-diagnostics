@@ -292,7 +292,7 @@ const Navigation = (props) => {
           <Col className="align-center-column-col">
           <Row>
             <Col className="align-center-row">
-              <img className="sidebar-icon" src="/svg/contactus.svg"/>
+              <img className="sidebar-icon" src="/svg/testicon2.svg"/>
             </Col>
             </Row>
             <Row>

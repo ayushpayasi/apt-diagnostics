@@ -15,6 +15,7 @@ import {
     TelegramIcon,
     WhatsappIcon,
 } from "react-share"
+import {Button} from "reactstrap"
 
 
 export default function Footer() {
@@ -22,7 +23,7 @@ export default function Footer() {
     const title = "abcd"
     return (
         <>
-        <div className="footer-holder"> </div>
+        <div className="footer-holder"><p>Never Miss An Update!</p><Button></Button> </div>
         <div className="footer-end">
             <div>
                 <h5>APT Diagnostics</h5>
