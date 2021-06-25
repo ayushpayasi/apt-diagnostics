@@ -11,7 +11,8 @@ export default function BlogUpdateWindow(props) {
     const [videoFile,setVideoFile] = useState(null)
     const [blogImages,setBlogImages] = useState(null)
     const [authorImage,setAuthorImage] = useState(null)
-    const [contentEditor,setContentEditor] = useState(false)
+    const [contentEditor,setContentEditor] = useState(false)    
+    const [videoCheckBox,setVideoCheckBox] = useState(false); //for disabling and enabling the video upload option
 
 
     const clearAllState =()=>{
@@ -43,7 +44,7 @@ export default function BlogUpdateWindow(props) {
             toast("Internal Server Error")
     }}
 
-    const saveBlogDetails =async ()=>{
+    const saveBlogDetails = async ()=>{
         try{
         let tempData = blogDetails
         const formData = new FormData()
@@ -108,8 +109,9 @@ export default function BlogUpdateWindow(props) {
                     </Col>
                     <Col className="d-flex align-items-center justify-content-center">
                         <FormGroup >
-                            <Input type="checkbox" id="isVideoBlog"></Input>
+                            <Input type="checkbox" id="isVideoBlog" onChange={(event)=>{setVideoCheckBox(true)}}></Input>
                             <Label for="isVideoBlog"> Video Blog</Label>
+                            {/* <h1>console.log(videoCheckBox)</h1> */}
                         </FormGroup>
                     </Col>
                     </Row>
@@ -132,16 +134,18 @@ export default function BlogUpdateWindow(props) {
                 <Row>
                     <Col>
                     <FormGroup>
-                        <Label for="authorThumbnail">Author Thumbnail</Label>
+                        {/* <Label for="authorThumbnail">Author Thumbnail</Label>
                         <Input id="authorThumbnail" onChange={(event)=>{setAuthorImage(event.target.files[0])}} type="file" placeholder="Author Image">
+                        </Input> */}
+                        <Label for="catgory">Category</Label>
+                        <Input id="category" placeholder="category">    
                         </Input>
                     </FormGroup>
                     </Col>
                     <Col>
                     <FormGroup>
                         <Label for="blogVideo">Video File</Label>
-                        <Input id="blogVideo" onChange={(event)=>{setVideoFile(event.target.files[0]); console.log(event.target.files)}} type="file" placeholder="Blog Video">
-                        </Input>
+                        {videoCheckBox?<Input id="blogVideo" onChange={(event)=>{setVideoFile(event.target.files[0]); setVideoCheckBox(false); console.log(event.target.files)}} type="file" placeholder="Blog Video"></Input>:<Input id="blogVideo" type="file" disabled></Input>}
                     </FormGroup>
                     </Col>
                     <Col>

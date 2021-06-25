@@ -25,7 +25,7 @@ export default function Index() {
         return (
             <div className="iconGenerator">
                 <Row>
-                    <Col xs="3"><img src="/svg/apartment.svg" alt="icon"/></Col>
+                    <Col xs="3"><img className = "test-included" src="/svg/aptIcons/light/tests_included.svg" alt="icon"/></Col>
                     <Col xs="9">
                     <Row><Col ><h4>Tests Includes</h4></Col></Row>
                     <Row><Col ><h5>25 Parameter</h5></Col></Row>
@@ -38,7 +38,7 @@ export default function Index() {
         return (
             <div className="iconGenerator">
                 <Row>
-                    <Col xs="3"><img src="/svg/diamond.svg" alt="icon"/></Col>
+                    <Col xs="3"><img className="ideal-for" src="/svg/aptIcons/light/ideal_for.svg" alt="icon"/></Col>
                     <Col xs="9">
                     <Row><Col ><h4>Ideal For</h4></Col></Row>
                     <Row><Col ><h5>Male/Female below 30 Years</h5></Col></Row>

@@ -48,6 +48,27 @@
 .nav-link:hover{
     color:#ff6363 !important;
 }
+
+.nav-bar-prescription{   //Newly Created
+    margin:0; 
+    padding:0;
+    width:30px;
+    height:30px;
+     &:hover{
+         content:url("/svg/aptIcons/dark/APT_SVG_PRESCRIPTION.svg");
+    }
+}
+
+.nav-bar-search{    //Newly Created
+    margin: 5px; 
+    padding:0;
+    width:20px;
+    height:20px;
+     &:hover{
+         content:url("/svg/aptIcons/dark/APT_SVG_SEARCH.svg");
+    }
+}
+
 .mobile-view-links{
     display:none;
 }
@@ -59,11 +80,55 @@
     padding:0;
     font-weight: 500;
 }
-.sidebar-icon{
+
+.sidebar-icon1{
     margin:0;
     padding:0;
     width:30px;
     height:30px;
+     &:hover{
+         content:url("/svg/aptIcons/dark/APT_SVG_CALL_PATTERN.svg");
+    }
+}
+
+.sidebar-icon2{   //Newly Created
+    margin:0;  
+    padding:0;
+    width:30px;
+    height:30px;
+     &:hover{
+         content: url("/svg/aptIcons/dark/APT_SVG_MESSENGER.svg");
+    }
+}
+
+.sidebar-icon3{   //Newly Created
+    margin:0;
+    padding:0;
+    width:30px;
+    height:30px;
+     &:hover{
+         content:url("/svg/aptIcons/dark/APT_SVG_CALL.svg");
+    }
+}
+
+.ideal-for{   //Newly Created
+    margin:0;  
+    padding:0;
+    width:30px;
+    height:30px;
+     &:hover{
+         content: url("/svg/aptIcons/dark/APT_SVG_GENDER.svg");
+    }
+}
+
+.test-included{   //Newly Created
+    margin:0;  
+    padding:0;
+    width:30px;
+    height:30px;
+     &:hover{
+         content: url("/svg/aptIcons/dark/APT_SVG_BLOOD_BOTTLE.svg");
+    }
 }
 
 .icon-button-center{
@@ -203,6 +268,16 @@
     height:70px;
     width:250px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.8);
+  }
+
+  .login-icon{    //Newly Created
+    margin:5px;
+    padding:0;
+    width:20px;
+    height:20px;
+     &:hover{
+         content:url("/svg/aptIcons/dark/APT_SVG_PERSON.svg");
+    }
   }
   
 

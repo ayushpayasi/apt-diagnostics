@@ -161,6 +161,26 @@
     }
 }
 
+.ideal-for{   //Newly Created
+    margin:0;  
+    padding:0;
+    width:30px;
+    height:30px;
+     &:hover{
+         content: url("/svg/aptIcons/dark/APT_SVG_GENDER.svg");
+    }
+}
+
+.test-included{   //Newly Created
+    margin:0;  
+    padding:0;
+    width:30px;
+    height:30px;
+     &:hover{
+         content: url("/svg/aptIcons/dark/APT_SVG_BLOOD_BOTTLE.svg");
+    }
+}
+
 .detail-card{
     overflow: hidden;
     border-radius: 5px;

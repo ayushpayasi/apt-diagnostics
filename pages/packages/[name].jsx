@@ -99,7 +99,7 @@ export default function Display({details}) {
         return (
             <div className="iconGenerator">
                 <Row>
-                    <Col xs="3"><img src="/svg/diamond.svg" alt="icon"/></Col>
+                    <Col xs="3"><img className="ideal-for" src="/svg/aptIcons/light/ideal_for.svg"  alt="icon"/></Col>
                     <Col xs="9">
                     <Row><Col ><h4>Report Avialability</h4></Col></Row>
                     <Row><Col ><h5>Next Day</h5></Col></Row>
@@ -112,7 +112,7 @@ export default function Display({details}) {
         return (
             <div className="iconGenerator">
                 <Row>
-                    <Col xs="3"><img src="/svg/apartment.svg" alt="icon"/></Col>
+                    <Col xs="3"><img className = "test-included" src="/svg/aptIcons/light/tests_included.svg" alt="icon"/></Col>
                     <Col xs="9">
                     <Row><Col ><h4>Tests Includes</h4></Col></Row>
                     <Row><Col ><h5>25 Parameter</h5></Col></Row>
@@ -194,27 +194,27 @@ export default function Display({details}) {
                 <Row className="icons-holder">
                             <Col>
                             <Row>
-                                <Col sm="2"><img src="/svg/diamond.svg"></img></Col>
+                                <Col sm="2"><img className="ideal-for" src="/svg/aptIcons/light/ideal_for.svg"></img></Col>
                                 <Col sm="10"><p>Lorem ipsum dolor sit amet.</p></Col>
                             </Row>
                             </Col>
                             <Col>
                             <Row>
-                                <Col sm="2"><img src="/svg/diamond.svg"></img></Col>
-                                <Col sm="10"><p>Lorem ipsum dolor sit amet.</p></Col>
-                            </Row>
-                            </Col>
-                            
-                            <Col>
-                            <Row>
-                                <Col sm="2"><img src="/svg/diamond.svg"></img></Col>
+                                <Col sm="2"><img className="ideal-for" src="/svg/aptIcons/light/ideal_for.svg"></img></Col>
                                 <Col sm="10"><p>Lorem ipsum dolor sit amet.</p></Col>
                             </Row>
                             </Col>
                             
                             <Col>
                             <Row>
-                                <Col sm="2"><img src="/svg/diamond.svg"></img></Col>
+                                <Col sm="2"><img className="ideal-for" src="/svg/aptIcons/light/ideal_for.svg"></img></Col>
+                                <Col sm="10"><p>Lorem ipsum dolor sit amet.</p></Col>
+                            </Row>
+                            </Col>
+                            
+                            <Col>
+                            <Row>
+                                <Col sm="2"><img className="ideal-for" src="/svg/aptIcons/light/ideal_for.svg"></img></Col>
                                 <Col sm="10"><p>Lorem ipsum dolor sit amet.</p></Col>
                             </Row>
                             </Col>

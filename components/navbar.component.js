@@ -26,7 +26,7 @@ import "../assets/css/navbar.scss"
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 // import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounded';
 // import IconButton from '@material-ui/core/IconButton';
-import PublishIcon from '@material-ui/icons/Publish';
+// import PublishIcon from '@material-ui/icons/Publish';
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown"
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
@@ -74,7 +74,8 @@ const Navigation = (props) => {
         prevScrollpos = currentScrollPos;
       }
   }, [])
-  
+
+
   const top100Films = [
     { title: 'The Shawshank Redemption', year: 1994 },
     { title: 'The Godfather', year: 1972 },
@@ -188,7 +189,7 @@ const Navigation = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem className="m-2">
-              <NavLink className="nav-link" href="/components/" ><PublishIcon style={{color:"#ff6363"}} /><span style={{verticalAlign:"bottom",textTransform:"capitalize"}}>Upload Prescription</span></NavLink>
+              <NavLink className="nav-link" href="/components/" > <img className = "nav-bar-prescription" src="/svg/aptIcons/light/upload_prescription.svg"/> <span style={{verticalAlign:"bottom",textTransform:"capitalize"}}>Upload Prescription</span></NavLink>  {/*<PublishIcon style={{color:"#ff6363"}} />*/}
             </NavItem>
             <NavItem className="m-3">
                 <Input  
@@ -198,13 +199,14 @@ const Navigation = (props) => {
                 disableUnderline
                 startAdornment={
                 <InputAdornment position="start">
-                  <SearchIcon style={{color:"#ff6363"}} />
+                  <img className = "nav-bar-search" src="/svg/aptIcons/light/search.svg" />
+                  {/* <SearchIcon style={{color:"#ff6363"}} /> */}
                 </InputAdornment>
                 }/>
               </NavItem>
-            {/* <NavItem className="m-2">
+             {/* <NavItem className="m-2">
             <NavLink className="nav-link" href="/components/">Components</NavLink>
-            </NavItem> */}
+            </NavItem>  */}
             <span className="mobile-view-links">
             <NavItem className="m-2">
               <NavLink className="nav-link" href="/about">About</NavLink>
@@ -232,7 +234,7 @@ const Navigation = (props) => {
                                             renderInput={(params) => <TextField  {...params} label="Find Your Test" size="small" variant="outlined" />}
                                             /> */}
            {/* <button className="btn navbar-button float-left m-2">BOOK AN APOINTMENT</button> */}
-           <img src="/svg/firstaid.svg" style={{height:"25px",width:"25px"}}></img>
+           <img src="/svg/aptIcons/dark/APT_SVG_CART.svg" style={{height: "35px",width:"40px"}}></img>
         </Collapse>
       </Navbar>
       <div id="topSpace" className="top-space">
@@ -272,9 +274,9 @@ const Navigation = (props) => {
             <Row>
             <Col className="p0 m0 align-center-column">
             <a href="#">Order Medicines <span className="shining_text">coming soon</span></a>
-            </Col>
+            </Col>  
               <Col className="align-center-row">
-                <PersonOutlineIcon/> <a className="p0 m0">Login/Download Reports</a>
+                <img className="login-icon" src = "/svg/aptIcons/light/login.svg" /> <a className="p0 m0">Login/Download Reports</a>
               </Col>
             </Row>
           </Col>
@@ -292,7 +294,7 @@ const Navigation = (props) => {
           <Col className="align-center-column-col">
           <Row>
             <Col className="align-center-row">
-              <img className="sidebar-icon" src="/svg/testicon2.svg"/>
+              <img className="sidebar-icon1" src="/svg/aptIcons/light/call.svg" />
             </Col>
             </Row>
             <Row>
@@ -305,7 +307,7 @@ const Navigation = (props) => {
           <Row className="left-panel-icon-holder"><Col className="align-center-column-col">
             <Row >
               <Col className="align-center-row">
-                <img className="sidebar-icon" src="/svg/feedback.svg"/>
+                <img className="sidebar-icon2" src="/svg/aptIcons/light/feedback.svg"/>
               </Col>
             </Row>
             <Row>
@@ -318,7 +320,7 @@ const Navigation = (props) => {
           <Row className="left-panel-icon-holder"><Col className="align-center-column-col">  
             <Row >
               <Col className="align-center-row">
-                <img className="sidebar-icon" src="/svg/call-back.svg"/>
+                <img className="sidebar-icon3" src="/svg/aptIcons/light/request_callback.svg"/>
               </Col>
             </Row>
             <Row>
