@@ -77,7 +77,7 @@ export default function Index() {
                     <div style={{width:"80%"}}>
                     <Container fluid className="mr-3">
                         <div style={{display:(currentContainer === "adminContent1")?"block":"none"}} id="adminContent1" className="admin-content admin-content1">
-                                <img src="https://aptdiagnostics-test.s3.ap-south-1.amazonaws.com/f9a9302278622a2fa1c88285214fb3a1"></img>
+                            enjoy
                         </div>
                         <div style={{display:(currentContainer === "adminContent2")?"block":"none"}} id="adminContent2" className="admin-content admin-content2">
                             <Row>
@@ -183,11 +183,13 @@ export default function Index() {
                                     <h2 style={{fontWeight:"700"}}>Blogs</h2>
                                 </Col>
                             </Row>
-                            <Row>
+                            <Row> 
                                 <Col>
                                     <div style={{borderRadius:"10px",border:"1px solid #0a4275"}} className="p-2 m-1 d-flex align-items-center justify-content-space-between">
                                     <IconButton onClick={()=>{setBlogUpdateWindow(true)}} style={{color:"#ff6363"}}><AddIcon/></IconButton>
                                     <h5>Add Blog</h5>
+                                    
+
                                     </div>
                                 </Col>
                             </Row>

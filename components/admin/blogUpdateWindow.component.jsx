@@ -45,25 +45,26 @@ export default function BlogUpdateWindow(props) {
 
     const saveBlogDetails =async ()=>{
         try{
-        let tempData = blogDetails
+        let tempData = blogDetails 
+        console.log(tempData)
         const formData = new FormData()
         if(videoFile !== null){formData.append("videoFile",videoFile)}
         if(blogImages !== null){for(var image of blogImages){formData.append("images",image)}}
         if(authorImage !== null){formData.append("authorImage",authorImage)}
-        formData.append("author",document.getElementById("author"))
+        formData.append("author",document.getElementById("author").value)
         formData.append("isVideoBlog",document.getElementById("isVideoBlog").checked)
         formData.append("blogId",tempData.blogId)
-        formData.append("blogHeading",document.getElementById("blogHeading"))
-        formData.append("blogSubHeading",document.getElementById("blogSubHeading"))
+        formData.append("blogHeading",document.getElementById("blogHeading").value)
+        formData.append("blogSubHeading",document.getElementById("blogSubHeading").value)
         formData.append("oldVideoLink",tempData.videoLink)
-        formData.append("imagesLink",JSON.stringify(tempData.imagesLink))
+        formData.append("imagesLink",JSON.stringify(tempData.imagesLinks))
         formData.append("oldAuthorImage",tempData.authorThumbnail)
         formData.append("content",tempData.content ||"")
         const result = await axios.post(apiLinks.adminPostBlog,formData)
         if(result.status === 200){
             console.log(result.data)
             setBlogDetails(result.data)
-            taost("Details Saved!")
+            toast("Details Saved!")
             setContentEditor(true)
         }
         else{
@@ -136,7 +137,7 @@ export default function BlogUpdateWindow(props) {
                         <Input id="authorThumbnail" onChange={(event)=>{setAuthorImage(event.target.files[0])}} type="file" placeholder="Author Image">
                         </Input>
                     </FormGroup>
-                    </Col>
+                    </Col> 
                     <Col>
                     <FormGroup>
                         <Label for="blogVideo">Video File</Label>
