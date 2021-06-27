@@ -21,7 +21,7 @@ export default function Index() {
     const [packageList,setPackageList] = useState([])
     const [testList,setTestList] = useState([])
     const [organList,setOrganList] = useState([])
-    const [blogList,setBlogList] =useState([])
+    const [blogList,setBlogList] = useState([])
     const [packageUpdateWindow,setPackageUpdateWindow] = useState(false)
     const [testUpdateWindow,setTestUpdateWindow] = useState(false)
     const [organUpdateWindow,setOrganUpdateWindow] = useState(false)
@@ -77,7 +77,7 @@ export default function Index() {
                     <div style={{width:"80%"}}>
                     <Container fluid className="mr-3">
                         <div style={{display:(currentContainer === "adminContent1")?"block":"none"}} id="adminContent1" className="admin-content admin-content1">
-                            enjoy
+                                Dashboard{/* <img src="https://aptdiagnostics-test.s3.ap-south-1.amazonaws.com/f9a9302278622a2fa1c88285214fb3a1"></img> */}
                         </div>
                         <div style={{display:(currentContainer === "adminContent2")?"block":"none"}} id="adminContent2" className="admin-content admin-content2">
                             <Row>
@@ -175,7 +175,7 @@ export default function Index() {
                         </Row>   
                         </div>
                         <div style={{display:(currentContainer === "adminContent4")?"block":"none"}} id="adminContent4" className="admin-content admin-content4">
-                            
+                            Hello happy birthday
                         </div>
                         <div style={{display:(currentContainer === "adminContent5")?"block":"none"}} id="adminContent5" className="admin-content admin-content5">
                             <Row>

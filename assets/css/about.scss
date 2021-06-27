@@ -63,6 +63,27 @@
     border-radius: 50%;
 }
 
+.home-collection-icon{   //Newly Created
+    margin:0;  
+    padding:0;
+    width:30px;
+    height:30px;
+     &:hover{
+         content: url("/svg/aptIcons/dark/APT_SVG_HOME_CHECKUP.svg");
+    }
+}
+
+.test-included-icon{   //Newly Created
+    margin:0;  
+    padding:0;
+    width:30px;
+    height:30px;
+     &:hover{
+         content: url("/svg/aptIcons/dark/APT_SVG_BLOOD_BOTTLE.svg");
+    }
+}
+
+
 @media only screen and (max-width: 1024px){
     .none{
         display: none;
