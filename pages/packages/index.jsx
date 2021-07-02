@@ -82,7 +82,7 @@ export default function Index() {
             <Row className="test-banner card">
                     <Col>
                 {/* <PackageSlider/> */}
-                <img src="/images/carouselimgx.jpg"></img>
+                <img src="/images/Corporate packages.jpg"></img>
                 <IconButton className="prev-btn"><NavigateBeforeIcon style={{color:"#0a4275",width:"30px",height:"30px"}}/></IconButton>
                 <IconButton className="next-btn"><NavigateNextIcon style={{color:"#0a4275",width:"30px",height:"30px"}}/></IconButton>
                 {/* <img className="leftArrow" src=""></img>
@@ -111,9 +111,7 @@ export default function Index() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md="4">
-                        {cardFiller()}
-                    </Col>
+                    <Col md="4">{cardFiller()}</Col>
                     <Col md="4">{cardFiller()}</Col>
                     <Col md="4">{cardFiller()}</Col>
                     <Col md="4">{cardFiller()}</Col>

@@ -32,7 +32,7 @@ export default function BlogUpdateWindow(props) {
             document.getElementById("blogHeading").value = result.data[0].heading
             document.getElementById("blogSubHeading").value = result.data[0].subHeading
             document.getElementById("blogVideo").disabled = !result.data[0].isVideoBlog
-            setBlogDetails(result.data[0])
+            setBlogDetails(result.data[0])  
         }
         else if(result.status === 400){
             toast("Invalid ID!")
@@ -51,21 +51,22 @@ export default function BlogUpdateWindow(props) {
         if(videoFile !== null){formData.append("videoFile",videoFile)}
         if(blogImages !== null){for(var image of blogImages){formData.append("images",image)}}
         if(authorImage !== null){formData.append("authorImage",authorImage)}
-        formData.append("author",document.getElementById("author"))
-        formData.append("isVideoBlog",document.getElementById("isVideoBlog").checked)
+        formData.append("author",document.getElementById("author").value)
+        formData.append("isVideoBlog",document.getElementById("isVideoBlog").checked)   
         formData.append("blogId",tempData.blogId)
-        formData.append("blogHeading",document.getElementById("blogHeading"))
+        formData.append("blogHeading",document.getElementById("blogHeading").value)
         formData.append("blogSubHeading",document.getElementById("blogSubHeading"))
         formData.append("oldVideoLink",tempData.videoLink)
         formData.append("imagesLink",JSON.stringify(tempData.imagesLink))
         formData.append("oldAuthorImage",tempData.authorThumbnail)
         formData.append("content",tempData.content ||"")
+
         const result = await axios.post(apiLinks.adminPostBlog,formData)
         if(result.status === 200){
             console.log(result.data)
             setBlogDetails(result.data)
-            taost("Details Saved!")
-            setContentEditor(true)
+            toast("Details Saved!")
+            setContentEditor(true)  
         }
         else{
             toast("Cant Update Blog!")
@@ -73,7 +74,7 @@ export default function BlogUpdateWindow(props) {
         }catch(err){
             console.log(err)
             toast("Internal Server Error")
-            setContentEditor(true)
+            setContentEditor(true)  //need to change to true
         }
     }
 
