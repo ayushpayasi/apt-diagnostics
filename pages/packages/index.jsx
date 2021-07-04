@@ -15,6 +15,7 @@ import IconButton from "@material-ui/core/IconButton"
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Head from "next/head"
+import ImgCarousel from '../../components/carousel.component';
 
 
 export default function Index() {
@@ -47,7 +48,7 @@ export default function Index() {
             </div>
         )
     }
-    const cardFiller =()=>{
+    const cardFiller =(color)=>{
         return(
             <div>
                 <div style={{padding:"10px !important"}}>
@@ -60,7 +61,7 @@ export default function Index() {
                         {paramsIconGenerator()}
                         {idealForIconGenerator()}
                         <Row>
-                            <Col><Button outline>Book Now</Button></Col>
+                            <Col><Button style={{background:`${color}`}} outline>Book Now</Button></Col>
                             <Col><Button outline>Learn More</Button></Col>
                         </Row>
                     </CardBody>
@@ -77,18 +78,18 @@ export default function Index() {
             <NavBar/>
             {/* <BreadCrumb links={["home","tests"]}/> */}
             {/* <Card > */}
-            <Container className="package-banner-container-holder">
-                
-            <Row className="test-banner card">
+            <Container className="package-banner-container-holder mt-5">
+            <ImgCarousel style={{height:"400px",width:"1000px !important"}}/>
+
+            {/* <Row className="test-banner card">
                     <Col>
-                {/* <PackageSlider/> */}
-                <img src="/images/Corporate packages.jpg"></img>
+                <img src="/images/flupackages.jpg"></img>
                 <IconButton className="prev-btn"><NavigateBeforeIcon style={{color:"#0a4275",width:"30px",height:"30px"}}/></IconButton>
-                <IconButton className="next-btn"><NavigateNextIcon style={{color:"#0a4275",width:"30px",height:"30px"}}/></IconButton>
+                <IconButton className="next-btn"><NavigateNextIcon style={{color:"#0a4275",width:"30px",height:"30px"}}/></IconButton> */}
                 {/* <img className="leftArrow" src=""></img>
                 <img className="leftArrow" scr=""></img> */}
-                </Col>
-                </Row>
+                {/* </Col>
+                </Row> */}
             </Container>
             {/* </Card> */}
             <Container >
@@ -111,7 +112,9 @@ export default function Index() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md="4">{cardFiller()}</Col>
+                    <Col md="4">
+                        {cardFiller("#0a4275")}
+                    </Col>
                     <Col md="4">{cardFiller()}</Col>
                     <Col md="4">{cardFiller()}</Col>
                     <Col md="4">{cardFiller()}</Col>

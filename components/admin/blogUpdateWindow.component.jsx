@@ -46,18 +46,19 @@ export default function BlogUpdateWindow(props) {
 
     const saveBlogDetails = async ()=>{
         try{
-        let tempData = blogDetails
+        let tempData = blogDetails 
+        console.log(tempData)
         const formData = new FormData()
         if(videoFile !== null){formData.append("videoFile",videoFile)}
         if(blogImages !== null){for(var image of blogImages){formData.append("images",image)}}
         if(authorImage !== null){formData.append("authorImage",authorImage)}
         formData.append("author",document.getElementById("author").value)
-        formData.append("isVideoBlog",document.getElementById("isVideoBlog").checked)   
+        formData.append("isVideoBlog",document.getElementById("isVideoBlog").checked)
         formData.append("blogId",tempData.blogId)
         formData.append("blogHeading",document.getElementById("blogHeading").value)
-        formData.append("blogSubHeading",document.getElementById("blogSubHeading"))
+        formData.append("blogSubHeading",document.getElementById("blogSubHeading").value)
         formData.append("oldVideoLink",tempData.videoLink)
-        formData.append("imagesLink",JSON.stringify(tempData.imagesLink))
+        formData.append("imagesLink",JSON.stringify(tempData.imagesLinks))
         formData.append("oldAuthorImage",tempData.authorThumbnail)
         formData.append("content",tempData.content ||"")
 
@@ -66,7 +67,7 @@ export default function BlogUpdateWindow(props) {
             console.log(result.data)
             setBlogDetails(result.data)
             toast("Details Saved!")
-            setContentEditor(true)  
+            setContentEditor(true)
         }
         else{
             toast("Cant Update Blog!")
@@ -142,7 +143,7 @@ export default function BlogUpdateWindow(props) {
                         <Input id="category" placeholder="category">    
                         </Input>
                     </FormGroup>
-                    </Col>
+                    </Col> 
                     <Col>
                     <FormGroup>
                         <Label for="blogVideo">Video File</Label>
