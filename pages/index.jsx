@@ -251,10 +251,11 @@ export default function Home() {
                                         <FormControlLabel
                                         value="home"
                                         control={<Radio onChange={(event)=>{setRadioValue(event.target.value)}} />}
-                                        style={{textAlign:"center",color:"#0a4275"}}
+                                        style={{textAlign:"center",color:"#0a4275",fontWeight:"700"}}
                                         label="Home Appointment"
                                         name="appointmentType"
                                         labelPlacement="bottom"
+                                        
                                         />
                                     </Col>
                                     <Col xs="6">
@@ -297,7 +298,7 @@ export default function Home() {
                                 </Row>
                                 <Row  className="ml-1 mr-1 mt-2" >
                                     <Col md="2" className="align-center-column">
-                                    <CallIcon style={{color:"#000",height:"2.7rem",width:"2.7rem",padding:0,margin:0}}/>
+                                    <CallIcon style={{color:"#ff6363",height:"2.7rem",width:"2.7rem",padding:0,margin:0}}/>
                                     </Col>
                                     <Col md="10"><TextField id="appointmentBookingMobilenumber" type="number" size="small" pattern="[0-9]{10}" placeholder="Your Contact Number!" variant="outlined" /></Col>
                                 </Row>

@@ -32,7 +32,7 @@ const Tab = props => {
               toggle('1');
             }}
           >
-            About us
+            Who We Are
           </NavLink>
         </NavItem>
         <NavItem>
@@ -42,7 +42,7 @@ const Tab = props => {
               toggle('2');
             }}
           >
-            Team
+            What Do We Offer
           </NavLink>
         </NavItem>
         <NavItem>
@@ -62,10 +62,10 @@ const Tab = props => {
               toggle('4');
             }}
           >
-            Quality Assurance
+            CSR
           </NavLink>
         </NavItem>
-        <NavItem>
+        {/* <NavItem>
           <NavLink
             className={classnames({ activ: activeTab === '5' }, 'tab-nav')}
             onClick={() => {
@@ -74,7 +74,7 @@ const Tab = props => {
           >
             CSR
           </NavLink>
-        </NavItem>
+        </NavItem> */}
       </Nav>
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
@@ -82,23 +82,20 @@ const Tab = props => {
             <Col className="mt-5">
               <Row>
                 <Col>
-                  <h4 className="tab-heading">About us</h4>
+                  <h4 className="tab-heading">Who We Are</h4>
                 </Col>
               </Row>
               <Row>
                 <Col>
                   <p className="tab-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Blanditiis ipsam quas molestias unde accusantium! Beatae
-                    illum sapiente sequi error inventore!
+                  APT Diagnostics is a socially conscious line of diagnostic services which intends to create a niche for
+itself, leveraging a consumer centric foundation, in-house industry leading testing infrastructure and
+above-board quality standards.
                   </p>
                   <p className="tab-body">
-                    Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                    consectetur, adipisicing elit. Voluptas deserunt ut delectus
-                    est similique perferendis aliquid quis? Quasi, maiores.
-                    Sunt. consectetur adipisicing elit. Blanditiis ipsam quas
-                    molestias unde accusantium! Beatae illum sapiente sequi
-                    error inventore!
+                  Lead by a team of experts with experience spanning across 10 years in the pathology sector, APT
+Diagnostics’ point of emphasis is to create health awareness and cater to all sects of the society with its
+affordable and superior testing services.
                   </p>
                   <p className="tab-body">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -192,16 +189,18 @@ const Tab = props => {
         <TabPane tabId="2">
           <Row className="mt-5">
             <Col>
-              <h4 className="tab-heading">Team</h4>
+              <h4 className="tab-heading">What Do We Offer!</h4>
             </Col>
           </Row>
           <Row>
             <Col>
-              <h5 style={{ color: 'grey' }}>Management Team</h5>
+              {/* <h5 style={{ color: 'grey' }}>Management Team</h5> */}
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-                aspernatur debitis quia hic exercitationem rerum repellendus
-                ducimus dolor perspiciatis quidem?
+              APT Diagnostics offers a wide array of testing services ranging from regular routine check ups to
+specialized diagnostics. Besides delivering accurate reports, APT Diagnostics offers value to the
+customer experience through streamlined appointment scheduling, easy home collections and timely
+delivery. With an increased focus on home collection network, APT Diagnostics offers minimal waiting
+periods for all your testing requirements at the comfort of your homes.
               </p>
             </Col>
           </Row>
@@ -210,12 +209,12 @@ const Tab = props => {
               <ProfileCarousel />
             </Col>
           </Row>
-          <Row className="mt-3">
+          {/* <Row className="mt-3">
             <Col>
               <ProfileCarousel />
             </Col>
-          </Row>
-          <Row className="mt-5">
+          </Row> */}
+          {/* <Row className="mt-5">
             <Col>
               <h5 style={{ color: 'grey' }}>Our Doctors</h5>
               <p>
@@ -224,12 +223,12 @@ const Tab = props => {
                 ducimus dolor perspiciatis quidem?
               </p>
             </Col>
-          </Row>
-          <Row className="mt-3">
+          </Row> */}
+          {/* <Row className="mt-3">
             <Col>
               <ProfileCarousel />
             </Col>
-          </Row>
+          </Row> */}
         </TabPane>
         <TabPane tabId="3">
           <Row className="mt-5">
@@ -271,7 +270,7 @@ const Tab = props => {
           </Row>
           <Row className="mt-4">
             <Col>
-              <h5> Wellness Program</h5>
+              <h5>Hematology Services</h5>
             </Col>
           </Row>
           <Row>
@@ -285,29 +284,15 @@ const Tab = props => {
           <Row className="mt-3">
             <Col>
               <p className="tab-body">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis ipsam quas molestias unde accusantium! Beatae illum
-                sapiente sequi error inventore!
-              </p>
-              <p className="tab-body">
-                Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                consectetur, adipisicing elit. Voluptas deserunt ut delectus est
-                similique perferendis aliquid quis? Quasi, maiores. Sunt.
-                consectetur adipisicing elit. Blanditiis ipsam quas molestias
-                unde accusantium! Beatae illum sapiente sequi error inventore!
-              </p>
-              <p className="tab-body">
-                Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                consectetur, adipisicing elit. Voluptas deserunt ut delectus est
-                similique perferendis aliquid quis? Quasi, maiores. Sunt.
-                consectetur adipisicing elit. Blanditiis ipsam quas molestias
-                unde accusantium! Beatae illum sapiente sequi error inventore!
+              Hematology specializes in diseases of the blood and blood components.
+              These include blood and bone marrow cells. Hematological tests can help diagnose anemia,
+              infection, hemophilia, blood-clotting disorders, and leukemia.
               </p>
             </Col>
           </Row>
           <Row className="mt-4">
             <Col>
-              <h5> Laboratory Solutions</h5>
+              <h5> Biochemistry Services</h5>
             </Col>
           </Row>
           <Row>
@@ -321,11 +306,11 @@ const Tab = props => {
           <Row className="mt-3">
             <Col>
               <p className="tab-body">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis ipsam quas molestias unde accusantium! Beatae illum
-                sapiente sequi error inventore!
+              Clinical Biochemistry deals with the measurement of chemicals (both
+natural and unnatural) in blood, urine and other body fluids. These test results are useful for
+detecting health problems, determining prognosis and guiding the therapy of a patient.
               </p>
-              <p className="tab-body">
+              {/* <p className="tab-body">
                 Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
                 consectetur, adipisicing elit. Voluptas deserunt ut delectus est
                 similique perferendis aliquid quis? Quasi, maiores. Sunt.
@@ -338,11 +323,11 @@ const Tab = props => {
                 similique perferendis aliquid quis? Quasi, maiores. Sunt.
                 consectetur adipisicing elit. Blanditiis ipsam quas molestias
                 unde accusantium! Beatae illum sapiente sequi error inventore!
-              </p>
+              </p> */}
             </Col>
           </Row>
         </TabPane>
-        <TabPane tabId="4">
+        {/* <TabPane tabId="4">
           <Row className="mt-5">
             <Col>
               <h4 className="tab-heading">Quality Assurance</h4>
@@ -375,7 +360,8 @@ const Tab = props => {
             </Col>
           </Row>
         </TabPane>
-        <TabPane tabId="5">
+        */}
+        <TabPane tabId="4">
           <Row className="mt-5">
             <Col>
               <h4 className="tab-heading">CSR</h4>

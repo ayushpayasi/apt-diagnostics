@@ -6,8 +6,6 @@ import ReportSlider from "../../components/slider.component"
 import {Container,Row,Col,Card,Button,Input} from "reactstrap"
 import MobileMenu from "../../components/mobilemenu.component"
 import "../../assets/css/tests.scss"
-// import "slick-carousel/slick/slick.scss"; 
-// import "slick-carousel/slick/slick-theme.scss";
 import ImgCarousel from "../../components/carousel.component"
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
@@ -291,19 +289,19 @@ export default function Tests() {
                             <h4 className="text-center">Book Home Collection</h4>
                             <Row>
                                 <Col xs="4">
-                                    <img src="/svg/remote-access.svg"/>
+                                    <img src="/svg/aptIcons/light/Healthy_Notification.svg"/>
                                     <p>
                                         Online Access to Reports
                                     </p>
                                 </Col>
                                 <Col xs="4">
-                                    <img src="/svg/apartment.svg"/>
+                                    <img src="/svg/aptIcons/light/home_collection.svg"/>
                                     <p>
                                         Free Home Collection & Cancellation
                                     </p>
                                 </Col>
                                 <Col xs="4">
-                                    <img src="/svg/hourglass.svg"/>
+                                    <img src="/svg/aptIcons/light/timely_reports.svg"/>
                                     <p>Convenient & Time Saving</p>
                                 </Col>
                             </Row>

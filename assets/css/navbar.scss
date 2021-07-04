@@ -30,7 +30,7 @@
 }
 .logo-img{
     height:4rem;
-    width:15rem;
+    width:17rem;
 }
 
 .navbar-button{
@@ -87,7 +87,7 @@
     width:30px;
     height:30px;
      &:hover{
-         content:url("/svg/aptIcons/dark/APT_SVG_CALL_PATTERN.svg");
+         content:url("/svg/aptIcons/dark/APT_SVG_MOBILE_HELP.svg");
     }
 }
 
@@ -147,6 +147,8 @@
     box-shadow: 0px 0px 0px 1px rgba(10, 66, 117,0.3);
     overflow: hidden;
     border-radius: 15px;
+    margin:1px;
+    padding:2px;
 }
 // .left-panel{
 //     position: fixed;
@@ -180,9 +182,8 @@
     align-items: center;
     top:300px;
     z-index: 1;
-    left:-5%;
+    left:-6%;
     padding:0;
-    margin:0;
     animation: popanimation 0.75s alternate-reverse infinite;
     transition: left 2s;
 }

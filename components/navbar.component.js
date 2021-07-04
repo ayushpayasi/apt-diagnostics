@@ -234,7 +234,7 @@ const Navigation = (props) => {
                                             renderInput={(params) => <TextField  {...params} label="Find Your Test" size="small" variant="outlined" />}
                                             /> */}
            {/* <button className="btn navbar-button float-left m-2">BOOK AN APOINTMENT</button> */}
-           <img src="/svg/aptIcons/dark/APT_SVG_CART.svg" style={{height: "35px",width:"40px"}}></img>
+           <img src="/svg/firstaid.svg" style={{height: "30px",width:"30px"}}></img>
         </Collapse>
       </Navbar>
       <div id="topSpace" className="top-space">
@@ -294,12 +294,12 @@ const Navigation = (props) => {
           <Col className="align-center-column-col">
           <Row>
             <Col className="align-center-row">
-              <img className="sidebar-icon1" src="/svg/aptIcons/light/call.svg" />
+              <img className="sidebar-icon1" src="/svg/aptIcons/light/online_reports.svg" />
             </Col>
             </Row>
             <Row>
               <Col >
-                <h6 className="sidebar-text text-center">Contact us</h6>
+                <h6 className="sidebar-text text-center">Download Report</h6>
               </Col>
             </Row>
             </Col>
