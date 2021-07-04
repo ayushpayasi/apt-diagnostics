@@ -1,11 +1,53 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {Container,Col,Row,CardTitle,Card,CardColumns,CardImg,CardText,CardSubtitle,CardBody,ListGroup,ListGroupItem,ListGroupItemHeading,ListGroupItemText, CardFooter} from "reactstrap"
 // import Card from "@material-ui/core/Card"
 import NavBar from "../../components/navbar.component"
+import axios from 'axios'
+import { apiLinks } from '../../connection.config'
 import "../../assets/css/blogs.scss"
 import Share from "../../components/share.component"
 
 export default function Blog() {
+
+    const [blogs, setBlogs] = useState([{content:""}]);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage,setPostsPerPage] = useState(10);
+    const [content,setContent] = useState([])
+
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+        setLoading(true);
+        const res = await axios.get(apiLinks.blogData);
+        console.log(res.data.data)
+        setBlogs(res.data.data);
+        setLoading(false);
+        };
+
+        fetchBlogs();
+    }, []);
+    
+    const cardFiller = (details)=>{
+        return(
+                <Card className="blog-card">
+                    <CardImg top width="100%" src="/images/bgcheck.jpg"></CardImg>
+                    <CardSubtitle>{details.content}</CardSubtitle>
+                    <CardTitle>Lorem ipsum dolor sit amet consectetur.</CardTitle>
+                    <Share/> 
+                    <CardText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde reprehenderit assumenda voluptatem recusandae autem id aspernatur, commodi eligendi saepe natus!</CardText>
+                </Card>
+                // <Card className="blog-card">
+                //     <CardImg top width="100%" src="/images/bgcheck.jpg"></CardImg>
+                //     <CardSubtitle>13-05-2019 @ayushPayasi</CardSubtitle>
+                //     <CardTitle>Lorem ipsum dolor sit amet consectetur.</CardTitle>
+                //     <Share/> 
+                //     <CardText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde reprehenderit assumenda voluptatem recusandae autem id aspernatur, commodi eligendi saepe natus!</CardText>
+                // </Card>
+        )
+    }
+
+    //console.log(blogs.length)
 
     return (
         <>
@@ -74,7 +116,18 @@ export default function Blog() {
                     
                     </Col>
                     <Col lg="9" className="blogcard-col">
-                        <Card className="blog-card">
+                       
+                            
+                        {blogs.map(x => {cardFiller(x)})}
+                           
+           
+
+                       {/* <Row>
+                           {cardFiller()}
+                           {cardFiller()}
+                           {cardFiller()}       
+                       </Row> */}
+                        {/* <Card className="blog-card">
                             <CardImg top width="100%" src="/images/bgcheck.jpg"></CardImg>
                             <CardSubtitle>13-05-2019 @ayushPayasi</CardSubtitle>
                             <CardTitle>Lorem ipsum dolor sit amet consectetur.</CardTitle>
@@ -101,7 +154,7 @@ export default function Blog() {
                             <CardTitle>Lorem ipsum dolor sit amet consectetur.</CardTitle>
                             <Share/> 
                             <CardText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde reprehenderit assumenda voluptatem recusandae autem id aspernatur, commodi eligendi saepe natus!</CardText>
-                        </Card>
+                        </Card> */}
                     </Col>
                 </Row>
             </Container>
