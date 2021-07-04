@@ -32,7 +32,7 @@ export default function BlogUpdateWindow(props) {
             document.getElementById("blogHeading").value = result.data[0].heading
             document.getElementById("blogSubHeading").value = result.data[0].subHeading
             document.getElementById("blogVideo").disabled = !result.data[0].isVideoBlog
-            setBlogDetails(result.data[0])
+            setBlogDetails(result.data[0])  
         }
         else if(result.status === 400){
             toast("Invalid ID!")
@@ -61,6 +61,7 @@ export default function BlogUpdateWindow(props) {
         formData.append("imagesLink",JSON.stringify(tempData.imagesLinks))
         formData.append("oldAuthorImage",tempData.authorThumbnail)
         formData.append("content",tempData.content ||"")
+
         const result = await axios.post(apiLinks.adminPostBlog,formData)
         if(result.status === 200){
             console.log(result.data)
@@ -74,7 +75,7 @@ export default function BlogUpdateWindow(props) {
         }catch(err){
             console.log(err)
             toast("Internal Server Error")
-            setContentEditor(true)
+            setContentEditor(true)  //need to change to true
         }
     }
 
