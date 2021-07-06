@@ -6,7 +6,7 @@ import {
   CarouselCaption,
 } from 'reactstrap';
 
-// src: "images/carouselImgx.jpg",
+
 const items = [
   {
     src: "images/homeslider1.png",
@@ -19,7 +19,7 @@ const items = [
     caption: 'Slide 2'
   },
   {
-    src: "images/carouselImgz.jpg",
+    src: "images/homeslider3.png",
     altText: 'Slide 3',
     caption: 'Slide 3'
   }
