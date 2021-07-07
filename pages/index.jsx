@@ -276,7 +276,7 @@ export default function Home() {
                                 </Row>
                                 <Row  className="ml-1 mr-1 mt-2" >
                                     <Col md="2" className="align-center-column">
-                                            <img style={{color:"#094275",height:"2.7rem",width:"2.7rem",padding:0,margin:0}} src="images/labicon.png"/>
+                                            <img style={{color:"#094275",height:"2.7rem",width:"2.7rem",padding:0,margin:0}} src="images/tests_icon.svg"/>
                                     </Col>
                                     <Col className="search-widget" md="10">
                                         <Autocomplete
@@ -298,7 +298,8 @@ export default function Home() {
                                 </Row>
                                 <Row  className="ml-1 mr-1 mt-2" >
                                     <Col md="2" className="align-center-column">
-                                    <CallIcon style={{color:"#ff6363",height:"2.7rem",width:"2.7rem",padding:0,margin:0}}/>
+                                    {/* <CallIcon style={{color:"#ff6363",height:"2.7rem",width:"2.7rem",padding:0,margin:0}}/> */}
+                                    <img style={{color:"#094275",height:"2.7rem",width:"2.7rem",padding:0,margin:0}} src="images/phonenumber_icon.svg"/>
                                     </Col>
                                     <Col md="10"><TextField id="appointmentBookingMobilenumber" type="number" size="small" pattern="[0-9]{10}" placeholder="Your Contact Number!" variant="outlined" /></Col>
                                 </Row>

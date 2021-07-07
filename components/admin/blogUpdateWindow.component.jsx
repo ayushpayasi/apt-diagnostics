@@ -47,7 +47,6 @@ export default function BlogUpdateWindow(props) {
     const saveBlogDetails = async ()=>{
         try{
         let tempData = blogDetails 
-        console.log(tempData)
         const formData = new FormData()
         if(videoFile !== null){formData.append("videoFile",videoFile)}
         if(blogImages !== null){for(var image of blogImages){formData.append("images",image)}}
