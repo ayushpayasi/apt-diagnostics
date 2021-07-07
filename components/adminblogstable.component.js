@@ -129,7 +129,7 @@ export default function AdminBlogsTable(props) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) =>
-            <TableRow key={row.name}>
+            <TableRow key={Math.floor(Math.random() * 1000)}>
               <TableCell scope="row">
                 {row.blogId}
               </TableCell>
