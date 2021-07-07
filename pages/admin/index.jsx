@@ -15,6 +15,8 @@ import TestUpdateWindow from "../../components/admin/testUpdateWindow.component"
 import AdminTestsTable from "../../components/adminteststable.component"
 import AdminBlogsTable from '../../components/adminblogstable.component';
 import BlogUpdateWindow from '../../components/admin/blogUpdateWindow.component';
+import BlogInsertWindow from '../../components/admin/blogInsertWindow.component';
+
 
 export default function Index() {
     const [currentContainer,setCurrentContainer] = useState("adminContent1")
@@ -26,6 +28,7 @@ export default function Index() {
     const [testUpdateWindow,setTestUpdateWindow] = useState(false)
     const [organUpdateWindow,setOrganUpdateWindow] = useState(false)
     const [blogUpdateWindow,setBlogUpdateWindow] = useState(false)
+    const [blogInsertWindow,setBlogInsertWindow] = useState(false)
     const [packageToUpdate,setPackageToUpdate] = useState(0);
     const [testToUpdate,setTestToUpdate] = useState(0);
     const [organToUpdate,setOrganToUpdate] = useState(0);
@@ -70,6 +73,7 @@ export default function Index() {
             {packageUpdateWindow?<PackageUpdateWindow setPackageUpdateWindow={setPackageUpdateWindow} packageToUpdate={packageToUpdate}/>:<React.Fragment/>}
             {testUpdateWindow?<TestUpdateWindow setTestUpdateWindow={setTestUpdateWindow} testToUpdate={testToUpdate}/>:<React.Fragment/>}
             {blogUpdateWindow?<BlogUpdateWindow setBlogToUpdate={setBlogToUpdate} setBlogUpdateWindow={setBlogUpdateWindow} blogToUpdate={blogToUpdate}/>:<React.Fragment/>}
+            {blogInsertWindow?<BlogInsertWindow setBlogInsertWindow={setBlogInsertWindow}/>:<React.Fragment/>}
                 <div style={{display:"flex"}}>
                         <div>
                             <AdminNavbar currentContainer={currentContainer} changeContainer={setCurrentContainer}/>
@@ -186,7 +190,7 @@ export default function Index() {
                             <Row> 
                                 <Col>
                                     <div style={{borderRadius:"10px",border:"1px solid #0a4275"}} className="p-2 m-1 d-flex align-items-center justify-content-space-between">
-                                    <IconButton onClick={()=>{setBlogUpdateWindow(true)}} style={{color:"#ff6363"}}><AddIcon/></IconButton>
+                                    <IconButton onClick={()=>{/*setBlogUpdateWindow(true)*/setBlogInsertWindow(true)}} style={{color:"#ff6363"}}><AddIcon/></IconButton>
                                     <h5>Add Blog</h5>
                                     
 
