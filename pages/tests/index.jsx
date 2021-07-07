@@ -289,7 +289,8 @@ export default function Tests() {
                             <h4 className="text-center">Book Home Collection</h4>
                             <Row>
                                 <Col xs="4">
-                                    <img src="/svg/aptIcons/light/Healthy_Notification.svg"/>
+                                    {/* <img src="/svg/aptIcons/light/Healthy_Notification.svg"/> */}
+                                    <img src="/images/download_icon.svg" />
                                     <p>
                                         Online Access to Reports
                                     </p>
