@@ -8,7 +8,6 @@ import "../../assets/css/blogs.scss"
 import Share from "../../components/share.component"
 import BlogCard from "../../components/blogcard.component"
 import { toast } from 'react-toastify'
-import {apiLinks} from "../../connection.config"
 
 export default function Blog() {
 
@@ -161,7 +160,7 @@ export default function Blog() {
                         </Card> */}
                     </Col>
                 </Row>
-            </Container>
+            </Container>:<React.Fragment/>}
         </>
     )
 }

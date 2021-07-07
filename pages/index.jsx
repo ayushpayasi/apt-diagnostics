@@ -42,6 +42,16 @@ import Footer from "../components/footer.component"
 import {apiLinks} from "../connection.config"
 import axios from 'axios'
 import {useRouter} from "next/router"
+import DownloadReportLightbox from '../components/lightbox/downloadreport.component'
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
+const Modal = () => (
+    <Popup trigger={<button className="button"> Open Modal </button>} modal>
+      <span> Modal content </span>
+    </Popup>
+  );
+
 
 export default function Home() {
     const [testList,setTestList] = useState(null)
@@ -49,6 +59,7 @@ export default function Home() {
     const [selectedTest,setSelectedTest] = useState(null);
     const [otpVerification,setOtpVerification] = useState(false);
     const [mobile,setMobile] = useState(null)
+    const [downloadReport,setDownloadReport] = useState(true)
     const router = useRouter()
 
     const retryOTPHandler = ()=>{
@@ -216,6 +227,7 @@ export default function Home() {
 
     return (<React.Fragment>
                 <NavBar/>
+                <DownloadReportLightbox/>
                 {otpVerification?<div className="otp-verification-window">
                     <Card className="otp-verification-card">
                         <CardBody>
