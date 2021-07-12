@@ -130,9 +130,9 @@ export default function PackageUpdateWindow(props) {
                     <CardTitle><Button onClick={()=>{document.querySelectorAll(".packagesubUpdateWindow")[0].style.display="none"}} close /></CardTitle>
                     <CardSubtitle>Ideal For</CardSubtitle>
                     <ListGroup flush>
-                        <ListGroupItem><Input id="idealForField1"></Input></ListGroupItem>
-                        <ListGroupItem><Input id="idealForField2"></Input></ListGroupItem>
-                        <ListGroupItem><Input id="idealForField3"></Input></ListGroupItem>
+                        <ListGroupItem><Input size="sm" id="idealForField1"></Input></ListGroupItem>
+                        <ListGroupItem><Input size="sm" id="idealForField2"></Input></ListGroupItem>
+                        <ListGroupItem><Input size="sm" id="idealForField3"></Input></ListGroupItem>
                     </ListGroup>
                     <Button onClick={()=>{setPackageIdealFor([document.getElementById("idealForField1").value,document.getElementById("idealForField2").value,document.getElementById("idealForField3").value]);document.querySelectorAll(".packagesubUpdateWindow")[0].style.display="none"}}>SAVE</Button>
                     </CardBody>
@@ -150,9 +150,9 @@ export default function PackageUpdateWindow(props) {
                     <CardTitle><Button onClick={()=>{document.querySelectorAll(".packagesubUpdateWindow")[1].style.display="none"}} close /></CardTitle>
                     <CardSubtitle>Pre Requisites</CardSubtitle>
                     <ListGroup flush>
-                        <ListGroupItem><Input id="preReqField1"></Input></ListGroupItem>
-                        <ListGroupItem><Input id="preReqField2"></Input></ListGroupItem>
-                        <ListGroupItem><Input id="preReqField3"></Input></ListGroupItem>
+                        <ListGroupItem><Input size="sm" id="preReqField1"></Input></ListGroupItem>
+                        <ListGroupItem><Input size="sm" id="preReqField2"></Input></ListGroupItem>
+                        <ListGroupItem><Input size="sm" id="preReqField3"></Input></ListGroupItem>
                     </ListGroup>
                     <Button onClick={()=>{setPreRequisites([document.getElementById("preReqField1").value,document.getElementById("preReqField2").value,document.getElementById("preReqField3").value]);document.querySelectorAll(".packagesubUpdateWindow")[1].style.display="none"}}>SAVE</Button>
                     </CardBody>
@@ -168,7 +168,7 @@ export default function PackageUpdateWindow(props) {
                             <Col xs="4">
                             <FormGroup>
                                     <Label for="packageId"> Package ID</Label>
-                                    <Input id="packageId" placeholder="Package Id"></Input>
+                                    <Input size="sm" id="packageId" placeholder="Package Id"></Input>
                                 </FormGroup>                                
                             </Col>
                             <Col xs="4" style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
@@ -179,13 +179,13 @@ export default function PackageUpdateWindow(props) {
                             <Col>
                                 <FormGroup>
                                     <Label for="packageType"> Package Type</Label>
-                                    <Input id="packageType" disabled placeholder="Package Type"></Input>
+                                    <Input size="sm" id="packageType" disabled placeholder="Package Type"></Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <FormGroup>
                                     <Label for="packageName"> Package Name</Label>
-                                    <Input id="packageName" disabled placeholder="Package Name"></Input>
+                                    <Input size="sm" id="packageName" disabled placeholder="Package Name"></Input>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -193,7 +193,7 @@ export default function PackageUpdateWindow(props) {
                             <Col>
                                 <FormGroup>
                                     <Label for="packageDescription"> Description</Label>
-                                    <Input type="textarea" id="packageDescription" placeholder="Package Description"></Input>
+                                    <Input size="sm" type="textarea" id="packageDescription" placeholder="Package Description"></Input>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -201,7 +201,7 @@ export default function PackageUpdateWindow(props) {
                             <Col>
                             <FormGroup>
                                     <Label for="packageTestsIncluded"> Tests Included</Label>
-                                    <Input type="select" id="packageTestsIncluded" placeholder="Tests Included">
+                                    <Input size="sm" type="select" id="packageTestsIncluded" placeholder="Tests Included">
                                     {testIncluded.map(item=><option>{item}</option>)}
                                     </Input>
                                     
@@ -210,7 +210,7 @@ export default function PackageUpdateWindow(props) {
                             <Col>
                             <FormGroup>
                                 <Label for="packagePrice">Package Price</Label>
-                                <Input id="packagePrice" disabled placeholder="Package Price">
+                                <Input size="sm" id="packagePrice" disabled placeholder="Package Price">
                                 </Input>
                             </FormGroup>
                             </Col>
@@ -218,7 +218,7 @@ export default function PackageUpdateWindow(props) {
                         <Row>
                             <Col className="d-flex justify-content-center">
                                 <FormGroup style={{fontWeight:"600"}}>
-                                <Input id="packageFeatured" type="checkbox"/>{' '} Featured
+                                <Input size="sm" id="packageFeatured" type="checkbox"/>{' '} Featured
                                 </FormGroup>
                             </Col>
                             <Col style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
@@ -230,7 +230,7 @@ export default function PackageUpdateWindow(props) {
                             <Col>
                                 <FormGroup>
                                     <Label for="image">Upload Image</Label>
-                                    <Input type="file" id="image" onChange={(event)=>{imageChangeHandler(event)}}></Input>
+                                    <Input size="sm" type="file" id="image" onChange={(event)=>{imageChangeHandler(event)}}></Input>
                                 </FormGroup>
                             </Col>
                             

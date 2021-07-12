@@ -27,13 +27,14 @@ function TabPanel(props) {
         {value === index && (
           <Box p={3}>
               {children}
+            {/* <Typography>{children}</Typography> */}
           </Box>
         )}
       </div>
     );
   }
 
-export default function Diagnostics() {
+export default function Lungs() {
   const [value, setValue] = React.useState(0);
   function a11yProps(index) {
     return {

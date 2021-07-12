@@ -103,7 +103,13 @@ export default function Footer() {
                     </li>
                 </ul>
             </div>
-            <p style={{marginTop:"20px"}}> © Copyright APT Diagnostics All Rights Reserved. 2021</p>
+            <div>
+            <div className="d-flex align-items-center justify-content-between font-weight-bolder">
+            <a >Site Map </a>{" - "}<a href="/terms_of_use" > Terms Of Use </a>{" "}-{" "}<a href="/terms_and_condition">Privacy Policy</a>
+            </div>
+            <p className="text-center" style={{marginTop:"20px"}}> © Copyright APT Diagnostics All Rights Reserved. 2021</p>
+            </div>
+            
         </div>
         </>
     )

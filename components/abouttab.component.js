@@ -55,7 +55,7 @@ const Tab = props => {
             Services
           </NavLink>
         </NavItem>
-        <NavItem>
+        {/* <NavItem>
           <NavLink
             className={classnames({ activ: activeTab === '4' }, 'tab-nav')}
             onClick={() => {
@@ -65,16 +65,7 @@ const Tab = props => {
             CSR
           </NavLink>
         </NavItem>
-        {/* <NavItem>
-          <NavLink
-            className={classnames({ activ: activeTab === '5' }, 'tab-nav')}
-            onClick={() => {
-              toggle('5');
-            }}
-          >
-            CSR
-          </NavLink>
-        </NavItem> */}
+       */}
       </Nav>
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
@@ -98,14 +89,11 @@ Diagnostics’ point of emphasis is to create health awareness and cater to all 
 affordable and superior testing services.
                   </p>
                   <p className="tab-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Blanditiis ipsam quas molestias Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Voluptate, modi dicta
-                    veritatis ullam tempora eveniet perferendis fugit soluta hic
-                    totam consectetur deleniti atque dolore unde omnis sint
-                    placeat voluptatibus esse eius magnam! Atque similique iste
-                    minima quod perspiciatis voluptatibus eveniet. unde
-                    accusantium! Beatae illum sapiente sequi error inventore!
+                  APT Diagnostics is a socially conscious line of diagnostic services which intends to create a niche for
+itself, leveraging a consumer centric foundation, in-house industry leading testing infrastructure and
+above-board quality standards.Lead by a team of experts with experience spanning across 10 years in the pathology sector, APT
+Diagnostics’ point of emphasis is to create health awareness and cater to all sects of the society with its
+affordable and superior testing services.
                   </p>
                 </Col>
               </Row>
@@ -167,21 +155,11 @@ affordable and superior testing services.
             </Col>
             <Col md="12" lg="6" className="mt-3">
               <p className="tab-body">
-                Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                consectetur, adipisicing elit. Voluptas deserunt ut delectus est
-                similique perferendis aliquid quis? Quasi, maiores. Sunt.
-                consectetur adipisicing elit. Blanditiis ipsam quas molestias
-                unde accusantium! Beatae illum sapiente sequi error inventore!
+              Inception of APT Diagnostics is primarily attributed to the recent collapse in the health care, path labs and diagnostics sphere which we all witnessed in the wake of covid-19. With a vision to change the way consumers experience the testing services, founders of APT Diagnostics have come up with an innovative setup to mitigate the hassles, long queues and mediocre reports through a perfect amalgamation of technical expertise and management exposure.
               </p>
               <p className="tab-body">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis ipsam quas molestias Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Voluptate, modi dicta veritatis
-                ullam tempora eveniet perferendis fugit soluta hic totam
-                consectetur deleniti atque dolore unde omnis sint placeat
-                voluptatibus esse eius magnam! Atque similique iste minima quod
-                perspiciatis voluptatibus eveniet. unde accusantium! Beatae
-                illum sapiente sequi error inventore!
+              We at APT Diagnostics strive to become a name that will be synonymous to quality and experience, never loosing sight of what pain points need to be addressed for providing a consistent hassle-free experience to the people availing the services. To achieve this, our team will work closely with the customer’s voice through extensive feedback incorporation and effective grievance redressal mechanisms.
+
               </p>
             </Col>
           </Row>
@@ -201,6 +179,15 @@ specialized diagnostics. Besides delivering accurate reports, APT Diagnostics of
 customer experience through streamlined appointment scheduling, easy home collections and timely
 delivery. With an increased focus on home collection network, APT Diagnostics offers minimal waiting
 periods for all your testing requirements at the comfort of your homes.
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              {/* <h5 style={{ color: 'grey' }}>Management Team</h5> */}
+              <p>
+              There’s a reason why APT Diagnostics should be your choice to go to when it comes to pathology tests. In an era of fast paced lifestyle, what everyone needs is a hassle free, timely and convenient experience. What we offer along with accurate reports is peace of mind and the feeling that you are genuinely cared for.
+
               </p>
             </Col>
           </Row>
@@ -284,9 +271,7 @@ periods for all your testing requirements at the comfort of your homes.
           <Row className="mt-3">
             <Col>
               <p className="tab-body">
-              Hematology specializes in diseases of the blood and blood components.
-              These include blood and bone marrow cells. Hematological tests can help diagnose anemia,
-              infection, hemophilia, blood-clotting disorders, and leukemia.
+              Hematology Services - Hematology is the specialty responsible for the diagnosis and management of a wide range of benign and malignant disorders of the red and white blood cells, platelets and the coagulation system in adults and children. Hematology specializes in diseases of the blood and blood components. These include blood and bone marrow cells. Hematological tests can help diagnose anemia, infection, hemophilia, blood-clotting disorders, and leukemia. With industry leading equipment and highly trained staff, we offer the best-in-class hematology services so you and your loved ones get the most out of the time and money spent.
               </p>
             </Col>
           </Row>
@@ -306,61 +291,53 @@ periods for all your testing requirements at the comfort of your homes.
           <Row className="mt-3">
             <Col>
               <p className="tab-body">
-              Clinical Biochemistry deals with the measurement of chemicals (both
-natural and unnatural) in blood, urine and other body fluids. These test results are useful for
-detecting health problems, determining prognosis and guiding the therapy of a patient.
+              Clinical Biochemistry deals with the measurement of chemicals (both natural and unnatural) in blood, urine and other body fluids. These test results are useful for detecting health problems, determining prognosis and guiding the therapy of a patient. Our industry leading analyzers and trained professionals ensure a hassle-free experience, precise results and timely reports.
               </p>
-              {/* <p className="tab-body">
-                Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                consectetur, adipisicing elit. Voluptas deserunt ut delectus est
-                similique perferendis aliquid quis? Quasi, maiores. Sunt.
-                consectetur adipisicing elit. Blanditiis ipsam quas molestias
-                unde accusantium! Beatae illum sapiente sequi error inventore!
-              </p>
-              <p className="tab-body">
-                Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                consectetur, adipisicing elit. Voluptas deserunt ut delectus est
-                similique perferendis aliquid quis? Quasi, maiores. Sunt.
-                consectetur adipisicing elit. Blanditiis ipsam quas molestias
-                unde accusantium! Beatae illum sapiente sequi error inventore!
-              </p> */}
             </Col>
           </Row>
-        </TabPane>
-        {/* <TabPane tabId="4">
-          <Row className="mt-5">
+          <Row className="mt-4">
             <Col>
-              <h4 className="tab-heading">Quality Assurance</h4>
+              <h5> Immunoassay Services</h5>
             </Col>
           </Row>
           <Row>
+            <Col lg="4" md="6" sm="8" xs="10">
+              <img
+                style={{ height: '150px', width: '80%', borderRadius: '5px' }}
+                src="/images/doctor-patient2.jpg"
+              ></img>
+            </Col>
+          </Row>
+          <Row className="mt-3">
             <Col>
               <p className="tab-body">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis ipsam quas molestias unde accusantium! Beatae illum
-                sapiente sequi error inventore!
-              </p>
-              <p className="tab-body">
-                Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                consectetur, adipisicing elit. Voluptas deserunt ut delectus est
-                similique perferendis aliquid quis? Quasi, maiores. Sunt.
-                consectetur adipisicing elit. Blanditiis ipsam quas molestias
-                unde accusantium! Beatae illum sapiente sequi error inventore!
-              </p>
-              <p className="tab-body">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis ipsam quas molestias Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Voluptate, modi dicta veritatis
-                ullam tempora eveniet perferendis fugit soluta hic totam
-                consectetur deleniti atque dolore unde omnis sint placeat
-                voluptatibus esse eius magnam! Atque similique iste minima quod
-                perspiciatis voluptatibus eveniet. unde accusantium! Beatae
-                illum sapiente sequi error inventore!
+              Immunoassays can be used to test for the presence of a specific antibody or a specific antigen in blood or other fluids. When immunoassays are used to test for the presence of an antibody in a blood or fluid sample, the test contains the specific antigen as part of the detection system. Get yourself tested with our advanced analyzers and specialized Immunoassay services.
               </p>
             </Col>
           </Row>
+          <Row className="mt-4">
+            <Col>
+              <h5> Molecular Biology</h5>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg="4" md="6" sm="8" xs="10">
+              <img
+                style={{ height: '150px', width: '80%', borderRadius: '5px' }}
+                src="/images/doctor-patient2.jpg"
+              ></img>
+            </Col>
+          </Row>
+          <Row className="mt-3">
+            <Col>
+              <p className="tab-body">
+              RT PCR based testing of infectious diseases as well as specialized oncology markers. For determining the tendency to develop a disease and gauging the efficacy of the potential treatments available, Molecular biology plays a crucial role through the determination of the genetic variants of a patient. With its state-of-the-art instrumentation, APT Diagnostics offers RT-PCR bases testing of infectious diseases as well as specialized oncology markers.
+              </p>
+            </Col>
+          </Row>
+        
         </TabPane>
-        */}
+
         <TabPane tabId="4">
           <Row className="mt-5">
             <Col>

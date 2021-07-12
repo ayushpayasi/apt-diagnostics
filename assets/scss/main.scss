@@ -130,3 +130,9 @@ body{
   // border:1px solid black;
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
+
+@media only screen and (max-Width:1200px){
+  .cookieslist{
+    display: none;
+  }
+}

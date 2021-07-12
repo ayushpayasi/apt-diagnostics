@@ -1,11 +1,8 @@
 import React, {useState} from "react"
-import {isMobile} from "react-device-detect";
-import MobileMenu from "../../components/mobilemenu.component"
 import {Row,Col,Container,Collapse,CardTitle,CardBody,CardFooter} from "reactstrap"
 import SmallNavbar from "../../components/smallnavbar.component"
 import "../../assets/css/tests.scss"
 import Button from "@material-ui/core/Button"
-// import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from "@material-ui/core/IconButton"
 import ArrowDownwardRounded from "@material-ui/icons/ArrowDownwardRounded"
 import Card from "@material-ui/core/Card"
@@ -148,11 +145,7 @@ const toggle =()=>{
 }
 return(
     <>
-    {/* <div className="details-screen"> */}
         <SmallNavbar/>
-        {/* <div className="rightimage"> */}
-        {/* <svg height="100%" width="100%" id="svg" viewBox="0 0 1440 700" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><defs><linearGradient id="gradient"><stop offset="5%" stop-color="#ff6900ff"></stop><stop offset="95%" stop-color="#fcb900ff"></stop></linearGradient></defs><path d="M 0,700 C 0,700 0,350 0,350 C 113.89285714285714,412.7142857142857 227.78571428571428,475.42857142857144 339,462 C 450.2142857142857,448.57142857142856 558.75,358.99999999999994 678,313 C 797.25,267.00000000000006 927.2142857142858,264.5714285714286 1056,278 C 1184.7857142857142,291.4285714285714 1312.392857142857,320.71428571428567 1440,350 C 1440,350 1440,700 1440,700 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150" transform="rotate(-180 720 350)"></path></svg> */}
-        {/* </div> */}
         <Container className="mt-4">
             <Row>
                 <Col>
@@ -320,7 +313,6 @@ return(
                 </Container>
                 </div>
     {/* </div> */}
-    {isMobile?<MobileMenu/>:<React.Fragment/>}
     </>
 )
 }

@@ -11,8 +11,8 @@ export default function SliderDetails() {
     const [currSlide,setCurrSlide] = useState(0);
 
     const data = [{
-        name:"lorem",
-        symptoms:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ipsam dolore aspernatur facilis neque aut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ",
+        name:"kidney",
+        symptoms:"temp details",
         tests:[
             {
                 name:"Lorem ipsum",

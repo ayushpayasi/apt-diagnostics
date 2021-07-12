@@ -16,37 +16,31 @@ import {
   ListGroupItem,
   Button,
 } from 'reactstrap';
-import axios from "axios";
-import testList from "../public/test.json"
-// import TextField from '@material-ui/core/TextField';
-// import Autocomplete from '@material-ui/lab/Autocomplete';
 import "../assets/css/navbar.scss"
-// import HeadsetMicIcon from '@material-ui/icons/HeadsetMic';
-// import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-// import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounded';
-// import IconButton from '@material-ui/core/IconButton';
-// import PublishIcon from '@material-ui/icons/Publish';
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown"
-import SearchIcon from '@material-ui/icons/Search';
-import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputAdornment from "@material-ui/core/InputAdornment";
-// import SearchIcon from '@material-ui/icons/Search';
-// import Autocomplete from "@material-ui/lab/Autocomplete"
-// import TextField from "@material-ui/core/TextField"
-
-// import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
-
-// import CloseIcon from '@material-ui/icons/Close';
+import DownloadReportLightbox from './lightbox/downloadreport.component';
+import RequestCallBack from './lightbox/requestcallback.component';
+import UploadPrescription from './lightbox/uploadprescription.component';
 import $ from "jquery"
 
 const Navigation = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [panelIsOpen,setPanelIsOpen] = useState(false);
+  const [downloadReportWindow,setDownloadReportWindow] = useState(false);
+  const [requestCallBackWindow,setRequestCallBackWindow] = useState(false);
+  const [uploadPrescriptionWindow,setUploadPrescriptionWindow] = useState(false);
 
-
-
+  const downloadReportHandler =()=>{
+    setDownloadReportWindow(false)
+  }
+  const requestCallBackHandler = ()=>{
+    setRequestCallBackWindow(false)
+  }
+  const uploadPrescriptionHandler =()=>{
+    setUploadPrescriptionWindow(false)
+  }
 
   const leftPanelToggle =()=> {
     if(panelIsOpen){
@@ -61,13 +55,14 @@ const Navigation = (props) => {
       setPanelIsOpen(!panelIsOpen);
     }
   }
+
   useEffect(() => {
     $("#navbar-search").click((obj)=>{$(obj).toggleClass("search-navbar-active")})
       var prevScrollpos = window.pageYOffset;
         window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
         if (prevScrollpos > currentScrollPos) {
-          document.getElementById("topSpace").style.top = "74px";
+          document.getElementById("topSpace").style.top = "76px";
         } else {
           document.getElementById("topSpace").style.top = "-10px";
         }
@@ -189,7 +184,7 @@ const Navigation = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem className="m-2">
-              <NavLink className="nav-link" href="/components/" > <img className = "nav-bar-prescription" src="/svg/aptIcons/light/upload_prescription.svg"/> <span style={{verticalAlign:"bottom",textTransform:"capitalize"}}>Upload Prescription</span></NavLink>  {/*<PublishIcon style={{color:"#ff6363"}} />*/}
+              <NavLink onClick={()=>{setUploadPrescriptionWindow(true)}} className="nav-link curosr-pointer" > <img className = "nav-bar-prescription" src="/svg/aptIcons/light/upload_prescription.svg"/> <span style={{verticalAlign:"bottom",textTransform:"capitalize"}}>Upload Prescription</span></NavLink>  {/*<PublishIcon style={{color:"#ff6363"}} />*/}
             </NavItem>
             <NavItem className="m-3">
                 <Input  
@@ -258,6 +253,7 @@ const Navigation = (props) => {
               <ListGroupItem><a href="/tests">Tests</a></ListGroupItem>
               <ListGroupItem><a href="/packages">Packages</a></ListGroupItem>
               <ListGroupItem><a href="/blogs">Blogs</a></ListGroupItem>
+              <ListGroupItem><a href="/diagnostics">diagnostics</a></ListGroupItem>
             </ListGroup>
               {/* <ul>
                 <li></li>
@@ -285,13 +281,8 @@ const Navigation = (props) => {
         </div>
       
       <div id="left-panel" className="left-panel">
-      
-          {/* <Row>
-          <Col sm="9" className="align-center-row"><p className="sidebar-navlink-head" href="/coupons">Quick Links</p></Col>
-          <Col sm="3"className="icon-button-center" ><IconButton onClick={()=>leftPanelToggle()}><CloseIcon style={{color:"#fff"}}/></IconButton> </Col>
-          </Row> */}
           <Row className="left-panel-icon-holder">
-          <Col className="align-center-column-col">
+          <Col onClick={()=>setDownloadReportWindow(true)} className="align-center-column-col">
           <Row>
             <Col className="align-center-row">
               <img className="sidebar-icon1" src="/svg/aptIcons/light/online_reports.svg" />
@@ -304,7 +295,7 @@ const Navigation = (props) => {
             </Row>
             </Col>
             </Row>
-          <Row className="left-panel-icon-holder"><Col className="align-center-column-col">
+          <Row className="left-panel-icon-holder"><Col onClick={()=>{location.href="/contactus"}} className="align-center-column-col">
             <Row >
               <Col className="align-center-row">
                 <img className="sidebar-icon2" src="/svg/aptIcons/light/feedback.svg"/>
@@ -317,7 +308,7 @@ const Navigation = (props) => {
               </Col>
             </Row>
             </Col></Row>  
-          <Row className="left-panel-icon-holder"><Col className="align-center-column-col">  
+          <Row className="left-panel-icon-holder"><Col onClick={()=>{setRequestCallBackWindow(true)}} className="align-center-column-col">  
             <Row >
               <Col className="align-center-row">
                 <img className="sidebar-icon3" src="/svg/aptIcons/light/request_callback.svg"/>
@@ -331,9 +322,12 @@ const Navigation = (props) => {
             </Row>
             </Col></Row>
         </div>
-      <div id="right-panel" className="right-panel">
+      <div onClick={()=>{location.href="/contactus#contact_us"}} id="right-panel" className="right-panel">
         <p>Contact Us </p>
       </div>
+      {downloadReportWindow?<DownloadReportLightbox close={downloadReportHandler}/>:<React.Fragment/>}
+      {requestCallBackWindow?<RequestCallBack close={requestCallBackHandler}/>:<React.Fragment/>}
+      {uploadPrescriptionWindow?<UploadPrescription close={uploadPrescriptionHandler}/>:<React.Fragment/>}
     </React.Fragment>
   );
 }

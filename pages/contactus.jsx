@@ -3,12 +3,28 @@ import { Container,Row,Col,Card,CardBody,CardTitle,FormGroup,Input,Label,Button 
 import NavBar from "../components/navbar.component"
 import "../assets/css/contactus.scss"
 
-export default function Contactus() {
+
+export function getServerSideProps(context) {
+    const sec = context.query.sec
+    if(sec !== undefined)
+    return { props: {sec} };
+    else{
+        return { props: {} };
+    }
+  }
+
+
+export default function Contactus(props) {
+    
+    // useEffect(() => {
+    //     if(props.sec)    
+    // }, [])
+
     return (
         <>
         <NavBar/>
         <Container className="mt-5">
-            <Card>
+            <Card id="feedback">
                 <CardTitle className="text-center" style={{background:"#0a4275",color:"#fff",padding:"10px",fontSize:"1.2rem"}}>
                     FeedBack / Complaints
                 </CardTitle>
@@ -21,7 +37,7 @@ export default function Contactus() {
                             <Label for="feedback_name">
                                 Name
                             </Label>
-                            <Input type="text" id="feedback_name" placeholder="Name"></Input>
+                            <Input className="feedback_form_input" size="sm" type="text" id="feedback_name" placeholder="Name"></Input>
                         </FormGroup>
                             </Col>
                             <Col>
@@ -30,14 +46,14 @@ export default function Contactus() {
                             <Label for="feedback_email">
                                 Email
                             </Label>
-                            <Input type="text" id="feedback_email" placeholder="Email"></Input>
+                            <Input className="feedback_form_input" size="sm" type="text" id="feedback_email" placeholder="Email"></Input>
                         </FormGroup>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs="4">
                                 <Label for="feedback_type">Type</Label>
-                                <Input type="select" id="feedback_type">
+                                <Input className="feedback_form_input" size="sm" type="select" id="feedback_type">
                                     <option>feedback</option>
                                     <option>feedback</option>
                                     <option>feedback</option>
@@ -49,7 +65,7 @@ export default function Contactus() {
                             <Label for="feedback_phonenumber">
                                 Phone No (फ़ोन नंबर)
                             </Label>
-                            <Input type="text" id="feedback_phonenumber" placeholder="Number"></Input>
+                            <Input className="feedback_form_input" size="sm" type="text" id="feedback_phonenumber" placeholder="Number"></Input>
                         </FormGroup>
                             </Col>
                         </Row>
@@ -59,7 +75,7 @@ export default function Contactus() {
                                 <Label for="feedback_query">
                                     Query
                                 </Label>
-                                <Input type="textarea" id="feedback_query" placeholder="Query"></Input>
+                                <Input className="feedback_form_input" size="sm" type="textarea" id="feedback_query" placeholder="Query"></Input>
                             </FormGroup>
                             </Col>
                         </Row>
@@ -69,7 +85,7 @@ export default function Contactus() {
                                 <Label for="feedback_file">
                                     Attachments
                                 </Label>
-                                <Input type="file" id="feedback_file" placeholder="File"></Input>
+                                <Input className="feedback_form_input" size="sm" type="file" id="feedback_file" placeholder="File"></Input>
                             </FormGroup>
                             </Col>
                             <Col className="d-flex align-items-center justify-content-center">
@@ -81,7 +97,7 @@ export default function Contactus() {
                     </Container>
                 </CardBody>
             </Card>
-            <Row>
+            <Row  id="contact_us">
                 <Col>
                     <Card>
                         <CardTitle className="text-center" style={{background:"#0a4275",color:"#fff",padding:"10px",fontSize:"1.2rem"}}>
@@ -101,25 +117,25 @@ export default function Contactus() {
                                 <Label for="contactus_name">
                                     Name
                                 </Label>
-                                <Input type="text" id="contactus_name" placeholder="Name"></Input>
+                                <Input className="feedback_form_input" size="sm" type="text" id="contactus_name" placeholder="Name"></Input>
                                 </FormGroup>
                                 <FormGroup>
                                 <Label for="contactus_email">
                                     Email
                                 </Label>
-                                <Input type="text" id="contactus_email" placeholder="Email"></Input>
+                                <Input className="feedback_form_input" size="sm" type="text" id="contactus_email" placeholder="Email"></Input>
                                 </FormGroup>
                                 <FormGroup>
                                 <Label for="contactus_contact">
                                     Contact
                                 </Label>
-                                <Input type="text" id="contactus_contact" placeholder="contact"></Input>
+                                <Input className="feedback_form_input" size="sm" type="text" id="contactus_contact" placeholder="contact"></Input>
                                 </FormGroup>
                                 <FormGroup>
                                 <Label for="contactus_type">
                                     Query Type
                                 </Label>
-                                <Input type="select" id="contactus_type" placeholder="Query Type">
+                                <Input className="feedback_form_input" size="sm" type="select" id="contactus_type" placeholder="Query Type">
                                     <option>query1</option>
                                     <option>query1</option>
                                     <option>query1</option>
@@ -130,7 +146,7 @@ export default function Contactus() {
                                 <Label for="contactus_description">
                                     Query Description
                                 </Label>
-                                <Input type="textarea" id="contactus_description" placeholder="Description"></Input>
+                                <Input className="feedback_form_input" size="sm" type="textarea" id="contactus_description" placeholder="Description"></Input>
                                 </FormGroup>
                                 <div className="text-center">
                                 <Button>
@@ -144,7 +160,7 @@ export default function Contactus() {
                     </Card>
                 </Col>
             </Row>
-            <Row>
+            <Row id="corporate_query">
             <Col>
                 <Card>
                     <CardTitle className="text-center" style={{background:"#0a4275",color:"#fff",padding:"10px",fontSize:"1.2rem"}}>

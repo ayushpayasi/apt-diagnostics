@@ -17,7 +17,6 @@ import {
   ListGroupItemText,
   CardFooter,
 } from 'reactstrap';
-// import Card from "@material-ui/core/Card"
 import NavBar from '../../components/navbar.component';
 import axios from 'axios';
 import { apiLinks } from '../../connection.config';

@@ -26,6 +26,7 @@ export default function TestUpdateWindow(props) {
             document.getElementById("testType").value = response.data.body.type
             document.getElementById("testName").value = response.data.body.name
             document.getElementById("testDescription").value = response.data.body.description
+            document.getElementById("testDetails").value = response.data.body.details
             document.getElementById("testPrice").value = response.data.body.price
             document.getElementById("testFeatured").checked = response.data.body.isSpecial
             setTestDetails(response.data.body)
@@ -95,10 +96,11 @@ export default function TestUpdateWindow(props) {
     }
 
     const testReportChangeHandler = (event) => {
-        setTestImage(event.target.files[0])
+        setTestReport(event.target.files[0])
     }
     const testImageChangeHandler = (event)=>{
-        setTestReport(event.target.files[0])
+        
+        setTestImage(event.target.files[0])
     }
 
     useEffect(() => {
@@ -115,7 +117,7 @@ export default function TestUpdateWindow(props) {
                             <Col xs="4">
                             <FormGroup>
                                     <Label for="testId"> Test ID</Label>
-                                    <Input id="testId" placeholder="Test Id"></Input>
+                                    <Input size="sm" id="testId" placeholder="Test Id"></Input>
                                 </FormGroup>                                
                             </Col>
                             <Col xs="4" style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
@@ -123,7 +125,7 @@ export default function TestUpdateWindow(props) {
                             </Col>
                             <Col className="d-flex justify-content-center">
                                 <FormGroup style={{fontWeight:"600"}}>
-                                <Input id="testFeatured" type="checkbox"/>{' '} Featured
+                                <Input size="sm" id="testFeatured" type="checkbox"/>{' '} Featured
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -131,13 +133,13 @@ export default function TestUpdateWindow(props) {
                             <Col>
                                 <FormGroup>
                                     <Label for="testType"> Test Type</Label>
-                                    <Input id="testType" disabled placeholder="Test Type"></Input>
+                                    <Input size="sm" id="testType" disabled placeholder="Test Type"></Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <FormGroup>
                                     <Label for="testName"> Test Name</Label>
-                                    <Input id="testName" disabled placeholder="Test Name"></Input>
+                                    <Input size="sm" id="testName" disabled placeholder="Test Name"></Input>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -145,7 +147,7 @@ export default function TestUpdateWindow(props) {
                             <Col>
                                 <FormGroup>
                                     <Label for="testDescription"> Description</Label>
-                                    <Input type="textarea" id="testDescription" placeholder="Test Description"></Input>
+                                    <Input size="sm" type="text" id="testDescription" placeholder="Test Description"></Input>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -153,7 +155,7 @@ export default function TestUpdateWindow(props) {
                             <Col>
                             <FormGroup>
                                     <Label for="testDetails"> Test Details</Label>
-                                    <Input type="textarea" id="testDetails" placeholder="Test Details"></Input>
+                                    <Input size="sm" type="textarea" id="testDetails" placeholder="Test Details"></Input>
                             </FormGroup>
                             </Col>
                         </Row>
@@ -161,19 +163,19 @@ export default function TestUpdateWindow(props) {
                             <Col>
                                 <FormGroup>
                                     <Label for="testPrice"> Test Price</Label>
-                                    <Input id="testPrice" disabled placeholder="Test Price"></Input>
+                                    <Input size="sm" id="testPrice" disabled placeholder="Test Price"></Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <FormGroup>
                                     <Label for="image">Upload Report Image</Label>
-                                    <Input type="file" id="image" onChange={(event)=>{testReportChangeHandler(event)}}></Input>
+                                    <Input size="sm" type="file" id="image" onChange={(event)=>{testReportChangeHandler(event)}}></Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <FormGroup>
-                                    <Label for="image">Upload Test Image</Label>
-                                    <Input type="file" id="image" onChange={(event)=>{testImageChangeHandler(event)}}></Input>
+                                    <Label for="image2">Upload Test Image</Label>
+                                    <Input size="sm" type="file" id="image2" onChange={(event)=>{testImageChangeHandler(event)}}></Input>
                                 </FormGroup>
                             </Col>
                         </Row>

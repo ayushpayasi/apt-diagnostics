@@ -46,6 +46,8 @@ import DownloadReportLightbox from '../components/lightbox/downloadreport.compon
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
+
+
 const Modal = () => (
     <Popup trigger={<button className="button"> Open Modal </button>} modal>
       <span> Modal content </span>
@@ -60,7 +62,30 @@ export default function Home() {
     const [otpVerification,setOtpVerification] = useState(false);
     const [mobile,setMobile] = useState(null)
     const [downloadReport,setDownloadReport] = useState(true)
+    const [covidTests,setCovidTests] = useState(null)
     const router = useRouter()
+
+    
+    const handleMouseOver =(event,num)=>{
+        document.getElementById("flipcard2")
+        switch (num){
+            case 1:
+                event.target.innerHTML = `<CardBody className="text-center"><CardText className="features-body-text">APT Diagnostics with its in house industry leading infrastructure provides the reports, you can truly count upon.</CardText></CardBody>`
+                document.getElementById("flipcard2").innerHTML = `<CardBody className="text-center"><CardTitle>24/7 Processing</CardTitle><CardText className="features-body-text">Because your time is important to us</CardText></CardBody>`
+                document.getElementById("flipcard3").innerHTML = `<CardBody className="text-center"><CardTitle>Easy Appointment Scheduling</CardTitle><CardText className="features-body-text">Quality Experience That Lasts</CardText></CardBody>`
+                break;
+            case 2:
+                document.getElementById("flipcard1").innerHTML = `<CardBody className="text-center"><CardTitle>Best in class testing</CardTitle><CardText className="features-body-text">Reports you can count upon</CardText></CardBody>`
+                event.target.innerHTML = `<CardBody className="text-center"></CardBody>`
+                document.getElementById("flipcard3").innerHTML = `<CardBody className="text-center"><CardTitle>Easy Appointment Scheduling</CardTitle><CardText className="features-body-text">Quality Experience That Lasts</CardText></CardBody>`
+                break;
+            case 3:
+                document.getElementById("flipcard1").innerHTML = `<CardBody className="text-center"><CardTitle>Best in class testing</CardTitle><CardText className="features-body-text">Reports you can count upon</CardText></CardBody>`
+                document.getElementById("flipcard2").innerHTML = `<CardBody className="text-center"><CardTitle>24/7 Processing</CardTitle><CardText className="features-body-text">Because your time is important to us</CardText></CardBody>`
+                event.target.innerHTML = ``
+                break;
+        }
+    }    
 
     const retryOTPHandler = ()=>{
 
@@ -89,6 +114,12 @@ export default function Home() {
         if (response.data[0].code === 200){
             setTestList(Object.values(response.data[1]))
         }
+        const covidTestsResponse = await axios.get(apiLinks.getCovidTests)
+        console.log(covidTestsResponse.data.code)
+        if(covidTestsResponse.data.code === 200){
+            setCovidTests(covidTestsResponse.data.data)
+        }
+        
     }
         catch(err){
             console.log(err)
@@ -119,117 +150,29 @@ export default function Home() {
         
 
     },[])
+    
+    const addToCart = (event,item)=>{
+        event.stopPropagation();
+        let cart = JSON.parse(sessionStorage.getItem("cart"))
+        console.log(cart)
 
-
-    const top100Films = [
-        { title: 'The Shawshank Redemption', year: 1994 },
-        { title: 'The Godfather', year: 1972 },
-        { title: 'The Godfather: Part II', year: 1974 },
-        { title: 'The Dark Knight', year: 2008 },
-        { title: '12 Angry Men', year: 1957 },
-        { title: "Schindler's List", year: 1993 },
-        { title: 'Pulp Fiction', year: 1994 },
-        { title: 'The Lord of the Rings: The Return of the King', year: 2003 },
-        { title: 'The Good, the Bad and the Ugly', year: 1966 },
-        { title: 'Fight Club', year: 1999 },
-        { title: 'The Lord of the Rings: The Fellowship of the Ring', year: 2001 },
-        { title: 'Star Wars: Episode V - The Empire Strikes Back', year: 1980 },
-        { title: 'Forrest Gump', year: 1994 },
-        { title: 'Inception', year: 2010 },
-        { title: 'The Lord of the Rings: The Two Towers', year: 2002 },
-        { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-        { title: 'Goodfellas', year: 1990 },
-        { title: 'The Matrix', year: 1999 },
-        { title: 'Seven Samurai', year: 1954 },
-        { title: 'Star Wars: Episode IV - A New Hope', year: 1977 },
-        { title: 'City of God', year: 2002 },
-        { title: 'Se7en', year: 1995 },
-        { title: 'The Silence of the Lambs', year: 1991 },
-        { title: "It's a Wonderful Life", year: 1946 },
-        { title: 'Life Is Beautiful', year: 1997 },
-        { title: 'The Usual Suspects', year: 1995 },
-        { title: 'Léon: The Professional', year: 1994 },
-        { title: 'Spirited Away', year: 2001 },
-        { title: 'Saving Private Ryan', year: 1998 },
-        { title: 'Once Upon a Time in the West', year: 1968 },
-        { title: 'American History X', year: 1998 },
-        { title: 'Interstellar', year: 2014 },
-        { title: 'Casablanca', year: 1942 },
-        { title: 'City Lights', year: 1931 },
-        { title: 'Psycho', year: 1960 },
-        { title: 'The Green Mile', year: 1999 },
-        { title: 'The Intouchables', year: 2011 },
-        { title: 'Modern Times', year: 1936 },
-        { title: 'Raiders of the Lost Ark', year: 1981 },
-        { title: 'Rear Window', year: 1954 },
-        { title: 'The Pianist', year: 2002 },
-        { title: 'The Departed', year: 2006 },
-        { title: 'Terminator 2: Judgment Day', year: 1991 },
-        { title: 'Back to the Future', year: 1985 },
-        { title: 'Whiplash', year: 2014 },
-        { title: 'Gladiator', year: 2000 },
-        { title: 'Memento', year: 2000 },
-        { title: 'The Prestige', year: 2006 },
-        { title: 'The Lion King', year: 1994 },
-        { title: 'Apocalypse Now', year: 1979 },
-        { title: 'Alien', year: 1979 },
-        { title: 'Sunset Boulevard', year: 1950 },
-        { title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb', year: 1964 },
-        { title: 'The Great Dictator', year: 1940 },
-        { title: 'Cinema Paradiso', year: 1988 },
-        { title: 'The Lives of Others', year: 2006 },
-        { title: 'Grave of the Fireflies', year: 1988 },
-        { title: 'Paths of Glory', year: 1957 },
-        { title: 'Django Unchained', year: 2012 },
-        { title: 'The Shining', year: 1980 },
-        { title: 'WALL·E', year: 2008 },
-        { title: 'American Beauty', year: 1999 },
-        { title: 'The Dark Knight Rises', year: 2012 },
-        { title: 'Princess Mononoke', year: 1997 },
-        { title: 'Aliens', year: 1986 },
-        { title: 'Oldboy', year: 2003 },
-        { title: 'Once Upon a Time in America', year: 1984 },
-        { title: 'Witness for the Prosecution', year: 1957 },
-        { title: 'Das Boot', year: 1981 },
-        { title: 'Citizen Kane', year: 1941 },
-        { title: 'North by Northwest', year: 1959 },
-        { title: 'Vertigo', year: 1958 },
-        { title: 'Star Wars: Episode VI - Return of the Jedi', year: 1983 },
-        { title: 'Reservoir Dogs', year: 1992 },
-        { title: 'Braveheart', year: 1995 },
-        { title: 'M', year: 1931 },
-        { title: 'Requiem for a Dream', year: 2000 },
-        { title: 'Amélie', year: 2001 },
-        { title: 'A Clockwork Orange', year: 1971 },
-        { title: 'Like Stars on Earth', year: 2007 },
-        { title: 'Taxi Driver', year: 1976 },
-        { title: 'Lawrence of Arabia', year: 1962 },
-        { title: 'Double Indemnity', year: 1944 },
-        { title: 'Eternal Sunshine of the Spotless Mind', year: 2004 },
-        { title: 'Amadeus', year: 1984 },
-        { title: 'To Kill a Mockingbird', year: 1962 },
-        { title: 'Toy Story 3', year: 2010 },
-        { title: 'Logan', year: 2017 },
-        { title: 'Full Metal Jacket', year: 1987 },
-        { title: 'Dangal', year: 2016 },
-        { title: 'The Sting', year: 1973 },
-        { title: '2001: A Space Odyssey', year: 1968 },
-        { title: "Singin' in the Rain", year: 1952 },
-        { title: 'Toy Story', year: 1995 },
-        { title: 'Bicycle Thieves', year: 1948 },
-        { title: 'The Kid', year: 1921 },
-        { title: 'Inglourious Basterds', year: 2009 },
-        { title: 'Snatch', year: 2000 },
-        { title: '3 Idiots', year: 2009 },
-        { title: 'Monty Python and the Holy Grail', year: 1975 },
-      ];
+        if(cart !== null){
+        if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
+        else{
+            cart.push(item)
+            sessionStorage.setItem("cart",JSON.stringify(cart))
+        }
+    }else{
+        sessionStorage.setItem("cart",JSON.stringify([item]))
+    }
+    }
 
 
     return (<React.Fragment>
+
                 <NavBar/>
-                <DownloadReportLightbox/>
-                {otpVerification?<div className="otp-verification-window">
-                    <Card className="otp-verification-card">
+{/* otp window */}
+                {otpVerification?<div className="otp-verification-window"><Card className="otp-verification-card">
                         <CardBody>
                             <CardTitle className="text-center">Verify OTP</CardTitle>
                             <CardText>An OTP has been sent to {mobile} !</CardText> 
@@ -241,6 +184,7 @@ export default function Home() {
                             <div className="text-center"><Button onClick={()=>{handleOTPVerification()}} variant="outlined" style={{color:"rgba(18, 73, 124,1)",margin:"5px",fontWeight:"600",fontSize:"0.9rem",borderColor:"rgba(18, 73, 124,1)"}}>Verify</Button></div>
                         </CardBody>
                     </Card></div>:<React.Fragment/>}
+{/* carousel and instant schedule part */}
                 <div className="carousel-index-container">
                 <Container className="mt-3" >
                     <Row>
@@ -334,29 +278,61 @@ export default function Home() {
 
                     </Row>
                 </Container>
-                </div>
-                <Container>
+                </div>     
+{/* Our features card */}
+            <Container>
                     <Row>
                     <Col><Card className="features-card">
                         <Row><Col className="landing-h2 iofade">Our Features</Col></Row>
                         <Row>
-                            <Col md="4"><Card className="flip-cards"><CardBody className="ioleft"><CardTitle >Who are we?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Card></Col>
-                            <Col md="4"><Card className="flip-cards"><CardBody className="iofade"><CardTitle >What we do?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Card></Col>
-                            <Col md="4"><Card className="flip-cards"><CardBody className="ioright"><CardTitle>Why us?</CardTitle><CardText className="features-body-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody></Card></Col>
+                            <Col md="4">
+                            <div class="card_flip">
+                            <div class="card__inner">
+                                <div class="card__content card_content--front">
+                                <CardTitle style={{color:"#fff"}}>Best in class testing</CardTitle><CardText className="features-body-text">Reports you can count upon</CardText>
+                                </div>
+                                <div class="card__content card__content--back">
+                                <CardText className="features-body-text">APT Diagnostics with its in house industry leading infrastructure provides the reports, you can truly count upon.</CardText>
+                                </div>
+                            </div>
+                            </div>
+                            </Col>
+                            <Col md="4">
+                            <div class="card_flip">
+                            <div class="card__inner">
+                                <div class="card__content card_content--front">
+                                <CardTitle  style={{color:"#fff"}}>24/7 Processing</CardTitle><CardText className="features-body-text">Because your time is important to us</CardText>
+                                </div>
+                                <div class="card__content card__content--back">
+                                <CardText className="features-body-text">With our testing facilities running 24/7, we process the reports throughout the day so that you get your results on time.</CardText>
+                                </div>
+                            </div>
+                            </div>
+                            </Col>
+                            <Col md="4">
+                            <div class="card_flip">
+                            <div class="card__inner">
+                                <div class="card__content card_content--front">
+                                <CardTitle  style={{color:"#fff"}}>Easy Appointment Scheduling</CardTitle><CardText className="features-body-text">Quality Experience That Lasts</CardText>
+                                </div>
+                                <div class="card__content card__content--back">
+                                <h2><CardText className="features-body-text">Booking appointments before hand for home collections and walk in is as easy as marking the date on the calendar with our seamless and highly scalable booking platform.</CardText></h2>
+                                </div>
+                            </div>
+                            </div>
+                            </Col>
+                            {/* <Col md="4"><Card id="flipcard1" onMouseOver={(event)=>{handleMouseOver(event,1)}} className="flip-cards"><CardBody className="text-center"></CardBody></Card></Col>
+                            <Col md="4"><Card id="flipcard2" onMouseOver={(event)=>{handleMouseOver(event,2)}} className="flip-cards"><CardBody className="text-center"></CardBody></Card></Col>
+                            <Col md="4"><Card id="flipcard3" onMouseOver={(event)=>{handleMouseOver(event,3)}} className="flip-cards"><CardBody className="text-center"></CardBody></Card></Col> */}
 
                         </Row>
-                                        {/* <CardBody><CardTitle>Who are we?</CardTitle><CardText>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, fugiat magnam! Aspernatur ex cupiditate quisquam consequuntur excepturi iure voluptatem quasi!</CardText></CardBody> */}
-                                        </Card></Col>
-                        {/* <Col>
-                                <Row>
-
-                                    <Col></Col>
-                                    <Col></Col>
-                                </Row>
-                        </Col> */}
+                        </Card>
+                    </Col>
                     </Row>
                 </Container>
-                <Container className="lazyload" style={{overflowX:"hidden"}}>
+
+{/* covid 19 cards */}
+                <Container style={{overflowX:"hidden"}}>
                 <Row className="mt-4">
                     <Col>
                         <h2 className="landing-h2 mt-2 mb-4 iofade">
@@ -365,46 +341,22 @@ export default function Home() {
                     </Col>
                 </Row>
                 <Row className="ml-2 mr-2"> 
-                    <Col>
-                        <Card className="test-card ioleft">
-                            <CardTitle className="text-center card-title mt-1">Covid 19 RT-PCR Test</CardTitle>
+                {covidTests === null ? <React.Fragment/> : covidTests.map(item=><Col key={item.testId}>
+                        <Card onClick={()=>{location.href=`/covid/${item.testId}`}} className="test-card">
+                            <CardTitle className="text-center card-title mt-1">{item.name}</CardTitle>
                             <CardBody >
-                                <CardText className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia libero ad rerum in repudiandae laborum quibusdam impedit officiis a eum. ipsum dolor sit amet consectetur adipisicing elit. Optio et vel quisquam! Sit mollitia voluptatem labore voluptatibus, velit alias dicta!</CardText>
-                            <div className="align-center-row "><Button variant="outlined" fullWidth className="test-card-button">Book Test</Button></div></CardBody>
+                                <CardText className="body-text">{item.details}</CardText>
+                            <div className="align-center-row "><Button onClick={(event)=>{addToCart(event,item)}} variant="outlined" className="test-card-button">Book Test</Button></div></CardBody>
                             
                         </Card>
-                    </Col>
-                    <Col>
-                        <Card className="test-card ioleft">
-                            <CardTitle className="text-center card-title mt-1">D-Dimer Test</CardTitle>
-                            <CardBody >
-                                <CardText className="body-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates a sunt amet facere ducimus dolore rerum dicta repellat labore repellendus. ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardText>
-                            <div className="align-center-row "><Button variant="outlined" fullWidth className="test-card-button">Book Test</Button></div></CardBody>
-                            
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="test-card ioright">
-                            <CardTitle className="text-center card-title mt-1">COVID Antibody Test</CardTitle>
-                            <CardBody>
-                                <CardText className="body-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, odio. ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, a. ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardText>
-                            <div className="align-center-row "><Button variant="outlined" fullWidth className="test-card-button">Book Test</Button></div></CardBody>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="test-card ioright">
-                            <CardTitle className="text-center card-title mt-1">CoviProfile Test</CardTitle>
-                            <CardBody >
-                                <CardText className="body-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, expedita. ipsum dolor sit, amet consectetur adipisicing elit. Iusto, excepturi. ipsum dolor sit amet consectetur adipisicing elit. Inventore, dicta. ipsum dolor sit amet consectetur adipisicing elit. Quam, nisi? ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardText>
-                            <div className="align-center-row "><Button variant="outlined" fullWidth className="test-card-button">Book Test</Button></div></CardBody>
-                        </Card>
-                    </Col>
+                    </Col>)}
                 </Row>
                 </Container>
+{/* organ slider */}
                 <Container>
                     <SliderDetails/>
                 </Container>
-
+{/* packages carousel */}
                 <Container>
                 <Row className="mt-4">
                     <Col>
@@ -415,8 +367,8 @@ export default function Home() {
                 </Row>
                     <HealthCheckCarousel/>
                 </Container>
-
-                <div className="accreditations">
+{/* accreditations */}
+                {/* <div className="accreditations">
                 <Container fluid>
                     <Row>
                         <Col className="text-center iofade mt-4">
@@ -446,9 +398,9 @@ export default function Home() {
                         </Container>
                     </Row>
                 </Container>
-                </div>
-                
-                <Container className="reviews-container">
+                </div> */}
+{/* reviews */}
+                {/* <Container className="reviews-container">
                     <Row>
                         <Col>
                             <h2 className=" landing-h2-dark mt-4 mb-5 iofade">
@@ -468,7 +420,6 @@ export default function Home() {
                                 </Row>
                                 <Row>
                                     <Col className="align-center-row">
-                                        {/* <img className="ioleft" src="images/profile1.jpg" alt="profile"/> */}
                                         <h5 className="ioright card-title">Lorem ipsum dolar, FOUNDER</h5>
                                     </Col>
                                 </Row>
@@ -486,7 +437,6 @@ export default function Home() {
                                 </Row>
                                 <Row>
                                     <Col className="align-center-row">
-                                        {/* <img className="ioright" src="images/profile1.jpg" alt="profile"/> */}
                                         <h5 className="ioright card-title">Lorem ipsum ipsum.CUSTOMER</h5>
                                     </Col>
                                 </Row>
@@ -494,7 +444,8 @@ export default function Home() {
                     </Row>
                     <Row>
                     </Row>
-                </Container>
+                </Container> */}
+{/*blogs*/}
                 <div className="blogs-holder">
                 <Container className="blogs-container">
                     <Row>
@@ -515,19 +466,52 @@ export default function Home() {
                     </Row>
                 </Container>
                 </div>
-
-                {/* <Container className="mt-2 mb-2">
-                <Row>
-                    <Col className="align-center-row">
-                        <Subscribe/>
-                    </Col>
-                </Row>
-                </Container> */}
-                
+{/* footer */}
                 <div style={{height:"100vh"}}>
                     <Footer/>
                 </div>
-                {isMobile?<MobileMenu/>:<React.Fragment/>}
+
             </React.Fragment>
     )
 }
+
+
+
+            //     {/* <Container>
+            //     <Row>
+            //         <Col>
+            //             <Card className="our_features_card">
+            //                 <h4 className="text-center">Our Features</h4>
+            //                 <Row>
+            //                     <Col md="4">
+            //                         {/* <img src="/svg/aptIcons/light/Healthy_Notification.svg"/> */}
+            //                         <h5 style={{color:"#0a4275"}} className="text-center">Best in class testing</h5>
+            //                         {/* <img src="/images/download_icon.svg" /> */}
+            //                         <h6 className="text-center" style={{color:"#0a4275"}}>Reports you can count upon</h6>
+            //                         <p style={{fontSize:"0.9rem",fontWeight:"700",textAlign:"center",lineHeight:"17px",color:"#000"}}>
+            //                         APT Diagnostics with its in house industry leading infrastructure provides the reports, you can truly count upon.
+            //                         </p>
+            //                     </Col>
+            //                     <Col md="4">
+            //                         {/* <img src="/svg/aptIcons/light/Healthy_Notification.svg"/> */}
+            //                         <h5 style={{color:"#0a4275"}} className="text-center">24/7 Processing</h5>
+            //                         {/* <img src="/images/download_icon.svg" /> */}
+            //                         <h6 className="text-center" style={{color:"#0a4275"}}>Because your time is important to us</h6>
+            //                         <p style={{fontSize:"0.9rem",fontWeight:"700",textAlign:"center",lineHeight:"17px",color:"#000"}}>
+            //                         With our testing facilities running 24/7, we process the reports throughout the day so that you get your results on time.
+            //                         </p>
+            //                     </Col>
+            //                     <Col md="4">
+            //                         {/* <img src="/svg/aptIcons/light/Healthy_Notification.svg"/> */}
+            //                         <h5 style={{color:"#0a4275"}} className="text-center">Easy Appointment Scheduling</h5>
+            //                         {/* <img src="/images/download_icon.svg" /> */}
+            //                         <h6 className="text-center" style={{color:"#0a4275"}}>Quality Experience That Lasts</h6>
+            //                         <p style={{fontSize:"0.9rem",fontWeight:"700",textAlign:"center",lineHeight:"17px",color:"#000"}}>
+            //                         Booking appointments before hand is as easy as marking the date on the calendar with our seamless booking platform.
+            //                         </p>
+            //                     </Col>
+            //                 </Row>
+            //             </Card>
+            //         </Col>
+            //     </Row>
+            // </Container> */}

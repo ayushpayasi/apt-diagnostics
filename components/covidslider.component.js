@@ -1,13 +1,27 @@
 import React from 'react'
 import Slider from "react-slick";
-import {Card,CardImg,CardBody,CardTitle,CardText,Button,CardSubtitle,Row,Col } from 'reactstrap';
+import {Card,CardBody,CardTitle,CardText,Button} from 'reactstrap';
 
-export default function CovidCarousel() {
+export default function CovidCarousel(props) {
+    const addToCart = (event,item)=>{
+        event.stopPropagation();
+        let cart = JSON.parse(sessionStorage.getItem("cart"))
+        if(cart !== null){
+        if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
+        else{
+            cart.push(item)
+            sessionStorage.setItem("cart",JSON.stringify(cart))
+        }
+    }else{
+        sessionStorage.setItem("cart",JSON.stringify([item]))
+    }
+    }
+
     const Product3 = {
         infinite: true,
         speed: 300,
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToShow: 4,
+        slidesToScroll: 4,
         autoplay: true,
         arrows:false,
         autoplaySpeed: 5000,
@@ -22,63 +36,29 @@ export default function CovidCarousel() {
             {
                 breakpoint: 991,
                 settings: {
-                    slidesToShow:2,
-                    slidesToScroll: 2
+                    slidesToShow:3,
+                    slidesToScroll: 3
                 }
             },
             {
                 breakpoint: 500,
                 settings: {
-                    slidesToShow:1,
-                    slidesToScroll: 1
+                    slidesToShow:2,
+                    slidesToScroll: 2
                 }
             }
         ]
     }
-    const paramsIconGenerator = ()=>{
-        return (
-            <div className="iconGenerator">
-                <Row>
-                    <Col xs="3"><img className="test-included" src="/svg/aptIcons/light/tests_included.svg" alt="icon"/></Col>
-                    <Col xs="9">
-                    <Row><Col ><h4>Tests Includes</h4></Col></Row>
-                    <Row><Col ><h5>25 Parameter</h5></Col></Row>
-                    </Col>
-                </Row>
-            </div>
-        )
-    }
-    const idealForIconGenerator = ()=>{
-        return (
-            <div className="iconGenerator">
-                <Row>
-                    <Col xs="3"><img className="ideal-for" src="/svg/aptIcons/light/ideal_for.svg" alt="icon"/></Col>
-                    <Col xs="9">
-                    <Row><Col ><h4>Ideal For</h4></Col></Row>
-                    <Row><Col ><h5>Male/Female below 30 Years</h5></Col></Row>
-                    </Col>
-                </Row>
-            </div>
-        )
-    }
-    const cardFiller =()=>{
+    const cardFiller =(item)=>{
         return(
-            <div>
+            <div key={item.testId}>
                 <div style={{padding:"10px !important"}}>
-                    <Card className="packages-card">
-                    <CardImg top width="100%" src="/images/bgcheck3.jpg" alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle tag="h5">Package Name</CardTitle>
-                        <CardSubtitle tag="h6" className="mb-2 text-muted">2000</CardSubtitle>
-                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                        {paramsIconGenerator()}
-                        {idealForIconGenerator()}
-                        <Row>
-                            <Col><Button outline>Book Now</Button></Col>
-                            <Col><Button outline>Learn More</Button></Col>
-                        </Row>
-                    </CardBody>
-                    </Card>
+                    <Card onClick={()=>{location.href=`/covid/${item.testId}`}} className="test-card">
+                            <CardTitle className="text-center card-title mt-1">{item.name}</CardTitle>
+                            <CardBody >
+                                <CardText className="body-text">{item.details}</CardText>
+                            <div className="align-center-row "><Button onClick={(event)=>{addToCart(event,item)}} variant="outlined" className="test-card-button">Book Test</Button></div></CardBody>
+                        </Card>
                     </div>
                 </div>
             
@@ -87,11 +67,7 @@ export default function CovidCarousel() {
     return (
         <>
             <Slider {...Product3}>
-                {cardFiller()}
-                {cardFiller()}
-                {cardFiller()}
-                {cardFiller()}
-                {cardFiller()}
+                {props.data.map(item=>cardFiller(item))}
                 </Slider>        
         </>
 

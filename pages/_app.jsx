@@ -13,9 +13,6 @@ class MyApp extends App {
     this.state = {downloadReport: false};
   }
 
-  componentDidMount(){
-    sessionStorage.setItem("cart",JSON.stringify([]))
-  }
   render() {
     const { Component, pageProps, store } = this.props;
     return (

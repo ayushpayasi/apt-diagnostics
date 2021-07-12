@@ -64,12 +64,12 @@ export default function BlogUpdateWindow(props) {
                     <Col>
                         <FormGroup>
                             <Label for="author"> Author</Label>
-                            <Input id="author" placeholder="Author"></Input>
+                            <Input size="sm" id="author" placeholder="Author"></Input>
                         </FormGroup>
                     </Col>
                     <Col className="d-flex align-items-center justify-content-center">
                         <FormGroup >
-                            <Input type="checkbox" id="isVideoBlog" onChange={(event)=>{setVideoCheckBox(true)}}></Input>
+                            <Input size="sm" type="checkbox" id="isVideoBlog" onChange={(event)=>{setVideoCheckBox(true)}}></Input>
                             <Label for="isVideoBlog"> Video Blog</Label>
                             {/* <h1>console.log(videoCheckBox)</h1> */}
                         </FormGroup>
@@ -79,7 +79,7 @@ export default function BlogUpdateWindow(props) {
                     <Col>
                         <FormGroup>
                             <Label for="blogHeading"> Heading</Label>
-                            <Input id="blogHeading" placeholder="Blog Heading"></Input>
+                            <Input size="sm" id="blogHeading" placeholder="Blog Heading"></Input>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -87,7 +87,7 @@ export default function BlogUpdateWindow(props) {
                     <Col>
                         <FormGroup>
                             <Label for="blogSubHeading"> Sub Heading</Label>
-                            <Input id="blogSubHeading" placeholder="Sub Heading"></Input>
+                            <Input size="sm" id="blogSubHeading" placeholder="Sub Heading"></Input>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -95,20 +95,20 @@ export default function BlogUpdateWindow(props) {
                     <Col>
                     <FormGroup>
                         <Label for="catgory">Category</Label>
-                        <Input id="category" placeholder="category">    
+                        <Input size="sm" id="category" placeholder="category">    
                         </Input>
                     </FormGroup>
                     </Col> 
                     <Col>
                     <FormGroup>
                         <Label for="blogVideo">Video File</Label>
-                        {videoCheckBox?<Input id="blogVideo" onChange={(event)=>{setVideoFile(event.target.files[0]); setVideoCheckBox(false); console.log(event.target.files)}} type="file" placeholder="Blog Video"></Input>:<Input id="blogVideo" type="file" disabled></Input>}
+                        {videoCheckBox?<Input size="sm" id="blogVideo" onChange={(event)=>{setVideoFile(event.target.files[0]); setVideoCheckBox(false); console.log(event.target.files)}} type="file" placeholder="Blog Video"></Input>:<Input size="sm" id="blogVideo" type="file" disabled></Input>}
                     </FormGroup>
                     </Col>
                     <Col>
                     <FormGroup>
                         <Label for="imageFiles">Image Files</Label>
-                        <Input id="imageFiles" multiple onChange={(event)=>{setBlogImages(event.target.files); console.log(event.target.files)}} type="file" placeholder="Blog Images">
+                        <Input size="sm" id="imageFiles" multiple onChange={(event)=>{setBlogImages(event.target.files); console.log(event.target.files)}} type="file" placeholder="Blog Images">
                         </Input>
                     </FormGroup>
                     </Col>
