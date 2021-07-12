@@ -1,0 +1,42 @@
+img {
+    height: 100px;
+    width: 100px;
+    margin: 0;
+    padding: 10px;
+}
+
+.allergy:hover {
+    content : url("/svg/aptorgans/dark/allergy.svg")
+}
+
+.liver:hover {
+    content : url("/svg/aptorgans/dark/liver.svg")
+}
+
+.kidney:hover {
+    content : url("/svg/aptorgans/dark/kidney.svg")
+}
+
+.lungs:hover {
+    content : url("/svg/aptorgans/dark/lungs.svg")
+}
+
+.heart:hover {
+    content : url("/svg/aptorgans/dark/heart.svg")
+}
+
+.brain:hover {
+    content : url("/svg/aptorgans/dark/brain.svg")
+}
+
+.vitamins:hover {
+    content : url("/svg/aptorgans/dark/vitamins.svg")
+}
+
+.virus:hover {
+    content : url("/svg/aptorgans/dark/virus.svg")
+}
+
+.reproductivesystem:hover{
+    content : url("/svg/aptorgans/dark/reproductive.svg")
+}

@@ -34,7 +34,7 @@ function TabPanel(props) {
     );
   }
 
-export default function Lungs() {
+export default function Reproductivesystem() {
   const [value, setValue] = React.useState(0);
   function a11yProps(index) {
     return {
@@ -54,7 +54,7 @@ export default function Lungs() {
                 <img className="organ-image-desktop" src="/images/allergy_bg.jpg"></img>
                 <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img>
                 <div className="diagnostics-pagetitle">
-                    <h5>Lungs - Symptoms,Diagnosis, Tests</h5>
+                    <h5>Reproductive System - Symptoms,Diagnosis, Tests</h5>
                 </div>
             </div>
             {/* <Container>
@@ -85,9 +85,11 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-              <p>The lungs are a pair of spongy, air-filled organs located on either side of the chest.</p>
-                <p>They are part of our respiratory system.Along with the trachea, alveoli, bronchi and diaphragm, they help us breathe in oxygen and exhale carbon dioxide.</p>
-                <p>Lungs can be affected by infection or allergy or may puncture or collapse.</p>
+              <p>The reproductive system or genital system is a set of organs within an organism that work together to produce offspring.</p>
+ <p>Many non-living substances, such as fluids, hormones, and pheromones, are important accessories to the reproductive system. </p>
+<p>Many Unlike most organ systems, the sexes of differentiated species often have significant differences.</p>
+ <p>These differences allow for a combination of genetic material between two individuals and thus the possibility of greater genetic fitness of the offspring.
+</p>
             </Col>
         </Row>
       </TabPanel>
@@ -96,7 +98,7 @@ export default function Lungs() {
             <Col><h5 className="text-center">Why Important</h5></Col>
         </Row>
         <Row>
-            <Col><p>Every cell in your body needs oxygen in order to live. The lungs help carry oxygen into the bloodstream and protect the heart.</p></Col></Row>
+            <Col><p>The female reproductive system has two important functions: The first is to produce egg cells, and the second is to protect and nourish the offspring until birth. The male reproductive system has one important function, and it is to produce and deposit sperm.</p></Col></Row>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <Row>
@@ -106,14 +108,14 @@ export default function Lungs() {
             <Col>
               <List type="unstyled">
                 <ul>
-                  <li>Difficulty Breathing</li>
-                  <li>Stubborn Cough</li>
-                  <li>Breathing Noisily</li>
-                  <li>Lingering Chest Pain</li>
-                  <li>Chronic Mucus</li>
-                  <li>Coughing Up Blood</li>
+                  <li>Abdominal or pelvic mild discomfort</li>
+                  <li>Frequent urination</li>
+                  <li>A feeling of urgency to urinate</li>
+                  <li>Feeling of abdominal or pelvic pressure</li>
+                  <li>Tenderness</li>
+                  <li>Intense pain in the bladder or pelvic region</li>
                 </ul>
-              </List>              
+              </List>
             </Col>
         </Row>
       </TabPanel>
@@ -124,17 +126,18 @@ export default function Lungs() {
         <Row>
             <Col>
             <List type="unstyled">
-              <ul>
-                <li>Asthma</li>
-                <li>Collapse of part or all of the lung (pneumothorax or atelectasis)</li>
-                <li>Swelling and inflammation in the main passages (bronchial tubes)</li>
-                <li>COPD (chronic obstructive pulmonary disease)</li>
-                <li>Lung cancer</li>
-                <li>Lung infection (pneumonia)</li>
-
-              </ul>
-            </List>
-           </Col>
+                <ul>
+                  <li>Endometriosis</li>
+                  <li>Uterine Fibroids</li>
+                  <li>Gynecologic Cancer</li>
+                  <li>HIV/AIDS</li>
+                  <li>Interstitial Cystitis</li>
+                  <li>Polycystic Ovary Syndrome (PCOS)</li>
+                  <li>Sexually Transmitted Diseases (STDs)</li>
+                  <li>Sexual Violence</li>
+                </ul>
+              </List>
+            </Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={4}>
@@ -151,14 +154,15 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-            <List type="unstyled">
+              <List type="unstyled">
                 <ul>
-                  <li>air pollution</li>
-                  <li>smoking</li>
-                  <li>infection</li>
-                  <li>unsafe working environment</li>
-                  <li>genetic</li>
-                  <li>tumors</li>
+                  <li>genetic or congenital abnormalities</li>
+                  <li>infections</li>
+                  <li>tumours</li>
+                  <li>disorders</li>
+                  <li>Bacteria (gonorrhea, syphilis, chlamydia)</li>
+                  <li>Parasites (trichomoniasis)</li>
+                  <li>Viruses (human papillomavirus, genital herpes, HIV )</li>
                 </ul>
               </List>
             </Col>

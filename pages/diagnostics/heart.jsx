@@ -34,7 +34,7 @@ function TabPanel(props) {
     );
   }
 
-export default function Lungs() {
+export default function Reproductivesystem() {
   const [value, setValue] = React.useState(0);
   function a11yProps(index) {
     return {
@@ -54,7 +54,7 @@ export default function Lungs() {
                 <img className="organ-image-desktop" src="/images/allergy_bg.jpg"></img>
                 <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img>
                 <div className="diagnostics-pagetitle">
-                    <h5>Lungs - Symptoms,Diagnosis, Tests</h5>
+                    <h5>Heart - Symptoms,Diagnosis, Tests</h5>
                 </div>
             </div>
             {/* <Container>
@@ -85,9 +85,10 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-              <p>The lungs are a pair of spongy, air-filled organs located on either side of the chest.</p>
-                <p>They are part of our respiratory system.Along with the trachea, alveoli, bronchi and diaphragm, they help us breathe in oxygen and exhale carbon dioxide.</p>
-                <p>Lungs can be affected by infection or allergy or may puncture or collapse.</p>
+              <p>Heart is a muscular organ around the size of a closed fist, and it sits in the chest, slightly to the left of center.</p>
+              <p>The functions of the heart are to pump oxygenated blood around the body, and to deliver deoxygenated blood and waste products (carbon dioxide) to the lungs.</p>
+              <p>The heart consists of four chambers, each separated by valves that only permit blood to flow in one direction.</p>
+              <p>Disorders of the heart include coronary heart disease, angina, heart attack, valve diseases and congenital disorders. </p>
             </Col>
         </Row>
       </TabPanel>
@@ -96,7 +97,7 @@ export default function Lungs() {
             <Col><h5 className="text-center">Why Important</h5></Col>
         </Row>
         <Row>
-            <Col><p>Every cell in your body needs oxygen in order to live. The lungs help carry oxygen into the bloodstream and protect the heart.</p></Col></Row>
+            <Col><p>The heart is one of the most important organs in a human's body because it pumps blood around your body, delivering oxygen and nutrients to your cells and removing waste products.</p></Col></Row>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <Row>
@@ -106,14 +107,20 @@ export default function Lungs() {
             <Col>
               <List type="unstyled">
                 <ul>
-                  <li>Difficulty Breathing</li>
-                  <li>Stubborn Cough</li>
-                  <li>Breathing Noisily</li>
-                  <li>Lingering Chest Pain</li>
-                  <li>Chronic Mucus</li>
-                  <li>Coughing Up Blood</li>
+                  <li>A feeling of indigestion</li>
+                  <li>Anxiety and restlessness</li>
+                  <li>Backache</li>
+                  <li>Difficulty feeding and poor weight gain in infants</li>
+                  <li>Erectile dysfunction</li>
+                  <li>Fatigue</li>
+                  <li>Mild, transient shortness of breath with exertion</li>
+                  <li>Nausea and vomiting</li>
+                  <li>Mild weakness and feeling lightheaded</li>
+                  <li>Pain, numbness, and mild swelling in the feet and ankles</li>
+                  <li>Pale skin with or without sweating</li>
+                  <li>Wet cough</li>
                 </ul>
-              </List>              
+              </List>
             </Col>
         </Row>
       </TabPanel>
@@ -124,17 +131,19 @@ export default function Lungs() {
         <Row>
             <Col>
             <List type="unstyled">
-              <ul>
-                <li>Asthma</li>
-                <li>Collapse of part or all of the lung (pneumothorax or atelectasis)</li>
-                <li>Swelling and inflammation in the main passages (bronchial tubes)</li>
-                <li>COPD (chronic obstructive pulmonary disease)</li>
-                <li>Lung cancer</li>
-                <li>Lung infection (pneumonia)</li>
-
-              </ul>
-            </List>
-           </Col>
+                <ul>
+                  <li>Abnormal heart rhythms, or arrhythmias.</li>
+                  <li>Aorta disease and Marfan syndrome.</li>
+                  <li>Congenital heart disease.</li>
+                  <li>HIV/AIDS</li>
+                  <li>Coronary artery disease {"-narrowing of the arteries"}</li>
+                  <li>Heart attack.</li>
+                  <li>Deep vein thrombosis and pulmonary embolism.</li>
+                  <li>Heart failure.</li>
+                  <li>Heart muscle disease {"cardiomyopathy"}</li>
+                </ul>
+              </List>
+            </Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={4}>
@@ -151,14 +160,14 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-            <List type="unstyled">
+              <List type="unstyled">
                 <ul>
-                  <li>air pollution</li>
-                  <li>smoking</li>
-                  <li>infection</li>
-                  <li>unsafe working environment</li>
-                  <li>genetic</li>
-                  <li>tumors</li>
+                  <li>Smoking</li>
+                  <li>High cholesterol</li>
+                  <li>Diabetes</li>
+                  <li>Inactivity</li>
+                  <li>Being overweight or obese</li>
+                  <li>Family history</li>
                 </ul>
               </List>
             </Col>

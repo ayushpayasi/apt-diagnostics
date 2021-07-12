@@ -34,7 +34,7 @@ function TabPanel(props) {
     );
   }
 
-export default function Lungs() {
+export default function Liver() {
   const [value, setValue] = React.useState(0);
   function a11yProps(index) {
     return {
@@ -54,7 +54,7 @@ export default function Lungs() {
                 <img className="organ-image-desktop" src="/images/allergy_bg.jpg"></img>
                 <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img>
                 <div className="diagnostics-pagetitle">
-                    <h5>Lungs - Symptoms,Diagnosis, Tests</h5>
+                    <h5>Liver - Symptoms,Diagnosis, Tests</h5>
                 </div>
             </div>
             {/* <Container>
@@ -85,9 +85,10 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-              <p>The lungs are a pair of spongy, air-filled organs located on either side of the chest.</p>
-                <p>They are part of our respiratory system.Along with the trachea, alveoli, bronchi and diaphragm, they help us breathe in oxygen and exhale carbon dioxide.</p>
-                <p>Lungs can be affected by infection or allergy or may puncture or collapse.</p>
+              <p>The liver is a large, meaty organ that sits on the right side of the belly.</p>
+              <p>The main roles of the liver include removing toxins, processing food nutrients and regulating body metabolism.</p>
+              <p>Important causes of liver disorders are fatty liver, hepatitis virus infections and alcohol.</p>
+              <p>Cirrhosis (liver scarring), the end-result of many liver disorders, can lead to liver failure.</p>
             </Col>
         </Row>
       </TabPanel>
@@ -96,7 +97,7 @@ export default function Lungs() {
             <Col><h5 className="text-center">Why Important</h5></Col>
         </Row>
         <Row>
-            <Col><p>Every cell in your body needs oxygen in order to live. The lungs help carry oxygen into the bloodstream and protect the heart.</p></Col></Row>
+            <Col><p>The liver is the largest solid organ in the body. It has many important functions like removing toxins from the body's blood supply, maintaining healthy blood sugar levels, regulating blood clotting, and performing hundreds of other vital functions.</p></Col></Row>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <Row>
@@ -106,14 +107,15 @@ export default function Lungs() {
             <Col>
               <List type="unstyled">
                 <ul>
-                  <li>Difficulty Breathing</li>
-                  <li>Stubborn Cough</li>
-                  <li>Breathing Noisily</li>
-                  <li>Lingering Chest Pain</li>
-                  <li>Chronic Mucus</li>
-                  <li>Coughing Up Blood</li>
+                  <li>fever</li>
+                  <li>tiredness or weakness</li>
+                  <li>yellowing of the skin and eyes, known as jaundice</li>
+                  <li>dark urine</li>
+                  <li>pale stool</li>
+                  <li>nausea and vomiting</li>
+                  <li>pain under the ribs on the right side of the body</li>
                 </ul>
-              </List>              
+              </List>       
             </Col>
         </Row>
       </TabPanel>
@@ -123,18 +125,16 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-            <List type="unstyled">
-              <ul>
-                <li>Asthma</li>
-                <li>Collapse of part or all of the lung (pneumothorax or atelectasis)</li>
-                <li>Swelling and inflammation in the main passages (bronchial tubes)</li>
-                <li>COPD (chronic obstructive pulmonary disease)</li>
-                <li>Lung cancer</li>
-                <li>Lung infection (pneumonia)</li>
-
-              </ul>
-            </List>
-           </Col>
+              <List type="unstyled">
+                <ul>
+                  <li>Hepatitis</li>
+                  <li>Fatty liver</li>
+                  <li>Liver cirrhosis</li>
+                  <li>Liver cancer</li>
+                  <li>Wilson's disease</li>
+                </ul>
+              </List>
+            </Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={4}>
@@ -152,15 +152,17 @@ export default function Lungs() {
         <Row>
             <Col>
             <List type="unstyled">
-                <ul>
-                  <li>air pollution</li>
-                  <li>smoking</li>
-                  <li>infection</li>
-                  <li>unsafe working environment</li>
-                  <li>genetic</li>
-                  <li>tumors</li>
-                </ul>
-              </List>
+              <ul>
+                <li>Heavy alcohol use</li>
+                <li>Obesity</li>
+                <li>Type 2 diabetes</li>
+                <li>Tattoos or body piercings</li>
+                <li>Injecting drugs using a shared needle</li>
+                <li>Blood transfusion</li>
+                <li>Exposure to other people's blood and body fluid</li>
+                <li>Unprotected sex</li>
+              </ul>
+            </List>
             </Col>
         </Row>
       </TabPanel>

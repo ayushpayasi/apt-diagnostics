@@ -34,7 +34,7 @@ function TabPanel(props) {
     );
   }
 
-export default function Lungs() {
+export default function Brain() {
   const [value, setValue] = React.useState(0);
   function a11yProps(index) {
     return {
@@ -54,7 +54,7 @@ export default function Lungs() {
                 <img className="organ-image-desktop" src="/images/allergy_bg.jpg"></img>
                 <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img>
                 <div className="diagnostics-pagetitle">
-                    <h5>Lungs - Symptoms,Diagnosis, Tests</h5>
+                    <h5>Brain - Symptoms,Diagnosis, Tests</h5>
                 </div>
             </div>
             {/* <Container>
@@ -85,9 +85,10 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-              <p>The lungs are a pair of spongy, air-filled organs located on either side of the chest.</p>
-                <p>They are part of our respiratory system.Along with the trachea, alveoli, bronchi and diaphragm, they help us breathe in oxygen and exhale carbon dioxide.</p>
-                <p>Lungs can be affected by infection or allergy or may puncture or collapse.</p>
+              <p>Brain assembles the messages in a way that has meaning for us, and can store that information in our memory.</p>
+              <p>The main components of the brain include the brain stem, cerebellum, thalamus, cerebrum and corpus callosum.</p>
+              <p>The brain can be affected by a wide range of disorders and events such as trauma, nervous system diseases, stroke and tumours.</p>
+              <p>The specific symptoms or losses of functioning depend on which brain areas are affected.</p>
             </Col>
         </Row>
       </TabPanel>
@@ -96,7 +97,7 @@ export default function Lungs() {
             <Col><h5 className="text-center">Why Important</h5></Col>
         </Row>
         <Row>
-            <Col><p>Every cell in your body needs oxygen in order to live. The lungs help carry oxygen into the bloodstream and protect the heart.</p></Col></Row>
+            <Col><p>The brain is arguably the most important organ in the human body. It controls and coordinates actions and reactions, allows us to think and feel, and enables us to have memories and feelings.</p></Col></Row>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <Row>
@@ -104,17 +105,20 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-              <List type="unstyled">
-                <ul>
-                  <li>Difficulty Breathing</li>
-                  <li>Stubborn Cough</li>
-                  <li>Breathing Noisily</li>
-                  <li>Lingering Chest Pain</li>
-                  <li>Chronic Mucus</li>
-                  <li>Coughing Up Blood</li>
-                </ul>
-              </List>              
-            </Col>
+            <List type="unstyled">
+              <ul>
+                <li>headaches</li>
+                <li>seizures</li>
+                <li>numbness or tingling in your arms or legs</li>
+                <li>numbness or tingling in your arms or legs</li>
+                <li>nausea</li>
+                <li>vomiting</li>
+                <li>changes in personality</li>
+                <li>difficulty with movement or balance</li>
+                <li>changes in your hearing, speech, or vision</li>
+              </ul>
+            </List>
+          </Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={3}>
@@ -125,16 +129,16 @@ export default function Lungs() {
             <Col>
             <List type="unstyled">
               <ul>
-                <li>Asthma</li>
-                <li>Collapse of part or all of the lung (pneumothorax or atelectasis)</li>
-                <li>Swelling and inflammation in the main passages (bronchial tubes)</li>
-                <li>COPD (chronic obstructive pulmonary disease)</li>
-                <li>Lung cancer</li>
-                <li>Lung infection (pneumonia)</li>
-
+                <li>Alzheimer's Disease</li>
+                <li>Dementias</li>
+                <li>Brain Cancer</li>
+                <li>Epilepsy and Other Seizure Disorders</li>
+                <li>Mental Disorders</li>
+                <li>Parkinson's and Other Movement Disorders</li>
+                <li>Stroke and Transient Ischemic Attack</li>
               </ul>
             </List>
-           </Col>
+            </Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={4}>
@@ -142,7 +146,9 @@ export default function Lungs() {
             <Col><h5 className="text-center">Suggested Tests</h5></Col>
         </Row>
         <Row>
-            <Col><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa qui pariatur harum reiciendis possimus, at eligendi beatae vel? Architecto vel eius non, sapiente hic nemo sed cum perferendis. Consequatur maxime accusantium molestias explicabo itaque! Quaerat non officia reiciendis, quia, laudantium distinctio eum voluptas dignissimos provident facere eveniet, dicta quibusdam! Cum, unde dignissimos! Tempora odio voluptas nemo ducimus? Voluptate, consectetur? Aperiam earum voluptates pariatur ut fugiat praesentium eos quod esse consequuntur est, quis temporibus officiis delectus deleniti accusamus voluptatum voluptate enim nostrum neque eligendi dicta. Dolore nesciunt illum, rerum facere eius quae suscipit perferendis mollitia cupiditate commodi eaque voluptate inventore aliquid ratione magni architecto amet, eum facilis vel deleniti impedit, culpa iure? Quidem expedita, quas optio voluptates aliquid nam harum autem tenetur? Minima harum deleniti consequuntur repellat dicta labore voluptate culpa quam modi asperiores? Ipsa aperiam consectetur, vitae officiis dolore esse eveniet magnam delectus repudiandae optio! Cum quos molestias ab dicta repellat obcaecati exercitationem neque voluptatibus omnis recusandae, cumque laborum, ipsam tempora veritatis dolor nihil, aspernatur at ipsa dolorum assumenda? Veritatis blanditiis quae, ullam quia expedita, dicta minus aperiam sunt placeat molestias rem vero, atque porro consectetur. Quos ut dolor ipsa, corrupti nihil inventore obcaecati, sequi, id itaque repudiandae incidunt reprehenderit.</p></Col>
+            <Col>
+            
+            </Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={5}>
@@ -152,15 +158,14 @@ export default function Lungs() {
         <Row>
             <Col>
             <List type="unstyled">
-                <ul>
-                  <li>air pollution</li>
-                  <li>smoking</li>
-                  <li>infection</li>
-                  <li>unsafe working environment</li>
-                  <li>genetic</li>
-                  <li>tumors</li>
-                </ul>
-              </List>
+              <ul>
+                <li>accident</li>
+                <li>brain tumor</li>
+                <li>stroke</li>
+                <li>high blood pressure</li>
+                <li>disorder</li>
+              </ul>
+            </List>
             </Col>
         </Row>
       </TabPanel>

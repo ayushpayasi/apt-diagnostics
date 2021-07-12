@@ -34,7 +34,7 @@ function TabPanel(props) {
     );
   }
 
-export default function Lungs() {
+export default function Thyroidgland() {
   const [value, setValue] = React.useState(0);
   function a11yProps(index) {
     return {
@@ -54,7 +54,7 @@ export default function Lungs() {
                 <img className="organ-image-desktop" src="/images/allergy_bg.jpg"></img>
                 <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img>
                 <div className="diagnostics-pagetitle">
-                    <h5>Lungs - Symptoms,Diagnosis, Tests</h5>
+                    <h5>Thyroid Gland - Symptoms,Diagnosis, Tests</h5>
                 </div>
             </div>
             {/* <Container>
@@ -85,9 +85,10 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-              <p>The lungs are a pair of spongy, air-filled organs located on either side of the chest.</p>
-                <p>They are part of our respiratory system.Along with the trachea, alveoli, bronchi and diaphragm, they help us breathe in oxygen and exhale carbon dioxide.</p>
-                <p>Lungs can be affected by infection or allergy or may puncture or collapse.</p>
+              <p>The thyroid gland is a butterfly-shaped organ located in the base of your neck.</p>
+              <p>The thyroid gland regulates many metabolic processes, including growth and energy expenditure.</p>
+              <p>Around one in 20 people will experience some form of thyroid dysfunction in their lifetime.</p>
+              <p>Common problems include overactivity and underactivity of the thyroid gland.</p>
             </Col>
         </Row>
       </TabPanel>
@@ -96,7 +97,7 @@ export default function Lungs() {
             <Col><h5 className="text-center">Why Important</h5></Col>
         </Row>
         <Row>
-            <Col><p>Every cell in your body needs oxygen in order to live. The lungs help carry oxygen into the bloodstream and protect the heart.</p></Col></Row>
+            <Col><p>The thyroid gland is a vital hormone gland: It plays a major role in the metabolism, growth and development of the human body. It helps to regulate many body functions by constantly releasing a steady amount of thyroid hormones into the bloodstream.</p></Col></Row>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <Row>
@@ -106,14 +107,16 @@ export default function Lungs() {
             <Col>
               <List type="unstyled">
                 <ul>
-                  <li>Difficulty Breathing</li>
-                  <li>Stubborn Cough</li>
-                  <li>Breathing Noisily</li>
-                  <li>Lingering Chest Pain</li>
-                  <li>Chronic Mucus</li>
-                  <li>Coughing Up Blood</li>
+                  <li>High Heart Rate</li>
+                  <li>Excessive Tiredness</li>
+                  <li>Anxiety</li>
+                  <li>Weight Gain or Loss</li>
+                  <li>Body Shakes</li>
+                  <li>Feeling Chilly or Overheated</li>
+                  <li>Trouble Concentrating</li>
+                  <li>Hair Loss</li>
                 </ul>
-              </List>              
+              </List>
             </Col>
         </Row>
       </TabPanel>
@@ -123,18 +126,17 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-            <List type="unstyled">
-              <ul>
-                <li>Asthma</li>
-                <li>Collapse of part or all of the lung (pneumothorax or atelectasis)</li>
-                <li>Swelling and inflammation in the main passages (bronchial tubes)</li>
-                <li>COPD (chronic obstructive pulmonary disease)</li>
-                <li>Lung cancer</li>
-                <li>Lung infection (pneumonia)</li>
-
-              </ul>
-            </List>
-           </Col>
+              <List type="unstyled">
+                <ul>
+                  <li>Thyroiditis</li>
+                  <li>Graves' disease</li>
+                  <li>Hashimoto's disease</li>
+                  <li>Goiter.m</li>
+                  <li>Thyroid nodule</li>
+                  <li>Thyroid cancer</li>
+                </ul>
+              </List>
+            </Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={4}>
@@ -152,15 +154,15 @@ export default function Lungs() {
         <Row>
             <Col>
             <List type="unstyled">
-                <ul>
-                  <li>air pollution</li>
-                  <li>smoking</li>
-                  <li>infection</li>
-                  <li>unsafe working environment</li>
-                  <li>genetic</li>
-                  <li>tumors</li>
-                </ul>
-              </List>
+              <ul>
+                <li>Iodine deficiency</li>
+                <li>Autoimmune disease</li>
+                <li>Inflammation</li>
+                <li>Cancerous tumors</li>
+                <li>Certain medications</li>
+                <li>Genetic disorders</li>
+              </ul>
+            </List>
             </Col>
         </Row>
       </TabPanel>

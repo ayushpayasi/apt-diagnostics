@@ -34,7 +34,7 @@ function TabPanel(props) {
     );
   }
 
-export default function Lungs() {
+export default function Vitamins() {
   const [value, setValue] = React.useState(0);
   function a11yProps(index) {
     return {
@@ -54,7 +54,7 @@ export default function Lungs() {
                 <img className="organ-image-desktop" src="/images/allergy_bg.jpg"></img>
                 <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img>
                 <div className="diagnostics-pagetitle">
-                    <h5>Lungs - Symptoms,Diagnosis, Tests</h5>
+                    <h5> Vitamins - Symptoms,Diagnosis, Tests</h5>
                 </div>
             </div>
             {/* <Container>
@@ -85,9 +85,10 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-              <p>The lungs are a pair of spongy, air-filled organs located on either side of the chest.</p>
-                <p>They are part of our respiratory system.Along with the trachea, alveoli, bronchi and diaphragm, they help us breathe in oxygen and exhale carbon dioxide.</p>
-                <p>Lungs can be affected by infection or allergy or may puncture or collapse.</p>
+              <p>
+              Vitamins are a broad range of substances that the human body requires for normal functioning, such as metabolism and cellular repair. Lack of sufficient vitamins has been implicated in cellular diseases, such as cancers. 
+
+</p>
             </Col>
         </Row>
       </TabPanel>
@@ -96,7 +97,7 @@ export default function Lungs() {
             <Col><h5 className="text-center">Why Important</h5></Col>
         </Row>
         <Row>
-            <Col><p>Every cell in your body needs oxygen in order to live. The lungs help carry oxygen into the bloodstream and protect the heart.</p></Col></Row>
+            <Col><p>Vitamins work hard to keep our bodies functioning properly and they help drive essential processes needed in our everyday lives. Each nutrient is on a mission to deliver health benefits that help reach our wellness goals.</p></Col></Row>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <Row>
@@ -104,17 +105,19 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-              <List type="unstyled">
-                <ul>
-                  <li>Difficulty Breathing</li>
-                  <li>Stubborn Cough</li>
-                  <li>Breathing Noisily</li>
-                  <li>Lingering Chest Pain</li>
-                  <li>Chronic Mucus</li>
-                  <li>Coughing Up Blood</li>
-                </ul>
-              </List>              
-            </Col>
+            <List type="unstyled">
+              <ul>
+                <li>Brittle hair and nails ( vitamin B7 deficiency)</li>
+                <li>Mouth ulcers or cracks in the corners of the mouth( vitamin B deficiency)</li>
+                <li>Bleeding gums( vitamin C deficiency)</li>
+                <li>Poor night vision and white growths on the eyes( vitamin A deficiency)</li>
+                <li>Scaly patches and dandruff</li>
+                <li>Hair loss</li>
+                <li>Red or white bumps on skin</li>
+                <li>Restless leg syndrome( iron deficiency)</li>
+              </ul>
+            </List>
+          </Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={3}>
@@ -125,16 +128,18 @@ export default function Lungs() {
             <Col>
             <List type="unstyled">
               <ul>
-                <li>Asthma</li>
-                <li>Collapse of part or all of the lung (pneumothorax or atelectasis)</li>
-                <li>Swelling and inflammation in the main passages (bronchial tubes)</li>
-                <li>COPD (chronic obstructive pulmonary disease)</li>
-                <li>Lung cancer</li>
-                <li>Lung infection (pneumonia)</li>
-
+                <li>Anemia</li>
+                <li>Pellagra</li>
+                <li>Night blindness</li>
+                <li>Rickets</li>
+                <li>Malnutrition</li>
+                <li>Scurvy</li>
+                <li>Diarrhea</li>
+                <li>Dementia</li>
+                <li>Goitre</li>
               </ul>
             </List>
-           </Col>
+          </Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={4}>
@@ -150,18 +155,7 @@ export default function Lungs() {
             <Col><h5 className="text-center">causes</h5></Col>
         </Row>
         <Row>
-            <Col>
-            <List type="unstyled">
-                <ul>
-                  <li>air pollution</li>
-                  <li>smoking</li>
-                  <li>infection</li>
-                  <li>unsafe working environment</li>
-                  <li>genetic</li>
-                  <li>tumors</li>
-                </ul>
-              </List>
-            </Col>
+            <Col><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa qui pariatur harum reiciendis possimus, at eligendi beatae vel? Architecto vel eius non, sapiente hic nemo sed cum perferendis. Consequatur maxime accusantium molestias explicabo itaque! Quaerat non officia reiciendis, quia, laudantium distinctio eum voluptas dignissimos provident facere eveniet, dicta quibusdam! Cum, unde dignissimos! Tempora odio voluptas nemo ducimus? Voluptate, consectetur? Aperiam earum voluptates pariatur ut fugiat praesentium eos quod esse consequuntur est, quis temporibus officiis delectus deleniti accusamus voluptatum voluptate enim nostrum neque eligendi dicta. Dolore nesciunt illum, rerum facere eius quae suscipit perferendis mollitia cupiditate commodi eaque voluptate inventore aliquid ratione magni architecto amet, eum facilis vel deleniti impedit, culpa iure? Quidem expedita, quas optio voluptates aliquid nam harum autem tenetur? Minima harum deleniti consequuntur repellat dicta labore voluptate culpa quam modi asperiores? Ipsa aperiam consectetur, vitae officiis dolore esse eveniet magnam delectus repudiandae optio! Cum quos molestias ab dicta repellat obcaecati exercitationem neque voluptatibus omnis recusandae, cumque laborum, ipsam tempora veritatis dolor nihil, aspernatur at ipsa dolorum assumenda? Veritatis blanditiis quae, ullam quia expedita, dicta minus aperiam sunt placeat molestias rem vero, atque porro consectetur. Quos ut dolor ipsa, corrupti nihil inventore obcaecati, sequi, id itaque repudiandae incidunt reprehenderit.</p></Col>
         </Row>
       </TabPanel>
       </Col></Row>

@@ -286,36 +286,36 @@ export default function Home() {
                         <Row><Col className="landing-h2 iofade">Our Features</Col></Row>
                         <Row>
                             <Col md="4">
-                            <div class="card_flip">
-                            <div class="card__inner">
-                                <div class="card__content card_content--front">
+                            <div className="card_flip">
+                            <div className="card__inner">
+                                <div className="card__content card_content--front">
                                 <CardTitle style={{color:"#fff"}}>Best in class testing</CardTitle><CardText className="features-body-text">Reports you can count upon</CardText>
                                 </div>
-                                <div class="card__content card__content--back">
+                                <div className="card__content card__content--back">
                                 <CardText className="features-body-text">APT Diagnostics with its in house industry leading infrastructure provides the reports, you can truly count upon.</CardText>
                                 </div>
                             </div>
                             </div>
                             </Col>
                             <Col md="4">
-                            <div class="card_flip">
-                            <div class="card__inner">
-                                <div class="card__content card_content--front">
+                            <div className="card_flip">
+                            <div className="card__inner">
+                                <div className="card__content card_content--front">
                                 <CardTitle  style={{color:"#fff"}}>24/7 Processing</CardTitle><CardText className="features-body-text">Because your time is important to us</CardText>
                                 </div>
-                                <div class="card__content card__content--back">
+                                <div className="card__content card__content--back">
                                 <CardText className="features-body-text">With our testing facilities running 24/7, we process the reports throughout the day so that you get your results on time.</CardText>
                                 </div>
                             </div>
                             </div>
                             </Col>
                             <Col md="4">
-                            <div class="card_flip">
-                            <div class="card__inner">
-                                <div class="card__content card_content--front">
+                            <div className="card_flip">
+                            <div className="card__inner">
+                                <div className="card__content card_content--front">
                                 <CardTitle  style={{color:"#fff"}}>Easy Appointment Scheduling</CardTitle><CardText className="features-body-text">Quality Experience That Lasts</CardText>
                                 </div>
-                                <div class="card__content card__content--back">
+                                <div className="card__content card__content--back">
                                 <h2><CardText className="features-body-text">Booking appointments before hand for home collections and walk in is as easy as marking the date on the calendar with our seamless and highly scalable booking platform.</CardText></h2>
                                 </div>
                             </div>

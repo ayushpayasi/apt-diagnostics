@@ -34,7 +34,7 @@ function TabPanel(props) {
     );
   }
 
-export default function Lungs() {
+export default function Kidney() {
   const [value, setValue] = React.useState(0);
   function a11yProps(index) {
     return {
@@ -54,7 +54,7 @@ export default function Lungs() {
                 <img className="organ-image-desktop" src="/images/allergy_bg.jpg"></img>
                 <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img>
                 <div className="diagnostics-pagetitle">
-                    <h5>Lungs - Symptoms,Diagnosis, Tests</h5>
+                    <h5>Kidney - Symptoms,Diagnosis, Tests</h5>
                 </div>
             </div>
             {/* <Container>
@@ -85,9 +85,10 @@ export default function Lungs() {
         </Row>
         <Row>
             <Col>
-              <p>The lungs are a pair of spongy, air-filled organs located on either side of the chest.</p>
-                <p>They are part of our respiratory system.Along with the trachea, alveoli, bronchi and diaphragm, they help us breathe in oxygen and exhale carbon dioxide.</p>
-                <p>Lungs can be affected by infection or allergy or may puncture or collapse.</p>
+              <p>The kidneys are two bean-shaped organs situated above your waist, with the left kidney a little higher and a little larger.</p>
+<p>The kidneys clean the blood and remove waste through urine, which is stored and passed by the bladder.</p>
+<p>Genetic disorders, lifestyle, diet and infections can affect the kidneys and bladder.
+</p>
             </Col>
         </Row>
       </TabPanel>
@@ -96,7 +97,7 @@ export default function Lungs() {
             <Col><h5 className="text-center">Why Important</h5></Col>
         </Row>
         <Row>
-            <Col><p>Every cell in your body needs oxygen in order to live. The lungs help carry oxygen into the bloodstream and protect the heart.</p></Col></Row>
+            <Col><p>The kidney is the major player in the regulation of your blood pressure, and the make-up of the blood. Maintaining many hormones that are vital to our very existence, the kidneys even produce hormones that tell bones when to make more blood cells.</p></Col></Row>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <Row>
@@ -106,14 +107,16 @@ export default function Lungs() {
             <Col>
               <List type="unstyled">
                 <ul>
-                  <li>Difficulty Breathing</li>
-                  <li>Stubborn Cough</li>
-                  <li>Breathing Noisily</li>
-                  <li>Lingering Chest Pain</li>
-                  <li>Chronic Mucus</li>
-                  <li>Coughing Up Blood</li>
+                  <li>Decreased urine output</li>
+                  <li>Fluid retention, causing swelling in your legs, ankles or feet</li>
+                  <li>Shortness of breath</li>
+                  <li>Fatigue</li>
+                  <li>Confusion</li>
+                  <li>Nausea</li>
+                  <li>Weakness</li>
+                  <li>Irregular heartbeat</li>
                 </ul>
-              </List>              
+              </List>
             </Col>
         </Row>
       </TabPanel>
@@ -124,17 +127,15 @@ export default function Lungs() {
         <Row>
             <Col>
             <List type="unstyled">
-              <ul>
-                <li>Asthma</li>
-                <li>Collapse of part or all of the lung (pneumothorax or atelectasis)</li>
-                <li>Swelling and inflammation in the main passages (bronchial tubes)</li>
-                <li>COPD (chronic obstructive pulmonary disease)</li>
-                <li>Lung cancer</li>
-                <li>Lung infection (pneumonia)</li>
-
-              </ul>
-            </List>
-           </Col>
+                <ul>
+                  <li>Chronic kidney disease</li>
+                  <li>Kidney stones</li>
+                  <li>Glomerulonephritis</li>
+                  <li>Polycystic kidney disease</li>
+                  <li>Urinary tract infections</li>
+                </ul>
+              </List>
+            </Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={4}>
@@ -152,15 +153,16 @@ export default function Lungs() {
         <Row>
             <Col>
             <List type="unstyled">
-                <ul>
-                  <li>air pollution</li>
-                  <li>smoking</li>
-                  <li>infection</li>
-                  <li>unsafe working environment</li>
-                  <li>genetic</li>
-                  <li>tumors</li>
-                </ul>
-              </List>
+              <ul>
+                <li>Diabetes</li>
+                <li>High blood pressure</li>
+                <li>Heart and blood vessel (cardiovascular) disease</li>
+                <li>Smoking</li>
+                <li>Obesity</li>
+                <li>Family history of kidney disease</li>
+                <li>Abnormal kidney structure</li>
+              </ul>
+            </List>
             </Col>
         </Row>
       </TabPanel>

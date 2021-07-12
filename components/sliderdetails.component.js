@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import CenterMode from "./centermodecarousel.component"
-import {Row,Col,Container} from "reactstrap"
+import {Row,Col,Container,List, Link} from "reactstrap"
 import "../assets/css/sliderwithdetails.scss"
 import Button from '@material-ui/core/Button';
 
@@ -11,8 +11,8 @@ export default function SliderDetails() {
     const [currSlide,setCurrSlide] = useState(0);
 
     const data = [{
-        name:"kidney",
-        symptoms:"temp details",
+        name:"Heart",
+        symptoms:"A feeling of indigestion,Anxiety and restlessness,Backache,Difficulty feeding and poor weight gain in infants,Erectile dysfunction,Fatigue,Mild, transient shortness of breath with exertion,Mild weakness and feeling lightheaded,Nausea and vomiting,Pain, numbness, and mild swelling in the feet and ankles,Pale skin with or without sweating,Wet cough",
         tests:[
             {
                 name:"Lorem ipsum",
@@ -25,8 +25,8 @@ export default function SliderDetails() {
             },
         ]
     },{
-        name:"ipsum",
-        symptoms:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ipsam dolore aspernatur facilis neque aut? Lorem ipsum dolor sit amet, consectetur adipisicing  ",
+        name:"Liver",
+        symptoms:"fever, tiredness or weakness, yellowing of the skin and eyes(known as jaundice) ,dark urine ,pale stool ,nausea and vomiting ,pain under the ribs on the right side of the body",
         tests:[
             {
                 name:"Lorem ipsum",
@@ -39,8 +39,8 @@ export default function SliderDetails() {
             },
         ]
     },
-        {name:"lorem",
-        symptoms:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ipsam dolore aspernatur facilis neque aut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ",
+        {name:"Brain",
+        symptoms:"headaches, seizures, numbness or tingling in your arms or legs, nausea, vomiting, changes in personality, difficulty with movement or balance, changes in your hearing or speech or vision",
         tests:[
             {
                 name:"Lorem ipsum",
@@ -53,8 +53,8 @@ export default function SliderDetails() {
             },
         ]
     },{
-        name:"lorem",
-        symptoms:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ipsam dolore aspernatur facilis neque aut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at ",
+        name:"Reproductive System",
+        symptoms:"Abdominal or pelvic mild discomfort, Frequent urination, A feeling of urgency to urinate, Feeling of abdominal or pelvic pressure, Tenderness, Intense pain in the bladder or pelvic region",
         tests:[
             {
                 name:"Lorem ipsum",
@@ -67,8 +67,8 @@ export default function SliderDetails() {
             },
         ]
     },{
-        name:"dolar",
-        symptoms:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ipsam dolore aspernatur facilis neque aut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ",
+        name:"Lungs",
+        symptoms:"Difficulty in Breathing, Stubborn Cough, Breathing Noisily, Lingering Chest Pain, Chronic Mucus, Coughing Up Blood",
         tests:[
             {
                 name:"Lorem ipsum",
@@ -81,8 +81,8 @@ export default function SliderDetails() {
             },
         ]
     },{
-        name:"sit",
-        symptoms:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ipsam dolore aspernatur facilis neque aut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ",
+        name:"kidney",
+        symptoms:"Decreased urine output, Fluid retention- causing swelling in your legs or ankles or feet, Shortness of breath, Fatigue, Confusion, Nausea, Weakness, Irregular heartbeat",
         tests:[
             {
                 name:"Lorem ipsum",
@@ -92,8 +92,8 @@ export default function SliderDetails() {
             },
         ]
     },{
-        name:"amet",
-        symptoms:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ipsam dolore aspernatur facilis neque aut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ",
+        name:"Thyroid Gland",
+        symptoms:"High Heart Rate,Excessive Tiredness, Anxiety, Weight Gain or Loss, Body Shakes, Feeling Chilly or Overheated, Trouble Concentrating, Hair Loss",
         tests:[
             {
                 name:"Lorem ipsum",
@@ -106,8 +106,8 @@ export default function SliderDetails() {
             },
         ]
     },{
-        name:"lorem",
-        symptoms:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ipsam dolore aspernatur facilis neque aut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ",
+        name:"Allergy",
+        symptoms:"Dust and pollen, a blocked or congested nose, itchy eyes and nose, a runny nose, swollen and watery eyes, a cough",
         tests:[
             {
                 name:"Lorem ipsum",
@@ -117,8 +117,8 @@ export default function SliderDetails() {
             },
         ]
     },{
-        name:"ipsum",
-        symptoms:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ipsam dolore aspernatur facilis neque aut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ",
+        name:"Vitamins",
+        symptoms:"Brittle hair and nails ( vitamin B7 deficiency), Mouth ulcers or cracks in the corners of the mouth( vitamin B deficiency), Bleeding gums( vitamin C deficiency), Poor night vision and white growths on the eyes( vitamin A deficiency), Scaly patches and dandruff Hair loss, Red or white bumps on skin, Restless leg syndrome( iron deficiency)",
         tests:[
             {
                 name:"Lorem ipsum",
@@ -126,33 +126,6 @@ export default function SliderDetails() {
             {
                 name:"Lorem ipsum",
             },,
-            {
-                name:"Lorem ipsum",
-            },
-        ]
-    },{
-        name:"dolor",
-        symptoms:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ipsam dolore aspernatur facilis neque aut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ",
-        tests:[
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },
-        ]
-    },{
-        name:"sit",
-        symptoms:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ipsam dolore aspernatur facilis neque aut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus? Molestiae illo inventore, consectetur voluptatibus molestias tempora porro dolorem sed nostrum at veniam dolor nam, facilis id architecto ipsum, animi totam! Aliquid, magni deserunt. Molestiae, nihil qui laborum sunt ab dignissimos, voluptates fugiat voluptate, ",
-        tests:[
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },{
-                name:"Lorem ipsum",
-            },
             {
                 name:"Lorem ipsum",
             },
@@ -178,6 +151,10 @@ export default function SliderDetails() {
             </Row>
             
         )
+    }
+
+    const changePage = () => {
+
     }
 
 
@@ -222,7 +199,15 @@ export default function SliderDetails() {
                     </Row>
                     <Row >
                         <Col className="ioleft symptoms-text">
-                            {data[currSlide].symptoms}
+                            {data[currSlide].symptoms.split(",").map( curSymptom => {
+                                return (
+                                    <List type="unstyled">
+                                        <ul>
+                                            <li>{curSymptom}</li>
+                                        </ul>
+                                    </List>
+                                )
+                            })}
                             
                         </Col>
                     </Row>
@@ -253,7 +238,7 @@ export default function SliderDetails() {
           > */}
             <Row>
                 <Col className="align-center-column mt-4 mb-4 iofade">
-                    <Button color="primary" onClick={()=>{}} variant="contained" >Want to Know More!</Button>
+                    <Button color="primary" href={`/diagnostics/${data[currSlide].name.split(" ").join("").toLowerCase()}`} variant="contained" >Want to Know More!</Button>
                 </Col>
             </Row>
             {/* </CSSTransition></SwitchTransition> */}
