@@ -71,70 +71,70 @@ export default function CenterMode(props){
             <div onClick={()=>{
               handleChange(7)
               return slider.slickGoTo(0)}} >
-                <img className="allergy"id="diagnosticsimg1" src="/svg/aptorgans/light/allergy.svg"></img>
+                <img className="allergy" style={{height:"100px",width:"100px",margin:0,padding:"10px"}} id="diagnosticsimg1" src="/svg/aptorgans/light/allergy.svg"></img>
             </div>
           </div>
           <div>
             <div onClick={()=>{
               handleChange(2)
               return slider.slickGoTo(1)}}>
-              <img className="brain" id="diagnosticsimg1" src="/svg/aptorgans/light/brain.svg"></img>
+              <img className="brain" style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/brain.svg"></img>
             </div >
           </div>
           <div>
             <div onClick={()=>{
               handleChange(3)
               return slider.slickGoTo(2)}}>
-              <img className="reproductive" id="diagnosticsimg1" src="/svg/aptorgans/light/female_reproductive.svg"></img>
+              <img className="reproductive" style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/female_reproductive.svg"></img>
             </div>
           </div>
           <div>
             <div onClick={()=>{
               handleChange(0)
               return slider.slickGoTo(3)}}>
-              <img className="heart" id="diagnosticsimg1" src="/svg/aptorgans/light/heart.svg"></img>
+              <img className="heart" style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/heart.svg"></img>
             </div >
           </div>
           <div>
             <div onClick={()=>{
               handleChange(5)
               return slider.slickGoTo(4)}}>
-              <img className="kidney" id="diagnosticsimg1" src="/svg/aptorgans/light/kidney.svg"></img>
+              <img className="kidney" style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/kidney.svg"></img>
             </div >
           </div>
           <div>
             <div onClick={()=>{
               handleChange(1)
               return slider.slickGoTo(5)}}>
-              <img className="liver" id="diagnosticsimg1" src="/svg/aptorgans/light/liver.svg"></img>
+              <img className="liver" style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/liver.svg"></img>
             </div >
           </div>
           <div>
             <div onClick={()=>{
               handleChange(4)
               return slider.slickGoTo(6)}}>
-              <img className="lungs" id="diagnosticsimg1" src="/svg/aptorgans/light/lungs.svg"></img>
+              <img className="lungs" style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/lungs.svg"></img>
             </div >
           </div>
           <div>
             <div onClick={()=>{
               handleChange(7)
               return slider.slickGoTo(7)}}>
-              <img className="virus" id="diagnosticsimg1" src="/svg/aptorgans/light/virus.svg"></img>
+              <img className="virus" style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/virus.svg"></img>
             </div >
           </div>
           <div>
             <div onClick={()=>{
               handleChange(6)
               return slider.slickGoTo(8)}}>
-              <img className="virus" id="diagnosticsimg1" src="/svg/aptorgans/dark/virus.svg"></img>
+              <img className="virus" style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/dark/virus.svg"></img>
             </div >
           </div>
           <div>
             <div onClick={()=>{
               handleChange(8)
               return slider.slickGoTo(9)}}>
-              <img className="vitamins" id="diagnosticsimg1" src="/svg/aptorgans/light/vitamins.svg"></img>
+              <img className="vitamins" style={{height:"100px",width:"100px",margin:0,padding:"10px"}}  id="diagnosticsimg1" src="/svg/aptorgans/light/vitamins.svg"></img>
             </div >
           </div>
         </Slider>
