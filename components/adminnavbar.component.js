@@ -14,6 +14,8 @@ export default function AdminNavbar(props) {
                     <ListGroupItem style={{color:(props.currentContainer === "adminContent3")?"#ff6363":"white"}} onClick={()=>{props.changeContainer("adminContent3")}}>Tests</ListGroupItem>
                     {/* <ListGroupItem style={{color:(props.currentContainer === "adminContent4")?"#ff6363":"white"}} onClick={()=>{props.changeContainer("adminContent4")}}>Organs</ListGroupItem> */}
                     <ListGroupItem style={{color:(props.currentContainer === "adminContent5")?"#ff6363":"white"}} onClick={()=>{props.changeContainer("adminContent5")}}>Blogs</ListGroupItem>
+                    <ListGroupItem style={{color:(props.currentContainer === "adminContent6")?"#ff6363":"white"}} onClick={()=>{props.changeContainer("adminContent6")}}>Utility</ListGroupItem>
+                    <ListGroupItem style={{color:(props.currentContainer === "adminContent7")?"#ff6363":"white"}} onClick={()=>{props.changeContainer("adminContent7")}}>Subscription</ListGroupItem>
                 </ListGroup>
            
             </div>

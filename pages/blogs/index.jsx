@@ -67,7 +67,6 @@ export default function Blog() {
     try {
       const result = await axios.get(apiLinks.blogData);
       if (result.status === 200) {
-        //console.log(result.data);
         setBlogs(result.data.data);
       }
     } catch (err) {

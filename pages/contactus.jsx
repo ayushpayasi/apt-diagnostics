@@ -1,10 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
+import axios from "axios"
+import {apiLinks} from "../connection.config"
+import {toast} from "react-toastify"
 import { Container,Row,Col,Card,CardBody,CardTitle,FormGroup,Input,Label,Button } from 'reactstrap'
 import NavBar from "../components/navbar.component"
 import "../assets/css/contactus.scss"
 
 
 export function getServerSideProps(context) {
+    
     const sec = context.query.sec
     if(sec !== undefined)
     return { props: {sec} };
@@ -15,10 +19,54 @@ export function getServerSideProps(context) {
 
 
 export default function Contactus(props) {
-    
-    // useEffect(() => {
-    //     if(props.sec)    
-    // }, [])
+    const [attachment,setAttachment] = useState(null)
+
+    const contactusSubmitHandler = async ()=>{
+        try{
+            const formData = {
+                "name":document.getElementById("contactus_name").value,
+                "email":document.getElementById("contactus_email").value,
+                "contact":document.getElementById("contactus_contact").value,
+                "queryType":document.getElementById("contactus_type").value,
+                "queryDescription":document.getElementById("contactus_description").value
+            }
+
+            const result = await axios.post(apiLinks.contactus,formData)
+            if(result.status === 200){
+                toast("Thanks For Contacting Us!")
+            }
+            else{
+                toast("Failed to submit your Contact Request!")
+            }
+
+        }catch(err){
+            console.log(err)
+            toast("Failed to submit your Contact Request!")
+        }
+    }
+
+    const feedbackSubmitHandler = async ()=>{
+        try{
+            let formData = new FormData()
+            formData.append("name",document.getElementById("feedback_name").value)
+            formData.append("email",document.getElementById("feedback_email").value)
+            formData.append("type",document.getElementById("feedback_type").value)
+            formData.append("contact",document.getElementById("feedback_contact").value)
+            formData.append("query",document.getElementById("feedback_query").value)
+            if(attachment !== null){formData.append("attachment",attachment)}
+            
+            const result = await axios.post(apiLinks.postFeedback,formData)
+            if(result.status === 200){
+                toast("Thanks For Your Feedback!")
+            }
+            else{
+                toast("Failed to submit your Feedback!")
+            }
+        }catch(err){
+            console.log(err)
+            toast("Failed to submit your Feedback!")
+        }
+    }
 
     return (
         <>
@@ -65,7 +113,7 @@ export default function Contactus(props) {
                             <Label for="feedback_phonenumber">
                                 Phone No (फ़ोन नंबर)
                             </Label>
-                            <Input className="feedback_form_input" size="sm" type="text" id="feedback_phonenumber" placeholder="Number"></Input>
+                            <Input className="feedback_form_input" size="sm" type="text" id="feedback_contact" placeholder="Number"></Input>
                         </FormGroup>
                             </Col>
                         </Row>
@@ -85,11 +133,11 @@ export default function Contactus(props) {
                                 <Label for="feedback_file">
                                     Attachments
                                 </Label>
-                                <Input className="feedback_form_input" size="sm" type="file" id="feedback_file" placeholder="File"></Input>
+                                <Input onChange={(event)=>{setAttachment(event.target.files[0])}} className="feedback_form_input" size="sm" type="file" id="feedback_file" placeholder="File"></Input>
                             </FormGroup>
                             </Col>
                             <Col className="d-flex align-items-center justify-content-center">
-                                <Button>
+                                <Button onClick={()=>{feedbackSubmitHandler()}}>
                                     Submit
                                 </Button>
                             </Col>
@@ -149,7 +197,7 @@ export default function Contactus(props) {
                                 <Input className="feedback_form_input" size="sm" type="textarea" id="contactus_description" placeholder="Description"></Input>
                                 </FormGroup>
                                 <div className="text-center">
-                                <Button>
+                                <Button onClick={()=>{contactusSubmitHandler()}}>
                                     Submit
                                 </Button>
                                 </div>

@@ -19,12 +19,6 @@ export default function CenterMode(props){
 
     const handleChange = (e)=>{
       props.setSlide(e)
-        // const item = document.getElementById(`diagnosticsimg${e}`)
-        // console.log(item.src)
-        // const regex = /(.*\/)(.*)\-/
-        // const arr = item.src.match(regex)
-        // let new_src = arr[1]+arr[2]+".svg"
-        // item.src = new_src
     }
 
     const settings = {

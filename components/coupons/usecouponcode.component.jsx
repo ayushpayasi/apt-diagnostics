@@ -7,15 +7,6 @@ const UseCouponCode = (props) => {
     const[couponCode, setCouponCode] = useState(props.couponCode)
     const inputCouponRef = useRef();
 
-    console.log(couponCode)
-
-    // useEffect(() => {
-    //     // console.log(props.couponCode)
-    //     if(props.couponCode) {
-    //         setCouponCode(+props.couponCode);
-    //     }
-    // }, []);
-
     const submitCouponHandler = () => {
         setCouponCode(inputCouponRef.current.value);
     }

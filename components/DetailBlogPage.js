@@ -42,7 +42,6 @@ export default function DetailBlogPage(props) {
           if (result.status === 200) {
             const rest_blogs = result.data.data.filter(blog => blog.blogId != props.blogId)
             setBlogs(rest_blogs);
-            console.log(blogs);
           }
         } catch (err) {
           toast('Blogs are not available!!');

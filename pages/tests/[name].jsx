@@ -122,8 +122,6 @@ export default function Details({details}){
     const fillFaq = ()=>{
         return details.faq.map((item)=>{
            const s = Object.keys(item)[0].replace(/([A-Z])/g, ' $1').trim() +"?"
-            // newValue = Regex.Replace(, "([a-z])([A-Z])", "$1 $2");
-            // console.log(s)
             return(
                 <span className="border">
             <Row>

@@ -10,9 +10,7 @@ import "../../assets/css/coupon.scss"
 export async function getServerSideProps(context) {
     try{
     const response = await axios.get(apiLinks.coupon,{params:{couponCode:context.query.couponcode}})
-    console.log()
     const {data} = response.data;
-    console.log(data)
     return { props: {data} };
     }
     catch(err){

@@ -51,7 +51,6 @@ export default function Page(props){
     const addToCart = (event,item)=>{
         event.stopPropagation();
         let cart = JSON.parse(sessionStorage.getItem("cart"))
-        console.log(cart)
 
         if(cart !== null){
         if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}

@@ -62,7 +62,6 @@ export default function BlogUpdateWindow(props) {
         formData.append("content",tempData.content ||"")
         const result = await axios.post(apiLinks.adminPostBlog,formData)
         if(result.status === 200){
-            console.log(result.data)
             setBlogDetails(result.data)
             toast("Blog Updated Successfully!!")
             setContentEditor(true)
@@ -111,7 +110,6 @@ export default function BlogUpdateWindow(props) {
                         <FormGroup >
                             <Input size="sm" type="checkbox" id="isVideoBlog" onChange={(event)=>{setVideoCheckBox(true)}}></Input>
                             <Label for="isVideoBlog"> Video Blog</Label>
-                            {/* <h1>console.log(videoCheckBox)</h1> */}
                         </FormGroup>
                     </Col>
                     </Row>
@@ -145,13 +143,13 @@ export default function BlogUpdateWindow(props) {
                     <Col>
                     <FormGroup>
                         <Label for="blogVideo">Video File</Label>
-                        {videoCheckBox?<Input size="sm" id="blogVideo" onChange={(event)=>{setVideoFile(event.target.files[0]); setVideoCheckBox(false); console.log(event.target.files)}} type="file" placeholder="Blog Video"></Input>:<Input size="sm" id="blogVideo" type="file" disabled></Input>}
+                        {videoCheckBox?<Input size="sm" id="blogVideo" onChange={(event)=>{setVideoFile(event.target.files[0]); setVideoCheckBox(false);}} type="file" placeholder="Blog Video"></Input>:<Input size="sm" id="blogVideo" type="file" disabled></Input>}
                     </FormGroup>
                     </Col>
                     <Col>
                     <FormGroup>
                         <Label for="imageFiles">Image Files</Label>
-                        <Input size="sm" id="imageFiles" multiple onChange={(event)=>{setBlogImages(event.target.files); console.log(event.target.files)}} type="file" placeholder="Blog Images">
+                        <Input size="sm" id="imageFiles" multiple onChange={(event)=>{setBlogImages(event.target.files);}} type="file" placeholder="Blog Images">
                         </Input>
                     </FormGroup>
                     </Col>

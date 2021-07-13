@@ -8,9 +8,7 @@ const CouponCodeData = (props) => {
     const [giftedTest, setGiftedTest] = useState();
     const getCouponData = async(couponCode) => {
         try {
-            console.log(couponCode)
             const giftedTestData =  await axios.get(apiLinks.coupon,{params:{couponCode}})
-            console.log(giftedTestData)
             if(giftedTestData.status === 200) {
                 setGiftedTest(giftedTestData.data)
             }

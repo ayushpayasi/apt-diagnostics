@@ -16,6 +16,11 @@ import AdminTestsTable from "../../components/adminteststable.component"
 import AdminBlogsTable from '../../components/adminblogstable.component';
 import BlogUpdateWindow from '../../components/admin/blogUpdateWindow.component';
 import BlogInsertWindow from '../../components/admin/blogInsertWindow.component';
+import Edit from '@material-ui/icons/Edit';
+import { toast } from 'react-toastify';
+import exportFromJSON from 'export-from-json'
+
+
 
 
 export default function Index() {
@@ -33,37 +38,132 @@ export default function Index() {
     const [testToUpdate,setTestToUpdate] = useState(0);
     const [organToUpdate,setOrganToUpdate] = useState(0);
     const [blogToUpdate,setBlogToUpdate] = useState(-1);
-
+    const [fleboCount,setFleboCount] = useState(0)
 
 
     const fetchPackageList = async ()=>{
+        try{
         const result = await axios.get(apiLinks.adminPackageList)
         if (result.status === 200){
             setPackageList(result.data)
         }
+        }catch(err){
+            console.log(err)
+    }
     }
 
     const fetchTestList = async ()=>{
+        try{
         const result = await axios.get(apiLinks.adminTestList)
         if (result.status === 200){
             setTestList(result.data)
         }
+        }catch(err){
+            console.log(err)
+    }
     }
 
     const fetchBlogList = async ()=>{
+        try{
         const result = await axios.get(apiLinks.adminBlogList)
-        console.log(result)
         if(result.status === 200){
             setBlogList(result.data)
         }
     }
+    catch(err){
+        console.log(err)
+    }
+    }
 
+    const fetchFlebo = async ()=>{
+        try{
+            const result = await axios.get(apiLinks.getFlebo)
+            if(result.status === 200){
+                document.getElementById("fleboCount").value = result.data.flebo
+                setFleboCount(result.data.flebo)
+            }
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
 
+    const fleboChangeHandler = async() =>{
+        try{
+            const flebo = document.getElementById("fleboCount").value
+            const result = await axios.post(apiLinks.setFlebo,{"newFlebo":flebo,"currFlebo":fleboCount})
+            if(result.status === 200){
+                toast("Flebo Count Updated!")
+            }
+        }
+        catch(err){
+            toast("failed to update flebo count!")
+            console.log(err)
+        }
+    }
+
+    const downloadSubscriberList =async ()=>{
+    try{
+        const result = await axios.get(apiLinks.getSubscriber)
+        if (result.status === 200){
+            const data = result.data            
+            const fileName = 'subscriberList'
+            const exportType =  exportFromJSON.types.csv
+            exportFromJSON({ data, fileName, exportType })
+        }
+    }catch(err){
+        console.log(err)
+    }
+    }
+
+    const downloadUserList = async ()=>{
+        try{
+            const result = await axios.get(apiLinks.getUserList)
+            if (result.status === 200){
+                const data = result.data            
+                const fileName = 'userList'
+                const exportType =  exportFromJSON.types.csv
+                exportFromJSON({ data, fileName, exportType })
+            }
+        }catch(err){
+            console.log(err)
+        }
+        }
+
+        const downloadContactusData = async ()=>{
+            try{
+                const result = await axios.get(apiLinks.downloadContactusData)
+                if (result.status === 200){
+                    const data = result.data.data            
+                    const fileName = 'contactusData'
+                    const exportType =  exportFromJSON.types.csv
+                    exportFromJSON({ data, fileName, exportType })
+                }
+            }catch(err){
+                console.log(err)
+            }
+            }
+
+        const downloadFeedbackData = async ()=>{
+            try{
+                const result = await axios.get(apiLinks.downloadFeedbackData)
+                if (result.status === 200){
+                    const data = result.data.data            
+                    const fileName = 'FeedbackData'
+                    const exportType =  exportFromJSON.types.csv
+                    exportFromJSON({ data, fileName, exportType })
+                }
+
+            }catch(err){
+                console.log(err)
+            }
+            }
 
     useEffect(()=>{
         fetchPackageList()
         fetchTestList()
         fetchBlogList()
+        fetchFlebo()
     },[])
 
 
@@ -202,6 +302,66 @@ export default function Index() {
                                     <AdminBlogsTable blogList={blogList} blogToUpdate={setBlogToUpdate} updateWindow={setBlogUpdateWindow}/>
                                 </Col>
                             </Row>
+                        </div>
+                        <div style={{display:(currentContainer === "adminContent6")?"block":"none"}} id="adminContent6" className="admin-content admin-content6">
+                            <Card>
+                                <CardBody>
+                                <Row>
+                                    <Col md="6">
+                                        <FormGroup>
+                                            <Label for="fleboCount">Flebo</Label>
+                                            <Input size="sm" id="fleboCount" placeHolder="Flebo"></Input>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md="6">
+                                        <Button onClick={()=>{fleboChangeHandler()}}>Save</Button>
+                                    </Col>
+                                </Row>
+                                </CardBody>
+                            </Card>
+                            <Row>
+                                <Col>
+                                <Card>
+                                <CardBody>
+                                    <CardTitle>Download Subscribers List</CardTitle>
+                                    <Button onClick={()=>{downloadSubscriberList()}}>Download Subscribers List</Button>
+                                </CardBody>
+                                </Card>
+                                </Col>
+                                <Col>
+                                <Card>
+                                <CardBody>
+                                    <CardTitle>Download Users List</CardTitle>
+                                    <Button onClick={()=>{downloadUserList()}}>Download Users List</Button>
+                                </CardBody>
+                                </Card>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                <Card>
+                                <CardBody>
+                                    <CardTitle>Download Feedback Data</CardTitle>
+                                    <Button onClick={()=>{downloadFeedbackData()}}>Download Feedback Data</Button>
+                                </CardBody>
+                                </Card>
+                                </Col>
+                                <Col>
+                                <Card>
+                                <CardBody>
+                                    <CardTitle>Download Contact Us Data</CardTitle>
+                                    <Button onClick={()=>{downloadContactusData()}}>Download Contactus Data</Button>
+                                </CardBody>
+                                </Card>
+                                </Col>
+                            </Row>
+                        </div>
+                        <div style={{display:(currentContainer === "adminContent7")?"block":"none"}} id="adminContent7" className="admin-content admin-content7">
+                            <Card>
+                                <CardBody>
+
+                                </CardBody>
+                            </Card>
                         </div>
                     </Container>
                     </div>

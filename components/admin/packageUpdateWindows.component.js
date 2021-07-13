@@ -65,9 +65,6 @@ export default function PackageUpdateWindow(props) {
         formData.append("packageId",`${tempDetails.packageId}`)
         formData.append("testsIncluded",`${JSON.stringify(tempDetails.testsIncluded)}`)
         formData.append("oldImg",tempDetails.image)
-        for (var key of formData.entries()){
-            console.log(key)
-        }
         const response = await axios.post(apiLinks.adminPostPackage,formData,{headers:{"Content-type": "multipart/form-data"}})
         if(response.status === 200){
             toast("package Updated!")
@@ -86,14 +83,12 @@ export default function PackageUpdateWindow(props) {
     }
 
     const fillPreReq= ()=>{
-        console.log(preRequisites)
         document.getElementById("preReqField1").value = preRequisites[0]||""
         document.getElementById("preReqField2").value = preRequisites[1]||""
         document.getElementById("preReqField3").value = preRequisites[2]||""
     }
 
     const fillIdealFor= ()=>{
-        console.log(preRequisites)
         document.getElementById("idealForField1").value = packageIdealFor[0]||""
         document.getElementById("idealForField2").value = packageIdealFor[1]||""
         document.getElementById("idealForField3").value = packageIdealFor[2]||""
@@ -102,11 +97,10 @@ export default function PackageUpdateWindow(props) {
     const fetchData = async()=>{
         try{
         const result = await axios.get(apiLinks.adminGetPackageById,{params:{Id:props.packageToUpdate}})
-        console.log(result.data)
             setPackageDetails(result.data)
         }   
-        catch(e){
-            console.log(e)
+        catch(err){
+            console.log(err)
         }
     }
 

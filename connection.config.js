@@ -1,5 +1,5 @@
 export const apiLinks = {
-    baseUrl:"http://localhost:5000/"
+    baseUrl:"http://13.232.169.82:5000/"
 }
 
 apiLinks.priceList = apiLinks.baseUrl+"priceList"
@@ -18,3 +18,12 @@ apiLinks.adminInsertBlogContent = apiLinks.baseUrl+"admin/insertBlogContent"
 apiLinks.blogData = apiLinks.baseUrl+"getAllBlogs"
 apiLinks.coupon = apiLinks.baseUrl+"coupon"
 apiLinks.getCovidTests = apiLinks.baseUrl+"getCovidTests"
+apiLinks.getFlebo = apiLinks.baseUrl+"getFlebo"
+apiLinks.setFlebo = apiLinks.baseUrl+"setFlebo"
+apiLinks.getSubscriber = apiLinks.baseUrl+"admin/getSubscribers"
+apiLinks.getUserList = apiLinks.baseUrl+"admin/fetchUserList"
+apiLinks.postFeedback = apiLinks.baseUrl+"postFeedback"
+apiLinks.contactus = apiLinks.baseUrl+"postContactus"
+apiLinks.downloadContactusData = apiLinks.baseUrl+"admin/fetchContactus"
+apiLinks.downloadFeedbackData = apiLinks.baseUrl+"admin/fetchFeedbacks"
+apiLinks.getPackages = apiLinks.baseUrl+"getPackages"

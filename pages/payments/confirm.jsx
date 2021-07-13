@@ -53,8 +53,6 @@ export default function Confirm() {
       function getLocation() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition((position)=>{
-            console.log(position.coords.latitude)
-            console.log(position.coords.longitude)
           },(err)=>{console.log(err)});
         } else { 
           console.log("not active")

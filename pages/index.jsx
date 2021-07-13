@@ -48,21 +48,74 @@ import 'reactjs-popup/dist/index.css';
 
 
 
-const Modal = () => (
-    <Popup trigger={<button className="button"> Open Modal </button>} modal>
-      <span> Modal content </span>
-    </Popup>
-  );
+const getTestListData = async ()=>{
+    try{
+        const response = await axios.get(apiLinks.priceList,{params:{coupon:"priceList"}})
+        if (response.data[0].code === 200){
+            return Object.values(response.data[1])
+        }
+        else{
+            return []
+        }
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+const getCovidTestData = async ()=>{
+    try{
+        const covidTestsResponse = await axios.get(apiLinks.getCovidTests)
+    if(covidTestsResponse.data.code === 200){
+        return covidTestsResponse.data.data
+    }
+    else{
+        return []
+    }
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+const getPackagesData = async()=>{
+    try{
+        const packagesResponse = await axios.get(apiLinks.getPackages)
+        if(packagesResponse.data.code === 200){
+            return packagesResponse.data.data
+        }
+        else{
+            return []
+        }
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+export async function getServerSideProps(context) {
+    try{
+    return { props: {packages: await getPackagesData(),covidTests: await getCovidTestData(),testList: await getTestListData()} };
+    }
+    catch(err){
+        console.log(err)
+        return { props: {packages:[],covidTests:[],testList:[]} };
+    }
+  }
 
 
-export default function Home() {
-    const [testList,setTestList] = useState(null)
+
+
+
+export default function Home(props) {
+    const [testList,setTestList] = useState(props.testList)
     const [radioValue,setRadioValue] = useState(null);
     const [selectedTest,setSelectedTest] = useState(null);
     const [otpVerification,setOtpVerification] = useState(false);
     const [mobile,setMobile] = useState(null)
     const [downloadReport,setDownloadReport] = useState(true)
-    const [covidTests,setCovidTests] = useState(null)
+    const [covidTests,setCovidTests] = useState(props.covidTests)
+    const [packages,setPackages] = useState(props.packages)
     const router = useRouter()
 
     
@@ -99,7 +152,6 @@ export default function Home() {
     const bookAppointmentHandler = ()=>{
         const mobile = document.getElementById("appointmentBookingMobilenumber").value
         setMobile(mobile)
-        console.log()
         sessionStorage.setItem("directBooking",`${JSON.stringify({
             appointmentType : radioValue,
             test:selectedTest,
@@ -108,29 +160,12 @@ export default function Home() {
         
         setOtpVerification(true)
     }
-    const getData = async()=>{
-        try{
-        const response = await axios.get(apiLinks.priceList,{params:{coupon:"priceList"}})
-        if (response.data[0].code === 200){
-            setTestList(Object.values(response.data[1]))
-        }
-        const covidTestsResponse = await axios.get(apiLinks.getCovidTests)
-        console.log(covidTestsResponse.data.code)
-        if(covidTestsResponse.data.code === 200){
-            setCovidTests(covidTestsResponse.data.data)
-        }
-        
-    }
-        catch(err){
-            console.log(err)
-        }
-    }
 
 
 
     useEffect(() => {
 
-        getData()
+        // getData()
 
         const fadeInLeft = document.querySelectorAll(".ioleft")
         const fadeInRight = document.querySelectorAll(".ioright")
@@ -154,8 +189,6 @@ export default function Home() {
     const addToCart = (event,item)=>{
         event.stopPropagation();
         let cart = JSON.parse(sessionStorage.getItem("cart"))
-        console.log(cart)
-
         if(cart !== null){
         if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
         else{
@@ -365,7 +398,7 @@ export default function Home() {
                         </h2>
                     </Col>
                 </Row>
-                    <HealthCheckCarousel/>
+                    {packages === null? React.Fragment :<HealthCheckCarousel data={packages}/>}
                 </Container>
 {/* accreditations */}
                 {/* <div className="accreditations">

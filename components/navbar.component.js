@@ -49,7 +49,6 @@ const Navigation = (props) => {
       setPanelIsOpen(!panelIsOpen);
     }
     else{
-      console.log("enjoy")
       document.getElementById("left-panel").style.left = "0%"
       document.getElementById("panel-toggle-button").style.display = "none"
       setPanelIsOpen(!panelIsOpen);

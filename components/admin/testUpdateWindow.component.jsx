@@ -21,8 +21,6 @@ export default function TestUpdateWindow(props) {
         try{
         const response = await axios.get(apiLinks.checkAndFetchTestDetails,{params:{Id:document.getElementById("testId").value}})
         if(response.data.status === 200){
-            console.log(response.data.body)
-            // document.getElementById("")
             document.getElementById("testType").value = response.data.body.type
             document.getElementById("testName").value = response.data.body.name
             document.getElementById("testDescription").value = response.data.body.description
@@ -45,7 +43,6 @@ export default function TestUpdateWindow(props) {
     const saveTestDetails = async ()=>{
         try{
             let tempDetails = testDetails
-            console.log(tempDetails)
         let formData = new FormData();
         if(testImage === null){
         }
@@ -87,11 +84,10 @@ export default function TestUpdateWindow(props) {
     const fetchData = async()=>{
         try{
         const result = await axios.get(apiLinks.adminGetPackageById,{params:{Id:props.packageToUpdate}})
-        console.log(result.data)
             setPackageDetails(result.data)
         }   
-        catch(e){
-            console.log(e)
+        catch(err){
+            console.log(err)
         }
     }
 

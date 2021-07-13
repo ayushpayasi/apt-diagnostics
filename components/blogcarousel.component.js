@@ -12,7 +12,7 @@ import {
 export default function Example(props){
 
   const handleClick = () => {
-      console.log("Clicked")
+    
   }
 
   const [activeIndex, setActiveIndex] = useState(0);

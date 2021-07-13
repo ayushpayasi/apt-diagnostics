@@ -6,54 +6,12 @@ import {Container,Col,Row,Card,Button,Collapse,ListGroup,ListGroupItem,CardBody,
 import IconButton from "@material-ui/core/IconButton"
 import ArrowDownwardRounded from "@material-ui/icons/ArrowDownwardRounded"
 import NavBar from "../../components/navbar.component"
-
-const data=[
-    {name:"First",
-description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quae dicta mollitia eveniet fugiat perferendis.",
-testsIncluded:["Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit"],
-packagePrice:"2000",
-preRequisites:[`Lorem ipsum dolor sit Lorem ipsum dolor sit`,"Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-idealFor:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-},
-{name:"Second",
-description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quae dicta mollitia eveniet fugiat perferendis.",
-testsIncluded:["Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit"],
-packagePrice:"2000",
-preRequisites:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-idealFor:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-},
-{name:"Third",
-description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quae dicta mollitia eveniet fugiat perferendis.",
-testsIncluded:["Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit"],
-packagePrice:"2000",
-preRequisites:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-idealFor:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-},
-{name:"Fourth",
-description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quae dicta mollitia eveniet fugiat perferendis.",
-testsIncluded:["Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit"],
-packagePrice:"2000",
-preRequisites:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-idealFor:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-},
-{name:"Fifth",
-description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quae dicta mollitia eveniet fugiat perferendis.",
-testsIncluded:["Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit"],
-packagePrice:"2000",
-preRequisites:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-idealFor:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-},
-{name:"Sixth",
-description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quae dicta mollitia eveniet fugiat perferendis.",
-testsIncluded:["Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit","Lorem ipsum dolor sit"],
-packagePrice:"2000",
-preRequisites:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-idealFor:["Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit","Lorem ipsum dolor sit Lorem ipsum dolor sit"],
-}
-]
+import axios from 'axios'
+import {apiLinks} from "../../connection.config"
 
 export const getStaticPaths = async ()=>{
-    const paths = data.map(item=>{
+    const result = await axios.get(apiLinks.getPackages)
+    const paths = result.data.data.map(item=>{
         return{
             params:{name:item.name}
         }
@@ -64,10 +22,11 @@ export const getStaticPaths = async ()=>{
     }
 }
 
-export const getStaticProps =(context)=>{
+export const getStaticProps = async (context)=>{
+    const result = await axios.get(apiLinks.getPackages)
     const currName = context.params.name
     let dataLi = {}
-    for(let i of data){
+    for(let i of result.data.data){
         if (i.name == currName){
             dataLi = i
             break
@@ -80,6 +39,23 @@ export const getStaticProps =(context)=>{
 }
 
 export default function Display({details}) {
+
+        
+    const addToCart = (event,item)=>{
+        event.stopPropagation();
+        let cart = JSON.parse(sessionStorage.getItem("cart"))
+
+        if(cart !== null){
+        if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
+        else{
+            cart.push(item)
+            sessionStorage.setItem("cart",JSON.stringify(cart))
+        }
+    }else{
+        sessionStorage.setItem("cart",JSON.stringify([item]))
+    }
+    }
+
 
     const fillIncludedTests = ()=>{
         return details.testsIncluded.map((item,index)=>{
@@ -108,14 +84,14 @@ export default function Display({details}) {
             </div>
         )
     }
-    const paramsIconGenerator = ()=>{
+    const paramsIconGenerator = (data)=>{
         return (
             <div className="iconGenerator">
                 <Row>
                     <Col xs="3"><img className = "test-included" src="/svg/aptIcons/light/tests_included.svg" alt="icon"/></Col>
                     <Col xs="9">
                     <Row><Col ><h4>Tests Includes</h4></Col></Row>
-                    <Row><Col ><h5>25 Parameter</h5></Col></Row>
+                    <Row><Col ><h5>{data} Parameter</h5></Col></Row>
                     </Col>
                 </Row>
             </div>
@@ -143,7 +119,7 @@ export default function Display({details}) {
                 </Row>
                 <Row>
                     <Col>
-                        <Button className="testdetails-button"> Book Now</Button>
+                        <Button onClick={(event)=>{addToCart(event,details)}} className="testdetails-button"> Book Now</Button>
                     </Col>
                 </Row>
                 </Col>
@@ -161,7 +137,7 @@ export default function Display({details}) {
                                 </CardText>
                                 <Row>
                                     <Col>{idealForIconGenerator()}</Col>
-                                    <Col>{paramsIconGenerator()}</Col>
+                                    <Col>{paramsIconGenerator(details.testsIncluded.length)}</Col>
                                 </Row>
                             </CardBody>
                         </Card>
@@ -234,11 +210,6 @@ export default function Display({details}) {
                     </Col>
                 </Row>
             </Row>
-            {/* <Row>
-                <Col sm="6">
-                   <h2 className="h2"> {details.description} </h2>
-                </Col>
-            </Row> */}
             
         </Container>
       
