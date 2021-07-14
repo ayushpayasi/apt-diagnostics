@@ -4,151 +4,115 @@ import {Row,Col,Container,List, Link} from "reactstrap"
 import "../assets/css/sliderwithdetails.scss"
 import Button from '@material-ui/core/Button';
 
-import { CSSTransition ,SwitchTransition } from 'react-transition-group';
 
 
-export default function SliderDetails() {
+export default function SliderDetails(props) {
     const [currSlide,setCurrSlide] = useState(0);
 
-    const data = [{
-        name:"Heart",
-        symptoms:"A feeling of indigestion,Anxiety and restlessness,Backache,Difficulty feeding and poor weight gain in infants,Erectile dysfunction,Fatigue,Mild, transient shortness of breath with exertion,Mild weakness and feeling lightheaded,Nausea and vomiting,Pain, numbness, and mild swelling in the feet and ankles,Pale skin with or without sweating,Wet cough",
-        tests:[
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },
-        ]
+    const data = [
+        {
+        name:"Allergy",
+        symptoms:"Dust and pollen, a blocked or congested nose, itchy eyes and nose, a runny nose, swollen and watery eyes, a cough",
+        tests:[]
     },{
-        name:"Liver",
-        symptoms:"fever, tiredness or weakness, yellowing of the skin and eyes(known as jaundice) ,dark urine ,pale stool ,nausea and vomiting ,pain under the ribs on the right side of the body",
-        tests:[
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },,
-            {
-                name:"Lorem ipsum",
-            },
-        ]
-    },
-        {name:"Brain",
+        name:"Brain",
         symptoms:"headaches, seizures, numbness or tingling in your arms or legs, nausea, vomiting, changes in personality, difficulty with movement or balance, changes in your hearing or speech or vision",
-        tests:[
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },
-        ]
+        tests:[]
     },{
         name:"Reproductive System",
         symptoms:"Abdominal or pelvic mild discomfort, Frequent urination, A feeling of urgency to urinate, Feeling of abdominal or pelvic pressure, Tenderness, Intense pain in the bladder or pelvic region",
-        tests:[
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },
-        ]
+        tests:[]
     },{
-        name:"Lungs",
-        symptoms:"Difficulty in Breathing, Stubborn Cough, Breathing Noisily, Lingering Chest Pain, Chronic Mucus, Coughing Up Blood",
-        tests:[
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },,
-            {
-                name:"Lorem ipsum",
-            },
-        ]
+        name:"Heart",
+        symptoms:"A feeling of indigestion,Anxiety and restlessness,Backache,Difficulty feeding and poor weight gain in infants,Erectile dysfunction,Fatigue,Mild, transient shortness of breath with exertion,Mild weakness and feeling lightheaded,Nausea and vomiting,Pain, numbness, and mild swelling in the feet and ankles,Pale skin with or without sweating,Wet cough",
+        tests:[]
     },{
         name:"kidney",
         symptoms:"Decreased urine output, Fluid retention- causing swelling in your legs or ankles or feet, Shortness of breath, Fatigue, Confusion, Nausea, Weakness, Irregular heartbeat",
-        tests:[
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },
-        ]
+        tests:[]
     },{
-        name:"Thyroid Gland",
-        symptoms:"High Heart Rate,Excessive Tiredness, Anxiety, Weight Gain or Loss, Body Shakes, Feeling Chilly or Overheated, Trouble Concentrating, Hair Loss",
-        tests:[
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },,
-            {
-                name:"Lorem ipsum",
-            },
-        ]
+        name:"Liver",
+        symptoms:"fever, tiredness or weakness, yellowing of the skin and eyes(known as jaundice) ,dark urine ,pale stool ,nausea and vomiting ,pain under the ribs on the right side of the body",
+        tests:[]
     },{
-        name:"Allergy",
-        symptoms:"Dust and pollen, a blocked or congested nose, itchy eyes and nose, a runny nose, swollen and watery eyes, a cough",
-        tests:[
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },
-        ]
+        name:"Lungs",
+        symptoms:"Difficulty in Breathing, Stubborn Cough, Breathing Noisily, Lingering Chest Pain, Chronic Mucus, Coughing Up Blood",
+        tests:[]
     },{
         name:"Vitamins",
         symptoms:"Brittle hair and nails ( vitamin B7 deficiency), Mouth ulcers or cracks in the corners of the mouth( vitamin B deficiency), Bleeding gums( vitamin C deficiency), Poor night vision and white growths on the eyes( vitamin A deficiency), Scaly patches and dandruff Hair loss, Red or white bumps on skin, Restless leg syndrome( iron deficiency)",
-        tests:[
-            {
-                name:"Lorem ipsum",
-            },
-            {
-                name:"Lorem ipsum",
-            },,
-            {
-                name:"Lorem ipsum",
-            },
+        tests:[]
+    },{
+        name:"Vitamins",
+        symptoms:"Brittle hair and nails ( vitamin B7 deficiency), Mouth ulcers or cracks in the corners of the mouth( vitamin B deficiency), Bleeding gums( vitamin C deficiency), Poor night vision and white growths on the eyes( vitamin A deficiency), Scaly patches and dandruff Hair loss, Red or white bumps on skin, Restless leg syndrome( iron deficiency)",
+        tests:[]
+    },{
+        name:"Thyroid",
+        symptoms:"High Heart Rate,Excessive Tiredness, Anxiety, Weight Gain or Loss, Body Shakes, Feeling Chilly or Overheated, Trouble Concentrating, Hair Loss",
+        tests:[]
+    }
         ]
-    }]
+
+    for (var i of props.testList){
+        switch (i.testCode){
+            case "Allergy":
+                data[0].tests.push({name:`${i.testName}`,data:i})
+                break;
+            case "Brain":
+                data[1].tests.push({name:`${i.testName}`,data:i})
+                break;
+            case "Reproductive System":
+                data[2].tests.push({name:`${i.testName}`,data:i})
+                break;
+            case "Heart":
+                data[3].tests.push({name:`${i.testName}`,data:i})
+                break;
+            case "Kidney":
+                data[4].tests.push({name:`${i.testName}`,data:i})
+                break;
+            case "Liver":
+                data[5].tests.push({name:`${i.testName}`,data:i})
+                break;
+            case "Lungs":
+                data[6].tests.push({name:`${i.testName}`,data:i})
+                break;
+            case "Vitamins":
+                data[7].tests.push({name:`${i.testName}`,data:i})
+                break;
+            case "Thyroid":
+                data[9].tests.push({name:`${i.testName}`,data:i})
+                break;
+        }
+    }
+    
+    // console.log(data)
+
+        
+    const addToCart = (event,item)=>{
+        event.stopPropagation();
+        let cart = JSON.parse(sessionStorage.getItem("cart"))
+        if(cart !== null){
+        if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
+        else{
+            cart.push(item)
+            sessionStorage.setItem("cart",JSON.stringify(cart))
+        }
+    }else{
+        sessionStorage.setItem("cart",JSON.stringify([item]))
+    }
+    }
+
+
 
     const cards = (item)=>{
 
         return(
-            <Row>
-                <Col className="align-center-column mt-1 mb-1 ioright">
-                <div className="centermode-testcard">
-                    <div>{item.name}</div>
-                    <span onClick={()=>{}}>Book</span>
-                </div>
+                <Col className="align-center-column mt-1 mb-1" sm="6" md="6">
+                    <div className="centermode-testcard">
+                        <div>{item.name}</div>
+                        <span onClick={(event)=>{addToCart(event,item.data)}}>Book</span>
+                    </div>
                 </Col>
-                <Col className="align-center-column mt-1 mb-1 ioright">
-                <div className="centermode-testcard">
-                    <div>{item.name}</div>
-                    <span onClick={()=>{}}>Book</span>
-                </div>
-                </Col>
-            </Row>
             
         )
     }
@@ -170,25 +134,12 @@ export default function SliderDetails() {
                     <CenterMode setSlide={setCurrSlide}/>            
                 </Col>
             </Row>
-            {/* <SwitchTransition>
-          <CSSTransition
-            key={currSlide}
-            timeout={500}
-            classNames="messagefade"
-          > */}
             <Row>
                 <Col >
                     <h4 className="text-center card-title mt-4 mb-4 iofade color">{data[currSlide].name}</h4>
                 </Col>
             </Row>
-            {/* </CSSTransition></SwitchTransition> */}
             <Container className="border mb-4" fluid>
-            {/* <SwitchTransition>
-          <CSSTransition
-            key={currSlide}
-            timeout={500}
-            classNames="messagefade"
-          > */}
             
             <Row >
                 <Col md="6">
@@ -220,28 +171,18 @@ export default function SliderDetails() {
                     </Row>
                     <Row>
                         <Col>
-                        
+                        <Row>
                         {data[currSlide].tests.map(item=>cards(item))}
+                        </Row>
                         </Col>
                     </Row>
                 </Col>
             </Row>
-            {/* </CSSTransition> */}
-            
-            {/* </CSSTransition></SwitchTransition> */}
-              
-            {/* <SwitchTransition>
-          <CSSTransition
-            key={currSlide}
-            timeout={500}
-            classNames="messagefade"
-          > */}
             <Row>
                 <Col className="align-center-column mt-4 mb-4 iofade">
                     <Button color="primary" href={`/diagnostics/${data[currSlide].name.split(" ").join("").toLowerCase()}`} variant="contained" >Want to Know More!</Button>
                 </Col>
             </Row>
-            {/* </CSSTransition></SwitchTransition> */}
             </Container>
         </div>
     )

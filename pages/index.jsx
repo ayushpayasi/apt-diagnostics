@@ -12,39 +12,25 @@ import{Container,
     CardSubtitle,
     Label} from "reactstrap"
 import ImgCarousel from "../components/carousel.component"
-// import Card from "@material-ui/core/Card"
-// import CardActionArea from "@material-ui/core/CardActionArea"
-// import CardActions from "@material-ui/core/CardActions"
 import "../assets/css/index.scss"
 import NavBar from "../components/navbar.component"
-import {isMobile} from "react-device-detect";
-import MobileMenu from "../components/mobilemenu.component"
-// import Subscribe from "../components/subscribe.component"
-// import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
-// import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
-// import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import ClientCaptcha from "react-client-captcha";
 import RadioGroup from '@material-ui/core/RadioGroup'
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
-// import CenterMode from "../components/centermodecarousel.component"
 import SliderDetails from "../components/sliderdetails.component"
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button  from "@material-ui/core/Button"
-import CallIcon from '@material-ui/icons/Call';
 import "../assets/css/animate.scss";
 import Blog from "../components/blog.component"
-import BigBlog from "../components/bigblog.component"
 import HealthCheckCarousel from "../components/healthcheckcarousel.component"
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Footer from "../components/footer.component"
 import {apiLinks} from "../connection.config"
 import axios from 'axios'
 import {useRouter} from "next/router"
-import DownloadReportLightbox from '../components/lightbox/downloadreport.component'
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+
 
 
 
@@ -387,7 +373,7 @@ export default function Home(props) {
                 </Container>
 {/* organ slider */}
                 <Container>
-                    <SliderDetails/>
+                    <SliderDetails testList={testList}/>
                 </Container>
 {/* packages carousel */}
                 <Container>

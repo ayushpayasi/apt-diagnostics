@@ -271,7 +271,7 @@ const Navigation = (props) => {
             <a href="#">Order Medicines <span className="shining_text">coming soon</span></a>
             </Col>  
               <Col className="align-center-row">
-                <img className="login-icon" src = "/svg/aptIcons/light/login.svg" /> <a className="p0 m0">Login/Download Reports</a>
+                <img className="login-icon" src = "/svg/aptIcons/light/login.svg" /> <a href="/login" className="p0 m0">Login/Download Reports</a>
               </Col>
             </Row>
           </Col>
