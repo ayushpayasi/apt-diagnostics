@@ -10,7 +10,7 @@ export default function PackageUpdateWindow(props) {
     const[packageDetails,setPackageDetails] = useState();
     const[testIncluded,setTestIncluded] = useState([]);
     const[preRequisites,setPreRequisites] = useState([]);
-    const[packageIdealFor,setPackageIdealFor] = useState([]);
+    const[testIDealFor,setPackageIdealFor] = useState([]);
     const[image,setImage] = useState(null);
 
     const clearAllState =()=>{
@@ -23,13 +23,13 @@ export default function PackageUpdateWindow(props) {
 
     const fillDetails = async()=>{                      
         try{
-        const response = await axios.get(apiLinks.checkAndFetchPackageDetails,{params:{Id:document.getElementById("packageId").value}})
+        const response = await axios.get(apiLinks.checkAndFetchPackageDetails,{params:{Id:document.getElementById("testID").value}})
         if(response.data.status === 200){
             // document.getElementById("")
             document.getElementById("packageType").value = response.data.body.type
-            document.getElementById("packageName").value = response.data.body.name
+            document.getElementById("packageName").value = response.data.body.testName
             document.getElementById("packageDescription").value = response.data.body.description
-            document.getElementById("packagePrice").value = response.data.body.packagePrice
+            document.getElementById("testAmount").value = response.data.body.testAmount
             document.getElementById("packageFeatured").checked = response.data.body.isSpecial
             setTestIncluded(response.data.body.testsIncluded)
             setPreRequisites(response.data.body.preRequisites)
@@ -56,13 +56,13 @@ export default function PackageUpdateWindow(props) {
             formData.append("image", image, image.name)
         }
         formData.append("preRequisites",`${JSON.stringify(preRequisites)}`)
-        formData.append("idealFor",`${JSON.stringify(packageIdealFor)}`)
+        formData.append("idealFor",`${JSON.stringify(testIDealFor)}`)
         formData.append("isSpecial",`${document.getElementById("packageFeatured").checked}`)
         formData.append("type",`${tempDetails.type}`)
-        formData.append("name",`${tempDetails.name}`)
+        formData.append("testName",`${tempDetails.testName}`)
         formData.append("description",`${document.getElementById("packageDescription").value}`)
-        formData.append("packagePrice",`${tempDetails.packagePrice}`)
-        formData.append("packageId",`${tempDetails.packageId}`)
+        formData.append("testAmount",`${tempDetails.testAmount}`)
+        formData.append("testID",`${tempDetails.testID}`)
         formData.append("testsIncluded",`${JSON.stringify(tempDetails.testsIncluded)}`)
         formData.append("oldImg",tempDetails.image)
         const response = await axios.post(apiLinks.adminPostPackage,formData,{headers:{"Content-type": "multipart/form-data"}})
@@ -89,9 +89,9 @@ export default function PackageUpdateWindow(props) {
     }
 
     const fillIdealFor= ()=>{
-        document.getElementById("idealForField1").value = packageIdealFor[0]||""
-        document.getElementById("idealForField2").value = packageIdealFor[1]||""
-        document.getElementById("idealForField3").value = packageIdealFor[2]||""
+        document.getElementById("idealForField1").value = testIDealFor[0]||""
+        document.getElementById("idealForField2").value = testIDealFor[1]||""
+        document.getElementById("idealForField3").value = testIDealFor[2]||""
     }
 
     const fetchData = async()=>{
@@ -109,7 +109,7 @@ export default function PackageUpdateWindow(props) {
     }
 
     useEffect(() => {
-        document.getElementById("packageId").value = props.packageToUpdate
+        document.getElementById("testID").value = props.packageToUpdate
         fetchData()    
 
     }, [])
@@ -161,8 +161,8 @@ export default function PackageUpdateWindow(props) {
                         <Row>
                             <Col xs="4">
                             <FormGroup>
-                                    <Label for="packageId"> Package ID</Label>
-                                    <Input size="sm" id="packageId" placeholder="Package Id"></Input>
+                                    <Label for="testID"> Package ID</Label>
+                                    <Input size="sm" id="testID" placeholder="Package Id"></Input>
                                 </FormGroup>                                
                             </Col>
                             <Col xs="4" style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
@@ -203,8 +203,8 @@ export default function PackageUpdateWindow(props) {
                             </Col>
                             <Col>
                             <FormGroup>
-                                <Label for="packagePrice">Package Price</Label>
-                                <Input size="sm" id="packagePrice" disabled placeholder="Package Price">
+                                <Label for="testAmount">Package Price</Label>
+                                <Input size="sm" id="testAmount" disabled placeholder="Package Price">
                                 </Input>
                             </FormGroup>
                             </Col>

@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState, useRef} from 'react'
 import{Container,
     Col,
     Row,
@@ -94,6 +94,7 @@ export async function getServerSideProps(context) {
 
 
 export default function Home(props) {
+    let navRef = useRef(null);
     const [testList,setTestList] = useState(props.testList)
     const [radioValue,setRadioValue] = useState(null);
     const [selectedTest,setSelectedTest] = useState(null);
@@ -147,6 +148,56 @@ export default function Home(props) {
         setOtpVerification(true)
     }
 
+    
+const items = [
+    {
+      src: "images/packages/corporate.jpg",
+      altText: 'Slide 1',
+      caption: 'Slide 1'
+    },
+    {
+      src: "images/packages/body_building.jpg",
+      altText: 'Slide 2',
+      caption: 'Slide 2'
+    },
+    {
+      src: "images/packages/diabetes.jpg",
+      altText: 'Slide 3',
+      caption: 'Slide 3'
+    },
+    
+    {
+      src: "images/packages/flu.jpg",
+      altText: 'Slide 3',
+      caption: 'Slide 3'
+    },
+    {
+      src: "images/packages/frontline_workers.jpg",
+      altText: 'Slide 3',
+      caption: 'Slide 3'
+    },
+    {
+      src: "images/packages/home.jpg",
+      altText: 'Slide 3',
+      caption: 'Slide 3'
+    },
+    {
+      src: "images/packages/pregnancy.jpg",
+      altText: 'Slide 3',
+      caption: 'Slide 3'
+    },
+    {
+      src: "images/packages/test.jpg",
+      altText: 'Slide 3',
+      caption: 'Slide 3'
+    },
+    {
+      src: "images/packages/womanhood.jpg",
+      altText: 'Slide 3',
+      caption: 'Slide 3'
+    }
+  ];
+  
 
 
     useEffect(() => {
@@ -179,6 +230,7 @@ export default function Home(props) {
         if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
         else{
             cart.push(item)
+            props.updateCartValue(cart.length)
             sessionStorage.setItem("cart",JSON.stringify(cart))
         }
     }else{
@@ -189,7 +241,7 @@ export default function Home(props) {
 
     return (<React.Fragment>
 
-                <NavBar/>
+                <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
 {/* otp window */}
                 {otpVerification?<div className="otp-verification-window"><Card className="otp-verification-card">
                         <CardBody>
@@ -208,7 +260,7 @@ export default function Home(props) {
                 <Container className="mt-3" >
                     <Row>
                         <Col md="12" lg="8" className="mt-4 mb-4 ioleft">
-                            <ImgCarousel/>
+                            <ImgCarousel data={items}/>
                         </Col>
                         <Col lg="4" md="0" className="mt-4 mb-4">
                         <Row className="ml-1 mr-1"><Col>
@@ -360,9 +412,9 @@ export default function Home(props) {
                     </Col>
                 </Row>
                 <Row className="ml-2 mr-2"> 
-                {covidTests === null ? <React.Fragment/> : covidTests.map(item=><Col key={item.testId}>
-                        <Card onClick={()=>{location.href=`/covid/${item.testId}`}} className="test-card">
-                            <CardTitle className="text-center card-title mt-1">{item.name}</CardTitle>
+                {covidTests === null ? <React.Fragment/> : covidTests.map(item=><Col key={item.testID}>
+                        <Card onClick={()=>{location.href=`/covid/${item.testID}`}} className="test-card">
+                            <CardTitle className="text-center card-title mt-1">{item.testName}</CardTitle>
                             <CardBody >
                                 <CardText className="body-text">{item.details}</CardText>
                             <div className="align-center-row "><Button onClick={(event)=>{addToCart(event,item)}} variant="outlined" className="test-card-button">Book Test</Button></div></CardBody>
@@ -373,7 +425,7 @@ export default function Home(props) {
                 </Container>
 {/* organ slider */}
                 <Container>
-                    <SliderDetails testList={testList}/>
+                    <SliderDetails updateCartValue={props.updateCartValue} testList={testList}/>
                 </Container>
 {/* packages carousel */}
                 <Container>
@@ -384,7 +436,7 @@ export default function Home(props) {
                         </h2>
                     </Col>
                 </Row>
-                    {packages === null? React.Fragment :<HealthCheckCarousel data={packages}/>}
+                    {packages === null? React.Fragment :<HealthCheckCarousel updateCartValue={props.updateCartValue}  data={packages}/>}
                 </Container>
 {/* accreditations */}
                 {/* <div className="accreditations">

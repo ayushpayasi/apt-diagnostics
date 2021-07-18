@@ -5,7 +5,7 @@ import NavBar from "../components/navbar.component"
 export default function TermsConditions() {
     return (
         <>
-        <NavBar/>
+        <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
         <Container style={{overflow:"hidden"}} className="mt-5">
         <p><strong style={{fontSize:"1.2rem",background:"#0a4275",color:"#fff",padding:"5px",borderRadius:"5px"}}>Cookie Policy</strong></p>
 <p><strong>1.0 Introduction</strong></p>

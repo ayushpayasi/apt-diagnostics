@@ -70,7 +70,7 @@ export default function Contactus(props) {
 
     return (
         <>
-        <NavBar/>
+        <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
         <Container className="mt-5">
             <Card id="feedback">
                 <CardTitle className="text-center" style={{background:"#0a4275",color:"#fff",padding:"10px",fontSize:"1.2rem"}}>
@@ -83,7 +83,7 @@ export default function Contactus(props) {
                                 
                         <FormGroup>
                             <Label for="feedback_name">
-                                Name
+                                Name (नाम)
                             </Label>
                             <Input className="feedback_form_input" size="sm" type="text" id="feedback_name" placeholder="Name"></Input>
                         </FormGroup>
@@ -92,7 +92,7 @@ export default function Contactus(props) {
                             
                         <FormGroup>
                             <Label for="feedback_email">
-                                Email
+                                Email (ईमेल)
                             </Label>
                             <Input className="feedback_form_input" size="sm" type="text" id="feedback_email" placeholder="Email"></Input>
                         </FormGroup>
@@ -100,7 +100,7 @@ export default function Contactus(props) {
                         </Row>
                         <Row>
                             <Col xs="4">
-                                <Label for="feedback_type">Type</Label>
+                                <Label for="feedback_type">Type (प्रकार)</Label>
                                 <Input className="feedback_form_input" size="sm" type="select" id="feedback_type">
                                     <option>feedback</option>
                                     <option>feedback</option>
@@ -121,7 +121,7 @@ export default function Contactus(props) {
                             <Col>
                                 <FormGroup>
                                 <Label for="feedback_query">
-                                    Query
+                                    Query(सवाल)
                                 </Label>
                                 <Input className="feedback_form_input" size="sm" type="textarea" id="feedback_query" placeholder="Query"></Input>
                             </FormGroup>

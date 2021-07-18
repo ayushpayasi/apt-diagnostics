@@ -13,7 +13,7 @@ export const getStaticPaths = async ()=>{
     const result = await axios.get(apiLinks.getCovidTests)
     const paths = result.data.data.map(item=>{
         return{
-            params:{id:String(item.testId)}
+            params:{id:String(item.testID)}
         }
     })
     return{
@@ -33,7 +33,7 @@ export const getStaticProps = async (context)=>{
     let dataLi = {}
     const data = result.data.data
     for(let i of result.data.data){
-        if (i.testId == currId){
+        if (i.testID == currId){
             dataLi = i
             break
         }
@@ -56,6 +56,7 @@ export default function Page(props){
         if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
         else{
             cart.push(item)
+            props.updateCartValue(cart.length)
             sessionStorage.setItem("cart",JSON.stringify(cart))
         }
     }else{
@@ -75,7 +76,7 @@ const toggle =()=>{
                 <Col>
                 <Row>
                     <Col className="mt-5" >
-                        <h1 className="h1">{details.name}</h1>
+                        <h1 className="h1">{details.testName}</h1>
                     </Col>
                 </Row>
                 <Row>
@@ -108,7 +109,7 @@ const toggle =()=>{
                     <Col sm="8" >
                         <Row>
                             <Col className="ml-1">
-                                <h6>{details.name} </h6>
+                                <h6>{details.testName} </h6>
                             </Col>
                         </Row>
                         <Row>
@@ -117,7 +118,7 @@ const toggle =()=>{
                             </Col>
                         </Row>
                         <Row>
-                            <Col className="m-2"><h4>₹ {details.price} </h4></Col>
+                            <Col className="m-2"><h4>₹ {details.testAmount} </h4></Col>
                         </Row>
                         <Row>
                             <Col className="ml-1"><Button variant="outlined">BOOK NOW</Button></Col>
@@ -199,9 +200,9 @@ const toggle =()=>{
                     </Col>
                 </Row>
                 <Row className="ml-2 mr-2"> 
-                {props.data === null ? <React.Fragment/> : props.data.map(item=><Col key={item.testId}>
-                    <Card onClick={()=>{location.href=`/covid/${item.testId}`}} className="test-card">
-                            <CardTitle className="text-center card-title mt-1">{item.name}</CardTitle>
+                {props.data === null ? <React.Fragment/> : props.data.map(item=><Col key={item.testID}>
+                    <Card onClick={()=>{location.href=`/covid/${item.testID}`}} className="test-card">
+                            <CardTitle className="text-center card-title mt-1">{item.testName}</CardTitle>
                             <CardBody >
                                 <CardText className="body-text">{item.details}</CardText>
                             <div className="align-center-row "><Button onClick={(event)=>{addToCart(event,item)}} variant="outlined" className="test-card-button">Book Test</Button></div></CardBody>

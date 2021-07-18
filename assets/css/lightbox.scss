@@ -59,6 +59,32 @@
   } 
 }
 
+.lightbox-horizontal_sm{
+  position: relative;
+  top:50%;
+  left:50%;
+  height:150px;
+  width:300px;
+  transform: translate(-50%,-50%);
+  background: #fff;
+  box-shadow: 0px 0px 2px 3px #fff ;
+  z-index: 0;
+  .close{
+    cursor: pointer;
+    position: absolute;
+    color: #0a4275;
+    opacity: 1;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -1px;
+    z-index: 2;
+    top: -1px;
+    font-size: 24px;
+    border-radius: 18px;
+  }
+}
+
 .anchor_btn{
   background: #0a4275;
   padding:5px;

@@ -51,7 +51,7 @@ export default function Brain() {
         <React.Fragment>
             <div className="organ-image-holder">
                 <SmallNavBar color="white"/>
-                <img className="organ-image-desktop" src="/images/allergy_bg.jpg"></img>
+                <img className="organ-image-desktop" src="/images/organs_banner/brain.jpg"></img>
                 <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img>
                 <div className="diagnostics-pagetitle">
                     <h5>Brain - Symptoms,Diagnosis, Tests</h5>

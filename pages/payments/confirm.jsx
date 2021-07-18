@@ -263,7 +263,7 @@ export default function Confirm() {
     
     return (
         <>
-        <NavBar/>
+        <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
 
 
         {cartData === null ? <Loading/>: cartData.length === 0 ? <Container>

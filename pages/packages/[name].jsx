@@ -13,7 +13,7 @@ export const getStaticPaths = async ()=>{
     const result = await axios.get(apiLinks.getPackages)
     const paths = result.data.data.map(item=>{
         return{
-            params:{name:item.name}
+            params:{name:item.testName}
         }
     })
     return{
@@ -27,7 +27,7 @@ export const getStaticProps = async (context)=>{
     const currName = context.params.name
     let dataLi = {}
     for(let i of result.data.data){
-        if (i.name == currName){
+        if (i.testName == currName){
             dataLi = i
             break
         }
@@ -49,6 +49,7 @@ export default function Display({details}) {
         if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
         else{
             cart.push(item)
+            props.updateCartValue(cart.length)
             sessionStorage.setItem("cart",JSON.stringify(cart))
         }
     }else{
@@ -101,13 +102,13 @@ export default function Display({details}) {
     return (
         <>
         {/* <SmallNavbar/> */}
-        <NavBar/>
+        <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
         <Container className="mt-4">
             <Row>
                 <Col>
                 <Row>
                     <Col className="mt-5" >
-                        <h1 className="h1">{details.name}</h1>
+                        <h1 className="h1">{details.testName}</h1>
                     </Col>
                 </Row>
                 <Row>
@@ -128,7 +129,7 @@ export default function Display({details}) {
                     <Col className="mt-5">
                         <Card className="price-detail-card">
                             <CardBody>
-                                <CardTitle>{"₹ " +details.packagePrice}</CardTitle>
+                                <CardTitle>{"₹ " +details.testAmount}</CardTitle>
                                 <CardSubtitle>Package Ideal For</CardSubtitle>
                                 <CardText>
                                     <ListGroup>

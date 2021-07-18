@@ -8,7 +8,7 @@ export default function Custom404() {
     return (
         <>
         <div className="full-cover">
-        <NavBar/>
+        <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
         <Container className="holder404">
             <div class="dna">
   <div class="ele">

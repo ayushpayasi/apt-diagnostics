@@ -128,12 +128,12 @@ export default function AdminPackagesTable(props) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) =>
-            <TableRow key={row.name}>
+            <TableRow key={row.testName}>
               <TableCell scope="row">
-                {row.packageId}
+                {row.testID}
               </TableCell>
               <TableCell scope="row" >
-                {row.name}
+                {row.testName}
               </TableCell>
               <TableCell>
                 {row.description.substring(0,30)}
@@ -142,10 +142,10 @@ export default function AdminPackagesTable(props) {
                 {row.type}
               </TableCell>
               <TableCell align="right">
-              {row.packagePrice}
+              {row.testAmount}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                <IconButton size="small" onClick={()=>{props.packageToUpdate(row.packageId);props.updateWindow(true);}}><EditIcon/></IconButton>
+                <IconButton size="small" onClick={()=>{props.packageToUpdate(row.testID);props.updateWindow(true);}}><EditIcon/></IconButton>
               </TableCell>
             </TableRow>
           )}

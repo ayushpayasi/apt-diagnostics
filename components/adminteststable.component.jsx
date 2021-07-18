@@ -128,12 +128,12 @@ export default function AdminTestssTable(props) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) =>
-            <TableRow key={row.name}>
+            <TableRow key={row.testName}>
               <TableCell scope="row">
-                {row.testId}
+                {row.testID}
               </TableCell>
               <TableCell scope="row" >
-                {row.name}
+                {row.testName}
               </TableCell>
               <TableCell>
                 {row.description.substring(0,30)}
@@ -142,10 +142,10 @@ export default function AdminTestssTable(props) {
                 {row.type}
               </TableCell>
               <TableCell align="right">
-              {row.price}
+              {row.testAmount}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                <IconButton size="small" onClick={()=>{props.testToUpdate(row.testId);props.updateWindow(true);}}><EditIcon/></IconButton>
+                <IconButton size="small" onClick={()=>{props.testToUpdate(row.testID);props.updateWindow(true);}}><EditIcon/></IconButton>
               </TableCell>
             </TableRow>
           )}

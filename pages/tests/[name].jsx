@@ -9,78 +9,78 @@ import Card from "@material-ui/core/Card"
 
 const dataLi =[
     {
-        testId:"1",
+        testID:"1",
         name:"Test Name",
         description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
         imageLink:"images/bgcheck2.jpeg",
         sampleReportImage:"images/bgcheck3.jpg",
-        price:"200",
+        testAmount:"200",
         faq:[
             {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
             {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
             ]
     },
     {
-        testId:"2",
+        testID:"2",
         name:"Test Name",
         description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
         imageLink:"images/bgcheck2.jpeg",
         sampleReportImage:"images/bgcheck3.jpg",
-        price:"200",
+        testAmount:"200",
         faq:[
             {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
             {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
             ]
     },
     {
-        testId:"3",
+        testID:"3",
         name:"Test Name",
         description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
         imageLink:"images/bgcheck2.jpeg",
         sampleReportImage:"images/bgcheck3.jpg",
-        price:"200",
+        testAmount:"200",
         faq:[
             {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
             {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
             ]
     },
     {
-        testId:"4",
+        testID:"4",
         name:"Test Name",
         description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
         imageLink:"images/bgcheck2.jpeg",
         sampleReportImage:"images/bgcheck3.jpg",
-        price:"200",
+        testAmount:"200",
         faq:[
             {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
             {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
             ]
     },
     {
-        testId:"5",
+        testID:"5",
         name:"Test Name",
         description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
         imageLink:"images/bgcheck2.jpeg",
         sampleReportImage:"images/bgcheck3.jpg",
-        price:"200",
+        testAmount:"200",
         faq:[
             {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
             {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
             ]
     },
     {
-        testId:"6",
+        testID:"6",
         name:"Test Name",
         description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
         imageLink:"images/bgcheck2.jpeg",
         sampleReportImage:"images/bgcheck3.jpg",
-        price:"200",
+        testAmount:"200",
         faq:[
             {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
             {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
@@ -93,7 +93,7 @@ export const getStaticPaths = async () =>{
     
     const paths = dataLi.map(item=>{
         return{
-            params:{name:item.testId}
+            params:{name:item.testID}
         }
     })
     return{
@@ -106,7 +106,7 @@ export const getStaticProps = async (context)=>{
     const id = context.params.name
     let data = {}
     for(let i of dataLi){
-        if (i.testId == id){
+        if (i.testID == id){
             data = i
             break
         }
@@ -149,7 +149,7 @@ return(
                 <Col>
                 <Row>
                     <Col className="mt-5" >
-                        <h1 className="h1">{details.name}</h1>
+                        <h1 className="h1">{details.testName}</h1>
                     </Col>
                 </Row>
                 <Row>
@@ -182,7 +182,7 @@ return(
                     <Col sm="8" >
                         <Row>
                             <Col className="ml-1">
-                                <h6>{details.name} </h6>
+                                <h6>{details.testName} </h6>
                             </Col>
                         </Row>
                         <Row>
@@ -191,7 +191,7 @@ return(
                             </Col>
                         </Row>
                         <Row>
-                            <Col className="m-2"><h4>₹ {details.price} </h4></Col>
+                            <Col className="m-2"><h4>₹ {details.testAmount} </h4></Col>
                         </Row>
                         <Row>
                             <Col className="ml-1"><Button variant="outlined">BOOK NOW</Button></Col>

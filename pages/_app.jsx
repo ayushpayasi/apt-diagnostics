@@ -10,7 +10,11 @@ import 'react-toastify/dist/ReactToastify.css';
 class MyApp extends App {
   constructor(props) {
     super(props);
-    this.state = {downloadReport: false};
+    this.state = {cartValue: 0};
+  }
+
+  updateCartValue = (value)=> {
+    this.setState({cartValue:value})
   }
 
   render() {
@@ -22,7 +26,7 @@ class MyApp extends App {
           <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
         </Head>
         {/* {this.state.downloadReport?<DownloadReportLightbox/>:<React.Fragment/>} */}
-        <Component {...pageProps} />
+        <Component {...pageProps} cartValue={this.state.cartValue} updateCartValue={this.updateCartValue} />
         <ToastContainer />
         </>
     );

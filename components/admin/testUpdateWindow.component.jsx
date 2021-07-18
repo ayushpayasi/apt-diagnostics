@@ -19,13 +19,13 @@ export default function TestUpdateWindow(props) {
 
     const fillDetails = async()=>{                      
         try{
-        const response = await axios.get(apiLinks.checkAndFetchTestDetails,{params:{Id:document.getElementById("testId").value}})
+        const response = await axios.get(apiLinks.checkAndFetchTestDetails,{params:{Id:document.getElementById("testID").value}})
         if(response.data.status === 200){
             document.getElementById("testType").value = response.data.body.type
-            document.getElementById("testName").value = response.data.body.name
+            document.getElementById("testName").value = response.data.body.testName
             document.getElementById("testDescription").value = response.data.body.description
             document.getElementById("testDetails").value = response.data.body.details
-            document.getElementById("testPrice").value = response.data.body.price
+            document.getElementById("testPrice").value = response.data.body.testAmount
             document.getElementById("testFeatured").checked = response.data.body.isSpecial
             setTestDetails(response.data.body)
         }
@@ -56,11 +56,11 @@ export default function TestUpdateWindow(props) {
         }
         formData.append("isSpecial",`${document.getElementById("testFeatured").checked}`)
         formData.append("type",`${tempDetails.type}`)
-        formData.append("name",`${tempDetails.name}`)
+        formData.append("testName",`${tempDetails.testName}`)
         formData.append("description",`${document.getElementById("testDescription").value}`)
         formData.append("details",`${document.getElementById("testDetails").value}`)
-        formData.append("testPrice",`${tempDetails.price}`)
-        formData.append("testId",`${tempDetails.testId}`)
+        formData.append("testAmount",`${tempDetails.testAmount}`)
+        formData.append("testID",`${tempDetails.testID}`)
         formData.append("oldTestImage",tempDetails.imageLink)
         formData.append("oldTestReport",tempDetails.sampleReportImage)
 
@@ -100,7 +100,7 @@ export default function TestUpdateWindow(props) {
     }
 
     useEffect(() => {
-        document.getElementById("testId").value = props.testToUpdate
+        document.getElementById("testID").value = props.testToUpdate
         fetchData()    
     }, [])
 
@@ -112,8 +112,8 @@ export default function TestUpdateWindow(props) {
                         <Row>
                             <Col xs="4">
                             <FormGroup>
-                                    <Label for="testId"> Test ID</Label>
-                                    <Input size="sm" id="testId" placeholder="Test Id"></Input>
+                                    <Label for="testID"> Test ID</Label>
+                                    <Input size="sm" id="testID" placeholder="Test Id"></Input>
                                 </FormGroup>                                
                             </Col>
                             <Col xs="4" style={{display:"flex",alignItems:"center",justifyContent:"center"}}>

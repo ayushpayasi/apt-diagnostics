@@ -7,28 +7,10 @@ import {
 } from 'reactstrap';
 
 
-const items = [
-  {
-    src: "images/homeslider1.png",
-    altText: 'Slide 1',
-    caption: 'Slide 1'
-  },
-  {
-    src: "images/homeslider2.png",
-    altText: 'Slide 2',
-    caption: 'Slide 2'
-  },
-  {
-    src: "images/homeslider3.png",
-    altText: 'Slide 3',
-    caption: 'Slide 3'
-  }
-];
-
 const ImgCarousel = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
-
+  const items = props.data
   const next = () => {
     if (animating) return;
     const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
@@ -53,7 +35,7 @@ const ImgCarousel = (props) => {
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-        <img src={item.src}  className="carouselImg" style={props.style} alt={item.altText} />
+        <img src={item.src} alt={item.altText} />
         {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
       </CarouselItem>
     );
@@ -64,7 +46,7 @@ const ImgCarousel = (props) => {
       activeIndex={activeIndex}
       next={next}
       previous={previous}
-      
+      className="carouselImg"
     >
       <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
       {slides}

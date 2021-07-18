@@ -44,7 +44,7 @@ export default function Reports() {
 
     return (
         <>
-        <NavBar/>
+        <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
         <Container className="reports-container">
             <Row>
                 <Col className="mt-5 text-center">

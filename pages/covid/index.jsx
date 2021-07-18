@@ -21,8 +21,15 @@ export async function getServerSideProps(context) {
 export default function Index(props) {
     return (
         <>
-            <NavBar/>
+            <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
             <Container className="mt-5">
+            <Row>
+                    <Col>
+                        <img src="/images/carouselimgx.jpg" style={{height:"400px",width:"100%"}}></img>
+                    </Col>
+                </Row>
+            </Container>
+            <Container>
                 <Row>
                     <Col>
                         <h4>
@@ -32,7 +39,7 @@ export default function Index(props) {
                 </Row>
                 <Row>
                     <Col>
-                        <CovidSlider data = {props.data}/>
+                        <CovidSlider updateCartValue={props.updateCartValue} data = {props.data}/>
                     </Col>
                 </Row>
             </Container>

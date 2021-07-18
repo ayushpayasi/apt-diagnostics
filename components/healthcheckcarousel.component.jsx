@@ -13,6 +13,7 @@ export default function HealthCheckCarousel(props) {
         if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
         else{
             cart.push(item)
+            props.updateCartValue(cart.length)
             sessionStorage.setItem("cart",JSON.stringify(cart))
         }
     }else{
@@ -86,14 +87,14 @@ export default function HealthCheckCarousel(props) {
                     <Card className="packages-card">
                     <CardImg top width="100%" src={data.image} alt="Card image cap" />
                     <CardBody>
-                        <CardTitle tag="h5">{data.name}</CardTitle>
-                        <CardSubtitle tag="h6" className="mb-2 text-muted">{data.packagePrice}</CardSubtitle>
+                        <CardTitle tag="h5">{data.testName}</CardTitle>
+                        <CardSubtitle tag="h6" className="mb-2 text-muted">{data.testAmount}</CardSubtitle>
                         <CardText>{data.description.substring(0,90)}</CardText>
                         {paramsIconGenerator(data.testsIncluded.length)}
                         {idealForIconGenerator(data.idealFor)}
                         <Row>
                             <Col><Button onClick={(event)=>{addToCart(event,data)}} outline>Book Now</Button></Col>
-                            <Col><Button onClick={()=>{location.href=`/packages/${data.name}`}} outline>Learn More</Button></Col>
+                            <Col><Button onClick={()=>{location.href=`/packages/${data.testName}`}} outline>Learn More</Button></Col>
                         </Row>
                     </CardBody>
                     </Card>

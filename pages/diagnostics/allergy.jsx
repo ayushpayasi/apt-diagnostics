@@ -51,7 +51,7 @@ export default function Allergy() {
         <React.Fragment>
             <div className="organ-image-holder">
                 <SmallNavBar color="white"/>
-                <img className="organ-image-desktop" src="/images/allergy_bg.jpg"></img>
+                <img className="organ-image-desktop" src="/images/organs_banner/allergy.jpg"></img>
                 <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img>
                 <div className="diagnostics-pagetitle">
                     <h5>Allergy - Symptoms,Diagnosis, Tests</h5>

@@ -5,7 +5,7 @@ import NavBar from "../components/navbar.component"
 export default function Terms() {
     return (
         <>
-          <NavBar/>
+          <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
           <Container className="mt-5">
           <p><strong style={{fontSize:"1.2rem",background:"#0a4275",color:"#fff",padding:"5px",borderRadius:"5px"}}>Terms of Use</strong></p>
 <p><span style={{fontWeight:"400"}}>These terms of use (this&nbsp;"Agreement") set forth the standards of use of&nbsp;www.aptdiagnostics.com&nbsp;located at&nbsp;http://www.aptdiagnostics.com&nbsp;and all of its associated pages and websites. The link www.aptdiagnostics.com and all such associated pages and websites are collectively referred to herein as the "Website."</span></p>

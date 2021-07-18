@@ -191,9 +191,9 @@ export default function Index() {
                                         <Autocomplete
                                                         id="combo-box-demo"
                                                         options={packageList}
-                                                        getOptionLabel={(option) => `${option.packageId}`}
+                                                        getOptionLabel={(option) => `${option.testID}`}
                                                         style={{ width: "40%"}}
-                                                        onChange = {(event,value)=>{setPackageToUpdate(value.packageId);setPackageUpdateWindow(true);}}
+                                                        onChange = {(event,value)=>{setPackageToUpdate(value.testID);setPackageUpdateWindow(true);}}
                                                         renderInput={(params) => <TextField {...params} placeholder="Find Package" size="small" variant="outlined" />}
 
                                         />
@@ -239,9 +239,9 @@ export default function Index() {
                                         <Autocomplete
                                                         id="testSearchBar"
                                                         options={testList}
-                                                        getOptionLabel={(option) => `${option.testId}`}
+                                                        getOptionLabel={(option) => `${option.testID}`}
                                                         style={{ width: "40%"}}
-                                                        onChange = {(event,value)=>{setTestToUpdate(value.packageId);setTestUpdateWindow(true);}}
+                                                        onChange = {(event,value)=>{setTestToUpdate(value.testID);setTestUpdateWindow(true);}}
                                                         renderInput={(params) => <TextField {...params} placeholder="Find Test" size="small" variant="outlined" />}
 
                                         />

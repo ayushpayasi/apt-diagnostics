@@ -10,7 +10,7 @@ import MobileMenu from "../../components/mobilemenu.component"
 export default function About() {
     return (
         <React.Fragment>
-            <NavBar/>
+            <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
             <BreadCrumb links={["home","about"]}/>
             <Container>
                 <Row>

@@ -10,6 +10,7 @@ export default function CovidCarousel(props) {
         if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
         else{
             cart.push(item)
+            props.updateCartValue(cart.length)
             sessionStorage.setItem("cart",JSON.stringify(cart))
         }
     }else{
@@ -51,10 +52,10 @@ export default function CovidCarousel(props) {
     }
     const cardFiller =(item)=>{
         return(
-            <div key={item.testId}>
+            <div key={item.testID}>
                 <div style={{padding:"10px !important"}}>
-                    <Card onClick={()=>{location.href=`/covid/${item.testId}`}} className="test-card">
-                            <CardTitle className="text-center card-title mt-1">{item.name}</CardTitle>
+                    <Card onClick={()=>{location.href=`/covid/${item.testID}`}} className="test-card">
+                            <CardTitle className="text-center card-title mt-1">{item.testName}</CardTitle>
                             <CardBody >
                                 <CardText className="body-text">{item.details}</CardText>
                             <div className="align-center-row "><Button onClick={(event)=>{addToCart(event,item)}} variant="outlined" className="test-card-button">Book Test</Button></div></CardBody>

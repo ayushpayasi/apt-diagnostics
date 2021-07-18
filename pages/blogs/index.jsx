@@ -80,7 +80,7 @@ export default function Blog() {
 
   return (
     <>
-      <NavBar />
+      <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
       {!isBlogClicked ? (
         <Container className="mt-5">
           <Row>

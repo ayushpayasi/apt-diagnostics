@@ -305,11 +305,6 @@
 .carousel{
   border-radius: 5px;
 }
-.carouselImg{
-  width:100%;
-  height:380px;
-  border-radius: 10px;
-}
 
 .landing-h2{
   text-align: center;
@@ -480,9 +475,6 @@ transform: rotateY(180deg);
 @media only screen and (max-width: 768px){
   .report{
     display:none;
-  }
-  .carouselImg{
-    height:25vh;
   }
   .indexCarouselCard{
     display:none;
