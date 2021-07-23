@@ -60,7 +60,7 @@ const Slider4 = {
         <Container>
                             <Slider {...Slider4} >
                                 {testList.map(test=><div key={test.testID} className="align-center-column">
-                                <Card className="test-carousel-card text-center">
+                                <Card onClick={(event)=>{location.href=`test/${test.testName}`}} className="test-carousel-card text-center">
                                     <CardBody>
                                         <CardTitle className="text-center card-title">{test.testName}</CardTitle>
                                         <h6 className="text-left" style={{color:"grey"}}>₹ {test.testAmount}</h6>

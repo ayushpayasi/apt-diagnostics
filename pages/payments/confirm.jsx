@@ -21,7 +21,7 @@ import axios from 'axios'
 import {apiLinks} from "../../connection.config"
 var tempData = []
 
-export default function Confirm() {
+export default function Confirm(props) {
     const [cartData,setCartData] = useState(null);
     const [selectedDateTime, setSelectedDateTime] = useState(new Date());
     const [activeStep, setActiveStep] = React.useState(0);

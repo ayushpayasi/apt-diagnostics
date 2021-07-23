@@ -2,7 +2,7 @@ import React from 'react'
 import { Container,Row,Col, } from 'reactstrap'
 import NavBar from "../components/navbar.component"
 
-export default function TermsConditions() {
+export default function TermsConditions(props) {
     return (
         <>
         <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>

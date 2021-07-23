@@ -3,7 +3,7 @@ import "../assets/css/404.scss"
 import "../assets/css/tests.scss"
 // import SmallNavbar from "../components/smallnavbar.component"
 import NavBar from "../components/navbar.component"
-export default function Custom404() {
+export default function Custom404(props) {
 
     return (
         <>

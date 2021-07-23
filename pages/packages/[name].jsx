@@ -38,8 +38,9 @@ export const getStaticProps = async (context)=>{
     }
 }
 
-export default function Display({details}) {
+export default function Display(props) {
 
+    const details = props.details
         
     const addToCart = (event,item)=>{
         event.stopPropagation();

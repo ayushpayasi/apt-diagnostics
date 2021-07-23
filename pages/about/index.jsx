@@ -7,7 +7,7 @@ import BreadCrumb from "../../components/breadcrumb.component"
 import {isMobile} from "react-device-detect";
 import MobileMenu from "../../components/mobilemenu.component"
 
-export default function About() {
+export default function About(props) {
     return (
         <React.Fragment>
             <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>

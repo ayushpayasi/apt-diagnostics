@@ -6,7 +6,7 @@ import CancelOutlined from "@material-ui/icons/CancelOutlined"
 import "../assets/css/downloadreports.scss"
 
 
-export default function Reports() {
+export default function Reports(props) {
     const cartData = [
         {billId:"2021",
         name:"healthtest healthtest healthtest",

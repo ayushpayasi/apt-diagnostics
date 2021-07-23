@@ -27,7 +27,7 @@ import { toast } from 'react-toastify';
 import { Button } from 'reactstrap';
 import DetailBlogPage from '../../components/DetailBlogPage';
 
-export default function Blog() {
+export default function Blog(props) {
   const [blogs, setBlogs] = useState([]);
   const [isBlogClicked, setBlogClicked] = useState(false);
   const [detailBlogData, setDetailBlogData] = useState();
