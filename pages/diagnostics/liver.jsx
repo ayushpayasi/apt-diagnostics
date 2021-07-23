@@ -52,9 +52,9 @@ export default function Liver() {
             <div className="organ-image-holder">
                 <SmallNavBar color="white"/>
                 <img className="organ-image-desktop" src="/images/organs_banner/liver.jpg" ></img>
-                <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img>
+                {/* <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img> */}
                 <div className="diagnostics-pagetitle">
-                    <h5>Liver - Symptoms,Diagnosis, Tests</h5>
+                    <h5>Liver</h5>
                 </div>
             </div>
             {/* <Container>
@@ -83,7 +83,7 @@ export default function Liver() {
         <Row>
             <Col><h5 className="text-center">Overview</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col>
               <p>The liver is a large, meaty organ that sits on the right side of the belly.</p>
               <p>The main roles of the liver include removing toxins, processing food nutrients and regulating body metabolism.</p>
@@ -96,24 +96,24 @@ export default function Liver() {
       <Row>
             <Col><h5 className="text-center">Why Important</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col><p>The liver is the largest solid organ in the body. It has many important functions like removing toxins from the body's blood supply, maintaining healthy blood sugar levels, regulating blood clotting, and performing hundreds of other vital functions.</p></Col></Row>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <Row>
             <Col><h5 className="text-center">Symptoms</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col>
               <List type="unstyled">
                 <ul>
-                  <li>fever</li>
-                  <li>tiredness or weakness</li>
-                  <li>yellowing of the skin and eyes, known as jaundice</li>
-                  <li>dark urine</li>
-                  <li>pale stool</li>
-                  <li>nausea and vomiting</li>
-                  <li>pain under the ribs on the right side of the body</li>
+                  <li>Fever</li>
+                  <li>Tiredness or weakness</li>
+                  <li>Yellowing of the skin and eyes, known as jaundice</li>
+                  <li>Dark urine</li>
+                  <li>Pale stool</li>
+                  <li>Nausea and vomiting</li>
+                  <li>Pain under the ribs on the right side of the body</li>
                 </ul>
               </List>       
             </Col>
@@ -123,7 +123,7 @@ export default function Liver() {
       <Row>
             <Col><h5 className="text-center">Disease Associated</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col>
               <List type="unstyled">
                 <ul>
@@ -141,15 +141,15 @@ export default function Liver() {
       <Row>
             <Col><h5 className="text-center">Suggested Tests</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa qui pariatur harum reiciendis possimus, at eligendi beatae vel? Architecto vel eius non, sapiente hic nemo sed cum perferendis. Consequatur maxime accusantium molestias explicabo itaque! Quaerat non officia reiciendis, quia, laudantium distinctio eum voluptas dignissimos provident facere eveniet, dicta quibusdam! Cum, unde dignissimos! Tempora odio voluptas nemo ducimus? Voluptate, consectetur? Aperiam earum voluptates pariatur ut fugiat praesentium eos quod esse consequuntur est, quis temporibus officiis delectus deleniti accusamus voluptatum voluptate enim nostrum neque eligendi dicta. Dolore nesciunt illum, rerum facere eius quae suscipit perferendis mollitia cupiditate commodi eaque voluptate inventore aliquid ratione magni architecto amet, eum facilis vel deleniti impedit, culpa iure? Quidem expedita, quas optio voluptates aliquid nam harum autem tenetur? Minima harum deleniti consequuntur repellat dicta labore voluptate culpa quam modi asperiores? Ipsa aperiam consectetur, vitae officiis dolore esse eveniet magnam delectus repudiandae optio! Cum quos molestias ab dicta repellat obcaecati exercitationem neque voluptatibus omnis recusandae, cumque laborum, ipsam tempora veritatis dolor nihil, aspernatur at ipsa dolorum assumenda? Veritatis blanditiis quae, ullam quia expedita, dicta minus aperiam sunt placeat molestias rem vero, atque porro consectetur. Quos ut dolor ipsa, corrupti nihil inventore obcaecati, sequi, id itaque repudiandae incidunt reprehenderit.</p></Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={5}>
       <Row>
-            <Col><h5 className="text-center">causes</h5></Col>
+            <Col><h5 className="text-center">Causes</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col>
             <List type="unstyled">
               <ul>

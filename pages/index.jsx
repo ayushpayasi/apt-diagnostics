@@ -336,7 +336,7 @@ const items = [
                                 </Row>
                                 <Row  className="ml-1 mr-1 mt-2 mb-1" >
                                     <Col className="align-center-column">
-                                <Button onClick={()=>{bookAppointmentHandler()}} variant="contained" style={{width:"100%",color:"#fff !important",background:"linear-gradient(to right, #8faec9, #175d9c, #3375b0, #8faec9) !important"}} >Book Now</Button>
+                                <Button onClick={()=>{bookAppointmentHandler()}} variant="contained" style={{width:"100%", height : "45px", color:"#fff",background:"#175d9c"}} >Book Now</Button>
                                     </Col>
                                 </Row>
                                 {/* background:"#ababab" ,color:"white"*/}
@@ -356,7 +356,7 @@ const items = [
                     <Col><Card className="features-card">
                         <Row><Col className="landing-h2 iofade">Our Features</Col></Row>
                         <Row>
-                            <Col md="4">
+                            <Col style={{paddingRight : "0", paddingLeft : "10px"}} md="4">
                             <div className="card_flip">
                             <div className="card__inner">
                                 <div className="card__content card_content--front">
@@ -368,7 +368,7 @@ const items = [
                             </div>
                             </div>
                             </Col>
-                            <Col md="4">
+                            <Col style={{paddingRight : "0", paddingLeft : "0"}} md="4">
                             <div className="card_flip">
                             <div className="card__inner">
                                 <div className="card__content card_content--front">
@@ -380,7 +380,7 @@ const items = [
                             </div>
                             </div>
                             </Col>
-                            <Col md="4">
+                            <Col style={{paddingRight : "10px", paddingLeft : "0"}} md="4">
                             <div className="card_flip">
                             <div className="card__inner">
                                 <div className="card__content card_content--front">
@@ -517,25 +517,26 @@ const items = [
                     </Row>
                 </Container> */}
 {/*blogs*/}
-                <div className="blogs-holder">
-                <Container className="blogs-container">
-                    <Row>
+                
+                    <Row>       
                         <Col>
                             <h4 className="text-center mt-3 mb-3 blog-heading">Blogs</h4>
                         </Col>
                     </Row>
-                    <Row >
-                        <Col>
-                                <Blog bgcolor="#0a4275" color="#fff"/>
-                        </Col>
-                        <Col>
-                                <Blog bgcolor="#0a4275" color="#fff"/>
-                        </Col>
-                        <Col>
-                                <Blog bgcolor="#0a4275" color="#fff"/>
-                        </Col>
-                    </Row>
-                </Container>
+                <div className="blogs-holder">
+                    <Container className="blogs-container">
+                        <Row >
+                            <Col>
+                                    <Blog bgcolor="#0a4275" color="#fff"/>
+                            </Col>
+                            <Col>
+                                    <Blog bgcolor="#0a4275" color="#fff"/>
+                            </Col>
+                            <Col>
+                                    <Blog bgcolor="#0a4275" color="#fff"/>
+                            </Col>
+                        </Row>
+                    </Container>
                 </div>
 {/* footer */}
                 <div style={{height:"100vh"}}>

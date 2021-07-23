@@ -152,7 +152,7 @@ export default function Tests(props) {
                 <Row>
                     <Col>
                         <Card className="book-home-collection-card">
-                            <h4 className="text-center">Book Home Collection</h4>
+                            <h4 style={{color : "#0a4275"}} className="text-center">Book Home Collection</h4>
                             <Row>
                                 <Col xs="4">
                                     {/* <img src="/svg/aptIcons/light/Healthy_Notification.svg"/> */}
@@ -180,7 +180,7 @@ export default function Tests(props) {
 {/* Quick Search */}
             <Container>
                 <Paper>
-                    <h4 id="searchTests" className="text-center mt-4">Quick Search</h4>
+                    <h4 id="searchTests" style={{color:"#0a4275"}} className="text-center mt-4">Quick Search</h4>
                 <Tabs
                     action={ref}
                     // id="tab-test-bar"
@@ -262,7 +262,7 @@ export default function Tests(props) {
             <Container className="mt-4">
                 <Row>
                     <Col>
-                        <h5 className="text-center">Lorem, ipsum dolor.</h5>
+                        <h5 style={{color:"#0a4275"}} className="text-center">Lorem, ipsum dolor.</h5>
                     </Col>
                 </Row>
                 <Row>
@@ -293,8 +293,8 @@ export default function Tests(props) {
 <Container>
     <Row>
         <Col>
-            <h4 className="text-center">ALL TESTS</h4>
-            <h5 className="text-center">(Click On Test To Add To Cart)</h5>
+            <h4 style={{color:"#0a4275"}}className="text-center">ALL TESTS</h4>
+            <h5 style={{color:"#0a4275"}} className="text-center">(Click On Test To Add To Cart)</h5>
         </Col>
     </Row>
 </Container>

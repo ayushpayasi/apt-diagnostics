@@ -196,7 +196,7 @@ const items = [
                {packages["Diabities"].length === 0 ?<React.Fragment/>:   <Container>
                 <Row className="mt-5 mb-4">
                     <Col>
-                        <h4 className="text-center">Diabaties</h4>
+                        <h4 style={{color:"#0a4275"}} className="text-center">Diabetes</h4>
                     </Col>
                 </Row>
                 <Row>{packages["Diabities"].map(item=><Col md="4">{cardFiller(item)}</Col>)}
@@ -207,7 +207,7 @@ const items = [
                {packages["Pregnancy"].length === 0 ?<React.Fragment/>:   <Container>
                 <Row className="mt-5 mb-4">
                     <Col>
-                        <h4 className="text-center">Pregnency</h4>
+                        <h4 style={{color:"#0a4275"}} className="text-center">Pregnancy</h4>
                     </Col>
                 </Row>
                 <Row>
@@ -220,7 +220,7 @@ const items = [
             {packages["General Wellness"].length === 0 ?<React.Fragment/>:   <Container>
                 <Row className="mt-5 mb-4">
                     <Col>
-                        <h4 className="text-center">General Wellness</h4>
+                        <h4 style={{color:"#0a4275"}} className="text-center">General Wellness</h4>
                     </Col>
                 </Row>
                 <Row>
@@ -233,7 +233,7 @@ const items = [
             {packages["Health"].length === 0 ?<React.Fragment/>:   <Container>
                 <Row className="mt-5 mb-4">
                     <Col>
-                        <h4 className="text-center">Health Packages</h4>
+                        <h4 style={{color:"#0a4275"}} className="text-center">Health Packages</h4>
                     </Col>
                 </Row>
                 <Row>
@@ -245,7 +245,7 @@ const items = [
             {packages["Body Building"].length === 0 ?<React.Fragment/>:   <Container>
                 <Row className="mt-5 mb-4">
                     <Col>
-                        <h4 className="text-center">Body Building Packages</h4>
+                        <h4 style={{color:"#0a4275"}} className="text-center">Body Building Packages</h4>
                     </Col>
                 </Row>
                 <Row>{packages["Body Building"].map(item=><Col md="4">{cardFiller(item)}</Col>)}
@@ -256,7 +256,7 @@ const items = [
             {packages["Flu"].length === 0 ?<React.Fragment/>:   <Container>
                 <Row className="mt-5 mb-4">
                     <Col>
-                        <h4 className="text-center">Health Packages</h4>
+                        <h4 style={{color:"#0a4275"}} className="text-center">Health Packages</h4>
                     </Col>
                 </Row>
                 <Row>

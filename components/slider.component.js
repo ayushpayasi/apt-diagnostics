@@ -64,7 +64,7 @@ const Slider4 = {
                                     <CardBody>
                                         <CardTitle className="text-center card-title">{test.testName}</CardTitle>
                                         <h6 className="text-left" style={{color:"grey"}}>₹ {test.testAmount}</h6>
-                                        <p className="mt-4">{test.details.substring(0,80)}</p>
+                                        <p className="mt-4">{test.details.substring(0,50)}</p>
                                     </CardBody>
                                     <Button onClick={(event)=>{addToCart(event,test)}} className="test-card-button">Book Test</Button>
                                 </Card>
