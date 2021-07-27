@@ -41,12 +41,24 @@
     background: rgba(10, 66, 117,0.6);
     .editWindow{
         position: absolute;
+        z-index:2;
         top:50%;
         left:50%;
         border:none;
         border-radius: 10px;
         height:85vh;
         width:80vw;
+        transform: translate(-50%,-50%);
+    }
+    .couponWindow{
+        position: absolute;
+        z-index:2;
+        top:50%;
+        left:50%;
+        border:none;
+        border-radius: 10px;
+        height:30vh;
+        width:50vw;
         transform: translate(-50%,-50%);
     }
 }

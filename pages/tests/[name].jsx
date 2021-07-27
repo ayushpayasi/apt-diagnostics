@@ -6,94 +6,23 @@ import Button from "@material-ui/core/Button"
 import IconButton from "@material-ui/core/IconButton"
 import ArrowDownwardRounded from "@material-ui/icons/ArrowDownwardRounded"
 import Card from "@material-ui/core/Card"
+import {apiLinks} from "../../connection.config"
+import ReportSlider from "../../components/slider.component"
+import axios from "axios"
 
-const dataLi =[
-    {
-        testID:"1",
-        name:"Test Name",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
-        imageLink:"images/bgcheck2.jpeg",
-        sampleReportImage:"images/bgcheck3.jpg",
-        testAmount:"200",
-        faq:[
-            {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            ]
-    },
-    {
-        testID:"2",
-        name:"Test Name",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
-        imageLink:"images/bgcheck2.jpeg",
-        sampleReportImage:"images/bgcheck3.jpg",
-        testAmount:"200",
-        faq:[
-            {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            ]
-    },
-    {
-        testID:"3",
-        name:"Test Name",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
-        imageLink:"images/bgcheck2.jpeg",
-        sampleReportImage:"images/bgcheck3.jpg",
-        testAmount:"200",
-        faq:[
-            {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            ]
-    },
-    {
-        testID:"4",
-        name:"Test Name",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
-        imageLink:"images/bgcheck2.jpeg",
-        sampleReportImage:"images/bgcheck3.jpg",
-        testAmount:"200",
-        faq:[
-            {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            ]
-    },
-    {
-        testID:"5",
-        name:"Test Name",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
-        imageLink:"images/bgcheck2.jpeg",
-        sampleReportImage:"images/bgcheck3.jpg",
-        testAmount:"200",
-        faq:[
-            {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            ]
-    },
-    {
-        testID:"6",
-        name:"Test Name",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        details:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.",
-        imageLink:"images/bgcheck2.jpeg",
-        sampleReportImage:"images/bgcheck3.jpg",
-        testAmount:"200",
-        faq:[
-            {whyThisTest:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            {isThisTestForYou:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam"},
-            ]
-    }
-    
-]
+let dataLi=[]
+
 
 export const getStaticPaths = async () =>{
-    
+    try{
+    const response = await axios.get(apiLinks.getAllFeaturedTests)
+    dataLi =[]
+    if(response.data.code === 200){
+        dataLi = response.data.data
+    }
     const paths = dataLi.map(item=>{
         return{
-            params:{name:item.testID}
+            params:{name:item.testName}
         }
     })
     return{
@@ -101,12 +30,25 @@ export const getStaticPaths = async () =>{
         fallback:false
     }
 }
+    catch(err){
+        return {
+            paths:[],
+            fallback:false
+                }       
+                }
+    }
 
 export const getStaticProps = async (context)=>{
-    const id = context.params.name
+    try{
+    const name = context.params.name
     let data = {}
+    const response = await axios.get(apiLinks.getAllFeaturedTests)
+    dataLi =[]
+    if(response.data.code === 200){
+        dataLi = response.data.data
+    }
     for(let i of dataLi){
-        if (i.testID == id){
+        if (i.testName == name){
             data = i
             break
         }
@@ -115,6 +57,7 @@ export const getStaticProps = async (context)=>{
     return{
         props:{details:data}
     }
+    }catch(e){console.log(e)}
 }
 
 export default function Details({details}){
@@ -199,36 +142,7 @@ return(
                         </Row>
                         </Col>
                 </Row>
-                </Card> 
-                <Row className="icons-holder">
-                            <Col>
-                            <Row>
-                                <Col sm="2"><img src="/svg/diamond.svg"></img></Col>
-                                <Col sm="10"><p>Lorem ipsum dolor sit amet.</p></Col>
-                            </Row>
-                            </Col>
-                            <Col>
-                            <Row>
-                                <Col sm="2"><img src="/svg/diamond.svg"></img></Col>
-                                <Col sm="10"><p>Lorem ipsum dolor sit amet.</p></Col>
-                            </Row>
-                            </Col>
-                            
-                            <Col>
-                            <Row>
-                                <Col sm="2"><img src="/svg/diamond.svg"></img></Col>
-                                <Col sm="10"><p>Lorem ipsum dolor sit amet.</p></Col>
-                            </Row>
-                            </Col>
-                            
-                            <Col>
-                            <Row>
-                                <Col sm="2"><img src="/svg/diamond.svg"></img></Col>
-                                <Col sm="10"><p>Lorem ipsum dolor sit amet.</p></Col>
-                            </Row>
-                            </Col>
-                        </Row>
-                        
+                </Card>      
                 <Row className="mt-5">
                     <Col className="border p-2">
                         <Row>
@@ -236,8 +150,6 @@ return(
                             <Col sm="1" className="align-center-column"><IconButton style={{boxShadow:"0px 0px 5px 0px rgba(0,0,0,0.5)"}} onClick={toggle}><ArrowDownwardRounded style={{height:"25px",width:"25px",color:"#0a4275"}}/></IconButton></Col>
                         </Row>
                         <Collapse isOpen={isOpen}>
-                            {fillFaq()}
-                            {fillFaq()}
                         </Collapse>
                     </Col>
                 </Row>
@@ -257,60 +169,8 @@ return(
                     </Col>
                 </Row>
             </Row>
-            {/* <Row>
-                <Col sm="6">
-                   <h2 className="h2"> {details.description} </h2>
-                </Col>
-            </Row> */}
-            
+        <ReportSlider data={dataLi}/>
         </Container>
-        <div className="colored-container">
-                <Container >
-                <Row>
-                    <Col className="mt-4">
-                        <h2 className="text-center mt-2 mb-4 iofade">
-                            Popular Tests
-                        </h2>
-                    </Col>
-                </Row>
-                <Row className="mb-4">
-                    <Col>
-                    <p className="container-p text-center iofade"> Browse through our most popular tests that ensure your good health!</p>
-                    </Col>
-                </Row>
-                <Row className="ml-2 mr-2"> 
-                    <Col>
-                        <Card className="test-card ioleft">
-                            <CardTitle className="text-center card-title mt-1">Covid 19 RT-PCR Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio et vel quisquam! Sit mollitia voluptatem labore voluptatibus, velit alias dicta! doloribus odio quisquam</CardBody>
-                            <CardFooter className="align-center-row"><Button color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="test-card ioleft">
-                            <CardTitle className="text-center card-title mt-1">D-Dimer Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="test-card ioright">
-                            <CardTitle className="text-center card-title mt-1">COVID Antibody Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="test-card ioright">
-                            <CardTitle className="text-center card-title mt-1">CoviProfile Test</CardTitle>
-                            <CardBody className="body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ab fugit aperiam veritatis vero quam molestias doloribus odio quisquam eos.</CardBody>
-                            <CardFooter className="align-center-row"><Button color="primary" variant="contained" className="test-card-button">Book Test</Button></CardFooter>
-                        </Card>
-                    </Col>
-                </Row>
-                </Container>
-                </div>
-    {/* </div> */}
     </>
 )
 }

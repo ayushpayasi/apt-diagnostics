@@ -14,7 +14,7 @@ export default function Login() {
             <Row>
                 <Col>
                 </Col>
-                <Col className="align-center-column">
+                <Col className="d-flex justify-content-around align-items-center">
                     <Card className="login-card" >
                         <CardBody>
                             <CardTitle ><h4 className="text-center"> Login</h4></CardTitle>

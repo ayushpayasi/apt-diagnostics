@@ -19,28 +19,25 @@ import {isMobile} from "react-device-detect";
 import MobileMenu from "../../components/mobilemenu.component"
 import axios from 'axios'
 import {apiLinks} from "../../connection.config"
+import { toast } from 'react-toastify'
+
 var tempData = []
 
 export default function Confirm(props) {
     const [cartData,setCartData] = useState(null);
     const [selectedDateTime, setSelectedDateTime] = useState(new Date());
     const [activeStep, setActiveStep] = React.useState(0);
-    const steps=["Fill Details","Review Your Items","Book Slot"]
+    const steps=["Fill Details","Book Slot"]
     const [skipped, setSkipped] = React.useState(new Set());
     const [showCalender,setShowCalender] = useState(true);
     const [finalPrice,setFinalPrice] = useState();
     const [isOpen,setIsOpen] = useState(false)
- 
+    const [currentAvailableSlots,setCurrentAvailableSlots] = useState([])
+    const [selectedTimeSlot,setSelectedTimeSlot] = useState(null)
+    const [contactIsValidated,setContactIsValidated] = useState(null)
+    const [emailIsValidated,setEmailIsValidated] = useState(null)
+    const [nameIsValidated,setNameIsValidated] = useState(null)
 
-    const applyCouponHandler = async()=>{
-      const coupon = document.getElementById("coupon").value
-      const response = await axios.get(apiLinks.priceList,{params:{coupon:coupon}})
-      if (response.data[0].code == "200"){
-        let list = []
-        cartData.forEach(item=>list.push(item.testID))
-        setCartData(response.data[1].filter((item)=>list.includes(item.testID)))
-      }
-    }
 
     const isStepOptional = (step) => {
         return step === 1;
@@ -60,11 +57,11 @@ export default function Confirm(props) {
       }  
 
     const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        setActiveStep((prevActiveStep) => prevActiveStep==0?prevActiveStep:prevActiveStep - 1);
       };
 
     const handlePayment = ()=>{
-
+      document.getElementById("")
     }
 
     const applyCoupon = ()=>{
@@ -75,41 +72,71 @@ export default function Confirm(props) {
       setIsOpen(!isOpen)
     }
 
+    const disableAll = (obj)=>{
+      for(var i of obj){
+      document.getElementById(`slot${i}`).style.background = "white"
+      document.getElementById(`slot${i}`).style.color = "#000"
+    }
+    }
+
+    const validateName = (event)=>{
+      var regName = /^[a-zA-Z]+ [a-zA-Z]+/;
+      var name = event.target.value;
+      setNameIsValidated(regName.test(name))
+    }
+
+    const validateEmail = (event)=>{
+        setEmailIsValidated(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(event.target.value))
+    }
+
+    const validateContact =(event)=>{
+      var a = /^\d{10}$/;  
+      setContactIsValidated(a.test(event.target.value))
+  }
+
+
       function getStepContent(stepIndex) {
         switch (stepIndex) {
           case 0:
             return (<Card className="payment-total-card">
             <CardBody>
               <CardTitle><h5>Fill Information</h5></CardTitle>
-              <Row>
-                <Col sm="4">
-                <h7 onClick={toggle} style={{ marginBottom: '1rem',fontWeight:"500",fontSize:"0.9rem",color:"#f63636",cursor:"pointer" }}>Booking For Someone else?</h7>
-                  <Collapse isOpen={isOpen}>
-                  <FormGroup>
-                      <Label for="savedFamilyMembers">Saved Family Members!</Label>
-                      <Input type="select" name="select" id="savedFamilyMembers">
-                        <option>Member 1</option>
-                        <option>Member 2</option>
-                        <option>Member 3</option>
-                      </Input>
+               <Row>
+                <Col>
+                <FormGroup size="sm">
+                        <Label for="contact">Contact <span style={{color:"#ff6363"}}> *</span></Label>
+                        <InputGroup size="sm">
+                        <InputGroupAddon addonType="prepend">+91</InputGroupAddon>
+                        <Input onChange={(event)=>{validateContact(event)}} valid={contactIsValidated} invalid={contactIsValidated=== null ? false:!contactIsValidated} id="contact" placeholder="Contact Number"></Input>
+                        </InputGroup>
                     </FormGroup>
-                  </Collapse>
+                </Col>
+                <Col>
+                <FormGroup size="sm">
+                        <Label for="email">Email</Label>
+                        <Input size="sm" id="email" onChange={(event)=>{validateEmail(event)}} valid={emailIsValidated} invalid={emailIsValidated=== null ? false:!emailIsValidated} placeholder="Email"></Input>
+                    </FormGroup>
                 </Col>
               </Row>
             <Row>
                 <Col sm="7">
-                    <FormGroup>
-                        <Label for="name">Full Name</Label>
-                        <Input id="name" placeholder="Full Name"></Input>
+                    <FormGroup size="sm">
+                        <Label for="name">Full Name  <span style={{color:"#ff6363"}}> *</span></Label>
+                        <InputGroup size="sm">
+                                    <InputGroupAddon addonType="prepend"><Input type="select" size="sm" ><option>Mr</option><option>Mrs</option><option>Master</option><option>Miss</option><option>Dr</option></Input></InputGroupAddon>
+                        <Input id="name"onChange={(event)=>{validateName(event)}} valid={nameIsValidated} invalid={nameIsValidated=== null ? false:!nameIsValidated} placeholder="Full Name"></Input>
+                        </InputGroup>
                     </FormGroup>
                 </Col>
                 <Col sm="5">
-                    <FormGroup>
-                        <Label for ="dob"> DOB </Label>
+                    <FormGroup size="sm">
+                        <Label for ="dob"> DOB <span style={{color:"#ff6363"}}> *</span> </Label>
                     <Datetime disableClock={true} timeFormat={false} inputProps={{
                     placeholder:"Select Your Date Of Birth",
                     id:"dob",
-                    autocomplete:"false"
+                    size:"small",
+                    autocomplete:"false",
+                    className:"form-control-sm form-control"
                     }}/>
                     </FormGroup>
                 </Col>
@@ -117,11 +144,11 @@ export default function Confirm(props) {
             <Row>
                 <Col>
                     <FormGroup>
-                        <Label for="address">Address</Label>
-                        <InputGroup>
+                        <Label for="address">Address <span style={{color:"#ff6363"}}> *</span></Label>
+                        <InputGroup size="sm">
                         <Input id="address" placeholder="Address"></Input>
                         <InputGroupAddon addonType="append">
-                        <Button onClick={()=>{getLocation()}} id="locate"><MyLocationIcon/></Button>
+                        <Button size="sm" onClick={()=>{getLocation()}} id="locate"><MyLocationIcon/></Button>
                         </InputGroupAddon>
                     </InputGroup>
                     </FormGroup>
@@ -130,8 +157,8 @@ export default function Confirm(props) {
             <Row>
                 <Col>
                 <FormGroup>
-                    <Label for="gender">Gender</Label>
-                    <Input type="select" name="select" id="gender">
+                    <Label for="gender">Gender <span style={{color:"#ff6363"}}> *</span></Label>
+                    <Input size="sm" type="select" name="select" id="gender">
                     <option>Male</option>
                     <option>Female</option>
                     <option>Others</option>
@@ -139,52 +166,44 @@ export default function Confirm(props) {
                 </FormGroup>
                 </Col>
                 <Col sm="4">
-                    <FormGroup>
-                        <Label for="age">Age</Label>
-                        <Input id="age" placeholder="Age"></Input>
+                    <FormGroup size="sm">
+                        <Label for="age">Age <span style={{color:"#ff6363"}}> *</span></Label>
+                        <Input size="sm" id="age" placeholder="Age"></Input>
                     </FormGroup>
                 </Col>
             </Row>
+             
+            <Row>
+                <Col sm="4">
+                <h7 onClick={toggle} style={{ marginBottom: '1rem',fontWeight:"500",fontSize:"0.9rem",color:"#f63636",cursor:"pointer" }}>Booking For Someone else?</h7>
+                  <Collapse isOpen={isOpen}>
+                  <FormGroup size="sm">
+                      <Label for="savedFamilyMembers">Saved Family Members!</Label>
+                      <Input type="select" name="select" id="savedFamilyMembers">
+                        <option>Member 1</option>
+                        <option>Member 2</option>
+                        <option>Create A member!</option>
+                      </Input>
+                    </FormGroup>
+                  </Collapse>
+                </Col>
+              </Row>
             </CardBody>
             </Card>)
           case 1:
-            return (<Card className="payment-total-card">
-            <CardBody>
-                <CardTitle>
-                <h5>Your Selected Items</h5>
-                </CardTitle>
-                <ListGroup flush>
-                    <ListGroupItem>
-                    <Row className="payments-cart-data">
-                       <Col xs="6">Test/Package Name</Col>
-                       <Col xs="3">Price</Col>
-                       <Col xs="3">Remove</Col>
-                   </Row>
-                    </ListGroupItem>
-                    {cartData.map(item=>fillCart(item))}
-                    {fillTotal(cartData)}
-                    <Row><Col></Col><Col><Row><Col md="6"><FormGroup><Label for="coupon"><h7>Got A Coupon Code?</h7></Label><Input type="text" id="coupon" placeholder="Coupon"></Input></FormGroup></Col><Col md="6" className="align-center-column"><Button onClick={()=>{applyCouponHandler()}}>Apply</Button></Col></Row></Col></Row>
-                </ListGroup>
-            </CardBody>
-            </Card>)
-          case 2:
             return (<Card>
               <CardBody>
                <CardTitle><h5>Fill Slots</h5></CardTitle>
                 <Row>
-                  <Col><FormGroup>
+                  <Col><FormGroup size="sm">
                     <Label for="slotdate">Select Date</Label>
-                  <Datetime disableClock={true} timeFormat={false} inputProps={{id:"slotdate",autocomplete:"off"}} closeOnSelect />
+                  <Datetime disableClock={true} onChange={handleDateTimeChange} timeFormat={false} inputProps={{id:"slotdate",placeholder:"Select date",autocomplete:"off"}} closeOnSelect />
                   </FormGroup>
                   </Col>
                 </Row>
+                {currentAvailableSlots.length === 0 ?<React.Fragment/>:<Row><Col>Available Slots</Col></Row>}
                 <Row>
-                  <Col>
-                    <FormGroup>
-                    <Label for="slotdate">Select Time Slot</Label>
-                    <Datetime disableCalender={true} dateFormat={false} inputProps={{id:"slot-start-time",autocomplete:"off"}} closeOnSelect />
-                  </FormGroup>
-                </Col>
+                  {currentAvailableSlots.map(item=><Col sm="4" md="2" key={item}><Card onClick={(event)=>{disableAll(currentAvailableSlots);document.getElementById(`slot${item}`).style.background="rgba(10, 66, 117,255)";document.getElementById(`slot${item}`).style.color="#fff"; setSelectedTimeSlot(item)}} id={`slot${item}`} className="slot-card"><CardBody className="text-center">{item}:00-{item+1}:00</CardBody></Card></Col>)}
                 </Row>
                 </CardBody>
               </Card>);
@@ -200,18 +219,25 @@ export default function Confirm(props) {
     }  
 
     const handleNext = () => {
-        let newSkipped = skipped;
-        if (isStepSkipped(activeStep)) {
-          newSkipped = new Set(newSkipped.values());
-          newSkipped.delete(activeStep);
+        if(nameIsValidated && emailIsValidated && contactIsValidated && document.getElementById("address").value.trim() !== "" && document.getElementById("dob").value.trim() !== "" && document.getElementById("gender").value.trim() !== "" ){
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);}
+        else{
+          toast("required Fields are missing!")
         }
-    
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped(newSkipped);
+        
       };
     
-    const handleDateTimeChange = (date) => {
-        setSelectedDate(date);
+    const handleDateTimeChange = async (date) => {
+        const result = await axios.post(apiLinks.availableSlots,{"slot":date._d})
+        const fleboResult = await axios.get(apiLinks.getFlebo)
+        const slotsKey = {slot1:7,slot2:8,slot3:9,slot4:10,slot5:11,slot6:12,slot7:13,slot8:14,slot9:15,slot10:16,slot11:17,slot12:18,slot13:19,slot14:20,slot15:21}
+        let availableSlots =[] 
+        for (var key of Object.keys(result.data)){
+            if(result.data[key] <parseInt(fleboResult.data.flebo)){
+              availableSlots.push(slotsKey[key])
+            }
+        }
+        setCurrentAvailableSlots(availableSlots)
     };
 
     useEffect(() => {
@@ -244,11 +270,6 @@ export default function Confirm(props) {
         )
     }
 
-    const calculateTotal = (obj)=>{
-      var total = 0
-      obj.map(item=>total+=parseInt(item.testAmount))
-      return total
-    }
 
     const fillTotal = (obj)=>{
         const total = calculateTotal(obj)
@@ -330,20 +351,3 @@ export default function Confirm(props) {
     )
 }
 
-
-
-
-
-{/* <Card className="submission-card">
-<CardBody>
-    <CardTitle>
-       <h5>Fill Appointment Details</h5>
-       <Row>
-       <Col className="align-center-row mt-5">
-           
-       </Col>
-       </Row>
-      
-    </CardTitle>
-</CardBody>
-</Card> */}
