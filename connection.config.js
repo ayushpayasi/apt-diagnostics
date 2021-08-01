@@ -1,6 +1,7 @@
 export const apiLinks = {
     // baseUrl:"http://13.232.169.82:5000/"
-    baseUrl:"http://localhost:5000/"
+   baseUrl:"http://localhost:5000/"
+	//baseUrl:"http://65.1.134.72:5000/"
 }
 
 apiLinks.priceList = apiLinks.baseUrl+"priceList"
