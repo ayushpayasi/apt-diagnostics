@@ -23,7 +23,6 @@ export default function Footer() {
     const title = "abcd"
     return (
         <>
-        <div className="footer-holder"><p>Never Miss An Update!</p><Button></Button> </div>
         <div className="footer-end">
             <div>
                 <h5>APT Diagnostics</h5>
@@ -59,7 +58,10 @@ export default function Footer() {
                     <li style={{color:"#0a4275",fontWeight:"500"}}><EmailIcon style={{color:"#ff6363"}}/>support@aptdiagnosstics.com</li>
                     <li style={{color:"#0a4275",fontWeight:"500"}}><CallIcon style={{color:"#ff6363"}}/>Contact Us</li>
                 </ul>
-                <h5 style={{marginTop:"20px"}}> Follow Us</h5>
+               </div>
+        </div>
+        <div className="footer-end-bottom d-flex justify-content-center align-items-center flex-column text-center">
+        <h5 style={{marginTop:"10px"}}> Follow Us</h5>
                 <ul>
                     <li>                     
                     <div className="links ioright">
@@ -102,14 +104,13 @@ export default function Footer() {
             </div>
                     </li>
                 </ul>
-            </div>
-            <div>
-            <div className="d-flex align-items-center justify-content-between font-weight-bolder">
-            <a >Site Map </a>{" - "}<a href="/terms_of_use" > Terms Of Use </a>{" "}-{" "}<a href="/terms_and_condition">Privacy Policy</a>
+            
+        </div>
+        <div className="footer-end-bottom">
+            <div className="d-flex align-items-center justify-content-center font-weight-bolder">
+            <a href="/sitemap" >Site Map </a>{" - "}<a href="/terms_of_use" > Terms Of Use </a>{" "}-{" "}<a href="/terms_and_condition">Privacy Policy</a>
             </div>
             <p className="text-center" style={{marginTop:"20px"}}> © Copyright APT Diagnostics All Rights Reserved. 2021</p>
-            </div>
-            
         </div>
         </>
     )

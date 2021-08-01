@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import NavBar from "../components/navbar.component"
-import { ListGroup, Container, ListGroupItem, Card, CardBody, CardTitle, Row, Col, FormGroup, Label, Input, Button } from 'reactstrap';
+import { ListGroup, Container, ListGroupItem, Card, CardBody, CardTitle, Row, Col, InputGroupAddon, FormGroup, Label, Input, Button, InputGroup } from 'reactstrap';
 import CancelOutlined from "@material-ui/icons/CancelOutlined"
 import IconButton from "@material-ui/core/IconButton"
 import Radio from '@material-ui/core/Radio';
@@ -8,17 +8,26 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import {apiLinks} from "../connection.config"
+import axios from "axios"
+import {toast} from "react-toastify"
 
 import "../assets/css/payments.scss"
 
 export default function Cart(props) {
-    const [cartData,setCartData] = useState(null);
+    const [cartData,setCartData] = useState([]);
+    const [bookingType,setBookingType] = useState("home")
+    const [discountedPrice,setDiscountedPrice] = useState(null)
+    const [discountPercent,setDiscountPercent] = useState(null)
     useEffect(() => {
         setCartData(JSON.parse(sessionStorage.getItem("cart")))
     }, [])
 
 
     const saveCart = (value)=>{
+        if(value === null){
+            return
+        }
         sessionStorage.setItem("cart",JSON.stringify(value))
         props.updateCartValue(value.length)
     }
@@ -41,22 +50,55 @@ export default function Cart(props) {
         )
     }
 
+    
     const calculateTotal = (obj)=>{
-      var total = 0
-      obj.map(item=>total+=parseInt(item.testAmount))
-      return total
-    }
-
-    const fillTotal = (obj)=>{
+        var total = 0
+        obj.map(item=>total+=parseInt(item.testAmount))
+        return total
+      }
+    
+    const fillTotal = (obj,discountedPrice)=>{
         const total = calculateTotal(obj)
         return<ListGroupItem>
         <Row className="total-payments-cart-data">
             <Col xs="6" style={{color:"#000"}}>TOTAL PAYABLE </Col>
-            <Col xs="3">{total}</Col>
+            <Col xs="3">{discountedPrice === null ?<h6>Rs. {total}</h6>:<span><strike>{total}</strike> Rs. {discountedPrice}</span>}</Col>
         </Row>
     </ListGroupItem>
     }
 
+    const applyCouponHandler = async(obj)=>{
+        const coupon = document.getElementById("coupon").value.toLowerCase()
+        const result = await axios.get(apiLinks.applyCoupon,{params:{coupon}})
+        console.log(result)
+        if (result.data.code == "200"){
+            setDiscountedPrice(calculateTotal(obj)-(calculateTotal(obj)*(result.data.discount/100)))
+            setDiscountPercent(result.data.discount)
+            toast(`Hurray You Recieved ${result.data.discount}% Off!`)
+        }
+        else if(result.data.code == "400"){
+            toast("I Afraid That Was An INVALID Coupon!")
+        }
+        else{
+            toast("there was a problem applying coupon!")
+        }
+      }
+
+    const giftTheseTestHandler = ()=>{
+        sessionStorage.setItem("discountedValue",JSON.stringify({"discount":discountedPrice,"cartLength":cartData.length}));
+        location.href="/payments/gifts";
+    }
+
+    const proceedToPayHandler = ()=>{
+        sessionStorage.setItem("bookingType",bookingType);
+        sessionStorage.setItem("discountedValue",JSON.stringify({"discount":discountedPrice,"cartLength":cartData.length,discountPercent}))
+        if(sessionStorage.getItem("userDetail") !== null){
+            location.href="/payments/confirm";
+        }
+        else{
+            location.href="/register_login"
+        }
+    }
     
 
     return (
@@ -73,7 +115,7 @@ export default function Cart(props) {
                     <div>
                         <FormControl component="fieldset">
                             <FormLabel className="text-center" style={{color:"#0a4275",fontWeight:"600"}} component="legend">Select Appointment Type</FormLabel>
-                            <RadioGroup row aria-label="position" name="position" defaultValue="top">
+                            <RadioGroup row onChange={(event)=>{setBookingType(event.target.value)}} aria-label="position" name="position" defaultValue="home">
                                 <FormControlLabel
                                 value="home"
                                 control={<Radio color="secondary" />}
@@ -100,17 +142,29 @@ export default function Cart(props) {
                    </Row>
                     </ListGroupItem>
                     {cartData.map(item=>fillCart(item))}
+                    {fillTotal(cartData,discountedPrice)}
                 </ListGroup>
+                <Row>
+                    <Col className="d-flex justify-content-end">
+                    <FormGroup size="sm">
+                        <Label for="coupon">Apply Coupon</Label>
+                        <InputGroup size="sm">
+                            <Input style={{width:"300px"}}size="sm" id="coupon" placeholder=""></Input>
+                            <InputGroupAddon addonType="append"><Button onClick={()=>{applyCouponHandler(cartData)}}  style={{color:"#0a4275"}} outline>Apply</Button></InputGroupAddon>
+                        </InputGroup>
+                    </FormGroup>
+                    </Col>
+                </Row>
                 </div>}
                 <Row>
                 <Col className="d-flex align-items-center justify-content-center">
                         <Button onClick={()=>{saveCart(cartData);location.href="/"}} style={{color:"#0a4275",borderRadius:"10px"}} outline>{cartData === null|| cartData.length === 0 ?"Find Tests!":"Add More Tests"}</Button>
                 </Col>
                 {cartData === null|| cartData.length === 0 ?<React.Fragment/>:<> <Col className="d-flex align-items-center justify-content-center">
-                        <Button style={{color:"#0a4275",borderRadius:"10px"}} outline>Gift These Tests</Button>
+                        <Button onClick={()=>{giftTheseTestHandler(discountedPrice)}} style={{color:"#0a4275",borderRadius:"10px"}} outline>Gift These Tests</Button>
                 </Col>
                 <Col className="d-flex align-items-center justify-content-center">
-                        <Button onClick={()=>{location.href="/payments/gifts"}} style={{color:"#0a4275",borderRadius:"10px"}} outline> Proceed To Pay</Button>
+                        <Button onClick={()=>{proceedToPayHandler(discountedPrice)}} style={{color:"#0a4275",borderRadius:"10px"}} outline> Proceed To Pay</Button>
                 </Col></>}
                 </Row>
             </CardBody>

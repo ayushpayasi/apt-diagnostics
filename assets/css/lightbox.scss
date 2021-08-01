@@ -40,9 +40,12 @@
   height:450px;
   width: 300px;
   transform: translate(-50%,-55%);
-  background: #fff;
+  // background: #fff;
   box-shadow: 0px 0px 0px 2px #0a4275, 0px 0px 2px 3px #fff ;
   z-index: 1;
+  background: url("/images/lightbox/request_call_back.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
   .close{
     cursor: pointer;
     position: absolute;
@@ -57,6 +60,26 @@
     font-size: 24px;
     border-radius: 18px;
   } 
+  .btn{
+    color:#0a4275;
+    margin: 15px 5px;
+    border:1px solid #0a4275 !important;
+    border-radius:10px;
+    font-weight: 700;
+  }
+  .details-box{
+    background: transparent;
+    width:100%;
+    height:100px;
+    position: absolute;
+    padding: 10px;
+    top:60%;
+    .MuiTextField-root{
+      &::placeholder{
+        color:#fff;
+      }
+    }
+  }
 }
 
 .lightbox-horizontal_sm{
@@ -100,8 +123,7 @@
 }
 .lightbox-button{
   border-radius:5px;
-  background: #0a4275;
-  border: none;
+  border: 1px solid #0a4275;
   max-width: 170px;
 
 }

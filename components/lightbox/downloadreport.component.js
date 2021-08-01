@@ -23,10 +23,10 @@ export default function DownloadReportLightbox(props) {
                 <div className="lightbox-horizontal">
                 <button className="close" onClick={close}>&times;</button>
                     <Row>
-                      <Col md="6">
-                        <img style={{width:"100%",height:"250px"}} src="images/bgcheck3.jpg"></img>
+                      <Col md="7">
+                        <img style={{width:"100%",height:"250px"}} src="images/lightbox/download_report.jpg"></img>
                       </Col>
-                      <Col md="6">
+                      <Col md="5">
                         <Form className="mt-2 d-flex justify-content-center align-items-center flex-column flex-wrap">
                         <h6>Download Report in one Click!</h6>
                         <FormGroup>
@@ -39,7 +39,7 @@ export default function DownloadReportLightbox(props) {
                           {/* <FormFeedback id="downloadreport_contactnumber_feedback" valid={contactNumberValid} tooltip>Contact Number is Valid</FormFeedback> */}
 
                         </FormGroup>
-                        <Button className="lightbox-button">Download Report</Button>
+                        <Button outline className="lightbox-button">Download Report</Button>
                         </Form>
                       </Col>
                     </Row>

@@ -27,6 +27,16 @@
     }
 }
 
+.slot-card{
+    border-radius:10px;
+    border:none;
+    box-shadow:0px 0px 5px 0px rgba(10, 66, 117,0.5) !important;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor:pointer;
+    overflow: hidden;
+}
+
 .align-center-row{
     display: flex;
     align-items: center;

@@ -181,7 +181,7 @@ export default function SliderDetails(props) {
             </Row>
             <Row>
                 <Col className="align-center-column mt-4 mb-4 iofade">
-                    <Button color="primary" href={`/diagnostics/${data[currSlide].testName.split(" ").join("").toLowerCase()}`} variant="contained" >Want to Know More!</Button>
+                    <Button style={{background : "#175d9c", color:"#fff"}} href={`/diagnostics/${data[currSlide].testName.split(" ").join("").toLowerCase()}`} variant="contained" >Want to Know More!</Button>
                 </Col>
             </Row>
             </Container>

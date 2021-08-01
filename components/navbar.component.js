@@ -112,13 +112,9 @@ const Navigation = (props) => {
                 startAdornment={
                 <InputAdornment position="start">
                   <img className = "nav-bar-search" src="/svg/aptIcons/light/search.svg" />
-                  {/* <SearchIcon style={{color:"#ff6363"}} /> */}
                 </InputAdornment>
                 }/>
               </NavItem>
-             {/* <NavItem className="m-2">
-            <NavLink className="nav-link" href="/components/">Components</NavLink>
-            </NavItem>  */}
             <span className="mobile-view-links">
             <NavItem className="m-2">
               <NavLink className="nav-link" href="/about">About</NavLink>
@@ -155,7 +151,7 @@ const Navigation = (props) => {
              <a href="/about">About</a>
             </Col>
             <Col md="2" className="p0 m0 align-center-column">
-            <a href="/packages">Packages</a>
+            <a href="/gift/gift_a_test">Gift-a-Test</a>
             </Col>
             <Col md="2" className="p0 m0 align-center-column">
               <a href="/covid"> <img src="/images/bacteria.png" style={{ width:"15px",height:"15px",margin:"3px"}}/> Covid-19</a>
@@ -176,8 +172,8 @@ const Navigation = (props) => {
           </Row>
           </Col>
           <Col md="5">
-            <Row>
-            <Col className="p0 m0 align-center-column">
+            <Row className="right-small-navbar">
+            <Col className="align-center-column">
             <a href="#">Order Medicines <span className="shining_text">coming soon</span></a>
             </Col>  
               <Col className="align-center-row">

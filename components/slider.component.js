@@ -60,11 +60,11 @@ const Slider4 = {
         <Container>
                             <Slider {...Slider4} >
                                 {testList.map(test=><div key={test.testID} className="align-center-column">
-                                <Card onClick={(event)=>{location.href=`test/${test.testName}`}} className="test-carousel-card text-center">
+                                <Card onClick={(event)=>{location.href=`tests/${test.testName}`}} className="test-carousel-card text-center">
                                     <CardBody>
                                         <CardTitle className="text-center card-title">{test.testName}</CardTitle>
                                         <h6 className="text-left" style={{color:"grey"}}>₹ {test.testAmount}</h6>
-                                        <p className="mt-4">{test.details.substring(0,80)}</p>
+                                        <p className="mt-4">{test.details.substring(0,50)}</p>
                                     </CardBody>
                                     <Button onClick={(event)=>{addToCart(event,test)}} className="test-card-button">Book Test</Button>
                                 </Card>

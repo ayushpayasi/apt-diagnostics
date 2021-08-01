@@ -52,9 +52,9 @@ export default function Reproductivesystem() {
             <div className="organ-image-holder">
                 <SmallNavBar color="white"/>
                 <img className="organ-image-desktop" src="/images/organs_banner/heart.png"></img>
-                <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img>
+                {/* <img className="organ-image-mobile" src="/images/mv_allergy.jpg"></img> */}
                 <div className="diagnostics-pagetitle">
-                    <h5>Heart - Symptoms,Diagnosis, Tests</h5>
+                    <h5>Heart</h5>
                 </div>
             </div>
             {/* <Container>
@@ -83,7 +83,7 @@ export default function Reproductivesystem() {
         <Row>
             <Col><h5 className="text-center">Overview</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col>
               <p>Heart is a muscular organ around the size of a closed fist, and it sits in the chest, slightly to the left of center.</p>
               <p>The functions of the heart are to pump oxygenated blood around the body, and to deliver deoxygenated blood and waste products (carbon dioxide) to the lungs.</p>
@@ -96,14 +96,14 @@ export default function Reproductivesystem() {
       <Row>
             <Col><h5 className="text-center">Why Important</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col><p>The heart is one of the most important organs in a human's body because it pumps blood around your body, delivering oxygen and nutrients to your cells and removing waste products.</p></Col></Row>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <Row>
             <Col><h5 className="text-center">Symptoms</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col>
               <List type="unstyled">
                 <ul>
@@ -128,7 +128,7 @@ export default function Reproductivesystem() {
       <Row>
             <Col><h5 className="text-center">Disease Associated</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col>
             <List type="unstyled">
                 <ul>
@@ -150,15 +150,15 @@ export default function Reproductivesystem() {
       <Row>
             <Col><h5 className="text-center">Suggested Tests</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa qui pariatur harum reiciendis possimus, at eligendi beatae vel? Architecto vel eius non, sapiente hic nemo sed cum perferendis. Consequatur maxime accusantium molestias explicabo itaque! Quaerat non officia reiciendis, quia, laudantium distinctio eum voluptas dignissimos provident facere eveniet, dicta quibusdam! Cum, unde dignissimos! Tempora odio voluptas nemo ducimus? Voluptate, consectetur? Aperiam earum voluptates pariatur ut fugiat praesentium eos quod esse consequuntur est, quis temporibus officiis delectus deleniti accusamus voluptatum voluptate enim nostrum neque eligendi dicta. Dolore nesciunt illum, rerum facere eius quae suscipit perferendis mollitia cupiditate commodi eaque voluptate inventore aliquid ratione magni architecto amet, eum facilis vel deleniti impedit, culpa iure? Quidem expedita, quas optio voluptates aliquid nam harum autem tenetur? Minima harum deleniti consequuntur repellat dicta labore voluptate culpa quam modi asperiores? Ipsa aperiam consectetur, vitae officiis dolore esse eveniet magnam delectus repudiandae optio! Cum quos molestias ab dicta repellat obcaecati exercitationem neque voluptatibus omnis recusandae, cumque laborum, ipsam tempora veritatis dolor nihil, aspernatur at ipsa dolorum assumenda? Veritatis blanditiis quae, ullam quia expedita, dicta minus aperiam sunt placeat molestias rem vero, atque porro consectetur. Quos ut dolor ipsa, corrupti nihil inventore obcaecati, sequi, id itaque repudiandae incidunt reprehenderit.</p></Col>
         </Row>
       </TabPanel>
       <TabPanel value={value} index={5}>
       <Row>
-            <Col><h5 className="text-center">causes</h5></Col>
+            <Col><h5 className="text-center">Causes</h5></Col>
         </Row>
-        <Row>
+        <Row className="detail-paragraph">
             <Col>
               <List type="unstyled">
                 <ul>

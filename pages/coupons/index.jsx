@@ -1,7 +1,6 @@
 import React from 'react';
-// import { useRouter } from 'next/router';
 import Navbar from "../../components/navbar.component"
-import { Container,Row,Col,ListGroup,ListGroupItem,Button,FormGroup,Label,Input } from 'reactstrap';
+import { Container,Row,Col,ListGroup,ListGroupItem,Button,FormGroup,Label,Input} from 'reactstrap';
 import axios from "axios"
 import {apiLinks} from "../../connection.config"
 import { toast } from 'react-toastify';
@@ -9,13 +8,18 @@ import "../../assets/css/coupon.scss"
 
 export async function getServerSideProps(context) {
     try{
-    const response = await axios.get(apiLinks.coupon,{params:{couponCode:context.query.couponcode}})
-    const {data} = response.data;
+    const response = await axios.post(apiLinks.checkCoupon,{coupon:context.query.couponcode})
+    let data = null
+    if(response.data.code === 200){
+        data = response.data.data;
+    }
+    else{
+        data = null;
+    }
     return { props: {data} };
     }
     catch(err){
-        console.log(err)
-        return { props: {} };
+        return { props: {data:null} };
     }
   }
 
@@ -28,15 +32,10 @@ export default function UseCoupon(props) {
         document.execCommand("copy");
         toast("Coupon Copied to ClipBoard!")
     }
-
-    if(props.data !== undefined){
-        toast("Coupon Code is Valid!")
-    }
-
     return(
         <React.Fragment>
-            <Navbar/>
-                {props.data !== undefined?
+            <Navbar updateCartValue={props.updateCartValue} cartValue={props.cartValue} />
+                {props.data !== null?
                 <Container className="mt-5">
                     <Row>
                         <Col>
@@ -56,7 +55,7 @@ export default function UseCoupon(props) {
                                 <Col style={{overflowY:"scroll",maxHeight:"160px",marginBottom:"5px"}}>
                                     <ListGroup flush>
                                         {
-                                            props.data.giftedTests.map(item=><ListGroupItem key="item">{item}</ListGroupItem>)
+                                            props.data.giftedTestList.map(item=><ListGroupItem key="item">{item}</ListGroupItem>)
                                         }
                                     </ListGroup>
                                 </Col>
@@ -106,7 +105,18 @@ export default function UseCoupon(props) {
                         </Col>
                     </Row>
                 </Container>
-                :<div className="mt-5">no enjoy</div>}
+                :<Container className="mt-5">
+                    <Row>
+                        <Col className="mt-4">
+                            <h4 className="text-center">Gift Coupon is Invalid!</h4>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className=" text-center mt-4">
+                            <Button outline onClick={()=>{location.href="/"}}>Go Back To Home Page</Button>
+                        </Col>
+                    </Row>
+                    </Container>}
             
         </React.Fragment>
     )

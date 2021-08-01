@@ -1,20 +1,15 @@
-import React, {useState,useEffect,useRef} from 'react'
-import NavBar from "../../components/navbar.component"
-import ReportSlider from "../../components/slider.component"
-import {Container,Row,Col,Card,Button,Input} from "reactstrap"
-import "../../assets/css/tests.scss"
-import ImgCarousel from "../../components/carousel.component"
+import React,{useState} from 'react'
+import Navigation from '../../components/navbar.component'
+import {Container,Card, CardText,CardBody,Row,Col,InputGroup,Input,Button,} from "reactstrap"
+import "../../assets/css/gifts.scss"
+import {apiLinks} from "../../connection.config"
+import axios from "axios"
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from "@material-ui/core/Box"
 import SearchIcon from '@material-ui/icons/Search';
-import axios from "axios"
-import { apiLinks } from '../../connection.config';
-import TestPagination from '../../components/pagination.component'
-
-
-
+import HealthCheckCarousel from '../../components/healthcheckcarousel.component'
 const getTestListData = async ()=>{
     try{
         const response = await axios.get(apiLinks.priceList,{params:{coupon:"priceList"}})
@@ -46,27 +41,49 @@ const getFeaturedTestData = async ()=>{
     }
 }
 
+
+const getPackagesData = async()=>{
+    try{
+        const packagesResponse = await axios.get(apiLinks.getPackages)
+        if(packagesResponse.data.code === 200){
+            return packagesResponse.data.data
+        }
+        else{
+            return []
+        }
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+
 export async function getServerSideProps(context) {
     try{
         const testList = await getTestListData()
         const featuredTest = await getFeaturedTestData()
-    return { props: {testList,featuredTest}}
+    return { props: {testList,featuredTest,packages: await getPackagesData()}}
     }
     catch(err){
         console.log(err)
-        return { props: {testList:[],featuredTest:[]}};
+        return { props: {testList:[],featuredTest:[],packages:[]}};
     }
   }
 
-export default function Tests(props) {    
-    const [featuredTest,setFeaturedTest] = useState(props.featuredTest)
+
+export default function GiftaTest(props) {
     const [testList,setTestList] = useState(props.testList)
+    const [value, setValue] = useState(0);
     const [filteredData,setFilteredData] = useState([])
     const [covidFilteredTests,setCovidFilteredTests] = useState([])
     const [popularTestsFiltered,setPopularTestsFiltered] = useState([])
-    const ref = useRef(null)
-        const [value, setValue] = useState(0);
-        
+    const [packages,setPackages] = useState(props.packages)
+    
+    const handleTabChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+            
     const handleCovidFilter =(val)=>{
         setCovidFilteredTests(testList.filter(item=> item.testCategory === "Other Services" && item.testName.toLowerCase().includes(val.toLowerCase())))
     }
@@ -78,7 +95,7 @@ export default function Tests(props) {
         setFilteredData(testList.filter(item=>item.testName.toLowerCase().includes(val.toLowerCase())))
     }
 
-        
+    
     const addToCart = (event,item)=>{
         event.stopPropagation();
         let cart = JSON.parse(sessionStorage.getItem("cart"))
@@ -93,97 +110,44 @@ export default function Tests(props) {
         sessionStorage.setItem("cart",JSON.stringify([item]))
     }
     }
-        //   enable this to solve the error, you have to use a timeout in order for it to work
-    useEffect(() => {
-        ref.current.updateIndicator();
-      }, []);
-        
-        function TabPanel(props) {
-            const { children, value, index, ...other } = props;
-        
-            return (
-            <div
-                role="tabpanel"
-                hidden={value != index}
-                id={`full-width-tabpanel-${index}`}
-                aria-labelledby={`full-width-tab-${index}`}
-                {...other}
-            >
-                {value == index && (
-                <Box p={3}>
-                    {children}
-                </Box>
-                )}
-            </div>
-            );
-        }
-        
-        const handleTabChange = (event, newValue) => {
-            setValue(newValue);
-        };
+
+            
+    function TabPanel(props) {
+        const { children, value, index, ...other } = props;
+    
+        return (
+        <div
+            role="tabpanel"
+            hidden={value != index}
+            id={`full-width-tabpanel-${index}`}
+            aria-labelledby={`full-width-tab-${index}`}
+            {...other}
+        >
+            {value == index && (
+            <Box p={3}>
+                {children}
+            </Box>
+            )}
+        </div>
+        );
+    }
 
     return (
-        <React.Fragment>
-            <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
+        <>
+          <Navigation updateCartValue={props.updateCartValue} cartValue={props.cartValue}/>  
             <Container>
-            <Row>
+                <Row className="mt-5">
                     <Col>
-                        <img src="/images/carouselimgx.jpg" style={{height:"400px",width:"100%"}}></img>
+                        <img src="/images/packages/test.jpg" alt="image" className="gift-static-img"></img>
                     </Col>
                 </Row>
+                <h4 className="text-center mt-3"> Gift Test To You Loved Ones!</h4>
             </Container>
-{/* Test Catalouge */}
-            <Container >
-                
-                <Row>
-                    <Col className="mt-5">
-                        <h1 style={{color:"#0a4275",fontWeight:"700",textTransform:"uppercase"}} className="text-center">TEST Catalogue - Book A Test</h1>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <p className="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur, doloribus! ipsum dolor sit amet consectetur adipisicing elit. Ullam quibusdam maxime repudiandae officiis velit at exercitationem animi, odit quos nemo.</p>
-                    </Col>
-                </Row>
-               </Container>
-
-{/* Book Home Collection Card */}
-            <Container>
-                <Row>
-                    <Col>
-                        <Card className="book-home-collection-card">
-                            <h4 style={{color : "#0a4275"}} className="text-center">Book Home Collection</h4>
-                            <Row>
-                                <Col xs="4">
-                                    {/* <img src="/svg/aptIcons/light/Healthy_Notification.svg"/> */}
-                                    <img src="/images/download_icon.svg" />
-                                    <p>
-                                        Online Access to Reports
-                                    </p>
-                                </Col>
-                                <Col xs="4">
-                                    <img src="/svg/aptIcons/light/home_collection.svg"/>
-                                    <p>
-                                        Free Home Collection & Cancellation
-                                    </p>
-                                </Col>
-                                <Col xs="4">
-                                    <img src="/svg/aptIcons/light/timely_reports.svg"/>
-                                    <p>Convenient & Time Saving</p>
-                                </Col>
-                            </Row>
-                            <p>Not sure about the tests <a href="#searchTests" style={{textDecoration:"none",color:"#ff6363"}}>Click here</a></p>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
-{/* Quick Search */}
+            
             <Container>
                 <Paper>
                     <h4 id="searchTests" style={{color:"#0a4275"}} className="text-center mt-4">Quick Search</h4>
                 <Tabs
-                    action={ref}
-                    // id="tab-test-bar"
                     value={value}
                     onChange={handleTabChange}
                     indicatorColor="primary"
@@ -258,51 +222,18 @@ export default function Tests(props) {
                 
                 </Paper>
             </Container>
-{/* some trail text */}
-            <Container className="mt-4">
-                <Row>
+            
+            <Container>
+                <Row className="mt-4">
                     <Col>
-                        <h5 style={{color:"#0a4275"}} className="text-center">Lorem, ipsum dolor.</h5>
+                        <h2 className="landing-h2 mt-2 mb-4 iofade">
+                            Our Curated Heath Packages
+                        </h2>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <p className="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi recusandae quo inventore architecto! Totam cum perferendis a iure vitae! Fuga maiores repellendus ab? Recusandae earum tenetur labore nam aperiam commodi suscipit, cumque consequuntur autem eaque laboriosam pariatur facere laborum et, dolor tempore repudiandae? Soluta ducimus totam quasi aliquam fugiat hic.</p>
-                    </Col>
-                </Row>
-            </Container>
-{/* popular tests*/}
-            <Container className="mt-4" >
-                <Row>
-                    <Col className="mt-2">
-                        <h5 style={{color:"#094275",textAlign:"center"}}>Popular Tests</h5>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <p style={{color:"grey",textAlign:"center"}}> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias, soluta. </p>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <ReportSlider data={featuredTest}/>
-                    </Col>
-                </Row>
-            </Container>
-{/* All Test List */}
-<Container>
-    <Row>
-        <Col>
-            <h4 style={{color:"#0a4275"}}className="text-center">ALL TESTS</h4>
-            <h5 style={{color:"#0a4275"}} className="text-center">(Click On Test To Add To Cart)</h5>
-        </Col>
-    </Row>
-</Container>
+                    {packages === null? React.Fragment :<HealthCheckCarousel updateCartValue={props.updateCartValue}  data={packages}/>}
+                </Container>
 
-<Container>
-    <TestPagination updateCartValue={props.updateCartValue} testList={testList}/>
-</Container>
-
-        </React.Fragment>
+        </>
     )
 }

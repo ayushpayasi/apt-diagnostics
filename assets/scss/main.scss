@@ -97,7 +97,7 @@ body{
 .login-banner{
   width: 100%;
   height: 100vh;
-  background: url("/images/bgcheck.jpg");
+  background: url("/images/login_page.jpg");
   background-repeat: no-repeat;
   background-position: top center;
   background-attachment: fixed;
@@ -115,6 +115,12 @@ body{
   background: rgba(255,255,255,0.8);
   border-radius: 10px;
   width:320px;
+}
+.register-card{
+  margin-top: 50px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 10px;
+  width:100%;
 }
 
 .button{

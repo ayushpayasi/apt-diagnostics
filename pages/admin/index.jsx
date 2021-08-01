@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import "../../assets/css/admin.scss"
 import AdminNavbar from "../../components/adminnavbar.component"
-import {Row,Col,Container, CardTitle,Card,CardBody,CardText,Button,FormGroup,Label,Input} from "reactstrap"
+import {Row,Col,Container, CardTitle,Card,CardBody,CardText,Button,FormGroup,Label,Input, InputGroup, InputGroupAddon} from "reactstrap"
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from "@material-ui/core/TextField";
 import AddIcon from '@material-ui/icons/Add';
@@ -16,6 +16,7 @@ import AdminTestsTable from "../../components/adminteststable.component"
 import AdminBlogsTable from '../../components/adminblogstable.component';
 import BlogUpdateWindow from '../../components/admin/blogUpdateWindow.component';
 import BlogInsertWindow from '../../components/admin/blogInsertWindow.component';
+import AddCouponWindow from '../../components/admin/addcouponwindow.component';
 import Edit from '@material-ui/icons/Edit';
 import { toast } from 'react-toastify';
 import exportFromJSON from 'export-from-json'
@@ -35,6 +36,7 @@ export default function Index() {
     const [blogUpdateWindow,setBlogUpdateWindow] = useState(false)
     const [blogInsertWindow,setBlogInsertWindow] = useState(false)
     const [packageToUpdate,setPackageToUpdate] = useState(0);
+    const [addCouponWindow,setAddCouponWindow] = useState(false)
     const [testToUpdate,setTestToUpdate] = useState(0);
     const [organToUpdate,setOrganToUpdate] = useState(0);
     const [blogToUpdate,setBlogToUpdate] = useState(-1);
@@ -174,6 +176,7 @@ export default function Index() {
             {testUpdateWindow?<TestUpdateWindow setTestUpdateWindow={setTestUpdateWindow} testToUpdate={testToUpdate}/>:<React.Fragment/>}
             {blogUpdateWindow?<BlogUpdateWindow setBlogToUpdate={setBlogToUpdate} setBlogUpdateWindow={setBlogUpdateWindow} blogToUpdate={blogToUpdate}/>:<React.Fragment/>}
             {blogInsertWindow?<BlogInsertWindow setBlogInsertWindow={setBlogInsertWindow}/>:<React.Fragment/>}
+            {addCouponWindow?<AddCouponWindow setAddCouponWindow={setAddCouponWindow}/>:<React.Fragment/>}
                 <div style={{display:"flex"}}>
                         <div>
                             <AdminNavbar currentContainer={currentContainer} changeContainer={setCurrentContainer}/>
@@ -310,11 +313,11 @@ export default function Index() {
                                     <Col md="6">
                                         <FormGroup>
                                             <Label for="fleboCount">Flebo</Label>
-                                            <Input size="sm" id="fleboCount" placeHolder="Flebo"></Input>
+                                            <InputGroup size="sm">
+                                                <Input  id="fleboCount" placeHolder="Flebo"></Input>
+                                                <InputGroupAddon addonType="append"><Button onClick={()=>{fleboChangeHandler()}}>Save</Button></InputGroupAddon>
+                                            </InputGroup>
                                         </FormGroup>
-                                    </Col>
-                                    <Col md="6">
-                                        <Button onClick={()=>{fleboChangeHandler()}}>Save</Button>
                                     </Col>
                                 </Row>
                                 </CardBody>
@@ -355,6 +358,17 @@ export default function Index() {
                                 </Card>
                                 </Col>
                             </Row>
+                            <Row>
+                                <Col md="6">
+                                <Card>
+                                <CardBody>
+                                    <CardTitle>Add/View Coupons</CardTitle>
+                                    <Button onClick={()=>{setAddCouponWindow(true)}}>Add Coupons</Button>
+                                </CardBody>
+                                </Card>
+                                </Col>
+                            </Row>
+                            
                         </div>
                         <div style={{display:(currentContainer === "adminContent7")?"block":"none"}} id="adminContent7" className="admin-content admin-content7">
                             <Card>
