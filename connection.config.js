@@ -30,8 +30,6 @@ apiLinks.downloadContactusData = apiLinks.baseUrl+"admin/fetchContactus"
 apiLinks.downloadFeedbackData = apiLinks.baseUrl+"admin/fetchFeedbacks"
 apiLinks.getPackages = apiLinks.baseUrl+"getPackages"
 apiLinks.getAllFeaturedTests = apiLinks.baseUrl+"getAllFeaturedTests"
-<<<<<<< HEAD
-=======
 apiLinks.paymentRazorpay = apiLinks.baseUrl+"makePaymentRazorpay"
 apiLinks.confirmGiftPayment = apiLinks.baseUrl+"confirmGiftPayment"
 apiLinks.getAllCoupons = apiLinks.baseUrl+"getAllCoupons"
@@ -46,4 +44,3 @@ apiLinks.loginUser = apiLinks.baseUrl+"login"
 apiLinks.quickLogin = apiLinks.baseUrl+"quickLogin"
 apiLinks.registerUser = apiLinks.baseUrl+"register"
 apiLinks.getMemberDetails = apiLinks.baseUrl+"getMemberDetails"
->>>>>>> e20d13caf62f073a731d0ca6b3d6a4c9b1b7b627
