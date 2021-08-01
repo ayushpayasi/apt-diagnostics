@@ -1,0 +1,88 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HospitalManagementSystem
+{
+    public class HospitalManagementRepository
+    {
+        HospitalManagementContext hospitalManagementContext;
+        
+
+	//Fill your code here to implement RegisterDoctor Method
+        public int RegisterDoctor(IList<Doctor> doctorList) 
+        {
+            int res = 0;
+            using(hospitalManagementContext = new HospitalManagementContext()) {
+                foreach(var doctor in doctorList) {
+                    hospitalManagementContext.Doctors.Add(doctor);
+                }
+                res = hospitalManagementContext.SaveChanges();
+            }
+            return res;
+        }
+
+       
+        //Fill your code here to implement RegisterPatient Method
+        public int RegisterPatient(IList<Patient> patientList) 
+        {
+            int res = 0;
+            using(hospitalManagementContext = new HospitalManagementContext()) {
+                foreach(var patient in patientList) {
+                    hospitalManagementContext.Patients.Add(patient);
+                }
+                res = hospitalManagementContext.SaveChanges();
+            }
+            return res;
+        }
+
+	
+	//Fill your code here to implement RegisterPatientDoctorVisit Method
+        
+        public int RegisterPatientDoctorVisit(DoctorPatient doctorPatient)
+        {
+            int res = 0;
+            using(hospitalManagementContext = new HospitalManagementContext()) {
+                hospitalManagementContext.DoctorsPatients.Add(doctorPatient);
+                res = hospitalManagementContext.SaveChanges();
+            }
+            return res;
+        }
+	
+	//Fill your code here to implement DisplayPatients Method
+        public IList<Patient> DisplayPatients()
+        {
+            IList<Patient> res = new List<Patient>();
+            using(hospitalManagementContext = new HospitalManagementContext()) {
+                res = hospitalManagementContext.Patients.ToList<Patient>();
+            }
+            return res;
+            
+        }
+
+	
+	//Fill your code here to implement DisplayDoctors Method
+        public IList<Doctor> DisplayDoctors()
+        {
+            IList<Doctor> res = new List<Doctor>();
+            using(hospitalManagementContext = new HospitalManagementContext()) {
+                res = hospitalManagementContext.Doctors.ToList<Doctor>();
+            }
+            return res;
+        }
+
+	    public IList<DoctorPatient> DisplayPatientDoctorVisit()
+	    {
+	        IList<DoctorPatient> res = new List<DoctorPatient>();
+            using(hospitalManagementContext = new HospitalManagementContext()) {
+                res = hospitalManagementContext.DoctorsPatients.ToList<DoctorPatient>();
+            }
+            return res;
+	        
+	    }
+	//Fill your code here to implement DisplayPatientDoctorVisit Method
+        
+    }
+}

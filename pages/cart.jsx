@@ -18,6 +18,7 @@ export default function Cart(props) {
     const [cartData,setCartData] = useState([]);
     const [bookingType,setBookingType] = useState("home")
     const [discountedPrice,setDiscountedPrice] = useState(null)
+    const [discountPercent,setDiscountPercent] = useState(null)
     useEffect(() => {
         setCartData(JSON.parse(sessionStorage.getItem("cart")))
     }, [])
@@ -72,6 +73,7 @@ export default function Cart(props) {
         console.log(result)
         if (result.data.code == "200"){
             setDiscountedPrice(calculateTotal(obj)-(calculateTotal(obj)*(result.data.discount/100)))
+            setDiscountPercent(result.data.discount)
             toast(`Hurray You Recieved ${result.data.discount}% Off!`)
         }
         else if(result.data.code == "400"){
@@ -89,8 +91,13 @@ export default function Cart(props) {
 
     const proceedToPayHandler = ()=>{
         sessionStorage.setItem("bookingType",bookingType);
-        sessionStorage.setItem("discountedValue",JSON.stringify({"discount":discountedPrice,"cartLength":cartData.length}))
-        location.href="/payments/confirm";
+        sessionStorage.setItem("discountedValue",JSON.stringify({"discount":discountedPrice,"cartLength":cartData.length,discountPercent}))
+        if(sessionStorage.getItem("userDetail") !== null){
+            location.href="/payments/confirm";
+        }
+        else{
+            location.href="/register_login"
+        }
     }
     
 

@@ -131,9 +131,12 @@ export default function Home(props) {
 
     }
 
-    const handleOTPVerification =()=>{
+    const handleOTPVerification = async()=>{
+        sessionStorage.setItem("cart",JSON.stringify([selectedTest]))
+        sessionStorage.setItem("bookingType",radioValue)
+        sessionStorage.setItem("userDetail",JSON.stringify({contact:mobile}))
         setOtpVerification(false)
-        router.push("/payments/confirm")
+        router.push("/payments/quickconfirm")
     }
 
     const bookAppointmentHandler = ()=>{
@@ -201,9 +204,6 @@ const items = [
 
 
     useEffect(() => {
-
-        // getData()
-
         const fadeInLeft = document.querySelectorAll(".ioleft")
         const fadeInRight = document.querySelectorAll(".ioright")
         const fade = document.querySelectorAll(".iofade")
@@ -539,7 +539,7 @@ const items = [
                     </Container>
                 </div>
 {/* footer */}
-                <div style={{height:"100vh"}}>
+                <div>
                     <Footer/>
                 </div>
 

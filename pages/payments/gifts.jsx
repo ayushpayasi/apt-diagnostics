@@ -83,7 +83,6 @@ export default function Gifts(props) {
 
     const HandleCallBack = async (response,donor_name,donor_email,donor_contact,donee_contact,donee_email,donee_name,amount,giftedTestList)=>{
         try{
-        console.log(response)
         const generateRandomString = (length=12)=>Math.random().toString(20).substr(2, length)
         const couponCode = generateRandomString()
         const result = await axios.post(apiLinks.confirmGiftPayment,
@@ -169,7 +168,7 @@ export default function Gifts(props) {
         console.log(response.data)
 
         const options = {
-			key:"rzp_test_9bojDOyI4haZxv",
+			key:"rzp_test_HfoOyFfzSafqJd",
 			currency: data.currency,
 			amount: data.amount.toString(),
 			order_id: data.id,
