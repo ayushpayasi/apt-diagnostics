@@ -1,6 +1,6 @@
 export const apiLinks = {
-   baseUrl:"http://localhost:5000/"
-	// baseUrl:"http://www.aptdiagnostics.com:5000/"
+//    baseUrl:"http://localhost:5000/"
+	baseUrl:"http://www.aptdiagnostics.com:5000/"
 }
 
 apiLinks.priceList = apiLinks.baseUrl+"priceList"
