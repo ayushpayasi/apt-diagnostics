@@ -175,7 +175,7 @@ const items = [
 
     return (
         <>
-        <Head>APT DIAGNOSTICS | PACKAGES</Head>
+        <Head>PACKAGES || APT DIAGNOSTICS </Head>
             <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
             <Container fluid className="package-banner-container-holder mt-5">
             <ImgCarousel data={items} style={{height:"400px"}}/>

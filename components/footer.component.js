@@ -16,6 +16,7 @@ import {
     WhatsappIcon,
 } from "react-share"
 import {Button} from "reactstrap"
+import Subscribe from "./subscribe.component.js"
 
 
 export default function Footer() {
@@ -23,6 +24,9 @@ export default function Footer() {
     const title = "abcd"
     return (
         <>
+        <div className="footer-holder">
+            <div className="subscriber-footer-component"><Subscribe/></div>
+        </div>
         <div className="footer-end">
             <div>
                 <h5>APT Diagnostics</h5>

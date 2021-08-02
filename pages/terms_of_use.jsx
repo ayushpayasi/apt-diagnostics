@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React from 'react'
 import{Container,Row,Col} from "reactstrap"
 import NavBar from "../components/navbar.component"
@@ -5,6 +6,10 @@ import NavBar from "../components/navbar.component"
 export default function Terms(props) {
     return (
         <>
+        
+        <Head>
+          <title>Terms Of Use || APT Diagnostics</title>
+        </Head>
           <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
           <Container className="mt-5">
           <p><strong style={{fontSize:"1.2rem",background:"#0a4275",color:"#fff",padding:"5px",borderRadius:"5px"}}>Terms of Use</strong></p>

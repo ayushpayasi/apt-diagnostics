@@ -1,17 +1,17 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import NavBar from "../../components/navbar.component"
 import {Container,Row,Col} from "reactstrap"
 import Tab from "../../components/abouttab.component"
 import "../../assets/css/about.scss"
-import BreadCrumb from "../../components/breadcrumb.component"
-import {isMobile} from "react-device-detect";
-import MobileMenu from "../../components/mobilemenu.component"
+import Head from 'next/head'
 
 export default function About(props) {
     return (
         <React.Fragment>
+            <Head>
+                <title>About || APTDiagnostics</title>
+            </Head>
             <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
-            <BreadCrumb links={["home","about"]}/>
             <Container>
                 <Row>
                     <Col>
@@ -19,7 +19,6 @@ export default function About(props) {
                     </Col>
                 </Row>
             </Container>
-            {isMobile?<MobileMenu/>:<React.Fragment/>}
         </React.Fragment>
     )
 }

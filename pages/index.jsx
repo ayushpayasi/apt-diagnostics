@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React,{useEffect,useState, useRef} from 'react'
 import{Container,
     Col,
@@ -240,7 +241,10 @@ const items = [
 
 
     return (<React.Fragment>
-
+                
+                <Head>
+                <title>APT Diagnostics || Accurate Precise Timely</title>
+                </Head>
                 <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
 {/* otp window */}
                 {otpVerification?<div className="otp-verification-window"><Card className="otp-verification-card">

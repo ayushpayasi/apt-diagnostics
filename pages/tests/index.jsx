@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React, {useState,useEffect,useRef} from 'react'
 import NavBar from "../../components/navbar.component"
 import ReportSlider from "../../components/slider.component"
@@ -124,6 +125,10 @@ export default function Tests(props) {
 
     return (
         <React.Fragment>
+            
+        <Head>
+          <title>Tests || APT Diagnostics</title>
+        </Head>
             <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
             <Container>
             <Row>

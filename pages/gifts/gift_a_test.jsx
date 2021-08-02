@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React,{useState} from 'react'
 import Navigation from '../../components/navbar.component'
 import {Container,Card, CardText,CardBody,Row,Col,InputGroup,Input,Button,} from "reactstrap"
@@ -134,6 +135,10 @@ export default function GiftaTest(props) {
 
     return (
         <>
+        
+        <Head>
+                <title>Gift Test || APTDiagnostics</title>
+            </Head>
           <Navigation updateCartValue={props.updateCartValue} cartValue={props.cartValue}/>  
             <Container>
                 <Row className="mt-5">

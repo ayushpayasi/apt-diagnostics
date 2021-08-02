@@ -15,6 +15,7 @@ import {
   ListGroup,
   ListGroupItem,
   Button,
+  NavbarText,
 } from 'reactstrap';
 import "../assets/css/navbar.scss"
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown"
@@ -115,6 +116,9 @@ const Navigation = (props) => {
                 </InputAdornment>
                 }/>
               </NavItem>
+              <NavItem className="m-3 call-free" style={{cursor:"pointer"}}>
+                <p style={{color:"#ff6363"}} className="p-0 m-0">Call Us:</p> 1800-121-123456
+              </NavItem>
             <span className="mobile-view-links">
             <NavItem className="m-2">
               <NavLink className="nav-link" href="/about">About</NavLink>
@@ -151,7 +155,7 @@ const Navigation = (props) => {
              <a href="/about">About</a>
             </Col>
             <Col md="2" className="p0 m0 align-center-column">
-            <a href="/gift/gift_a_test">Gift-a-Test</a>
+            <a href="/gifts/gift_a_test">Gift-a-Test</a>
             </Col>
             <Col md="2" className="p0 m0 align-center-column">
               <a href="/covid"> <img src="/images/bacteria.png" style={{ width:"15px",height:"15px",margin:"3px"}}/> Covid-19</a>

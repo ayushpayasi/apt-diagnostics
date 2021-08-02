@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React from 'react'
 import SmallNavbar from "../components/smallnavbar.component"
 import {Row,Col,Container,Card,CardBody,CardTitle, Input,FormGroup,Label,Button, CardText} from "reactstrap"
@@ -8,6 +9,10 @@ export default function Login() {
 
     return (
         <>
+        
+        <Head>
+          <title>Login || APT Diagnostics</title>
+        </Head>
         <div className="login-banner">
         <SmallNavbar color="white" />
             <Container fluid className="grid-bg">

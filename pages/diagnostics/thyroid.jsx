@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React,{useState} from 'react'
 import MobileMenu from "../../components/mobilemenu.component"
 import {isMobile} from "react-device-detect";
@@ -49,6 +50,10 @@ export default function Thyroidgland() {
   };
     return (
         <React.Fragment>
+          
+          <Head>
+                <title>Thyroid || APTDiagnostics</title>
+            </Head>
             <div className="organ-image-holder">
                 <SmallNavBar color="white"/>
                 <img className="organ-image-desktop" src="/images/organs_banner/thyroid.jpg"></img>

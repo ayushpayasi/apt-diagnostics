@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head'
 import {
   Container,
   Col,
@@ -26,6 +27,7 @@ import BlogCard from '../../components/blogcard.component';
 import { toast } from 'react-toastify';
 import { Button } from 'reactstrap';
 import DetailBlogPage from '../../components/DetailBlogPage';
+import Head from "next/head"
 
 export default function Blog(props) {
   const [blogs, setBlogs] = useState([]);
@@ -42,27 +44,6 @@ export default function Blog(props) {
   const CloseDetailBlogDataHandler = () => {
     setBlogClicked(false);
   };
-
-  //   const detailBlogPage = () => {
-  //     return (
-  //       <>
-  //         <Col lg="9">
-  //             <Card>
-  //                {isVideoBlog ? <CardImg top width="100%" src="/images/bacteria.png"></CardImg> : <CardImg top width="100%" src="/images/bgcheck.jpg"></CardImg> }
-  //                 <CardSubtitle>Written by <Badge color="primary"> Team APT DIagnostics</Badge></CardSubtitle>
-  //                 <CardTitle style={{cursor : 'pointer'}}>{detailBlogData.heading}</CardTitle>
-  //                 <Share/>
-  //                 <CardText>{detailBlogData.content}</CardText>
-  //                 <Button onClick={CloseDetailBlogDataHandler} color="primary" size="sm">All Blogs!</Button>
-  //             </Card>
-  //         </Col>
-  //         <Col>
-  //           Related Posts
-  //         </Col>
-  //       </>
-  //     )
-  // }
-
   const getBlogData = async () => {
     try {
       const result = await axios.get(apiLinks.blogData);
@@ -80,6 +61,9 @@ export default function Blog(props) {
 
   return (
     <>
+    <Head>
+        <title>Blogs || APTDiagnostics</title>
+    </Head>
       <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
       {!isBlogClicked ? (
         <Container className="mt-5">

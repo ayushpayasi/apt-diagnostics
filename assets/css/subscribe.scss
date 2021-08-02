@@ -48,11 +48,17 @@
 }
 .sub-text h2 {
   font-size: var(--n-8);
+  color:#ff6363;
 }
-.sub-text h2, .sub-text p {
+.sub-text h2{
   margin: 0;
   margin-bottom: var(--n-4);
 }
+
+.sub-text h6{
+ color:#e0c0c0;
+}
+
 .sub-text h2:last-child, .sub-text p:last-child {
   margin-bottom: 0;
 }
@@ -72,7 +78,7 @@
   margin: 0;
   outline: none;
   border-radius: var(--n-2);
-  box-sizing: border-box;
+  box-sizing: border-box
 }
 .sub-form .field input[type=email] {
   background-color: #ffffff;

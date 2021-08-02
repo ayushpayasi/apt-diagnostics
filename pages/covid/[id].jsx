@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton"
 import Button from "@material-ui/core/Button"
 import ArrowDownwardRounded from "@material-ui/icons/ArrowDownwardRounded"
 import "../../assets/css/tests.scss"
+import Head from 'next/head'
 
 export const getStaticPaths = async ()=>{
     try{

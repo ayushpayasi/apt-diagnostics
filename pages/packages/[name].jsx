@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React,{useState} from 'react'
 import SmallNavbar from "../../components/smallnavbar.component"
 import "../../assets/css/tests.scss"

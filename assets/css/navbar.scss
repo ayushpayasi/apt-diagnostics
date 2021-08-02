@@ -22,6 +22,12 @@
 .m0{
     margin: 0 !important;
 }
+.call-free{
+    color:#fafafa;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
 
 .navbar{
     background: #0a4275;
@@ -492,6 +498,23 @@
         height:50px;
         width:120px;
         margin-top: 0px;
+    }
+}
+
+@media only screen and (max-width:1300px){
+    .call-free{
+        color:#fafafa;
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+}
+@media only screen and (max-width:1024px){
+    .call-free{
+        color:#fafafa;
+        font-weight: 700;
+        font-size: 0.7rem;
+        letter-spacing: 1px;
     }
 }
 

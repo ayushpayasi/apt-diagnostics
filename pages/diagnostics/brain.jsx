@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import Head from 'next/head'
 import MobileMenu from "../../components/mobilemenu.component"
 import {isMobile} from "react-device-detect";
 import SmallNavBar from "../../components/smallnavbar.component"
@@ -50,6 +51,10 @@ export default function Brain() {
   console.log(isMobile)
     return (
         <React.Fragment>
+          
+          <Head>
+                <title>Brain || APTDiagnostics</title>
+            </Head>
             <div className="organ-image-holder">
                 <SmallNavBar color="white"/>
                 <img className="organ-image-desktop" src="/images/organs_banner/brain.jpg"></img>

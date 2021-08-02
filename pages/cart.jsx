@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React,{useEffect,useState} from 'react'
 import NavBar from "../components/navbar.component"
 import { ListGroup, Container, ListGroupItem, Card, CardBody, CardTitle, Row, Col, InputGroupAddon, FormGroup, Label, Input, Button, InputGroup } from 'reactstrap';
@@ -103,6 +104,10 @@ export default function Cart(props) {
 
     return (
         <>
+        
+        <Head>
+          <title>Cart || APT Diagnostics</title>
+        </Head>
             <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
             <Container><Card className="payment-total-card mt-5">
             <CardBody>

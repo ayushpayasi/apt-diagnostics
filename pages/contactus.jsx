@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React,{useState} from 'react'
 import axios from "axios"
 import {apiLinks} from "../connection.config"
@@ -70,6 +71,10 @@ export default function Contactus(props) {
 
     return (
         <>
+        
+        <Head>
+          <title>Contact Us || APT Diagnostics</title>
+        </Head>
         <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
         <Container className="mt-5">
             <Card id="feedback">

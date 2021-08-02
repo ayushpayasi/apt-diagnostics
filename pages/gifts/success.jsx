@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React,{useEffect,useState} from 'react'
 import { Container,CardBody,Card,CardTitle,Row,Col } from 'reactstrap'
 import Navigation from '../../components/navbar.component'
@@ -25,6 +26,10 @@ export default function Success(props) {
     },[])
     return (
         <>
+        
+        <Head>
+                <title>Your Coupon code  || APTDiagnostics</title>
+            </Head>
         <Navigation cartValue={props.cartValue} updateCartValue={props.updateCartValue} />
         <Container className="d-flex mt-5 justify-content-center align-items-center">
           <Card className="gift-card">

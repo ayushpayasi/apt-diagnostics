@@ -5,6 +5,25 @@ import axios from "axios"
 import {apiLinks} from "../../connection.config"
 import { toast } from 'react-toastify';
 import "../../assets/css/coupon.scss"
+import Head from 'next/head'
+
+
+const getTestListData = async ()=>{
+    try{
+        const response = await axios.get(apiLinks.priceList,{params:{coupon:"priceList"}})
+        if (response.data[0].code === 200){
+            return Object.values(response.data[1])
+        }
+        else{
+            return []
+        }
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+
 
 export async function getServerSideProps(context) {
     try{
@@ -16,15 +35,17 @@ export async function getServerSideProps(context) {
     else{
         data = null;
     }
-    return { props: {data} };
+    return { props: {data,testList: await getTestListData()} };
     }
     catch(err){
-        return { props: {data:null} };
+        return { props: {data:null,testList:[]} };
     }
   }
 
 export default function UseCoupon(props) {
-
+        console.log(props.testList)
+        const filteredArray = props.testList.filter(value => props.data.giftedTestList.includes(""+value.testID));
+        console.log(filteredArray)
     const copyHandler = ()=>{
         var copyText = document.getElementById("couponCode");
         copyText.select();
@@ -32,8 +53,23 @@ export default function UseCoupon(props) {
         document.execCommand("copy");
         toast("Coupon Copied to ClipBoard!")
     }
+
+    const handleDirectCouponUse = async()=>{
+        try{
+            sessionStorage.setItem("insertedGiftCoupon",document.getElementById("couponCode").value)
+            if(sessionStorage.getItem("userDetail") !== null){
+                
+            }
+            else{
+
+            }
+        }catch(err){}
+    }
     return(
         <React.Fragment>
+            <Head>
+                <title>Coupons || APTDiagnostics</title>
+            </Head>
             <Navbar updateCartValue={props.updateCartValue} cartValue={props.cartValue} />
                 {props.data !== null?
                 <Container className="mt-5">
@@ -48,21 +84,21 @@ export default function UseCoupon(props) {
                         <Col md="5">
                             <Row>
                                 <Col>
-                                    <h5>Available Tests</h5>
+                                    <h5>Associated Tests</h5>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col style={{overflowY:"scroll",maxHeight:"160px",marginBottom:"5px"}}>
                                     <ListGroup flush>
                                         {
-                                            props.data.giftedTestList.map(item=><ListGroupItem key="item">{item}</ListGroupItem>)
+                                            filteredArray.map(item=><ListGroupItem key="item">{item.testName} - Rs.{item.testAmount}</ListGroupItem>)
                                         }
                                     </ListGroup>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col className="text-center">
-                                    <Button style={{border:"none",borderRadius:"5px"}}>Cofirm Appointment Time!</Button>
+                                    <Button onClick={()=>{handleDirectCouponUse()}} outline style={{borderRadius:"5px"}}>Book These Tests!</Button>
                                 </Col>
                             </Row>
                         </Col>
@@ -81,7 +117,7 @@ export default function UseCoupon(props) {
                                                     <Label for="couponPrice">
                                                         Your Coupon is Worth!
                                                     </Label>
-                                                    <Input readonly id="couponPrice" value={props.data.couponPrice} style={{borderRadius:"10px",fontWeight:"700",letterSpacing:"2px"}}>
+                                                    <Input readonly id="couponPrice" value={props.data.couponAmount} style={{borderRadius:"10px",fontWeight:"700",letterSpacing:"2px"}}>
                                                     </Input>
                                                 </FormGroup>   
                                             </Col>

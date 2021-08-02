@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React,{useState} from 'react'
 import Navigation from '../../components/navbar.component'
 import OtpVerify from "../../components/otpverify.component"
@@ -189,6 +190,10 @@ export default function Gifts(props) {
 
     return (
         <>
+        
+        <Head>
+          <title>Gift || APT Diagnostics</title>
+        </Head>
         {otpWindow?<OtpVerify  verified={setVerified} setOtpWindow={setOtpWindow} />:<React.Fragment/>}
         <Navigation updateCartValue={props.updateCartValue} />
         <Container className="mt-5">

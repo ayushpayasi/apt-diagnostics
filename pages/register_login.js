@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React,{useState} from 'react'
 import { Container,Row,Col,Card,CardText,FormGroup,Label,Input,CardBody,CardTitle,Button,InputGroup,InputGroupAddon } from 'reactstrap'
 import Datetime from 'react-datetime';
@@ -77,6 +78,10 @@ export default function Register(props) {
 
     return (
         <>
+        
+        <Head>
+          <title>Register Login || APT Diagnostics</title>
+        </Head>
         <Navigation cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
         {otpWindow?<OtpVerify verified={setVerified} setOtpWindow={setOtpWindow}/>:<React.Fragment/>}
         <Container className="mt-3">

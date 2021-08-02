@@ -1,5 +1,4 @@
 .footer-holder{
-    display: flex;
     position: relative;
     background: url("/images/footer3.png");
     background-repeat: no-repeat;
@@ -9,6 +8,12 @@
     width:100%;
     margin:0;
     padding:0;
+    .subscriber-footer-component{
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
     p{
         position: absolute;
         font-size: 0.9rem;

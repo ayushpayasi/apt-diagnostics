@@ -5,6 +5,7 @@ import CovidSlider from '../../components/covidslider.component'
 import { apiLinks } from '../../connection.config'
 import axios from "axios"
 import "../../assets/css/covid.scss"
+import Head from 'next/head'
 
 export async function getServerSideProps(context) {
     try{
@@ -21,6 +22,10 @@ export async function getServerSideProps(context) {
 export default function Index(props) {
     return (
         <>
+        
+        <Head>
+                <title>Covid || APTDiagnostics</title>
+            </Head>
             <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
             <Container className="mt-5">
             <Row>

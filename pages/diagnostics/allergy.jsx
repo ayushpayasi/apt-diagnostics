@@ -9,6 +9,7 @@ import CenterMode from "../../components/centermodecarousel.component"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import Box from "@material-ui/core/Box"
+import Head from 'next/head'
 
 
 import "../../assets/css/diagnostics.scss"
@@ -49,6 +50,10 @@ export default function Allergy() {
   };
     return (
         <React.Fragment>
+          
+          <Head>
+                <title>Allergy || APTDiagnostics</title>
+            </Head>
             <div className="organ-image-holder">
                 <SmallNavBar color="white"/>
                 <img className="organ-image-desktop" src="/images/organs_banner/allergy.jpg"></img>

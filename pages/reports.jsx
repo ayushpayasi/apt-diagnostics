@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React from 'react'
 import {Container,Row,Col,ListGroupItem,ListGroup,Button} from "reactstrap"
 import NavBar from "../components/navbar.component"
@@ -44,6 +45,10 @@ export default function Reports(props) {
 
     return (
         <>
+        
+        <Head>
+          <title>Reports || APT Diagnostics</title>
+        </Head>
         <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
         <Container className="reports-container">
             <Row>

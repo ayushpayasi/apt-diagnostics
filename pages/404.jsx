@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import {Container} from "reactstrap"
 import "../assets/css/404.scss"
 import "../assets/css/tests.scss"
@@ -7,6 +8,10 @@ export default function Custom404(props) {
 
     return (
         <>
+        
+        <Head>
+          <title>Page Not Found || APT Diagnostics</title>
+        </Head>
         <div className="full-cover">
         <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
         <Container className="holder404">

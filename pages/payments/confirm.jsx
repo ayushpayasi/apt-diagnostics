@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React,{useState,useEffect} from 'react'
 import {Container,Col,Row,Card,CardText,ListGroup,ListGroupItem,CardBody,Collapse,CardTitle,FormGroup,Label,Input,InputGroup,InputGroupAddon} from "reactstrap"
 import NavBar from "../../components/navbar.component"
@@ -584,6 +585,9 @@ export default function Confirm(props) {
 
     return (
         <>
+        <Head>
+          <title>Confirm Payment || APT Diagnostics</title>
+        </Head>
         <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
 
         {cartData === null ? <Loading/>: cartData.length === 0 ? <Container>
