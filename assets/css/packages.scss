@@ -9,38 +9,34 @@
     box-shadow: 0px 0px 10px 2px rgba(10, 66, 117,0.4) !important;
     &>div{
         padding:50px;
-    display: flex;
-    justify-content: center;
-    background: rgba(10, 66, 117,0.5);
-    align-items: center;
-.prev-btn{
-    position: absolute;
-    left:40px;
-    border:2px solid #ebebed;
-    padding:0px;
-    margin:0px;
-}
-
-.next-btn{
-    position: absolute;
-    border:2px solid #ebebed;
-    padding:0px;
-    margin:0px;
-    left:93%;
-}
-    
-}
-
+        display: flex;
+        justify-content: center;
+        background: rgba(10, 66, 117,0.5);
+        align-items: center;
+        .prev-btn{
+            position: absolute;
+            left:40px;
+            border:2px solid #ebebed;
+            padding:0px;
+            margin:0px;
+        }
+        .next-btn{
+            position: absolute;
+            border:2px solid #ebebed;
+            padding:0px;
+            margin:0px;
+            left:93%;
+        }
+    }
 
     img{
       width:90%;
       height:300px;
       border-radius: 10px;
-      
     //   border:5px solid rgba(10, 66, 117,1);
       box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.5);
     }
-  }
+}
 
   
 .package-banner-container-holder{
@@ -131,15 +127,32 @@
         box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
         cursor: pointer;
     }
-  }
+}
   
 .packages-card{
+    border: none;
     border-radius: 5px;
-    button{
-        border-radius: 5px;
+    transition: box-shadow 0.5s;
+    p{
+      font-weight: 500;
+      font-size: 0.8rem;
     }
-}
-
+    button{
+        border : 1px solid #0a4275;
+        color : #0a4275;
+        background: #fff;
+        border-radius: 5px;
+        font-weight: 600;
+        &:hover {
+          background:#0a4275 !important;
+          color: #fff !important;
+          border-color: #fff;
+        }
+    }
+    &:hover{
+      box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.7) !important;
+    }
+  }
 
 .iconGenerator{
     // max-width: 50%;
@@ -189,5 +202,136 @@
     border-radius: 5px;
     .card-title{
         font-weight: 700;
+    }
+}
+
+.align-center-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.align-center-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.curated-health-image{
+    overflow: hidden;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.curated-health-button{
+    border: 1.5px solid #0a4275 !important;
+    color: #0a4275 !important;
+    font-weight: 600 !important;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 0px #0a4275;
+    margin-top: 20px;
+    &:hover{
+      background:#0a4275 !important;
+      color: #fff !important;
+      border-color: #fff;
+    }
+}
+
+.card-title{
+    font-size: 1.5rem !important;
+}
+
+.health-carousal-items-padding{
+    width: 100%;
+}
+
+.health-carousal-items-padding .slick-slide{
+    padding: 0 10px;
+}
+
+.horizontal-scroll{
+    flex-wrap: nowrap;
+    flex-direction: row;
+    overflow-x: scroll;
+}
+
+.horizontal-scroll::-webkit-scrollbar{
+    height: 5px;
+    width: 10%;
+}
+
+.horizontal-scroll::-webkit-scrollbar-track{
+    background: #ff6363;
+    border-radius: 5px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb{
+    background: #ff6363;
+}
+
+
+@media only screen and (max-width: 768px) {
+
+    .curated-health-image{
+        width: 70%;
+        height: 250px;
+        margin: 0 auto;
+    }
+
+    .curated-health-image img{
+        height: 100%;
+    }
+
+    .carousel-index-container{
+        margin-bottom: 10px;
+    }
+
+    .hide-on-small{
+        display: none;
+        visibility: hidden;
+    }
+
+    .carouselImg{
+        overflow: hidden;
+        height: 35vh;
+    }
+    
+    .carouselImg img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .carouselImg{
+      height: 35vh;
+    }
+}
+
+
+@media (min-width: 500px) and (max-width: 575px) {
+    .shrink-on-small{
+      width: 60%;
+      margin: auto;
+    }
+}
+
+@media (max-width: 530px){
+    .carouselImg{
+        height: 30vh;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 500px){
+    .shrink-on-small{
+      width: 80%;
+      margin: 10px auto;
+    }
+}
+
+@media (max-width: 430px){
+    .carouselImg{
+      height: 24vh;
     }
 }

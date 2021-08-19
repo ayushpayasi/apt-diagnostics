@@ -21,7 +21,7 @@ export default function Cart(props) {
     const [discountedPrice,setDiscountedPrice] = useState(null)
     const [discountPercent,setDiscountPercent] = useState(null)
     useEffect(() => {
-        setCartData(JSON.parse(sessionStorage.getItem("cart")))
+        setCartData(JSON.parse(localStorage.getItem("cart")))
     }, [])
 
 
@@ -29,7 +29,7 @@ export default function Cart(props) {
         if(value === null){
             return
         }
-        sessionStorage.setItem("cart",JSON.stringify(value))
+        localStorage.setItem("cart",JSON.stringify(value))
         props.updateCartValue(value.length)
     }
     
@@ -86,14 +86,14 @@ export default function Cart(props) {
       }
 
     const giftTheseTestHandler = ()=>{
-        sessionStorage.setItem("discountedValue",JSON.stringify({"discount":discountedPrice,"cartLength":cartData.length}));
+        localStorage.setItem("discountedValue",JSON.stringify({"discount":discountedPrice,"cartLength":cartData.length}));
         location.href="/payments/gifts";
     }
 
     const proceedToPayHandler = ()=>{
-        sessionStorage.setItem("bookingType",bookingType);
-        sessionStorage.setItem("discountedValue",JSON.stringify({"discount":discountedPrice,"cartLength":cartData.length,discountPercent}))
-        if(sessionStorage.getItem("userDetail") !== null){
+        localStorage.setItem("bookingType",bookingType);
+        localStorage.setItem("discountedValue",JSON.stringify({"discount":discountedPrice,"cartLength":cartData.length,discountPercent}))
+        if(localStorage.getItem("userDetail") !== null){
             location.href="/payments/confirm";
         }
         else{

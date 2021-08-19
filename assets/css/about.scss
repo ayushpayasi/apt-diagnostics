@@ -3,7 +3,8 @@
     color:#094275 !important;
     text-transform: capitalize !important;
     position: relative;
-
+    font-size: 1rem;
+    padding: .5rem;
     &:hover{
         color:#ff6363 !important;
         cursor: pointer;
@@ -39,16 +40,59 @@
     font-weight: 500;
     
 }
+
 .tab-heading{
     font-size: 2rem;
     font-weight: 600;
     color:#094275;
 }
+
 .align-center-end{
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
+
+.about-page-images{
+    height: auto;
+    max-height: 230px;
+    width: 80%;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px #000;
+}
+
+.about-page-service-image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.service-box-realign-small{
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    .resize-image-on-tablet{
+        width: 95%;
+        margin: auto;
+        overflow: hidden;
+    }
+    
+    .resize-image-on-tablet img{
+        max-height: 250px;
+        height: 180px !important;
+    }
+
+    .service-box-realign-small{
+        display: block;
+    }
+
+    .service-box-realign-big{
+        display: none;
+    }
+}
+
 .about-img-heading{
     font-size: 1.7rem;
     color:#094275;
@@ -61,6 +105,7 @@
     height:8rem;
     width:8rem;
     border-radius: 50%;
+    box-shadow: 2px 2px 5px #000;
 }
 
 .home-collection-icon{   //Newly Created

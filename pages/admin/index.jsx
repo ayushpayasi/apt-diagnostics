@@ -314,7 +314,7 @@ export default function Index() {
                                         <FormGroup>
                                             <Label for="fleboCount">Flebo</Label>
                                             <InputGroup size="sm">
-                                                <Input  id="fleboCount" placeHolder="Flebo"></Input>
+                                                <Input  id="fleboCount" placeholder="Flebo"></Input>
                                                 <InputGroupAddon addonType="append"><Button onClick={()=>{fleboChangeHandler()}}>Save</Button></InputGroupAddon>
                                             </InputGroup>
                                         </FormGroup>

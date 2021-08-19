@@ -50,10 +50,12 @@
     width:100%;
     flex-wrap: wrap;
     justify-content: center;
+
     h5{
         font-weight: 700;
         font-size: 1.2rem;
     }
+
     ul{
         list-style: none;
         font-weight: 500;
@@ -63,14 +65,47 @@
         margin: 0;
         li{
           line-height: 30px;  
-          white-space: pre-wrap;
-          width:280px
+        //   white-space: pre-wrap;
+        //   width:280px
         }
+    }
+
+    .footer-content-boxes{
+        width: 80%;
+    }
+
+    .footer-box-center{
+        width: fit-content;
+        margin: auto;
+    }
+
+    @media (max-width: 500px) {
+        .footer-content-boxes{
+            width: 95%;
+        }
+    }
+}
+
+.space-at-top{
+    margin: 1rem auto;
+}
+
+h5.footer-heading{
+    font-size: 1.4rem;
+}
+
+.overflown-text li{
+    overflow: hidden;
+}
+
+@media (max-width: 600px) {
+    .padding-for-bottom-navbar{
+        padding-bottom: 3.3rem;
     }
 }
 
 @media only screen and (max-width:320px){
     .footer-end{
-        display:none;
+        // display:none;
     }
 }

@@ -34,8 +34,9 @@ const ImgCarousel = (props) => {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={item.src}
+        
       >
-        <img src={item.src} alt={item.altText} />
+        <img src={item.src} alt={item.altText}/>
         {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
       </CarouselItem>
     );
@@ -48,7 +49,7 @@ const ImgCarousel = (props) => {
       previous={previous}
       className="carouselImg"
     >
-      <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+      <CarouselIndicators className="hide-on-small" items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
       {slides}
     </Carousel>
   );

@@ -15,186 +15,186 @@ export default function Custom404(props) {
         <div className="full-cover">
         <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
         <Container className="holder404">
-            <div class="dna">
-  <div class="ele">
-    <div class="dot"></div>
+            <div className="dna">
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
-  <div class="ele">
-    <div class="dot"></div>
+  <div className="ele">
+    <div className="dot"></div>
   </div>
 </div>
             <p>Let Us Know What You Are Looking For!</p>

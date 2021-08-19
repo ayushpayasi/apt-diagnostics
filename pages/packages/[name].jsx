@@ -45,17 +45,17 @@ export default function Display(props) {
         
     const addToCart = (event,item)=>{
         event.stopPropagation();
-        let cart = JSON.parse(sessionStorage.getItem("cart"))
+        let cart = JSON.parse(localStorage.getItem("cart"))
 
         if(cart !== null){
-        if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
+        if(cart.length === 0){localStorage.setItem("cart",JSON.stringify([item]))}
         else{
             cart.push(item)
             props.updateCartValue(cart.length)
-            sessionStorage.setItem("cart",JSON.stringify(cart))
+            localStorage.setItem("cart",JSON.stringify(cart))
         }
     }else{
-        sessionStorage.setItem("cart",JSON.stringify([item]))
+        localStorage.setItem("cart",JSON.stringify([item]))
     }
     }
 
