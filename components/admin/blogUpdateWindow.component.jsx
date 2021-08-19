@@ -2,8 +2,8 @@ import React,{useEffect,useState} from 'react'
 import axios from 'axios'
 import {apiLinks} from "../../connection.config"
 import {Card,CardBody,CardTitle,Row,Col,FormGroup,Button,Label,Input,ListGroup,ListGroupItem, CardSubtitle} from "reactstrap"
-import {toast} from "react-toastify"
-import BlogEditor from "./blogEditor.component"
+import {toast} from "react-toastify";
+import BlogEditor from "./blogEditor.component";
 
 
 export default function BlogUpdateWindow(props) {

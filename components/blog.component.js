@@ -30,27 +30,27 @@ export default function Blog(props) {
                     <p className="ioright">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, eligendi perspiciatis? Magni, nulla fuga sed expedita ipsa est eum veniam!</p>
 
                      
-                    <div className="links ioright">
+                    <div className="links ioright" style={{textAlign: 'center'}}>
                         <FacebookShareButton
                         url={shareUrl}
                         quote={title}
                         className="shareButton"
                         >
-                            <FacebookIcon size={25} round />
+                            <FacebookIcon size={35} round />
                         </FacebookShareButton>
-                        <TwitterShareButton
+                        {/* <TwitterShareButton
                         url={shareUrl}
                         title={title}
                         className="shareButton"
                         >
-                            <TwitterIcon size={25} round />
-                        </TwitterShareButton>
+                            <TwitterIcon size={35} round />
+                        </TwitterShareButton> */}
                         <TelegramShareButton
                         url={shareUrl}
                         title={title}
                         className="shareButton"
                         >
-                            <TelegramIcon size={25} round />
+                            <TelegramIcon size={35} round />
                         </TelegramShareButton>
                         <WhatsappShareButton
                         url={shareUrl}
@@ -58,15 +58,15 @@ export default function Blog(props) {
                         separator=":: "
                         className="shareButton"
                         >
-                            <WhatsappIcon size={25} round />
+                            <WhatsappIcon size={35} round />
                         </WhatsappShareButton>
-                        <PinterestShareButton
+                        {/* <PinterestShareButton
                         // url={String(window.location)}
                         // media={`${String(window.location)}/${exampleImage}`}
                         className="shareButton"
                         >
-                            <PinterestIcon size={25} round />
-                        </PinterestShareButton>
+                            <PinterestIcon size={35} round />
+                        </PinterestShareButton> */}
             </div>
                     
                 </CardBody> 

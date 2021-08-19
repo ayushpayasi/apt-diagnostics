@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState, useEffect, useCallback} from 'react'
 import CenterMode from "./centermodecarousel.component"
 import {Row,Col,Container,List, Link} from "reactstrap"
 import "../assets/css/sliderwithdetails.scss"
@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 
 export default function SliderDetails(props) {
     const [currSlide,setCurrSlide] = useState(0);
+    const [cart, setCart] = useState([]);
 
     const data = [
         {
@@ -38,15 +39,18 @@ export default function SliderDetails(props) {
         testName:"Lungs",
         symptoms:"Difficulty in Breathing, Stubborn Cough, Breathing Noisily, Lingering Chest Pain, Chronic Mucus, Coughing Up Blood",
         tests:[]
-    },{
+    },
+    {
         testName:"Vitamins",
         symptoms:"Brittle hair and nails ( vitamin B7 deficiency), Mouth ulcers or cracks in the corners of the mouth( vitamin B deficiency), Bleeding gums( vitamin C deficiency), Poor night vision and white growths on the eyes( vitamin A deficiency), Scaly patches and dandruff Hair loss, Red or white bumps on skin, Restless leg syndrome( iron deficiency)",
         tests:[]
-    },{
-        testName:"Vitamins",
-        symptoms:"Brittle hair and nails ( vitamin B7 deficiency), Mouth ulcers or cracks in the corners of the mouth( vitamin B deficiency), Bleeding gums( vitamin C deficiency), Poor night vision and white growths on the eyes( vitamin A deficiency), Scaly patches and dandruff Hair loss, Red or white bumps on skin, Restless leg syndrome( iron deficiency)",
-        tests:[]
-    },{
+    },
+    // {
+    //     testName:"Vitamins",
+    //     symptoms:"Brittle hair and nails ( vitamin B7 deficiency), Mouth ulcers or cracks in the corners of the mouth( vitamin B deficiency), Bleeding gums( vitamin C deficiency), Poor night vision and white growths on the eyes( vitamin A deficiency), Scaly patches and dandruff Hair loss, Red or white bumps on skin, Restless leg syndrome( iron deficiency)",
+    //     tests:[]
+    // },
+    {
         testName:"Thyroid",
         symptoms:"High Heart Rate,Excessive Tiredness, Anxiety, Weight Gain or Loss, Body Shakes, Feeling Chilly or Overheated, Trouble Concentrating, Hair Loss",
         tests:[]
@@ -87,34 +91,39 @@ export default function SliderDetails(props) {
     
     // console.log(data)
 
+    useEffect(() => {
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        setCart(cart);
+    }, []);
+
         
-    const addToCart = (event,item)=>{
+    const addToCart = useCallback((event, product)=>{
         event.stopPropagation();
-        let cart = JSON.parse(sessionStorage.getItem("cart"))
-        if(cart !== null){
-        if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
-        else{
-            cart.push(item)
-            props.updateCartValue(cart.length)
-            sessionStorage.setItem("cart",JSON.stringify(cart))
+        
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        cart = cart === null ? [] : cart;
+        let existing = cart.filter(item => item.testID === product.testID);
+
+        // document.getElementById(`sars-test-${product.testID}`).innerText = 'Added';
+
+        if(existing && existing.length){
+            window.alert('Item Already added to cart!');
+        }else{
+            cart.push(product);
+            props.updateCartValue(cart.length);
+            localStorage.setItem("cart", JSON.stringify(cart));
         }
-    }else{
-        sessionStorage.setItem("cart",JSON.stringify([item]))
-    }
-    }
 
+    }, []);
 
-
-    const cards = (item)=>{
-
+    const cards = (item, index) => {
         return(
-                <Col className="align-center-column mt-1 mb-1" sm="6" md="6">
+                <Col key={index} className="align-center-column mt-1 mb-1" sm="6" md="6">
                     <div className="centermode-testcard">
                         <div>{item.testName}</div>
-                        <span onClick={(event)=>{addToCart(event,item.data)}}>Book</span>
+                        <span onClick={(event)=>{addToCart(event, item)}}>Book</span>
                     </div>
                 </Col>
-            
         )
     }
 
@@ -122,68 +131,115 @@ export default function SliderDetails(props) {
 
     }
 
-
     return (
         <div className="sliderwithdetails">
             <Row>
-                <Col>
-                    <h2 className=" landing-h2 text-center color mt-4 mb-4 iofade">Diagnose For Specific Organ </h2>
+                <Col className="diagnose-div-margin">
+                    <h2 className=" landing-h2 text-center color mt-4 mb-4 iofade container-card-title">Diagnose For Specific Organ </h2>
                 </Col>
             </Row>
+
             <Row>
                 <Col>
                     <CenterMode setSlide={setCurrSlide}/>            
                 </Col>
             </Row>
+
             <Row>
                 <Col >
                     <h4 className="text-center card-title mt-4 mb-4 iofade color">{data[currSlide].testName}</h4>
                 </Col>
             </Row>
+
             <Container className="border mb-4" fluid>
-            
-            <Row >
-                <Col md="6">
-                    <Row>
-                        <Col>
-                            <h4 className="text-center card-title mt-4 mb-4 iofade color">Symptoms</h4>
-                        </Col>
-                    </Row>
-                    <Row >
-                        <Col className="ioleft symptoms-text">
-                            {data[currSlide].symptoms.split(",").map( curSymptom => {
-                                return (
-                                    <List type="unstyled">
-                                        <ul>
-                                            <li>{curSymptom}</li>
-                                        </ul>
-                                    </List>
-                                )
-                            })}
-                            
-                        </Col>
-                    </Row>
-                </Col>
-                <Col md="6">
-                    <Row>
-                        <Col>
-                            <h4 className="text-center card-title color mt-4 mb-4 iofade">Tests</h4>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
+                <Row className="symptoms-container small-size-grow small-size-hide">
+                    <Col md="6">
                         <Row>
-                        {data[currSlide].tests.map(item=>cards(item))}
+                            <Col>
+                                <h4 className="text-center card-title mt-4 mb-4 iofade color container-card-title">Symptoms</h4>
+                            </Col>
                         </Row>
-                        </Col>
-                    </Row>
-                </Col>
-            </Row>
-            <Row>
-                <Col className="align-center-column mt-4 mb-4 iofade">
-                    <Button style={{background : "#175d9c", color:"#fff"}} href={`/diagnostics/${data[currSlide].testName.split(" ").join("").toLowerCase()}`} variant="contained" >Want to Know More!</Button>
-                </Col>
-            </Row>
+                        <Row >
+                            <Col className="ioleft symptoms-text" style={{paddingLeft: "18px"}}>
+                                {/* {console.log(data[currSlide])} */}
+                                {data[currSlide].symptoms.split(",").map( (curSymptom, index) => {
+                                    return (
+                                        <List type="unstyled" key={index}>
+                                            <ul>
+                                                <li>{curSymptom}</li>
+                                            </ul>
+                                        </List>
+                                    );
+                                })}
+                                
+                            </Col>
+                        </Row>
+                    </Col>
+                    <Col md="6" sm="12">
+                        <Row>
+                            <Col>
+                                <h4 className="text-center card-title color mt-4 mb-4 iofade container-card-title">Tests</h4>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="ioright symptoms-text">
+                                <Row className="tests-view-tablet">
+                                {/* {data[currSlide].tests.map(item=>cards(item))} */}
+                                {[  {testID: 1, testName: "h1"}, {testID: 2, testName: "h2"}, 
+                                    {testID: 1, testName: "h1"}, {testID: 2, testName: "h2"},
+                                    {testID: 1, testName: "h1"}, {testID: 2, testName: "h2"},
+                                    {testID: 1, testName: "h1"}, {testID: 2, testName: "h2"},
+                                    {testID: 1, testName: "h1"}, {testID: 2, testName: "h2"},
+                                ].map((item, index) => cards(item, index))}
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+                <Row className="big-size-hide">
+                    <Col>
+                        <Row>
+                            <Col>
+                                <h4 className="text-center card-title mt-4 mb-4 iofade color container-card-title">Symptoms</h4>
+                            </Col>
+                        </Row>
+                        <Row className="mobile-view-symptoms">
+                            <Col className="ioleft symptoms-text" style={{paddingLeft: "18px"}}>
+                                {/* {console.log(data[currSlide])} */}
+                                {data[currSlide].symptoms.split(",").map( (curSymptom, index) => {
+                                    return (
+                                        <List type="unstyled" key={index}>
+                                            <ul>
+                                                <li>{curSymptom}</li>
+                                            </ul>
+                                        </List>
+                                    );
+                                })}
+                                
+                            </Col>
+                        </Row>
+                    </Col>
+                    <Col>
+                        <Row>
+                            <Col>
+                                <h4 className="text-center card-title color mt-4 mb-4 iofade container-card-title">Tests</h4>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="iofade symptoms-text">
+                                <Row>
+                                {/* {data[currSlide].tests.map(item=>cards(item))} */}
+                                {[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}].map((item, index) => cards(item, index))}
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="align-center-column mt-4 mb-4 iofade">
+                        <Button style={{background : "#175d9c", color:"#fff"}} href={`/diagnostics/${data[currSlide].testName.split(" ").join("").toLowerCase()}`} variant="contained" >Want to Know More!</Button>
+                    </Col>
+                </Row>
             </Container>
         </div>
     )

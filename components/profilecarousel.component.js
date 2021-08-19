@@ -7,45 +7,7 @@ export default function ProfileCarousel() {
                 <Col>
                     <Row>
                         <Col className="align-center-column">
-                            <img className="profile-carousel-images" src="images/profile5.jpg"/>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col className="align-center-column mt-2">
-                            
-                            <h5 style={{padding:0,margin:0,textAlign:"center"}}>
-                                    Lorem, ipsum.
-                            </h5>
-
-                            <h7 style={{padding:0,margin:0,color:"grey",textAlign:"center"}}>
-                                Lorem ipsum dolor sit amet.
-                            </h7>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col>
-                    <Row>
-                        <Col className="align-center-column">
-                            <img className="profile-carousel-images" src="images/profile1.jpg"/>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col className="align-center-column mt-2">
-                            
-                            <h5 style={{padding:0,margin:0,textAlign:"center"}}>
-                                    Lorem, ipsum.
-                            </h5>
-
-                            <h7 style={{padding:0,margin:0,color:"grey",textAlign:"center"}}>
-                                Lorem ipsum dolor sit amet.
-                            </h7>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col>
-                    <Row>
-                        <Col className="align-center-column">
-                            <img className="profile-carousel-images" src="images/profile2.jpg"/>
+                            <img className="profile-carousel-images" src="images/profile3.jpg"/>
                         </Col>
                     </Row>
                     <Row>
@@ -83,7 +45,45 @@ export default function ProfileCarousel() {
                 <Col>
                     <Row>
                         <Col className="align-center-column">
-                            <img className="profile-carousel-images" src="images/profile4.jpg"/>
+                            <img className="profile-carousel-images" src="images/profile3.jpg"/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className="align-center-column mt-2">
+                            
+                            <h5 style={{padding:0,margin:0,textAlign:"center"}}>
+                                    Lorem, ipsum.
+                            </h5>
+
+                            <h7 style={{padding:0,margin:0,color:"grey",textAlign:"center"}}>
+                                Lorem ipsum dolor sit amet.
+                            </h7>
+                        </Col>
+                    </Row>
+                </Col>
+                <Col>
+                    <Row>
+                        <Col className="align-center-column">
+                            <img className="profile-carousel-images" src="images/profile3.jpg"/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className="align-center-column mt-2">
+                            
+                            <h5 style={{padding:0,margin:0,textAlign:"center"}}>
+                                    Lorem, ipsum.
+                            </h5>
+
+                            <h7 style={{padding:0,margin:0,color:"grey",textAlign:"center"}}>
+                                Lorem ipsum dolor sit amet.
+                            </h7>
+                        </Col>
+                    </Row>
+                </Col>
+                <Col>
+                    <Row>
+                        <Col className="align-center-column">
+                            <img className="profile-carousel-images" src="images/profile3.jpg"/>
                         </Col>
                     </Row>
                     <Row>

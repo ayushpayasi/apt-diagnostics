@@ -18,10 +18,13 @@ const SmallNavbar = (props) => {
   return (
     <div>
      <Navbar className={props.color==="white"?"navbarsmall-a sticky-top":"navbarsmall sticky-top"} light expand="lg">
-        <NavbarBrand href="/"><img alt="logo" className="logo-img-small" src="/images/logotype2.jpg"/></NavbarBrand>
+        <NavbarBrand href="/" style={{background: 'transparent'}}><img alt="logo" className="logo-img-small" src="/images/logotype2.jpg"/></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
+            <NavItem className="ml-2 mr-2">
+              <NavLink className="nav-link" href="/">Home</NavLink>
+            </NavItem>
             <NavItem className="ml-2 mr-2">
               <NavLink className="nav-link" href="/about">About</NavLink>
             </NavItem>

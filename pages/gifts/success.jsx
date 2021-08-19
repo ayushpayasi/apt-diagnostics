@@ -21,8 +21,8 @@ export default function Success(props) {
     const [shareUrl,setShareUrl] = useState("")
     const title = "coupon|| APT DIagnostics"
     useEffect(()=>{
-        setCouponCode(sessionStorage.getItem("couponCode") === null?"":sessionStorage.getItem("couponCode"))
-        setShareUrl(`www.aptdiagnostics.com/coupons/${sessionStorage.getItem("couponCode") === null?"":sessionStorage.getItem("couponCode")}`)
+        setCouponCode(localStorage.getItem("couponCode") === null?"":localStorage.getItem("couponCode"))
+        setShareUrl(`www.aptdiagnostics.com/coupons/${localStorage.getItem("couponCode") === null?"":localStorage.getItem("couponCode")}`)
     },[])
     return (
         <>

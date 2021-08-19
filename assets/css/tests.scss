@@ -1,3 +1,23 @@
+.tests-image-box{
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  img{
+    border-radius: 10px;
+    width: 80%;
+    height: 32vh;
+    max-height: 500px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .tests-image-box{
+    img{
+      width: 100%;
+      height: 22vh;
+    }
+  }
+}
 
 .category-m {
     .slick-slide {
@@ -132,6 +152,7 @@
     height:400px;
   }
 }
+
 .tab-items{
   display: flex;
   flex-wrap: wrap;
@@ -231,6 +252,70 @@
   }
 }
 
+
+@media (max-width: 400px) {
+  .text-on-small span{
+      font-size: .7rem;
+  }
+}
+
+
+.testBox-tab-items{
+  display: flex;
+  justify-content: flex-start;
+  .testBox-left{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+  }
+}
+
+.test-list-scroll{
+  max-height: 30vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.centermode-testcard-test-search{
+  width:230px;
+  height:50px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 2px;
+  margin: .5rem;
+  border:1px solid rgba(10, 66, 117,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.5);
+  div{
+      border-right: 1px solid rgba(10, 66, 117,1);
+      width:70%;
+      display: flex; 
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height:100%;
+      padding: 2px;
+      // text-align: justify;
+  }
+  span{
+      background:rgba(10, 66, 117,1);
+      width:30%;
+      height:100%;
+      display: flex; 
+      align-items: center;
+      justify-content: center;
+      color:white;
+  }
+  &:hover{
+      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+      cursor: pointer;
+  }
+}
+
 .test-carousel-card{
   max-width: 250px;
   display: block;
@@ -292,7 +377,9 @@
   font-weight: 600;
   border-radius: 5px;
   &:hover{
-    background:#ff6363;
+    background:#0a4275 !important;
+    color: #fff !important;
+    border-color: #fff;
   }
 }
 .detail-card{
