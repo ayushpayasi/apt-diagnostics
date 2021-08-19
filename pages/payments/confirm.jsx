@@ -64,21 +64,21 @@ export default function Confirm(props) {
 
     const handleAppointmentBook = async (response,data)=>{
       try{
-      if (sessionStorage.getItem("cart") === null){
+      if (localStorage.getItem("cart") === null){
         toast("Failed To Book Appointment!")
         alert(`If payment is deducted ,Please note your appointment Id ${response.razorpay_order_id} and contact aptDiagnostics for help!`)
       }
       else{
-        data["billDetails"].testList = JSON.parse(sessionStorage.getItem("cart"))
+        data["billDetails"].testList = JSON.parse(localStorage.getItem("cart"))
       }
-      const bookingType = sessionStorage.getItem("bookingType")
+      const bookingType = localStorage.getItem("bookingType")
 
       if(bookingType === "lab"){
         const response = await axios.post(apiLinks.bookLabAppointment,data)
         if(response.data.code === 200){
-          sessionStorage.removeItem("cart")
-          sessionStorage.removeItem("bookingType")
-          sessionStorage.removeItem("discountedValue")
+          localStorage.removeItem("cart")
+          localStorage.removeItem("bookingType")
+          localStorage.removeItem("discountedValue")
           location.href = "/success"
         }
         else{
@@ -89,9 +89,9 @@ export default function Confirm(props) {
       else{
         const response = await axios.post(apiLinks.bookHomeAppointment,data)
         if(response.data.code === 200){
-          sessionStorage.removeItem("cart")
-          sessionStorage.removeItem("bookingType")
-          sessionStorage.removeItem("discountedValue")
+          localStorage.removeItem("cart")
+          localStorage.removeItem("bookingType")
+          localStorage.removeItem("discountedValue")
           location.href = "/success"
         }
         else{
@@ -163,47 +163,47 @@ export default function Confirm(props) {
     let payableAmount = 0
 
 
-    if(sessionStorage.getItem("discountedValue") == null){
-      for (var i of JSON.parse(sessionStorage.getItem("cart"))){
+    if(localStorage.getItem("discountedValue") == null){
+      for (var i of JSON.parse(localStorage.getItem("cart"))){
           payableAmount +=parseFloat(i.testAmount)
       }
   }
   else{
-      if(JSON.parse(sessionStorage.getItem("cart")).length === JSON.parse(sessionStorage.getItem("discountedValue")).cartLength){
-          if(JSON.parse(sessionStorage.getItem("discountedValue")).discount == null){
-              for (var i of JSON.parse(sessionStorage.getItem("cart"))){
+      if(JSON.parse(localStorage.getItem("cart")).length === JSON.parse(localStorage.getItem("discountedValue")).cartLength){
+          if(JSON.parse(localStorage.getItem("discountedValue")).discount == null){
+              for (var i of JSON.parse(localStorage.getItem("cart"))){
                 payableAmount +=parseFloat(i.testAmount)
               }    
           }
           else{
-              payableAmount =parseFloat(JSON.parse(sessionStorage.getItem("discountedValue")).discount)
+              payableAmount =parseFloat(JSON.parse(localStorage.getItem("discountedValue")).discount)
           }
       }
       else{
-          for (var i of JSON.parse(sessionStorage.getItem("cart"))){
+          for (var i of JSON.parse(localStorage.getItem("cart"))){
             payableAmount +=parseFloat(i.testAmount)
           }
       }
       
   }
 
-    if (sessionStorage.getItem("bookingType") !== null){
-      bookingType = sessionStorage.getItem("bookingType")
+    if (localStorage.getItem("bookingType") !== null){
+      bookingType = localStorage.getItem("bookingType")
     }
     else{
       toast("cant proceed to pay!")
       location.href("/")
     }
 
-    for (var i of JSON.parse(sessionStorage.getItem("cart"))){
+    for (var i of JSON.parse(localStorage.getItem("cart"))){
       amount +=parseFloat(i.testAmount)
     }
     
-    if(sessionStorage.getItem("discountedValue") == null){
+    if(localStorage.getItem("discountedValue") == null){
       discountAmount = 0
     }
     else{
-      discountAmount -= (amount - JSON.parse(sessionStorage.getItem("discountedValue")).discount)
+      discountAmount -= (amount - JSON.parse(localStorage.getItem("discountedValue")).discount)
     }
     if(bookingType === "lab"){
       if(bookingForSelf){
@@ -563,19 +563,19 @@ export default function Confirm(props) {
     }
 
     useEffect(() => {
-    if(sessionStorage.getItem("directBooking") !== null){
-      tempData = [JSON.parse(sessionStorage.getItem("directBooking")).test]
+    if(localStorage.getItem("directBooking") !== null){
+      tempData = [JSON.parse(localStorage.getItem("directBooking")).test]
       setCartData(tempData)
     }
-    else if(sessionStorage.getItem("cart") !== null){
-        setCartData([JSON.parse(sessionStorage.getItem("cart")).test])
+    else if(localStorage.getItem("cart") !== null){
+        setCartData([JSON.parse(localStorage.getItem("cart")).test])
     }
     else{
       setCartData([])
     }
-    if(sessionStorage.getItem("userDetail") !== null){
+    if(localStorage.getItem("userDetail") !== null){
       console.log("loaded")
-      const userData = JSON.parse(sessionStorage.getItem("userDetail"))
+      const userData = JSON.parse(localStorage.getItem("userDetail"))
       setUserData(userData)
       getMemberDetails(userData.familyId)
       setIsLogin(true)

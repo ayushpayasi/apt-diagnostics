@@ -12,8 +12,8 @@
   position: relative;
   top:50%;
   left:50%;
-  height:250px;
-  width:50%;
+  // height:250px;
+  width:70%;
   transform: translate(-50%,-50%);
   background: #fff;
   box-shadow: 0px 0px 2px 3px #fff ;
@@ -35,7 +35,7 @@
 }
 .lightbox-vertical{
   position: relative;
-  top:60%;
+  top:50%;
   left:50%;
   height:450px;
   width: 300px;
@@ -75,8 +75,31 @@
     padding: 10px;
     top:60%;
     .MuiTextField-root{
+      background-color: #fff;
+      border-radius: 10px;
+      label{
+        padding: 0 5px;
+      }
       &::placeholder{
         color:#fff;
+        // background-color: #0a4275;
+      }
+      input{
+        padding: 10px 5px;
+        color: #0a4275;
+        font-weight: 700;
+      }
+    }
+    button{
+      border : 1px solid #0a4275;
+      color : #0a4275;
+      background: #fff;
+      border-radius: 10px;
+      font-weight: 600;
+      &:hover {
+        background:#0a4275 !important;
+        color: #fff !important;
+        border-color: #fff;
       }
     }
   }
@@ -122,9 +145,18 @@
 
 }
 .lightbox-button{
-  border-radius:5px;
-  border: 1px solid #0a4275;
-  max-width: 170px;
+  border: 1.5px solid #0a4275 !important;
+  color: #0a4275 !important;
+  font-weight: 600 !important;
+  background-color: #fff !important;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 0px #0a4275;
+  margin-top: 20px;
+  &:hover{
+    background:#0a4275 !important;
+    color: #fff !important;
+    border-color: #fff;
+  }
 
 }
 

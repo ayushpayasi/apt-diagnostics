@@ -56,8 +56,8 @@ export default function UseCoupon(props) {
 
     const handleDirectCouponUse = async()=>{
         try{
-            sessionStorage.setItem("insertedGiftCoupon",document.getElementById("couponCode").value)
-            if(sessionStorage.getItem("userDetail") !== null){
+            localStorage.setItem("insertedGiftCoupon",document.getElementById("couponCode").value)
+            if(localStorage.getItem("userDetail") !== null){
                 
             }
             else{

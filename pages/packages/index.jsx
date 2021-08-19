@@ -1,12 +1,29 @@
-import React,{useState} from 'react'
-import NavBar from "../../components/navbar.component"
-import {Container,Row,Col,Button,Input,Card,CardImg,CardBody,CardTitle,CardText,CardSubtitle} from "reactstrap"
-import "../../assets/css/packages.scss"
-import Head from "next/head"
+import React,{useState} from 'react';
+import NavBar from "../../components/navbar.component";
+import {Container, Row, Col, Button, Input, Card, CardImg, CardBody, CardTitle, CardText, CardSubtitle} from "reactstrap";
+import HealthCheckCarousel from '../../components/healthcheckcarousel.component';
+import "../../assets/css/packages.scss";
+import Head from "next/head";
 import ImgCarousel from '../../components/carousel.component';
-import axios from "axios"
-import {apiLinks} from "../../connection.config"
+import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import axios from "axios";
+import {apiLinks} from "../../connection.config";
+import Slider from 'react-slick';
 
+const getTestListData = async ()=>{
+    try{
+        const response = await axios.get(apiLinks.priceList,{params:{coupon:"priceList"}});
+        if (response.data[0].code === 200){
+            return Object.values(response.data[1]);
+        }
+        else{
+            return [];
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+}
 
 const getPackagesData = async()=>{
     try{
@@ -26,7 +43,8 @@ const getPackagesData = async()=>{
 // for adding additional packages
 export async function getServerSideProps(context) {
     try{
-        const response = await getPackagesData()
+        const testList = await getTestListData();
+        const response = await getPackagesData();
         let packages ={
             "Diabities":[],
             "General Wellness":[],
@@ -57,7 +75,7 @@ export async function getServerSideProps(context) {
                     break;
             }
         }
-    return { props: {packages}}
+        return { props: {packages, testList}}
     }
     catch(err){
         console.log(err)
@@ -67,9 +85,9 @@ export async function getServerSideProps(context) {
 
 
 export default function Index(props) {
-    console.log(props.packages)
+    // console.log(props.packages['Health Package'])
     const [value, setValue] = useState(0);
-    const [packages,setPackages] = useState(props.packages)
+    const [packages,setPackages] = useState(props.packages);
 
     const paramsIconGenerator = (data)=>{
         return (
@@ -97,91 +115,123 @@ export default function Index(props) {
             </div>
         )
     }
-    const cardFiller =(data)=>{
-        console.log(data)
+
+    const cardFiller = (data, index) => {
+        // console.log(data)
         return(
-            <div>
+            // <div key={index}>
+            //     <div style={{padding:"10px !important"}}>
+            //         <Card className="packages-card">
+            //             <CardImg top width="100%" src={data.image} alt="Card image cap" />
+            //             <CardBody>
+            //                 <CardTitle tag="h5">{data.testName}</CardTitle>
+            //                 <CardSubtitle tag="h5" className="mb-2 text-muted">{data.testAmount}</CardSubtitle>
+            //                 <CardText>{data.description.substring(0,90)}</CardText>
+            //                 {paramsIconGenerator(data.testsIncluded.length)}
+            //                 {idealForIconGenerator(data.idealFor)}
+            //                 <Row>
+            //                     <Col><Button onClick={(event)=>{addToCart(event,data)}} outline>Book Now</Button></Col>
+            //                     <Col><Button onClick={()=>{location.href=`/packages/${data.testName}`}} outline>Learn More</Button></Col>
+            //                 </Row>
+            //             </CardBody>
+            //         </Card>
+            //     </div>
+            // </div>
+            <div key={index}>
                 <div style={{padding:"10px !important"}}>
-                    <Card className="packages-card">
-                    <CardImg top width="100%" src={data.image} alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle tag="h5">{data.testName}</CardTitle>
-                        <CardSubtitle tag="h6" className="mb-2 text-muted">{data.testAmount}</CardSubtitle>
-                        <CardText>{data.description.substring(0,90)}</CardText>
-                        {paramsIconGenerator(data.testsIncluded.length)}
-                        {idealForIconGenerator(data.idealFor)}
-                        <Row>
-                            <Col><Button onClick={(event)=>{addToCart(event,data)}} outline>Book Now</Button></Col>
-                            <Col><Button onClick={()=>{location.href=`/packages/${data.testName}`}} outline>Learn More</Button></Col>
-                        </Row>
-                    </CardBody>
+                    <Card className="packages-card shrink-on-small">
+                        <div className="curated-health-image">
+                            <CardImg top width="100%" src={data.image} alt="Card image cap" />
+                        </div>
+                        <CardBody>
+                            <CardTitle tag="h5" className="card-title">{data.testName} {` ${index}`}</CardTitle>
+                            <CardSubtitle tag="h5" className="mb-2 text-muted">{data.testAmount}</CardSubtitle>
+                            <CardText>{data.description.substring(0,90)}</CardText>
+                            {paramsIconGenerator(data.testsIncluded.length)}
+                            {idealForIconGenerator(data.idealFor)}
+                            <Row>
+                                <Col className="align-center-row">
+                                    <Button className="curated-health-button" onClick={(event)=>{addToCart(event, data)}} outline >
+                                        {/* <span id={`${data.testID}`}> */}
+                                            {/* {cart.some(cartItem => cartItem.testID === data.testID) ? 'Added' : 'Book Test'} */}
+                                            {/* {console.log(cart)} */}
+                                            Book Test
+                                        {/* </span> */}
+                                    </Button>
+                                </Col>
+                                <Col className="align-center-row">
+                                    <Button className="curated-health-button" onClick={()=>{location.href=`/packages/${data.testName}`}} outline>
+                                        Learn More
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </CardBody>
                     </Card>
-                    </div>
                 </div>
-            
+            </div>
         )
     }
     
         
-const items = [
-    {
-      src: "images/packages/corporate.jpg",
-      altText: 'Slide 1',
-      caption: 'Slide 1'
-    },
-    {
-      src: "images/packages/flu.jpg",
-      altText: 'Slide 3',
-      caption: 'Slide 3'
-    },
-    {
-      src: "images/packages/frontline_workers.jpg",
-      altText: 'Slide 3',
-      caption: 'Slide 3'
-    },
-    {
-      src: "images/packages/home.jpg",
-      altText: 'Slide 3',
-      caption: 'Slide 3'
-    },
-    {
-      src: "images/packages/test.jpg",
-      altText: 'Slide 3',
-      caption: 'Slide 3'
-    },
-    {
-      src: "images/packages/womanhood.jpg",
-      altText: 'Slide 3',
-      caption: 'Slide 3'
-    }
-  ];
-  
-
-    
+    const items = [
+        {
+        src: "images/packages/corporate.jpg",
+        altText: 'Slide 1',
+        caption: 'Slide 1'
+        },
+        {
+        src: "images/packages/flu.jpg",
+        altText: 'Slide 3',
+        caption: 'Slide 3'
+        },
+        {
+        src: "images/packages/frontline_workers.jpg",
+        altText: 'Slide 3',
+        caption: 'Slide 3'
+        },
+        {
+        src: "images/packages/home.jpg",
+        altText: 'Slide 3',
+        caption: 'Slide 3'
+        },
+        {
+        src: "images/packages/test.jpg",
+        altText: 'Slide 3',
+        caption: 'Slide 3'
+        },
+        {
+        src: "images/packages/womanhood.jpg",
+        altText: 'Slide 3',
+        caption: 'Slide 3'
+        }
+    ];
+      
     const addToCart = (event,item)=>{
         event.stopPropagation();
-        let cart = JSON.parse(sessionStorage.getItem("cart"))
+        let cart = JSON.parse(localStorage.getItem("cart"))
         if(cart !== null){
-        if(cart.length === 0){sessionStorage.setItem("cart",JSON.stringify([item]))}
+        if(cart.length === 0){localStorage.setItem("cart",JSON.stringify([item]))}
         else{
             cart.push(item)
             props.updateCartValue(cart.length)
-            sessionStorage.setItem("cart",JSON.stringify(cart))
+            localStorage.setItem("cart",JSON.stringify(cart))
         }
     }else{
-        sessionStorage.setItem("cart",JSON.stringify([item]))
+        localStorage.setItem("cart",JSON.stringify([item]))
     }
     }
 
     return (
         <>
-        <Head>PACKAGES || APT DIAGNOSTICS </Head>
-            <NavBar cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
-            <Container fluid className="package-banner-container-holder mt-5">
-            <ImgCarousel data={items} style={{height:"400px"}}/>
+            <Head>PACKAGES || APT DIAGNOSTICS </Head>
+
+            <NavBar testList={props.testList} cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
+
+            <Container className=" mt-5">
+                <ImgCarousel data={items} style={{height:"400px"}}/>
             </Container>
+
             <Container >
-                
                 <Row>
                     <Col className="mt-5">
                         <h1 style={{color:"#0a4275",fontWeight:"700"}} className="text-center">Stay Fit With APT Packages</h1>
@@ -193,76 +243,144 @@ const items = [
                     </Col>
                 </Row>
                </Container>     
-               {packages["Diabities"].length === 0 ?<React.Fragment/>:   <Container>
-                <Row className="mt-5 mb-4">
-                    <Col>
-                        <h4 style={{color:"#0a4275"}} className="text-center">Diabetes</h4>
-                    </Col>
-                </Row>
-                <Row>{packages["Diabities"].map(item=><Col md="4">{cardFiller(item)}</Col>)}
-                </Row>
-            </Container>
-            }
+
+                {packages["Diabities"].length === 0 ? <React.Fragment/>: 
+                    <Container>
+                        <Row className="mt-3 mb-4">
+                            <Col>
+                                <h2 style={{color:"#0a4275"}} className="text-center">Diabetes</h2>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <h5 className="pb-3" style={{textAlign: 'right'}}>Scroll For More <ArrowRightAltIcon /> </h5>
+                            </Col>
+                        </Row>
+                        <Row className="horizontal-scroll">
+                            {/* <Col> */}
+                                {packages["Diabities"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
+                                {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['Diabities']}/> */}
+                            {/* </Col> */}
+                        </Row>
+                    </Container>
+                }
                
-               {packages["Pregnancy"].length === 0 ?<React.Fragment/>:   <Container>
-                <Row className="mt-5 mb-4">
-                    <Col>
-                        <h4 style={{color:"#0a4275"}} className="text-center">Pregnancy</h4>
-                    </Col>
-                </Row>
-                <Row>
-                {packages["Pregnancy"].map(item=><Col md="4">{cardFiller(item)}</Col>)}
-                </Row>
-            </Container>
-            }
+                {packages["Pregnancy"].length === 0 ? <React.Fragment/>:   
+                    <Container>
+                        <Row className="mt-5 mb-4">
+                            <Col>
+                                <h2 style={{color:"#0a4275"}} className="text-center">Pregnancy</h2>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <h5 className="pb-3" style={{textAlign: 'right'}}>Scroll For More <ArrowRightAltIcon /> </h5>
+                            </Col>
+                        </Row>
+                        <Row className="horizontal-scroll">
+                            {/* <Col> */}
+                                {packages["Pregnancy"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
+                                {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['Pregnancy']}/> */}
+                            {/* </Col> */}
+                        </Row>
+                    </Container>
+                }
             
                
-            {packages["General Wellness"].length === 0 ?<React.Fragment/>:   <Container>
-                <Row className="mt-5 mb-4">
-                    <Col>
-                        <h4 style={{color:"#0a4275"}} className="text-center">General Wellness</h4>
-                    </Col>
-                </Row>
-                <Row>
-                {packages["General Wellness"].map(item=><Col md="4">{cardFiller(item)}</Col>)}
-                </Row>
-            </Container>
+            {packages["General Wellness"].length === 0 ?<React.Fragment/>:
+                <Container>
+                    <Row className="mt-5 mb-4">
+                        <Col>
+                            <h2 style={{color:"#0a4275"}} className="text-center">General Wellness</h2>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <h5 className="pb-3" style={{textAlign: 'right'}}>Scroll For More <ArrowRightAltIcon /> </h5>
+                        </Col>
+                    </Row>
+                    <Row className="horizontal-scroll">
+                        {/* <Col> */}
+                            {packages["General Wellness"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
+                            {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['General Wellness']}/> */}
+                        {/* </Col> */}
+                    </Row>
+                </Container>
             }
             
-               
-            {packages["Health"].length === 0 ?<React.Fragment/>:   <Container>
-                <Row className="mt-5 mb-4">
-                    <Col>
-                        <h4 style={{color:"#0a4275"}} className="text-center">Health Packages</h4>
-                    </Col>
-                </Row>
-                <Row>
-                {packages["Health"].map(item=><Col md="4">{cardFiller(item)}</Col>)}
-                </Row>
-            </Container>}
+            {(packages['Health']).push(...(packages['Health']))}
+            {(packages['Health']).push(...(packages['Health']))}
+            {(packages['Health']).push(...(packages['Health']))}
+            {packages["Health"].length === 0 ?<React.Fragment/>: 
+                <Container>
+                    <Row className="mt-5 mb-4">
+                        <Col>
+                            <h2 style={{color:"#0a4275"}} className="text-center">Health Packages</h2>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <h5 className="pb-3" style={{textAlign: 'right'}}>Scroll For More <ArrowRightAltIcon /> </h5>
+                        </Col>
+                    </Row>
+                    <Row className="horizontal-scroll">
+                        {/* <Col> */}
+                            {packages["Health"].map((item, index) => <Col sm="12" md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
+                            {/* {packages["Health"].map((item, index) => <Col sm="12" md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)} */}
+                            {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['Health']}/> */}
+                        {/* </Col> */}
+                    </Row>
+                </Container>
+            }
             
-               
-            {packages["Body Building"].length === 0 ?<React.Fragment/>:   <Container>
-                <Row className="mt-5 mb-4">
-                    <Col>
-                        <h4 style={{color:"#0a4275"}} className="text-center">Body Building Packages</h4>
-                    </Col>
-                </Row>
-                <Row>{packages["Body Building"].map(item=><Col md="4">{cardFiller(item)}</Col>)}
-                </Row>
-            </Container>
+            
+            {(packages['Body Building']).push(...(packages['Body Building']))}
+            {(packages['Body Building']).push(...(packages['Body Building']))}
+            {(packages['Body Building']).push(...(packages['Body Building']))}
+            {packages["Body Building"].length === 0 ?<React.Fragment/>:
+                <Container>
+                    <Row className="mt-5 mb-4">
+                        <Col>
+                            <h2 style={{color:"#0a4275"}} className="text-center">Body Building Packages</h2>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <h5 className="pb-3" style={{textAlign: 'right'}}>Scroll For More <ArrowRightAltIcon /> </h5>
+                        </Col>
+                    </Row>
+                    <Row className="horizontal-scroll">
+                        {/* <Col> */}
+                            {packages["Body Building"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
+                            {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['Body Building']}/> */}
+                        {/* </Col */}
+                    </Row>
+                </Container>
             }
 
-            {packages["Flu"].length === 0 ?<React.Fragment/>:   <Container>
-                <Row className="mt-5 mb-4">
-                    <Col>
-                        <h4 style={{color:"#0a4275"}} className="text-center">Health Packages</h4>
-                    </Col>
-                </Row>
-                <Row>
-                {packages["Flu"].map(item=><Col md="4">{cardFiller(item)}</Col>)}
-                </Row>
-            </Container>}
+            {packages["Flu"].length === 0 ?<React.Fragment/>:
+                <Container>
+                    <Row className="mt-5 mb-4">
+                        <Col>
+                            <h2 style={{color:"#0a4275"}} className="text-center">Health Packages</h2>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <h5 className="pb-3" style={{textAlign: 'right'}}>Scroll For More <ArrowRightAltIcon /> </h5>
+                        </Col>
+                    </Row>
+                    <Row className="horizontal-scroll">
+                        {/* <Col> */}
+                            {packages["Flu"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
+                            {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['Diabities']}/> */}
+                        {/* </Col> */}
+                    </Row>
+                </Container>
+            }
+            <Container>
+                <Row className="mt-5 mb-5"></Row>
+            </Container>
 
         </>
 

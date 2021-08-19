@@ -36,7 +36,7 @@ export default function Register(props) {
         const password = document.getElementById("password").value.trim()
         const result = await axios.post(apiLinks.loginUser,{contact,password})
         if(result.data.code === 200){
-            sessionStorage.setItem("userDetail",JSON.stringify(result.data.data))
+            localStorage.setItem("userDetail",JSON.stringify(result.data.data))
             location.href="/payments/confirm"
         }
         else{
@@ -65,7 +65,7 @@ export default function Register(props) {
 
         const result = await axios.post(apiLinks.registerUser,data)
         if(result.data.code === 200){
-            sessionStorage.setItem("userDetail",JSON.stringify(result.data.data))
+            localStorage.setItem("userDetail",JSON.stringify(result.data.data))
             location.href="/payments/confirm"
         }
         else if(result.data.code === 202){

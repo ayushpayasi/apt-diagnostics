@@ -1,7 +1,7 @@
 export const apiLinks = {
-   // baseUrl:"http://localhost:5000/"     // for development
+   baseUrl:"http://localhost:5000/"     // for development
 	// baseUrl:"http://www.aptdiagnostics.com:5000/"   //for production
-   baseUrl: "http://13.233.156.29:5000/"
+   // baseUrl: "http://13.233.156.29:5000/"
 }
 
 apiLinks.priceList = apiLinks.baseUrl+"priceList"
@@ -23,6 +23,7 @@ apiLinks.getCovidTests = apiLinks.baseUrl+"getCovidTests"
 apiLinks.getFlebo = apiLinks.baseUrl+"getFlebo"
 apiLinks.setFlebo = apiLinks.baseUrl+"setFlebo"
 apiLinks.getSubscriber = apiLinks.baseUrl+"admin/getSubscribers"
+apiLinks.addSubscriber = apiLinks.baseUrl+"addSubscriber"
 apiLinks.getUserList = apiLinks.baseUrl+"admin/fetchUserList"
 apiLinks.postFeedback = apiLinks.baseUrl+"postFeedback"
 apiLinks.contactus = apiLinks.baseUrl+"postContactus"
@@ -44,3 +45,4 @@ apiLinks.loginUser = apiLinks.baseUrl+"login"
 apiLinks.quickLogin = apiLinks.baseUrl+"quickLogin"
 apiLinks.registerUser = apiLinks.baseUrl+"register"
 apiLinks.getMemberDetails = apiLinks.baseUrl+"getMemberDetails"
+apiLinks.sendUserOtp = apiLinks.baseUrl+"bookingotpverify"

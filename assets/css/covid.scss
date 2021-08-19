@@ -1,8 +1,29 @@
+.covid-image-box{
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  img{
+    border-radius: 10px;
+    width: 80%;
+    height: 32vh;
+    max-height: 500px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .covid-image-box{
+    img{
+      width: 100%;
+      height: 22vh;
+    }
+  }
+}
+
 .test-card{
-    height:350px;
-    border-radius: 5px;
-    border: none;
-    .card-body{
+  height:350px;
+  border-radius: 5px;
+  border: none;
+  .card-body{
     font-weight: 500; 
     .body-text{
       font-size: 0.85rem;
@@ -10,6 +31,7 @@
       width: 100%;
       // margin: 0 0 1em 0;
       overflow: hidden;
+      overflow-y: scroll;
       position: relative;
       height: 170px;
       &:after {
@@ -23,16 +45,42 @@
         background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
       }
     } 
-  .test-card-button{
-    border: 1.5px solid #0a4275 !important;
-    color: #0a4275 !important;
-    font-weight: 600 !important;
-    border-radius: 5px;
-    box-shadow: 0px 0px 3px 0px #0a4275;
-    margin-top: 40px;
-    &:hover{
-      background:#ff6363;
+    .test-card-button{
+      border: 1.5px solid #0a4275 !important;
+      color: #0a4275 !important;
+      font-weight: 600 !important;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 3px 0px #0a4275;
+      margin-top: 40px;
+      &:hover{
+        // background:#ff6363;
+        background-color: #0a4275;
+        color: #fff !important;
+        border-color: #fff;
+      }
     }
   }
-    }
-  }
+}
+
+.landing-h2{
+  text-align: center;
+  font-weight: 600;
+  color:#0a4275 ;
+  font-size: 2rem;
+  padding:0;
+  margin:0;
+}
+
+.card--title{
+  font-size: 1.2rem;
+  color:#0a4275;
+  font-weight: 600;
+  margin-top: 1rem !important;
+}
+
+.align-center-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

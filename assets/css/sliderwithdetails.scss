@@ -4,7 +4,7 @@
     height:40px;
     font-size: 0.7rem;
     font-weight: 700;
-    border-radius: 2px;
+    border-radius: 4px;
     border:1px solid rgba(10, 66, 117,1);
     display: flex;
     justify-content: center;
@@ -35,6 +35,7 @@
         cursor: pointer;
     }
 }
+
 .sliderwithdetails{
     // border:1px solid #0a4275;
     padding: 2px;
@@ -44,6 +45,7 @@
         border-radius: 5px;
     }
 }
+
 .border{
   border:1px solid blue;
   border-radius: 5px;
@@ -52,6 +54,7 @@
 .color{
     color:#0a4275;
 }
+
 .messageout-enter {
     position: absolute;
     top: 0;
@@ -102,45 +105,93 @@
   }
   
   /* ending ENTER animation */
-  .messagefade-enter-active {
-    opacity: 1;
-    // transform: translateY(0%) scale(1);
-    transition: all 500ms ease-in-out;
-  }
-  
-  /* starting EXIT animation */
-  .messagefade-exit {
-    opacity: 1;
-    // transform: scale(1.01);
-  }
-  
-  /* ending EXIT animation */
-  .messagefade-exit-active {
-    opacity: 0;
-    // transform: scale(4);
-    transition: all 500ms ease-in-out;
-  }
-
-  .slick-slide.slick-center img {
-    transform: scale(1.1);
+.messagefade-enter-active {
+  opacity: 1;
+  // transform: translateY(0%) scale(1);
+  transition: all 500ms ease-in-out;
 }
 
-  .symptoms-text{
-    font-size: .85rem;
-    line-height: 16.8px;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    height: 150px;
-    font-weight: 500;
-    &:after {
-      content: "";
-      text-align: right;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 70%;
-      height:1.3rem;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
-    }
+/* starting EXIT animation */
+.messagefade-exit {
+  opacity: 1;
+  // transform: scale(1.01);
+}
+
+/* ending EXIT animation */
+.messagefade-exit-active {
+  opacity: 0;
+  // transform: scale(4);
+  transition: all 500ms ease-in-out;
+}
+
+.slick-slide.slick-center img {
+  transform: scale(1.1);
+}
+
+.symptoms-container{
+  margin: auto;
+}
+
+.container-card-title{
+  font-size: 1.6rem;
+}
+
+.symptoms-text{
+  font-size: .85rem;
+  line-height: 16.8px;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+  height: 150px;
+  font-weight: 500;
+  &:after {
+    content: "";
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70%;
+    height:1.3rem;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
   }
+}
+
+.mobile-view-symptoms{
+  width: 90%;
+  margin: auto;
+}
+
+@media (min-width: 768px) and (max-width: 992px){
+  .tests-view-tablet{
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+}
+
+.landing-h2{
+  font-size: 2rem;
+}
+
+.diagnose-div-margin{
+  margin: 2rem auto;
+}
+
+.big-size-hide{
+  display: none;
+}
+
+@media (max-width: 768px){
+  .big-size-hide{
+    display: block;
+  }
+
+  .small-size-hide{
+    display: none;
+  }
+
+  .small-size-grow{
+    width: 100%;
+  }
+}

@@ -99,9 +99,9 @@ export default function Gifts(props) {
                 giftedTestList
             })
         if(result.data.code === 200){
-            sessionStorage.setItem("couponCode",couponCode)
-            sessionStorage.setItem("cart",JSON.stringify([]))
-            sessionStorage.setItem("cart",JSON.stringify([]))
+            localStorage.setItem("couponCode",couponCode)
+            localStorage.setItem("cart",JSON.stringify([]))
+            localStorage.setItem("cart",JSON.stringify([]))
             location.href="/gifts/success"
         }
         else{
@@ -125,30 +125,30 @@ export default function Gifts(props) {
         const gift_message = document.getElementById("donee_message").value
         let amount = 0
         let giftedTestList = []
-        console.log(sessionStorage.getItem("discountedValue"))
-        if(sessionStorage.getItem("discountedValue") == null){
-            for (var i of JSON.parse(sessionStorage.getItem("cart"))){
+        console.log(localStorage.getItem("discountedValue"))
+        if(localStorage.getItem("discountedValue") == null){
+            for (var i of JSON.parse(localStorage.getItem("cart"))){
                 amount +=parseFloat(i.testAmount)
                 giftedTestList.push(i.testID)
             }
         }
         else{
-            if(JSON.parse(sessionStorage.getItem("cart")).length === JSON.parse(sessionStorage.getItem("discountedValue")).cartLength){
-                if(JSON.parse(sessionStorage.getItem("discountedValue")).discount == null){
-                    for (var i of JSON.parse(sessionStorage.getItem("cart"))){
+            if(JSON.parse(localStorage.getItem("cart")).length === JSON.parse(localStorage.getItem("discountedValue")).cartLength){
+                if(JSON.parse(localStorage.getItem("discountedValue")).discount == null){
+                    for (var i of JSON.parse(localStorage.getItem("cart"))){
                         amount +=parseFloat(i.testAmount)
                         giftedTestList.push(i.testID)
                     }    
                 }
                 else{
-                    for (var i of JSON.parse(sessionStorage.getItem("cart"))){
+                    for (var i of JSON.parse(localStorage.getItem("cart"))){
                         giftedTestList.push(i.testID)
                     }
-                    amount =parseFloat(JSON.parse(sessionStorage.getItem("discountedValue")).discount)
+                    amount =parseFloat(JSON.parse(localStorage.getItem("discountedValue")).discount)
                 }
             }
             else{
-                for (var i of JSON.parse(sessionStorage.getItem("cart"))){
+                for (var i of JSON.parse(localStorage.getItem("cart"))){
                     amount +=parseFloat(i.testAmount)
                     giftedTestList.push(i.testID)
                 }
