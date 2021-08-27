@@ -68,7 +68,7 @@ const sendOtp = async (mobile) => {
     }
 }
 
-const getTestListData = async ()=>{
+const getTestListData = async () => {
     try{
         const response = await axios.get(apiLinks.priceList, {params:{coupon:"priceList"}});
         if (response.data[0].code === 200){
@@ -128,48 +128,49 @@ export async function getServerSideProps(context) {
 
 export default function Home(props) {
 
-    let navRef = useRef(null);
-
-    const [covidTests, setCovidTests] = useState(props.covidTests);
-    const [packages, setPackages] = useState(props.packages);
-    const [testList, setTestList] = useState(props.testList);
-
+    const covidTests = props.covidTests;
+    const packages = props.packages;
+    const testList = props.testList;
+    
     const [radioValue, setRadioValue] = useState(null);
     const [selectedTest, setSelectedTest] = useState(null);
     const [mobile, setMobile] = useState(null);
 
     const [otpVerification, setOtpVerification] = useState(false);
-    const [downloadReport, setDownloadReport] = useState(true);
+    // const [downloadReport, setDownloadReport] = useState(true);
 
     const [cart, setCart] = useState([]);
 
     const router = useRouter();
 
-    const handleMouseOver =(event,num)=>{
-        document.getElementById("flipcard2")
-        switch (num){
-            case 1:
-                event.target.innerHTML = `<CardBody className="text-center"><CardText className="features-body-text">APT Diagnostics with its in house industry leading infrastructure provides the reports, you can truly count upon.</CardText></CardBody>`
-                document.getElementById("flipcard2").innerHTML = `<CardBody className="text-center"><CardTitle>24/7 Processing</CardTitle><CardText className="features-body-text">Because your time is important to us</CardText></CardBody>`
-                document.getElementById("flipcard3").innerHTML = `<CardBody className="text-center"><CardTitle>Easy Appointment Scheduling</CardTitle><CardText className="features-body-text">Quality Experience That Lasts</CardText></CardBody>`
-                break;
-            case 2:
-                document.getElementById("flipcard1").innerHTML = `<CardBody className="text-center"><CardTitle>Best in class testing</CardTitle><CardText className="features-body-text">Reports you can count upon</CardText></CardBody>`
-                event.target.innerHTML = `<CardBody className="text-center"></CardBody>`
-                document.getElementById("flipcard3").innerHTML = `<CardBody className="text-center"><CardTitle>Easy Appointment Scheduling</CardTitle><CardText className="features-body-text">Quality Experience That Lasts</CardText></CardBody>`
-                break;
-            case 3:
-                document.getElementById("flipcard1").innerHTML = `<CardBody className="text-center"><CardTitle>Best in class testing</CardTitle><CardText className="features-body-text">Reports you can count upon</CardText></CardBody>`
-                document.getElementById("flipcard2").innerHTML = `<CardBody className="text-center"><CardTitle>24/7 Processing</CardTitle><CardText className="features-body-text">Because your time is important to us</CardText></CardBody>`
-                event.target.innerHTML = ``
-                break;
-        }
-    }
-
     const checkPass = async (code, otpCode) => {
         const isValid = await bcrypt.compare(code, otpCode);
-        // console.log(isValid);
         return (isValid);
+    }
+
+    const showToast = (message, err=0) => {
+        if(err === 0){
+            toast.error(message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+            });
+        }
+        else{
+            toast.success(message, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+            });
+        }
     }
 
     const showRetryOtp = () => {
@@ -179,15 +180,7 @@ export default function Home(props) {
     const retryOTPHandler = () => {
         const mobile = document.getElementById("appointmentBookingMobilenumber").value;
         if(mobile.length !== 10) {
-            toast.error('Enter a valid 10 digit contact number', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-            });
+            showToast('Enter a valid 10 digit contact number');
         }
         else{
             document.getElementById('otpTimerShow') && (document.getElementById('otpTimerShow').style.visibility = 'hidden');
@@ -195,21 +188,14 @@ export default function Home(props) {
         }
     }
 
-    const handleOTPVerification = async () =>{
+    const handleOTPVerification = async () => {
         const data = JSON.parse(sessionStorage.getItem('verificationOtp'));
         if(data === null){
             sessionStorage.removeItem('verificationOtp');
-            toast.error('Otp Expired, please try again !', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-            });
+            showToast('Otp Expired, please try again !');
             setOtpVerification(false);
-        }else{
+        }
+        else{
             try{
                 const otpCode = data.code;
                 const contact = data.contact;
@@ -217,104 +203,48 @@ export default function Home(props) {
                 const isValid = await checkPass(code, otpCode);
                 if(contact !== mobile){
                     sessionStorage.removeItem('verificationOtp');
-                    toast.error('Session Expired, please try again', {
-                        position: "top-right",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: false,
-                        draggable: false,
-                        progress: undefined,
-                    });
+                    showToast('Session Expired, please try again');
                     setOtpVerification(false);
                 }
                 else{
                     if(code === null || code === ''){
-                        toast.error('Enter your OTP', {
-                            position: "top-right",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: false,
-                            draggable: false,
-                            progress: undefined,
-                        });
+                        showToast('Enter your OTP');
                     }
                     else if(!isValid){
-                        // console.log(otpCode, code);
-                        // console.log(typeof(otpCode), typeof(code));
-                        toast.error('Invalid Otp entered, please try again', {
-                            position: "top-right",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: false,
-                            draggable: false,
-                            progress: undefined,
-                        });
+                        showToast('Invalid Otp entered, please try again');
                     }
                     else{
                         setOtpVerification(false);            
                         const data = JSON.stringify({
                             appointmentType : radioValue,
-                            test : selectedTest.testID,
+                            test : selectedTest,
                             contact : mobile
                         });
+                        router.push("/payments/quickconfirm");
                         sessionStorage.setItem("directBooking", data);
                         sessionStorage.removeItem("verificationOtp");
-                        router.push("/payments/quickconfirm");
                     }
                 }
-            }catch(err){
+            }
+            catch(err){
                 console.log(err);
-                toast.error('Something went wrong, please try again', {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: false,
-                    progress: undefined,
-                });
+                showToast('Something went wrong, please try again');
                 setOtpVerification(false);
+                sessionStorage.removeItem("verificationOtp");
             }
         }
     }
 
-    const bookAppointmentHandler = ()=>{
+    const bookAppointmentHandler = () => {
         const mobile = document.getElementById("appointmentBookingMobilenumber").value;
         if(radioValue === null) {
-            toast.error('Select appointment type', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-            });
+            showToast('Select appointment type');
         }
         else if(selectedTest === null || selectedTest.length === 0) {
-            toast.error('Select a test', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-            });
+            showToast('Select a test');
         }
         else if(mobile.length !== 10){
-            toast.error('Enter a valid 10 digit Contact Number', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-            });
+            showToast('Enter a valid 10 digit Contact Number');
         }
         else{
             setMobile(mobile);
@@ -324,7 +254,6 @@ export default function Home(props) {
         }
     }
 
-    
     const items = [
         {
         src: "images/packages/corporate.jpg",
@@ -396,7 +325,7 @@ export default function Home(props) {
 
     const addToCart = useCallback((event, product)=>{
         event.stopPropagation();
-
+        
         let cart = JSON.parse(localStorage.getItem("cart"));
         cart = cart === null ? [] : cart;
         let existing = cart.filter(item => item.testID === product.testID);
@@ -417,6 +346,7 @@ export default function Home(props) {
             cart.push(product);
             props.updateCartValue(cart.length);
             localStorage.setItem("cart", JSON.stringify(cart));
+            showToast(`${product.testName} added to Cart!`, 1);
         }
 
     }, []);
@@ -454,7 +384,7 @@ export default function Home(props) {
         speed: 400,
         slidesToShow: 3,
         slidesToScroll: 1,
-        autoplay: true,
+        // autoplay: true,
         pauseOnHover: true,
         swipeToSlide: true,
         arrows:false,
@@ -510,18 +440,6 @@ export default function Home(props) {
                 }
             }
         ]
-        // responsive: [
-        //   {
-        //     breakpoint: 1024,
-        //     settings: {
-        //       slidesToShow: 2,
-        //       slidesToScroll: 1,
-        //       infinite: true,
-        //       dots: true
-        //     }
-        //   },
-          
-        // ]
       };
 
     const featuresData = [
@@ -554,15 +472,21 @@ export default function Home(props) {
                     <div className="otp-verification-window">
                         <Card className="otp-verification-card">
                             <CardBody>
-                                <div className='verify-cancel-button'> <span style={{cursor: 'pointer'}} onClick={() => {setOtpVerification(false), sessionStorage.removeItem('verificationOtp')}}><CancelIcon /></span> </div>
+                                <div className='verify-cancel-button'> 
+                                    <span style={{cursor: 'pointer'}} onClick={() => {setOtpVerification(false), sessionStorage.removeItem('verificationOtp')}}><CancelIcon /></span> 
+                                </div>
                                 <CardTitle className="text-center pt-1">Verify OTP</CardTitle>
                                 <CardText>An OTP has been sent to +91-{mobile} !</CardText> 
                                 <FormGroup>
                                     <Label for="otpField">Please Enter Your OTP</Label>
                                     <Input id="otpField" type="text" autoFocus={true} />
                                 </FormGroup>
-                                <CardSubtitle id='otpTimerShow' style={{color: "#0a4275", visibility: 'hidden'}}>Not Recieved an OTP <span style={{cursor: 'pointer', color: '#ff6363', fontSize: '1rem', textDecoration: 'underline'}} onClick={()=>{retryOTPHandler()}}>Retry! </span> </CardSubtitle>
-                                <div className="text-center"><Button onClick={()=>{handleOTPVerification()}} variant="outlined" style={{color:"rgba(18, 73, 124,1)",margin:"5px",fontWeight:"600",fontSize:"0.9rem",borderColor:"rgba(18, 73, 124,1)"}}>Verify</Button></div>
+                                <CardSubtitle id='otpTimerShow' style={{color: "#0a4275", visibility: 'hidden'}}>Not Recieved an OTP &nbsp;
+                                    <span style={{cursor: 'pointer', color: '#ff6363', fontSize: '1rem', textDecoration: 'underline'}} onClick={()=>{retryOTPHandler()}}>Retry! </span> 
+                                </CardSubtitle>
+                                <div className="text-center">
+                                    <Button onClick={()=>{handleOTPVerification()}} variant="outlined" style={{color:"rgba(18, 73, 124,1)",margin:"5px",fontWeight:"600",fontSize:"0.9rem",borderColor:"rgba(18, 73, 124,1)"}}>Verify</Button>
+                                </div>
                             </CardBody>
                         </Card>
                     </div> :
@@ -594,22 +518,22 @@ export default function Home(props) {
                                             <Row>
                                                 <Col xs="6">
                                                     <FormControlLabel
-                                                    value="home"
-                                                    control={<Radio onChange={(event)=>{setRadioValue(event.target.value)}} />}
-                                                    style={{textAlign:"center",color:"#0a4275",fontWeight:"700"}}
-                                                    label="Home Appointment"
-                                                    name="appointmentType"
-                                                    labelPlacement="bottom"
+                                                        value="home"
+                                                        control={<Radio onChange={(event)=>{setRadioValue(event.target.value)}} />}
+                                                        style={{textAlign:"center",color:"#0a4275",fontWeight:"700"}}
+                                                        label="Home Appointment"
+                                                        name="appointmentType"
+                                                        labelPlacement="bottom"
                                                     />
                                                 </Col>
                                                 <Col xs="6">
                                                     <FormControlLabel
-                                                    value="lab"
-                                                    control={<Radio onChange={(event)=>{setRadioValue(event.target.value)}} />}
-                                                    style={{textAlign:"center",color:"#0a4275"}}
-                                                    label="Lab Appointment"
-                                                    name="appointmentType"
-                                                    labelPlacement="bottom"
+                                                        value="lab"
+                                                        control={<Radio onChange={(event)=>{setRadioValue(event.target.value)}} />}
+                                                        style={{textAlign:"center",color:"#0a4275"}}
+                                                        label="Lab Appointment"
+                                                        name="appointmentType"
+                                                        labelPlacement="bottom"
                                                     />
                                                 </Col>
                                             </Row>
@@ -792,7 +716,7 @@ export default function Home(props) {
                                             <CardTitle className="text-center card--title mt-1">{item.testName}</CardTitle>
                                             <CardBody >
                                                 <CardText className="body-text">{item.details}</CardText>
-                                                <div className="align-center-row ">
+                                                <div className="align-center-row " style={{justifyContent: "center"}}>
                                                     <Button 
                                                         onClick={(event)=>{addToCart(event, item)}} variant="outlined" 
                                                         className="test-card-button"
@@ -832,7 +756,7 @@ export default function Home(props) {
                 </Container>
 
 {/*blogs*/}
-                <Container style={{width: '100%', maxWidth: '100vw'}}>
+                {/* <Container style={{width: '100%', maxWidth: '100vw'}}>
                     <Row>       
                         <Col style={{padding: 0}}>
                             <div className='blogs-div'>
@@ -843,19 +767,6 @@ export default function Home(props) {
                 </Container>
                 <Container className="blogs-container">
                     <div className="blogs-holder">
-                        {/* <Container className="hide-on-small">
-                            <Row>
-                                <Col md='4'>
-                                        <Blog bgcolor="#0a4275" color="#fff"/>
-                                </Col>
-                                <Col md='4'>
-                                        <Blog bgcolor="#0a4275" color="#fff"/>
-                                </Col>
-                                <Col md='4'>
-                                        <Blog bgcolor="#0a4275" color="#fff"/>
-                                </Col>
-                            </Row>
-                        </Container> */}
                         <Container>
                             <Row>
                                 <Col>
@@ -863,19 +774,7 @@ export default function Home(props) {
                                         {['a', 'a', 'a', 'a', 'a'].map((feature, index) => {
                                             return (
                                                 <Col key={index} xs="12" sm="12" md="12">
-                                                    {/* <div className="card_flip feature-first-card">
-                                                        <div className="card__inner">
-                                                            <div className="card__content card_content--front">
-                                                            <CardTitle style={{color:"#fff"}} className="features-body-title">
-                                                                {feature.title}
-                                                            </CardTitle>
-                                                            <CardText className="features-body-text">{feature.text}</CardText>
-                                                            </div>
-                                                            <div className="card__content card__content--back">
-                                                            <CardText className="features-body-text">{feature.description}</CardText>
-                                                            </div>
-                                                        </div>
-                                                    </div> */}
+                                                    
                                                     <Blog bgcolor="#0a4275" color="#fff"/>
                                                 </Col>
                                             )
@@ -885,7 +784,7 @@ export default function Home(props) {
                             </Row>
                         </Container>
                     </div>
-                </Container>
+                </Container> */}
 
 {/* footer */}
                 <div>

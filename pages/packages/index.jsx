@@ -244,7 +244,7 @@ export default function Index(props) {
                 </Row>
                </Container>     
 
-                {packages["Diabities"].length === 0 ? <React.Fragment/>: 
+                {packages["Diabities"].length === 0 ? <React.Fragment/> : 
                     <Container>
                         <Row className="mt-3 mb-4">
                             <Col>
@@ -257,10 +257,7 @@ export default function Index(props) {
                             </Col>
                         </Row>
                         <Row className="horizontal-scroll">
-                            {/* <Col> */}
-                                {packages["Diabities"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
-                                {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['Diabities']}/> */}
-                            {/* </Col> */}
+                            {packages["Diabities"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
                         </Row>
                     </Container>
                 }
@@ -278,16 +275,13 @@ export default function Index(props) {
                             </Col>
                         </Row>
                         <Row className="horizontal-scroll">
-                            {/* <Col> */}
-                                {packages["Pregnancy"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
-                                {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['Pregnancy']}/> */}
-                            {/* </Col> */}
+                            {packages["Pregnancy"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
                         </Row>
                     </Container>
                 }
             
                
-            {packages["General Wellness"].length === 0 ?<React.Fragment/>:
+            {packages["General Wellness"].length === 0 ? <React.Fragment/>:
                 <Container>
                     <Row className="mt-5 mb-4">
                         <Col>
@@ -300,17 +294,11 @@ export default function Index(props) {
                         </Col>
                     </Row>
                     <Row className="horizontal-scroll">
-                        {/* <Col> */}
-                            {packages["General Wellness"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
-                            {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['General Wellness']}/> */}
-                        {/* </Col> */}
+                        {packages["General Wellness"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
                     </Row>
                 </Container>
             }
-            
-            {(packages['Health']).push(...(packages['Health']))}
-            {(packages['Health']).push(...(packages['Health']))}
-            {(packages['Health']).push(...(packages['Health']))}
+
             {packages["Health"].length === 0 ?<React.Fragment/>: 
                 <Container>
                     <Row className="mt-5 mb-4">
@@ -324,19 +312,12 @@ export default function Index(props) {
                         </Col>
                     </Row>
                     <Row className="horizontal-scroll">
-                        {/* <Col> */}
-                            {packages["Health"].map((item, index) => <Col sm="12" md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
-                            {/* {packages["Health"].map((item, index) => <Col sm="12" md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)} */}
-                            {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['Health']}/> */}
-                        {/* </Col> */}
+                        {packages["Health"].map((item, index) => <Col sm="12" md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
                     </Row>
                 </Container>
             }
             
             
-            {(packages['Body Building']).push(...(packages['Body Building']))}
-            {(packages['Body Building']).push(...(packages['Body Building']))}
-            {(packages['Body Building']).push(...(packages['Body Building']))}
             {packages["Body Building"].length === 0 ?<React.Fragment/>:
                 <Container>
                     <Row className="mt-5 mb-4">
@@ -350,10 +331,7 @@ export default function Index(props) {
                         </Col>
                     </Row>
                     <Row className="horizontal-scroll">
-                        {/* <Col> */}
-                            {packages["Body Building"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
-                            {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['Body Building']}/> */}
-                        {/* </Col */}
+                        {packages["Body Building"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
                     </Row>
                 </Container>
             }
@@ -371,10 +349,7 @@ export default function Index(props) {
                         </Col>
                     </Row>
                     <Row className="horizontal-scroll">
-                        {/* <Col> */}
-                            {packages["Flu"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
-                            {/* <HealthCheckCarousel updateCartValue={props.updateCartValue} data={packages['Diabities']}/> */}
-                        {/* </Col> */}
+                        {packages["Flu"].map((item, index) => <Col md="6" lg="4" key={index}>{cardFiller(item, index)}</Col>)}
                     </Row>
                 </Container>
             }

@@ -734,7 +734,7 @@ export default function Confirm(props) {
                     <Button className="button" onClick={handleBack} > Back</Button>
                 </Col>
                 <Col className="align-center-row">
-                <Button className="button" onClick={activeStep === steps.length - 1 ?handlePayment:handleNext}> {activeStep === steps.length - 1 ? 'Pay' : 'Proceed'}</Button>
+                <Button className="button" onClick={activeStep === steps.length - 1 ? handlePayment : handleNext}> {activeStep === steps.length - 1 ? 'Pay' : 'Proceed'}</Button>
                 </Col>
             </Row>}
             

@@ -113,7 +113,7 @@ export default function TestUpdateWindow(props) {
                             <Col xs="4">
                             <FormGroup>
                                     <Label for="testID"> Test ID</Label>
-                                    <Input size="sm" id="testID" placeholder="Test Id"></Input>
+                                    <Input bsSize="sm" id="testID" placeholder="Test Id"></Input>
                                 </FormGroup>                                
                             </Col>
                             <Col xs="4" style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
@@ -121,7 +121,7 @@ export default function TestUpdateWindow(props) {
                             </Col>
                             <Col className="d-flex justify-content-center">
                                 <FormGroup style={{fontWeight:"600"}}>
-                                <Input size="sm" id="testFeatured" type="checkbox"/>{' '} Featured
+                                <Input bsSize="sm" id="testFeatured" type="checkbox"/>{' '} Featured
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -129,13 +129,13 @@ export default function TestUpdateWindow(props) {
                             <Col>
                                 <FormGroup>
                                     <Label for="testType"> Test Type</Label>
-                                    <Input size="sm" id="testType" disabled placeholder="Test Type"></Input>
+                                    <Input bsSize="sm" id="testType" disabled placeholder="Test Type"></Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <FormGroup>
                                     <Label for="testName"> Test Name</Label>
-                                    <Input size="sm" id="testName" disabled placeholder="Test Name"></Input>
+                                    <Input bsSize="sm" id="testName" disabled placeholder="Test Name"></Input>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -143,7 +143,7 @@ export default function TestUpdateWindow(props) {
                             <Col>
                                 <FormGroup>
                                     <Label for="testDescription"> Description</Label>
-                                    <Input size="sm" type="text" id="testDescription" placeholder="Test Description"></Input>
+                                    <Input bsSize="sm" type="text" id="testDescription" placeholder="Test Description"></Input>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -151,7 +151,7 @@ export default function TestUpdateWindow(props) {
                             <Col>
                             <FormGroup>
                                     <Label for="testDetails"> Test Details</Label>
-                                    <Input size="sm" type="textarea" id="testDetails" placeholder="Test Details"></Input>
+                                    <Input bsSize="sm" type="textarea" id="testDetails" placeholder="Test Details"></Input>
                             </FormGroup>
                             </Col>
                         </Row>
@@ -159,19 +159,19 @@ export default function TestUpdateWindow(props) {
                             <Col>
                                 <FormGroup>
                                     <Label for="testPrice"> Test Price</Label>
-                                    <Input size="sm" id="testPrice" disabled placeholder="Test Price"></Input>
+                                    <Input bsSize="sm" id="testPrice" disabled placeholder="Test Price"></Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <FormGroup>
                                     <Label for="image">Upload Report Image</Label>
-                                    <Input size="sm" type="file" id="image" onChange={(event)=>{testReportChangeHandler(event)}}></Input>
+                                    <Input bsSize="sm" type="file" id="image" onChange={(event)=>{testReportChangeHandler(event)}}></Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <FormGroup>
                                     <Label for="image2">Upload Test Image</Label>
-                                    <Input size="sm" type="file" id="image2" onChange={(event)=>{testImageChangeHandler(event)}}></Input>
+                                    <Input bsSize="sm" type="file" id="image2" onChange={(event)=>{testImageChangeHandler(event)}}></Input>
                                 </FormGroup>
                             </Col>
                         </Row>

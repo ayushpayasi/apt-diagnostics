@@ -5,11 +5,38 @@ import TextField from "@material-ui/core/TextField"
 import { toast } from 'react-toastify'
 import {apiLinks} from "../../connection.config"
 import axios from "axios"
+import { number } from 'prop-types'
+
+const showToast = (message, err = 0) => {
+  if(err === 0)
+    toast.error(message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+    });
+  else
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+  });
+}
 
 export default function RequestCallBack(props) {
-  const [contactNumberValid,setContactNumberValid] = useState(null)
+  const [contactNumberValid,setContactNumberValid] = useState(null);
+  const [number, setNumber] = useState("");
+  const [name, setName] = useState("");
   
-  const handleInputChange = (event)=>{
+  const handleInputChange = (event) => {
+    setNumber(event.target.value);
     var a = /^\d{10}$/;  
     if (a.test(event.target.value)){
       setContactNumberValid(true)
@@ -25,20 +52,29 @@ export default function RequestCallBack(props) {
 
   const requestCallBackHandler = async () => {
     try{
-      const name = document.getElementById("callbackName").value
-      const number = document.getElementById("callbackNumber").value
-      const result = await axios.post(apiLinks.requestCallback,{name,number})
-      if(result.data.code === 200){
-        close();
-        toast(`We'll soon contact you ${name}!`);
+      if(name.length === 0 || name === null){
+        showToast("Enter Your Name below!");
+        return;
+      }
+      if(number.length !== 10){
+        showToast("Enter a valid 10 digit contact number");
       }
       else{
-        toast("Failed to request a callback!");
+        const username = name;
+        const contact = number;
+        const result = await axios.post(apiLinks.requestCallback,{name: username, number: contact})
+        if(result.data.code === 200){
+          close();
+          showToast(`We'll soon contact you ${username}!`, 1);
+        }
+        else{
+          showToast("Failed to request a callback!");
+        }
       }
     }
     catch(err){
       console.log(err);
-      toast("internal server Error!")
+      showToast("Internal Server Error!, please try again");
     }
   }
 
@@ -46,20 +82,9 @@ export default function RequestCallBack(props) {
     <>
       <div className="lightbox-cover">
         <div className="lightbox-vertical">
-        <button className="close" style={{backgroundColor: '#fff'}} onClick={close}>&times;</button>
-        <div className="details-box">
-          <TextField id="callbackName" label="Name" InputLabelProps={{
-            style: {
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              width: '100%',
-              fontWeight:"700",
-              color: 'rgba(10, 66, 117,255)',
-            }}}
-            style={{backdropFilter: 'blur(5px)', color:"#fff", marginBottom: '5px'}}
-          />
-          <TextField id="callbackNumber" error={contactNumberValid=== null? false : !contactNumberValid} onChange={handleInputChange} label="Contact Number" InputLabelProps={{
+          <button className="close" style={{backgroundColor: '#fff'}} onClick={close}>&times;</button>
+          <div className="details-box">
+            <TextField id="callbackName" label="Name" InputLabelProps={{
               style: {
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
@@ -68,9 +93,25 @@ export default function RequestCallBack(props) {
                 fontWeight:"700",
                 color: 'rgba(10, 66, 117,255)',
               }}}
-              style={{backdropFilter: 'blur(5px)', color:"#fff"}}/>
-          <Button onClick={()=>{requestCallBackHandler()}} outline >Request Callback</Button>
-        </div>
+              onChange={(event) => {setName(event.target.value)}} value={name}
+              style={{backdropFilter: 'blur(5px)', color:"#fff", marginBottom: '5px'}}
+            />
+            <TextField id="callbackNumber" error={contactNumberValid=== null? false : !contactNumberValid} 
+                onChange={handleInputChange} label="Contact Number" InputLabelProps={{
+                style: {
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  width: '100%',
+                  fontWeight:"700",
+                  color: 'rgba(10, 66, 117,255)',
+                }}}
+                style={{backdropFilter: 'blur(5px)', color:"#fff"}}
+                value={number}
+              />
+            <Button onClick={()=>{requestCallBackHandler()}} outline >Request Callback</Button>
+            <br />
+          </div>
         </div>
     </div>
   </>

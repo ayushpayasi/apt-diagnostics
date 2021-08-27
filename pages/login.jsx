@@ -17,8 +17,8 @@ export default function Login() {
         <SmallNavbar color="white" />
             <Container fluid className="grid-bg">
             <Row>
-                <Col>
-                </Col>
+                {/* <Col>
+                </Col> */}
                 <Col className="d-flex justify-content-around align-items-center">
                     <Card className="login-card" >
                         <CardBody>
@@ -38,6 +38,11 @@ export default function Login() {
 
                         </CardBody>
                     </Card>
+                </Col>
+            </Row>
+            <Row className="mt-5 pt-5 pb-5" style={{backgroundColor: "#0a4275", color: "#fff", fontWeight: 800}}>
+                <Col>
+                    <h1 style={{fontWeight: 900, fontSize: "5rem", letterSpacing: ".5rem"}}>APT FOR YOU</h1>
                 </Col>
             </Row>
             </Container>

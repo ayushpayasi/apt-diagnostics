@@ -365,7 +365,7 @@ export default function Tests(props) {
             <Container className="mt-4 pt-4">
                 <Row>
                     <Col>
-                        <h5 style={{color:"#0a4275"}} className="text-center">Lorem, ipsum dolor.</h5>
+                        <h4 style={{color:"#0a4275"}} className="text-center">Lorem, ipsum dolor.</h4>
                     </Col>
                 </Row>
                 <Row>
@@ -379,7 +379,7 @@ export default function Tests(props) {
             <Container className="mt-4" >
                 <Row>
                     <Col className="mt-2">
-                        <h5 style={{color:"#094275",textAlign:"center"}}>Popular Tests</h5>
+                        <h4 style={{color:"#094275",textAlign:"center"}}>Popular Tests</h4>
                     </Col>
                 </Row>
                 <Row>

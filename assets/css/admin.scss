@@ -31,8 +31,21 @@
 
 .admin-content{
     margin-top: 10px;
-    
 }
+
+.customized-button{
+    border : 1px solid #0a4275;
+    color : #0a4275;
+    background: #fff;
+    border-radius: 5px;
+    font-weight: 600;
+    &:hover, &:active, &:focus {
+        background:#0a4275 !important;
+        color: #fff !important;
+        border-color: #fff;
+    }
+}
+
 .updateWindow{
     position: absolute;
     width:100vw;
@@ -40,19 +53,23 @@
     z-index: 1;
     background: rgba(10, 66, 117,0.6);
     .editWindow{
+        overflow-y: auto;
         position: absolute;
-        z-index:2;
+        z-index: 0;
         top:50%;
         left:50%;
         border:none;
         border-radius: 10px;
-        height:85vh;
+        height: max-content;
         width:80vw;
         transform: translate(-50%,-50%);
+        @media screen and (max-width: 768px) {
+            height: 90vh;
+        }
     }
     .couponWindow{
         position: absolute;
-        z-index:2;
+        z-index: 0;
         top:50%;
         left:50%;
         border:none;
@@ -60,6 +77,29 @@
         height:30vh;
         width:50vw;
         transform: translate(-50%,-50%);
+    }
+}
+
+.idealForUpdateWindow, .prereqUpdateWindow{
+    display: none;
+    z-index: 1;
+    width: 100%;
+    min-width: 300px;
+    position: fixed;
+    height: 100vh;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    background: rgba(10, 66, 117,0.6);
+    .card{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 40%;
+        min-width: 300px;
+        height: max-content;
     }
 }
 
@@ -73,7 +113,7 @@
         height:80vh;
         width:50vw;
         transform: translate(-50%,-50%);
-        z-index: 1;
+        z-index: 0;
 }
 
 .blogEditor{
@@ -83,7 +123,7 @@
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
-    z-index: 1;
+    z-index: 0;
     background: white;
     border-radius: 10px;
     
