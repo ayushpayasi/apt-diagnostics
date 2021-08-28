@@ -9,20 +9,34 @@ const tl = gsap.timeline();
 const CHECK_CIRC = 2 * Math.PI * 45;
 
 function SubInteraction() {
+
   const [email, setEmail] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
   const subElm = useRef(null);
   const subMaskElm = useRef(null);
   const subCheckCircleElm = useRef(null);
   const subCheckElm = useRef(null);
+
   const subscribeClick = async (evt) => {
     evt.preventDefault();
     if (isAnimating === true) {
       return;
     }
     try{
+      if(email === null || email === ""){
+        toast.error('Enter a valid e-mail address!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+        });
+        return;
+      }
       const response = await axios.post(apiLinks.addSubscriber, {email});
-      // console.log(response.data);
+
       if(response.data.code !== 201){
         throw(response.data);
       }
@@ -91,46 +105,77 @@ function SubInteraction() {
   };
 
   return (
-    React.createElement("div", { className: "sub", ref: subElm }, 
-    React.createElement("div", { className: "sub-text" }, 
-    React.createElement("h2", null, "Subscribe to our Newsletter")), 
+    // React.createElement("div", { className: "sub", ref: subElm }, 
+    // React.createElement("div", { className: "sub-text" }, 
+    // React.createElement("h2", null, "Subscribe to our Newsletter")), 
 
-    React.createElement("div", { className: "sub-form" }, 
-    React.createElement("div", { className: "field" }, 
-    React.createElement("input", {
-      type: "email",
-      placeholder: "Enter your e-mail address",
-      value: email,
-      onChange: event => {setEmail(event.target.value)},
-      })), 
-
-
-    React.createElement("div", { className: "field" }, 
-    React.createElement("button", {
-      type: 'submit',
-      role: "button",
-      onClick: subscribeClick },
-
-    React.createElement("span", {style: {fontWeight: '900', fontSize: '1rem'}}, "Subscribe now")))),
+    // React.createElement("div", { className: "sub-form" }, 
+    // React.createElement("div", { className: "field" }, 
+    // React.createElement("input", {
+    //   type: "email",
+    //   placeholder: "Enter your e-mail address",
+    //   value: email,
+    //   onChange: event => {setEmail(event.target.value)},
+    //   })), 
 
 
+    // React.createElement("div", { className: "field" }, 
+    // React.createElement("button", {
+    //   type: 'submit',
+    //   role: "button",
+    //   onClick: subscribeClick },
 
-    React.createElement("div", { className: "sub-mask", ref: subMaskElm }, 
-    React.createElement("svg", {
-      viewBox: "0 0 100 100",
-      className: "sub-check-circle",
-      ref: subCheckCircleElm }, 
-
-    React.createElement("circle", { r: "45", cx: "50", cy: "50" })), 
-
-    React.createElement("div", { className: "sub-check", ref: subCheckElm }, 
-    React.createElement("span", null), 
-    React.createElement("span", null)))));
+    // React.createElement("span", {style: {fontWeight: '900', fontSize: '1rem'}}, "Subscribe now")))),
 
 
 
+    // React.createElement("div", { className: "sub-mask", ref: subMaskElm }, 
+    // React.createElement("svg", {
+    //   viewBox: "0 0 100 100",
+    //   className: "sub-check-circle",
+    //   ref: subCheckCircleElm }, 
 
-}
+    // React.createElement("circle", { r: "45", cx: "50", cy: "50" })), 
+
+    // React.createElement("div", { className: "sub-check", ref: subCheckElm }, 
+    // React.createElement("span", null), 
+    // React.createElement("span", null)))));
+    <>
+      <div className="sub" ref={subElm}>
+        <div className="sub-text" style={{display: 'flex', alignItems: "center", justifyContent: "center", textAlign: "center"}}>
+          <h2>Subscribe to our Newsletter</h2>
+        </div>
+
+        <div className="sub-form">
+          <div className="field">
+            <input type="email" placeholder="Enter your e-mail address" value={email} onChange={event => setEmail(event.target.value)} />
+          </div>
+
+          <div className="field">
+            <input type="email" placeholder="Enter your e-mail address" value={email} onChange={event => setEmail(event.target.value)} />
+          </div>
+
+          <div className="field">
+            <button type="submit" role="button" onClick={subscribeClick}>
+              <span style={{fontWeight: 900, fontSize: "1rem"}}>Subscribe Now</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="sub-mask" ref={subMaskElm}>
+          <svg viewBox="0 0 100 100" className="sub-check-circle" ref={subCheckCircleElm}>
+            <circle r="45" cx="50" cy="50" />
+          </svg>
+          
+          <div className="sub-check" ref={subCheckElm}>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 
 export default function Subscribe(){

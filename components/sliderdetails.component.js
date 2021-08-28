@@ -3,6 +3,7 @@ import CenterMode from "./centermodecarousel.component"
 import {Row,Col,Container,List, Link} from "reactstrap"
 import "../assets/css/sliderwithdetails.scss"
 import Button from '@material-ui/core/Button';
+import { toast } from "react-toastify";
 
 
 
@@ -107,8 +108,25 @@ export default function SliderDetails(props) {
         // document.getElementById(`sars-test-${product.testID}`).innerText = 'Added';
 
         if(existing && existing.length){
-            window.alert('Item Already added to cart!');
+            toast.warning('Item already exists in cart 🛒', {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+            });
         }else{
+              toast.success(`${product.testName} added to Cart!`, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+            });
             cart.push(product);
             props.updateCartValue(cart.length);
             localStorage.setItem("cart", JSON.stringify(cart));
@@ -124,8 +142,8 @@ export default function SliderDetails(props) {
                         <span onClick={(event)=>{addToCart(event, item)}}>Book</span>
                     </div>
                 </Col>
-        )
-    }
+        );
+    };
 
     const changePage = () => {
 

@@ -4,17 +4,20 @@
     margin: 0 auto;
 }
 
-.quickconfirm-button{
+.cart-button, .quickconfirm-button{
+    border-radius: 5px;
     background-color: #fff;
     border: 1px solid #0a4275;
     color: #0a4275 !important;
-    &:hover{
+    font-weight: 600;
+    &:hover, &:focus, &:active{
         background-color: #0a4275;
         border-color: #fff;
         color: #fff !important;
     }
     &:disabled{
         pointer-events: none;
+        cursor: not-allowed;
         background-color: #0a4275;
         border-color: #fff;
         color: #fff !important;
@@ -70,4 +73,35 @@
     button{
         border-radius: 20px;
     }
+}
+
+.show-payment-container{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top:0px;
+    left:0px;
+    background-color: rgba(18, 73, 124,0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-box{
+    min-width: 300px;
+    border-radius: 10px;
+    height: fit-content;
+
+    .verify-cancel-button{
+        text-align: right;
+    }
+
+    @media (max-width: 350px) {
+        max-width: 300px;
+    }
+}
+
+.cart-button-container{
+    justify-content: center;
 }

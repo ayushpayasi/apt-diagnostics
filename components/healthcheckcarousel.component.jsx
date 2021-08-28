@@ -22,15 +22,24 @@ export default function HealthCheckCarousel(props) {
 
         if(existing && existing.length){
             toast.warning('Item already exists in cart 🛒', {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+            });
+        }else{
+              toast.success(`${product.testName} added to Cart!`, {
                 position: "top-right",
-                autoClose: 3000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
                 progress: undefined,
             });
-        }else{
             cartItems.push(product);
             props.updateCartValue(cartItems.length);
             localStorage.setItem("cart", JSON.stringify(cartItems));

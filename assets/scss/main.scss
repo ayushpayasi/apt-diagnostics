@@ -97,7 +97,7 @@ body{
 .login-banner{
   width: 100%;
   height: 100vh;
-  background: url("/images/login_page.jpg");
+  background: url("/images/login_page.png");
   background-repeat: no-repeat;
   background-position: top center;
   background-attachment: fixed;
@@ -108,6 +108,15 @@ body{
     height:100%;
     width:100%;
   }
+  @media (max-width: 500px){
+  
+    .grid-bg{
+      background: url("/images/login_page_mobile.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+  }
 }
 
 .login-card{
@@ -116,6 +125,7 @@ body{
   border-radius: 10px;
   width:320px;
 }
+
 .register-card{
   margin-top: 50px;
   background: rgba(255,255,255,0.8);
@@ -123,12 +133,34 @@ body{
   width:100%;
 }
 
-.button{
-  color:#000 !important;
-  background: rgb(185, 183, 183);
-  border-radius: 10px;
-  border:none;
-  padding: 8px 30px;
+// .button{
+  // color:#000 !important;
+  // background: rgb(185, 183, 183);
+  // border-radius: 10px;
+  // border:none;
+  // padding: 8px 30px;
+// }
+
+.register-form-button{
+  border : 1px solid #0a4275 !important;
+  color : #0a4275 !important;
+  background: #fff !important;
+  border-radius: 5px;
+  font-weight: 600;
+  &:hover {
+    background:#0a4275 !important;
+    color: #fff !important;
+    border-color: #fff !important;
+  }
+  &:disabled:hover{
+    border : 1px solid #0a4275 !important;
+    color : #0a4275 !important;
+    background: #fff !important;
+  }
+}
+
+button:disabled, input:disabled, select:disabled{
+  cursor: not-allowed;
 }
 
 ::-webkit-scrollbar{

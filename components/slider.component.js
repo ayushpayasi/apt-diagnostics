@@ -39,7 +39,7 @@ const ReportSlider = (props) => {
         speed: 300,
         slidesToShow: 4,
         slidesToScroll: 1,
-        autoplay: true,
+        // autoplay: true,
         autoplaySpeed: 2000,
         arrows:false,
         cssEase: "ease-out",
@@ -77,7 +77,7 @@ const ReportSlider = (props) => {
                             <CardBody style={{marginBottom: '0px'}}>
                                 <CardTitle className="text-center card-title">{test.testName}</CardTitle>
                                 <h6 className="text-right" style={{color:"grey"}}>₹ {test.testAmount}</h6>
-                                <p className="mt-4" style={{maxHeight: '8vh', overflowY: 'scroll'}}>{test.details}</p>
+                                <p className="mt-4" style={{maxHeight: '8.5vh', overflowY: 'scroll'}}>{test.details}</p>
                             </CardBody>
                             <Button onClick={(event)=>{addToCart(event, test)}} className="test-card-button">Book Test</Button>
                         </Card>

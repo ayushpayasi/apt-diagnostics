@@ -57,58 +57,61 @@ export default function Contactus(props) {
 
             const result = await axios.post(apiLinks.contactus, formData);
             if(result.status === 200){
-                toast("Thanks For Contacting Us!");
+                toast("Thanks For Your time, We'll contact you soon!");
+                document.getElementById("contactus_name").value = "";
+                document.getElementById("contactus_email").value = "";
+                document.getElementById("contactus_contact").value = "";
+                document.getElementById("contactus_description").value = "";
+            }
+            else if(result.status === 400){
+                // console.log(result.data);
+                toast("Missing required fields!");
             }
             else{
-                toast("Failed to submit your Contact Request!");
+                toast("Failed to submit your details!");
             }
-
-        }catch(err){
-            console.log(err)
-            toast("Failed to submit your Contact Request!");
+        }
+        catch(err){
+            if(JSON.stringify(err).includes('400')){
+                toast("Please enter valid text!");
+            }
+            else{
+                toast("Failed to submit your Feedback!");
+            }
         }
     }
 
     const feedbackSubmitHandler = async () => {
         try{
-            // const formData = new FormData();
-            // formData.append("name", document.getElementById("feedback_name").value);
-            // formData.append("email", document.getElementById("feedback_email").value);
-            // formData.append("type", document.getElementById("feedback_type").value);
-            // formData.append("contact", document.getElementById("feedback_contact").value);
-            // formData.append("query", document.getElementById("feedback_query").value);
-            // if(attachment !== null){
-            //     formData.append("attachment", attachment)
-            // }
-
-            const formData = {
-                name: document.getElementById("feedback_name").value,
-                email: document.getElementById("feedback_email").value,
-                type: document.getElementById("feedback_type").value,
-                contact: document.getElementById("feedback_contact").value,
-                query: document.getElementById("feedback_query").value,
-                'attachment': attachment === null ? undefined : attachment
+            const formData = new FormData();
+            formData.append("name", document.getElementById("feedback_name").value);
+            formData.append("email", document.getElementById("feedback_email").value);
+            formData.append("type", document.getElementById("feedback_type").value);
+            formData.append("contact", document.getElementById("feedback_contact").value);
+            formData.append("query", document.getElementById("feedback_query").value);
+            if(attachment !== null){
+                formData.append("attachment", attachment)
             }
 
-            const result = await axios.post(apiLinks.postFeedback, {formData});
+            const result = await axios.post(apiLinks.postFeedback, formData);
             if(result.status === 200){
                 toast("Thanks For Your Feedback!");
                 document.getElementById("feedback_name").value = "";
                 document.getElementById("feedback_email").value = "";
                 document.getElementById("feedback_contact").value = "";
                 document.getElementById("feedback_query").value = "";
+                document.getElementById("feedback_file").value = null;
                 setAttachment(null);
             }
             else if(result.status === 400){
-                console.log(result.data);
-                toast("Missing required fields!");
+                // console.log(result.data);
+                toast("Required Fields Missing!");
             }
             else{
                 toast("Failed to submit your Feedback!");
             }
         }
         catch(err){
-            // console.log(JSON.stringify(err).includes('400'));
             if(JSON.stringify(err).includes('400')){
                 toast("Please enter valid text!");
             }
@@ -133,29 +136,29 @@ export default function Contactus(props) {
                 <CardBody>
                     <Container>
                         <Row>
-                            <Col xs="6">
+                            <Col md="6">
                                 <FormGroup>
                                     <Label for="feedback_name">
                                         Name (नाम) <span style={{color: "#f00"}}>*</span>
                                     </Label>
-                                    <Input className="feedback_form_input" size="sm" type="text" id="feedback_name" placeholder="Name"></Input>
+                                    <Input className="feedback_form_input" bsSize="sm" type="text" id="feedback_name" placeholder="Name"></Input>
                                 </FormGroup>
                             </Col>
 
-                            <Col xs="6">
+                            <Col md="6">
                                 <FormGroup>
                                     <Label for="feedback_email">
                                         Email (ईमेल)
                                     </Label>
-                                    <Input className="feedback_form_input" size="sm" type="email" id="feedback_email" placeholder="Email"></Input>
+                                    <Input className="feedback_form_input" bsSize="sm" type="email" id="feedback_email" placeholder="Email"></Input>
                                 </FormGroup>
                             </Col>
                         </Row>
 
                         <Row>
-                            <Col xs="6">
+                            <Col md="6">
                                 <Label for="feedback_type">Type (प्रकार) <span style={{color: "#f00"}}>*</span> </Label>
-                                <Input className="feedback_form_input" size="sm" type="select" id="feedback_type">
+                                <Input className="feedback_form_input" bsSize="sm" type="select" id="feedback_type">
                                     <option>feedback</option>
                                     <option>feedback</option>
                                     <option>feedback</option>
@@ -163,12 +166,12 @@ export default function Contactus(props) {
                                 </Input>
                             </Col>
 
-                            <Col xs="6">
+                            <Col md="6">
                                 <FormGroup>
                                     <Label for="feedback_phonenumber">
                                         Phone No (फ़ोन नंबर) <span style={{color: "#f00"}}>*</span>
                                     </Label>
-                                    <Input className="feedback_form_input" size="sm" type="number" id="feedback_contact" placeholder="Number"></Input>
+                                    <Input className="feedback_form_input" bsSize="sm" type="number" id="feedback_contact" placeholder="Number"></Input>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -179,7 +182,7 @@ export default function Contactus(props) {
                                     <Label for="feedback_query">
                                         Query (सवाल) <span style={{color: "#f00"}}>*</span>
                                     </Label>
-                                    <Input className="feedback_form_input" size="sm" type="textarea" id="feedback_query" placeholder="Query"></Input>
+                                    <Input className="feedback_form_input" bsSize="sm" type="textarea" id="feedback_query" placeholder="Query"></Input>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -190,7 +193,7 @@ export default function Contactus(props) {
                                     <Label for="feedback_file">
                                         Attachments
                                     </Label>
-                                    <Input onChange={(event)=>{setAttachment(event.target.files[0])}} className="feedback_form_input" size="sm" type="file" id="feedback_file" placeholder="File"></Input>
+                                    <Input onChange={(event)=>{setAttachment(event.target.files[0])}} className="feedback_form_input" bsSize="sm" type="file" id="feedback_file" placeholder="File"></Input>
                                 </FormGroup>
                             </Col>
 
@@ -223,13 +226,15 @@ export default function Contactus(props) {
                                             <Label for="contactus_name">
                                                 Name <span style={{color: "#f00"}}>*</span>
                                             </Label>
-                                            <Input className="feedback_form_input" size="sm" type="text" id="contactus_name" placeholder="Name"></Input>
+                                            <Input className="feedback_form_input" bsSize="sm" type="text" id="contactus_name" placeholder="Name"></Input>
                                         </FormGroup>
+                                    </Col>
+                                    <Col>
                                         <FormGroup>
                                             <Label for="contactus_email">
                                                 Email
                                             </Label>
-                                            <Input className="feedback_form_input" size="sm" type="email" id="contactus_email" placeholder="Email"></Input>
+                                            <Input className="feedback_form_input" bsSize="sm" type="email" id="contactus_email" placeholder="Email"></Input>
                                         </FormGroup>
                                     </Col>
                                     <Col md="6">
@@ -237,13 +242,15 @@ export default function Contactus(props) {
                                             <Label for="contactus_contact">
                                                 Contact <span style={{color: "#f00"}}>*</span>
                                             </Label>
-                                            <Input className="feedback_form_input" size="sm" type="number" id="contactus_contact" placeholder="contact"></Input>
+                                            <Input className="feedback_form_input" bsSize="sm" type="number" id="contactus_contact" placeholder="contact"></Input>
                                         </FormGroup>
+                                    </Col>
+                                    <Col md="6">
                                         <FormGroup>
                                             <Label for="contactus_type">
                                                 Query Type <span style={{color: "#f00"}}>*</span>
                                             </Label>
-                                            <Input className="feedback_form_input" size="sm" type="select" id="contactus_type" placeholder="Query Type">
+                                            <Input className="feedback_form_input" bsSize="sm" type="select" id="contactus_type" placeholder="Query Type">
                                                 <option>query1</option>
                                                 <option>query1</option>
                                                 <option>query1</option>
@@ -256,7 +263,7 @@ export default function Contactus(props) {
                                             <Label for="contactus_description">
                                                 Query Description <span style={{color: "#f00"}}>*</span>
                                             </Label>
-                                            <Input className="feedback_form_input" size="sm" type="textarea" id="contactus_description" placeholder="Description"></Input>
+                                            <Input className="feedback_form_input" bsSize="sm" type="textarea" id="contactus_description" placeholder="Description"></Input>
                                         </FormGroup>
                                         <div className="text-center">
                                             <Button className="feedback-button" onClick={()=>{contactusSubmitHandler()}}>

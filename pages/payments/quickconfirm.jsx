@@ -2,10 +2,9 @@ import Head from 'next/head'
 import React,{useState, useEffect} from 'react';
 import {Container,Col,Row,Card,CardText,ListGroup,ListGroupItem,CardBody,Collapse,CardTitle,FormGroup,Label,Input,InputGroup,InputGroupAddon, CardSubtitle} from "reactstrap"
 import NavBar from "../../components/navbar.component";
-import { useRouter } from 'next/router';
 import "../../assets/css/payments.scss"
 import "react-datetime/css/react-datetime.css";
-import { Button } from 'reactstrap'
+import { Button } from 'reactstrap';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -13,12 +12,16 @@ import MyLocationIcon from '@material-ui/icons/MyLocation';
 import MobileStepper from "@material-ui/core/MobileStepper"
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import {useRouter} from "next/router";
 import {isMobile} from "react-device-detect";
+import { useHistory } from 'react-router';
+import { RadioGroup, FormControlLabel, Radio, TextField } from '@material-ui/core';
+import CancelIcon from '@material-ui/icons/Cancel';
 import axios from 'axios';
 import {apiLinks} from "../../connection.config";
 import { toast } from 'react-toastify';
 
-const getTestListData = async ()=>{
+const getTestListData = async () => {
   try{
       const response = await axios.get(apiLinks.priceList, {params:{coupon:"priceList"}});
       if (response.data[0].code === 200){
@@ -65,17 +68,22 @@ function loadScript(src) {
 };
 
 export default function Confirm(props) {
-  const [testList, setTestList] = useState(props.testList);
-  // console.log((testList.find(test => test.testID === 4983446)));
+
+
+  const testList = props.testList;
+  const steps = ["Fill Details", "Book Slot"];
 
   const [activeStep, setActiveStep] = useState(0);
-  const steps = ["Fill Details","Book Slot"];
+  const [showPayment, setShowPayment] = useState(false);
+  const [radioVal, setRadioVal] = useState('paynow');
+  const [couponCode, setCouponCode] = useState('');
+  const [finalCoupon, setFinalCoupon] = useState('');
 
   const [currentAvailableSlots, setCurrentAvailableSlots] = useState([]);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [today, setToday] = useState('');
 
-  const [appointDate, setAppointDate] = useState(null);
+  const [appointDate, setAppointDate] = useState('');
   const [contactIsValidated, setContactIsValidated] = useState(null);
   const [emailIsValidated, setEmailIsValidated] = useState(null);
   const [nameIsValidated, setNameIsValidated] = useState(null);
@@ -84,9 +92,43 @@ export default function Confirm(props) {
 
   const [finalData, setFinalData] = useState(null);
 
-  const handleAppointmentBook = async (response, data) => {
-    console.log(response);
-    console.log(data);
+  const showToast = async (message, error=1) => {
+    if(error){
+      toast.error(message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+      });
+    }  
+    else{
+      toast.success(message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      });
+    }
+  }
+
+  const updatePayment = () => {
+    setShowPayment(true);
+  }
+
+  // const success = () => {
+  //   history.push('/success');
+  //   console.log("hello");
+  // }
+
+  const handleAppointmentBook = async (response, data, paymentType, supportingData) => {
+    // console.log(response);
+    // console.log(data);
     try{
       // if (localStorage.getItem("cart") === null){
       //   toast("Failed To Book Appointment!")
@@ -95,53 +137,68 @@ export default function Confirm(props) {
       // else{
       //   data["billDetails"].testList = JSON.parse(localStorage.getItem("cart"))
       // }
-      let bookingData = {};
-      if(sessionStorage.getItem("directBooking") !== null){
-        bookingData = JSON.parse(sessionStorage.getItem("directBooking"));
-        const testDetails = testList.find(test => test.testID === bookingData.test);
-        data['billDetails'].testList.push(testDetails);
-      }
-      else{
-        toast("Failed To Book Appointment!");
-        alert(`If payment is deducted, Please note your appointment Id ${(response.id.split('_'))[1]} and contact APTDiagnostics for help!`);
-        return;
-      }
-
-      const bookingType = bookingData.appointmentType;
+      // let bookingData = {};
+      // if(sessionStorage.getItem("directBooking") !== null){
+      //   bookingData = JSON.parse(sessionStorage.getItem("directBooking"));
+      //   const testDetails = testList.find(test => test.testID === bookingData.test);
+      //   data['billDetails'].testList.push(testDetails);
+      // }
+      // else{
+      //   toast("Failed To Book Appointment!");
+      //   alert(`If payment is deducted, Please note your appointment Id ${response.razorpay_order_id} and contact APTDiagnostics for help!`);
+      //   return;
+      // }
+      // console.log(data);
+      // console.log(supportingData);
+      const bookingType = supportingData.bookingType;
+      // console.log(typeof(data));
+      // console.log(data);
 
       if(bookingType === "lab"){
-        const result = await axios.post(apiLinks.bookLabAppointment, data);
+        // console.log("LAB APPOINTMENT---------------");
+        const result = await axios.post(apiLinks.bookLabAppointment, {data, supportingData});
+        // console.log("received data--------------");
+        // console.log(result.data);
         if(result.data.code === 200){
           sessionStorage.removeItem("directBooking");
           // localStorage.removeItem("cart")
           // localStorage.removeItem("discountedValue")
           // localStorage.removeItem("userDetail")
-          location.href = "/success"
+          showToast("Booking successfully done!", 0);
+
+          // success();
+          // location.href = "/success";
         }
         else{
-          toast("Failed To Book Appointment!")
-          alert(`If payment is deducted, Please note your appointment Id ${(response.id.split('_'))[1]} and contact APTDiagnostics for help!`);
+          showToast("Failed To Book Appointment!");
+          if(paymentType === "paynow")
+            alert(`If payment is deducted, Please note your appointment Id ${response.razorpay_order_id} and contact APTDiagnostics for help!`);
         // alert(`If payment is deducted ,Please note your appointment Id ${response.razorpay_order_id} and contact aptDiagnostics for help!`)
+          throw result.data;
         }
       }
       else{
-        const result = await axios.post(apiLinks.bookHomeAppointment, data)
+        const result = await axios.post(apiLinks.bookHomeAppointment, {data, supportingData})
         if(result.data.code === 200){
           sessionStorage.removeItem("directBooking");
           // localStorage.removeItem("cart")
           // localStorage.removeItem("bookingType")
           // localStorage.removeItem("discountedValue")
-          location.href = "/success"
+          showToast("Booking successfully done!", 0);
+          () => {location.href("/")};
+          // location.href = "/success"
         }
         else{
-          toast("Failed To Book Appointment!")
-          alert(`If payment is deducted, Please note your appointment Id ${(response.id.split('_'))[1]} and contact APTDiagnostics for help!`);
+          showToast("Failed To Book Appointment!");
+          if(paymentType === "paynow")
+            alert(`If payment is deducted, Please note your appointment Id ${response.razorpay_order_id} and contact APTDiagnostics for help!`);
         // alert(`If payment is deducted ,Please note your appointment Id ${response.razorpay_order_id} and contact aptDiagnostics for help!`)
+          throw result.data;
         }
       }
     }
     catch(err){
-      console.log(err)
+      console.log(err);
     }
   }
 
@@ -154,218 +211,411 @@ export default function Confirm(props) {
 
   const handlePayment = async () => {
 
-    const generateDate = (val = 0) => {
-      const date = new Date(document.getElementById("appointment-date").value+" "+`${selectedTimeSlot+val}:00:00`);
-      const year = date.getFullYear();
-      const month = date.getMonth()+1 ;
-      const day = date.getDate();
-      const hours = date.getHours();
-      return year+"-"+month+"-"+day+"T"+hours+":00:00z";
-    }
-
-    const generateTime = (val = 0) => {
-      const date = new Date(document.getElementById("appointment-date").value+" "+`${selectedTimeSlot+val}:00:00`);
-      return datetoday(date)+" "+datetimeNow(date);
-    }
-
-    let appointmentData = {};
-    let amount = 0;
-    let bookingType = "";
-    let discountAmount = 0;
-    let payableAmount = 0;
-    let testName = '';
-
-    // if(localStorage.getItem("discountedValue") === null){
-    //   for (var i of JSON.parse(localStorage.getItem("cart"))){
-    //       payableAmount +=parseFloat(i.testAmount);
-    //   }
-    // }
-    // else{
-    // if(JSON.parse(localStorage.getItem("cart")).length === JSON.parse(localStorage.getItem("discountedValue")).cartLength){
-    //     if(JSON.parse(localStorage.getItem("discountedValue")).discount == null){
-    //         for (var i of JSON.parse(localStorage.getItem("cart"))){
-    //           payableAmount +=parseFloat(i.testAmount)
-    //         }    
-    //     }
-    //     else{
-    //         payableAmount =parseFloat(JSON.parse(localStorage.getItem("discountedValue")).discount)
-    //     }
-    // }
-    // else{
-    //     for (var i of JSON.parse(localStorage.getItem("cart"))){
-    //       payableAmount +=parseFloat(i.testAmount)
-    //     }
-    // }
-    // }
-
-    if (sessionStorage.getItem("directBooking") !== null){
-      const bookingData = JSON.parse(sessionStorage.getItem("directBooking"));
-      const testDetails = testList.find(test => test.testID === bookingData.test);
-
-      bookingType = bookingData.appointmentType;
-      amount = testDetails.testAmount;
-      payableAmount = amount;
-      testName = testDetails.testName;
-      // console.log(amount, payableAmount);
-    }
-    else{
-      toast.error("Can't proceed to pay!");
-      location.href("/");
-    }
-
-    // for (var i of JSON.parse(localStorage.getItem("cart"))){
-    //   amount +=parseFloat(i.testAmount)
-    // }
+    try{
+        const generateDate = (val = 0) => {
+          const date = new Date(document.getElementById("appointment-date").value+" "+`${selectedTimeSlot+val}:00:00`);
+          const year = date.getFullYear();
+          let month = date.getMonth()+1 ;
+          let day = date.getDate();
+          let hours = date.getHours();
+          if(month < 10) month = `0${month}`;
+          if(day < 10) day = `0${day}`;
+          if(hours < 10) hours = `0${hours}`;
+          return year+"-"+month+"-"+day+"T"+hours+":00:00Z";
+        }
     
-    // if(localStorage.getItem("discountedValue") == null){
-    //   discountAmount = 0
-    // }
-    // else{
-    //   discountAmount -= (amount - JSON.parse(localStorage.getItem("discountedValue")).discount)
-    // }
+        const generateTime = (val = 0) => {
+          const date = new Date(document.getElementById("appointment-date").value+" "+`${selectedTimeSlot+val}:00:00`);
+          return datetoday(date)+" "+datetimeNow(date);
+        }
+    
+        let appointmentData = {};
+        let amount = 0;
+        let bookingType = "";
+        let discountAmount = 0;
+        let payableAmount = 0;
+        let testName = '';
+        let testCode = '';
+        let testID = '';
+        let testDetails = {};
+        let paymentType = '';
+        let coupon = '';
+        let labData = {};
+    
+        if(sessionStorage.getItem("paymentDetails") !== null){
+          const payDetails = JSON.parse(sessionStorage.getItem("paymentDetails"));
+          paymentType = payDetails.type;
+          coupon = payDetails.finalCoupon;
+          discountAmount = parseFloat(payDetails.discountAmount);
+          sessionStorage.removeItem("paymentDetails");
+        }
+        else{
+          throw {message: "Couldn't find the payment mode, please try again", code: 404};
+        }
+    
+        // if(localStorage.getItem("discountedValue") === null){
+        //   for (var i of JSON.parse(localStorage.getItem("cart"))){
+        //       payableAmount +=parseFloat(i.testAmount);
+        //   }
+        // }
+        // else{
+        // if(JSON.parse(localStorage.getItem("cart")).length === JSON.parse(localStorage.getItem("discountedValue")).cartLength){
+        //     if(JSON.parse(localStorage.getItem("discountedValue")).discount == null){
+        //         for (var i of JSON.parse(localStorage.getItem("cart"))){
+        //           payableAmount +=parseFloat(i.testAmount)
+        //         }    
+        //     }
+        //     else{
+        //         payableAmount =parseFloat(JSON.parse(localStorage.getItem("discountedValue")).discount)
+        //     }
+        // }
+        // else{
+        //     for (var i of JSON.parse(localStorage.getItem("cart"))){
+        //       payableAmount +=parseFloat(i.testAmount)
+        //     }
+        // }
+        // }
+    
+        if (sessionStorage.getItem("directBooking") !== null){
+          const bookingData = JSON.parse(sessionStorage.getItem("directBooking"));    
+    
+          bookingType = bookingData.appointmentType;
+          testDetails = bookingData.test;
+          testName = bookingData.test.testName;
+          testCode = bookingData.test.testCode;
+          testID = bookingData.test.testID;
+          amount = parseFloat(bookingData.test.testAmount);
+          // console.log(amount, discountAmount);
+          // console.log(typeof(amount), typeof(discountAmount));
+          payableAmount = amount - discountAmount;
+          // console.log(payableAmount);
+        }
+        else{
+          throw {message: "Booking details not found, please try again!", code: 404};
+        }
+    
+        // for (var i of JSON.parse(localStorage.getItem("cart"))){
+        //   amount +=parseFloat(i.testAmount)
+        // }
+        
+        // if(localStorage.getItem("discountedValue") == null){
+        //   discountAmount = 0
+        // }
+        // else{
+        //   discountAmount -= (amount - JSON.parse(localStorage.getItem("discountedValue")).discount)
+        // }
+        // console.log(finalData);
+        // console.log(paymentType);
 
-    if(bookingType === "lab"){
-      appointmentData = {
-        "slotTime": generateTime(),
-        "isMember": false,
-        "familyId": null,
-        "mobile": finalData.mobile,
-        "email": finalData.email,
-        "designation": finalData.designation,
-        "fullName": finalData.fullName,
-        "age": finalData.age,
-        "gender": finalData.gender,
-        "area": finalData.area,
-        "city": "",
-        "patientType": "IP",
-        "labPatientId": "",
-        "pincode": "",
-        "patientId": "",
-        "dob": finalData.dob,
-        "passportNo": "",
-        "panNumber": "",
-        "aadharNumber": "",
-        "insuranceNo": "",
-        "nationality": "Indian",
-        "ethnicity": "",
-        "nationalIdentityNumber": "",
-        "workerCode": "",
-        "doctorCode": "",
-        "isAppointmentRequest": 1,
-        "startDate": generateDate(),  
-        "endDate": generateDate(1),   
-        "billDetails": {
-            "emergencyFlag": "0",
-            "totalAmount": "0",        
-            "advance": amount,           //required
-            "billDate": "",             //required
-            "paymentType": "Razorpay",   
-            "referralName": "",
-            "otherReferral": "",
-            "sampleId": "",
-            "orderNumber": "",
-            "referralIdLH": "",
-            "organisationName": "",
-            "additionalAmount": discountAmount,         //required
-            "organizationIdLH": 249952,
-            "comments": "",         //required
-            "testList": [],
-            "paymentList": [
+        if(bookingType === "lab"){
+          labData = {
+            "mobile": finalData.mobile,
+            "email": finalData.email,
+            "designation": finalData.designation,
+            "fullName": finalData.fullname,
+            "age": finalData.age,
+            "gender": finalData.gender,
+            "area": finalData.area,
+            "city": "",
+            "patientType": "IP",
+            "labPatientId": "",
+            "pincode": "",
+            "patientId": "",
+            "dob": finalData.dob,
+            "passportNo": "",
+            "panNumber": "",
+            "aadharNumber": "",
+            "insuranceNo": "",
+            "nationality": "Indian",
+            "ethnicity": "",
+            "nationalIdentityNumber": "",
+            "workerCode": "",
+            "doctorCode": "",
+            "isAppointmentRequest": 1,
+            "startDate": generateDate(),
+            "endDate": generateDate(1),
+            "billDetails": {
+              "emergencyFlag": "0",
+              "totalAmount": paymentType === "paynow" ? payableAmount.toString() : "0",
+              "advance": paymentType === "paynow" ? payableAmount.toString() : "0",
+              "billDate": "",
+              "paymentType": paymentType === "paynow" ? "RazorPay" : "Cash",
+              "referralName": "",
+              "otherReferral": "",
+              "sampleId": "",
+              "orderNumber": "",
+              "organisationName": "",
+              "additionalAmount": (-discountAmount).toString(),
+              "organizationIdLH": 249952,
+              "referralIdLH": "",
+              "comments": "Patient Lab Registration",
+              "testList": [
                 {
-                    "paymentType": "Razorpay",
-                    "paymentAmount": amount-discountAmount,               //required
-                    "issueBank": "ICICI"
+                    "testID": testID,
+                    "testCode": testCode.toString(),
+                    "integrationCode": "",
+                    "dictionaryId": ""
                 }
-            ]
+              ],
+              "paymentList": [
+                {
+                    "paymentType": paymentType === "paynow" ? "RazorPay" : "Cash",
+                    "paymentAmount": paymentType === "paynow" ? payableAmount.toString() : "0",
+                    "issueBank": paymentType === "paynow" ? "ICICI" : "SELF"
+                }
+              ]
+            }
+          };
         }
-    }}
-    else{
-      appointmentData = {
-        "slotTime":generateTime(),
-        "isMember":false,
-        "familyId": null,
-        "mobile":finalData.mobile,
-        "email": finalData.email,
-        "designation": finalData.designation,
-        "fullName": finalData.fullName,
-        "age": finalData.age,
-        "gender": finalData.gender,
-        "area": finalData.area,
-        "city": "",
-        "patientType": "IP",
-        "labPatientId": "",
-        "pincode": "",
-        "patientId": "",
-        "dob": finalData.dob,
-        "passportNo": "",
-        "panNumber": "",
-        "aadharNumber": "",
-        "insuranceNo": "",
-        "nationality": "Indian",
-        "ethnicity": "",
-        "nationalIdentityNumber": "",
-        "workerCode": "",
-        "doctorCode": "",
-        "isHomecollection": 1,
-        "homeCollectionDateTime": generateDate(),
-        "location": "",
-        "address": finalData.area,
-        "billDetails": {
-          "emergencyFlag": "0",
-          "totalAmount": "0",
-          "advance": amount,  
-          "billDate": "",
-          "paymentType": "razorpay",
-          "referralName": "",
-          "otherReferral": "",
-          "sampleId": "",
-          "orderNumber": "",
-          "referralIdLH": "",
-          "organisationName": "",
-          "additionalAmount": discountAmount,    //required
-          "organizationIdLH": 249952,
-          "comments": "", 
-          "testList": [],
-          "paymentList": [
-              {
-                "paymentType": "Cash",
-                "paymentAmount": amount-discountAmount, 
-                "issueBank": ""
-              }
-          ]
+
+        else{
+          labData = {
+            "mobile": finalData.mobile,
+            "email": finalData.email,
+            "designation": finalData.designation,
+            "fullName": finalData.fullname,
+            "age": finalData.age,
+            "gender": finalData.gender,
+            "area": finalData.area,
+            "city": "",
+            "patientType": "IP",
+            "labPatientId": "",
+            "pincode": "",
+            "patientId": "",
+            "dob": finalData.dob,
+            "passportNo": "",
+            "panNumber": "",
+            "aadharNumber": "",
+            "insuranceNo": "",
+            "nationality": "Indian",
+            "ethnicity": "",
+            "nationalIdentityNumber": "",
+            "workerCode": "",
+            "doctorCode": "",
+            "isHomecollection": 1,
+            "homeCollectionDateTime": generateDate(),
+            "location": "",
+            "address": finalData.area,
+            "billDetails": {
+              "emergencyFlag": "0",
+              "totalAmount": paymentType === "paynow" ? payableAmount.toString() : "0",
+              "advance": paymentType === "paynow" ? payableAmount.toString() : "0",
+              "billDate": "",
+              "paymentType": paymentType === "paynow" ? "RazorPay" : "Cash",
+              "referralName": "",
+              "otherReferral": "",
+              "sampleId": "",
+              "orderNumber": "",
+              "organisationName": "",
+              "additionalAmount": (-discountAmount).toString(),
+              "organizationIdLH": 249952,
+              "referralIdLH": "",
+              "comments": "Patient Home Registration",
+              "testList": [
+                {
+                    "testID": testID,
+                    "testCode": testCode.toString(),
+                    "integrationCode": "",
+                    "dictionaryId": ""
+                }
+              ],
+              "paymentList": [
+                {
+                    "paymentType": paymentType === "paynow" ? "RazorPay" : "Cash",
+                    "paymentAmount":paymentType === "paynow" ? payableAmount.toString() : "0",
+                    "issueBank": paymentType === "paynow" ? "ICICI" : "SELF"
+                }
+              ]
+            }
+          };
         }
-      }
-    }
 
-    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
+        const supportingData = {
+          "slotTime": generateTime(),
+          "slotDate": generateDate(),
+          "isMember": false,
+          "familyId": null,
+          "fullName": finalData.fullname,
+          "email": finalData.email,
+          "dob": finalData.dob,
+          "area": finalData.area,
+          "gender": finalData.gender,
+          "mobile": finalData.mobile,
+          bookingType
+        };
 
-    if (!res) {
-      alert('Please Check your Internet Connection!');
-      return;
-    }
+        // console.log(labData);
 
-    const response = await axios.post(apiLinks.paymentRazorpay, {"amount" : payableAmount});
-    const data = response.data;
-    const options = {
-      key: process.env.REACT_APP_RAZORPAY_KEY,
-      currency: data.currency,
-      amount: data.amount.toString(),
-      order_id: data.id,
-      name: "APT Diagnostics",
-      description: 'Thank you For your Purchase with APT Diagnostics',
-      image: '/images/logotyp2.png',
-      handler: (response) => handleAppointmentBook(response, appointmentData),
-      prefill: {
-        name: finalData.fullName,
-        email: finalData.email,
-        phone_number: finalData.mobile
-      },
-      theme: {
-          "color": "#0a4275"
-      }
+        // if(bookingType === "lab"){
+        //   appointmentData = {
+        //     "slotTime": generateTime(),
+        //     "isMember": false,
+        //     "familyId": null,
+        //     "mobile": finalData.mobile,
+        //     "email": finalData.email,
+        //     "designation": finalData.designation,
+        //     "fullName": finalData.fullname,
+        //     "age": parseInt(finalData.age),
+        //     "gender": finalData.gender,
+        //     "area": finalData.area,
+        //     "city": "",
+        //     "patientType": "IP",
+        //     "labPatientId": "",
+        //     "pincode": "",
+        //     "patientId": "",
+        //     "dob": finalData.dob,
+        //     "passportNo": "",
+        //     "panNumber": "",
+        //     "aadharNumber": "",
+        //     "insuranceNo": "",
+        //     "nationality": "Indian",
+        //     "ethnicity": "",
+        //     "nationalIdentityNumber": "",
+        //     "workerCode": "",
+        //     "doctorCode": "",
+        //     "isAppointmentRequest": 1,
+        //     "startDate": generateDate(),  
+        //     "endDate": generateDate(1),   
+        //     "billDetails": {
+        //         "emergencyFlag": "0",
+        //         "totalAmount": `${payableAmount}`,        
+        //         "advance": paymentType === 'paylater' ? "0" : `${payableAmount}`,           //required
+        //         "billDate": "",             //required 
+        //         "referralName": "",
+        //         "otherReferral": "",
+        //         "sampleId": "",
+        //         "orderNumber": "",
+        //         "referralIdLH": "",
+        //         "organisationName": "",
+        //         "additionalAmount": `${discountAmount}`,         //required
+        //         "organizationIdLH": 249952,
+        //         "comments": "New Patient Booking Registration",         //required
+        //         "testList": [
+        //           {
+        //             "testID": `${testID}`,
+        //             "testCode": testCode,
+        //             "integrationCode": "",
+        //             "dictionaryId": ""
+        //           }
+        //         ],
+        //         "paymentList": [
+        //             {
+        //                 "paymentType": paymentType === 'paylater' ? "Cash" : "Razorpay",
+        //                 "paymentAmount": `${payableAmount}`,               //required
+        //                 "issueBank": paymentType === 'paylater' ? "" : "ICICI"
+        //             }
+        //         ]
+        //     }
+        //   }
+        // }
+    
+        // else{
+        //   appointmentData = {
+        //     "slotTime":generateTime(),
+        //     "isMember":false,
+        //     "familyId": null,
+        //     "mobile": finalData.mobile,
+        //     "email": finalData.email,
+        //     "designation": finalData.designation,
+        //     "fullName": finalData.fullName,
+        //     "age": finalData.age,
+        //     "gender": finalData.gender,
+        //     "area": finalData.area,
+        //     "city": "",
+        //     "patientType": "IP",
+        //     "labPatientId": "",
+        //     "pincode": "",
+        //     "patientId": "",
+        //     "dob": finalData.dob,
+        //     "passportNo": "",
+        //     "panNumber": "",
+        //     "aadharNumber": "",
+        //     "insuranceNo": "",
+        //     "nationality": "Indian",
+        //     "ethnicity": "",
+        //     "nationalIdentityNumber": "",
+        //     "workerCode": "",
+        //     "doctorCode": "",
+        //     "isHomecollection": 1,
+        //     "type": bookingType,
+        //     "homeCollectionDateTime": generateDate(),
+        //     "location": "",
+        //     "address": finalData.area,
+        //     "billDetails": {
+        //       "emergencyFlag": "0",
+        //       "totalAmount": amount,
+        //       "advance": amount,  
+        //       "billDate": (new Date()),
+        //       "paymentType": "Razorpay",
+        //       "referralName": "",
+        //       "otherReferral": "",
+        //       "sampleId": "",
+        //       "orderNumber": "",
+        //       "referralIdLH": "",
+        //       "organisationName": "",
+        //       "additionalAmount": discountAmount,    //required
+        //       "organizationIdLH": 249952,
+        //       "comments": "", 
+        //       "testList": [
+        //         testDetails
+        //       ],
+        //       "paymentList": [
+        //           {
+        //             "paymentType": "Cash",
+        //             "paymentAmount": amount-discountAmount, 
+        //             "issueBank": ""
+        //           }
+        //       ]
+        //     }
+        //   }
+        // }
+        // console.log(labData);
+
+        if(paymentType === "paylater"){
+          handleAppointmentBook(null, labData, paymentType, supportingData);
+        }
+        else{
+          const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
+      
+          if (!res) {
+            // alert('Please Check your Internet Connection!');
+            // return;
+            throw {code: 500, message: "Please Check your Internet Connection!"};
+          }
+          // console.log(appointmentData);
+      
+          const response = await axios.post(apiLinks.paymentRazorpay, {"amount" : payableAmount});
+          const data = response.data;
+      
+          console.log(data);
+      
+          const options = {
+            key: process.env.REACT_APP_RAZORPAY_KEY,
+            currency: data.currency,
+            amount: data.amount.toString(),
+            order_id: data.id,
+            name: "APT Diagnostics",
+            description: 'Thank you For your Purchase with APT Diagnostics',
+            image: '/images/logotype2.jpg',
+            handler: (response) => handleAppointmentBook(response, labData, paymentType, supportingData),
+            prefill: {
+              name: finalData.fullName,
+              email: finalData.email,
+              phone_number: finalData.mobile
+            },
+            theme: {
+                "color": "#0a4275"
+            }
+          }
+          const paymentObject = new window.Razorpay(options);
+          paymentObject.open();
+        }
+    
     }
-    const paymentObject = new window.Razorpay(options);
-    paymentObject.open();
+    catch(err){
+      console.log(err);
+      showToast(err.message);
+    }
   }
 
   const disableAll = (obj)=>{
@@ -383,11 +633,6 @@ export default function Confirm(props) {
 
   const validateEmail = (event)=>{
     setEmailIsValidated(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(event.target.value))
-  }
-
-  const validateContact =(event)=>{
-    var a = /^\d{10}$/;  
-    setContactIsValidated(a.test(event.target.value));
   }
 
   const handleNext = () => { 
@@ -410,7 +655,7 @@ export default function Confirm(props) {
           setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
     else{
-      toast("Required Fields are missing!");
+      showToast("Required Fields are missing!");
     }
   } 
   
@@ -438,50 +683,83 @@ export default function Confirm(props) {
       formDate = parseInt(formDate[2]);
 
       for (let key of Object.keys(result.data)){
-        if(key === undefined || key === null) { console.log("world") }
+        if(key === undefined || key === null) { console.log('key is null or undefined') }
         else if(currentDate === formDate && result.data[key] < parseInt(fleboResult.data.flebo)){
           if(currentHour < slotsKey[key]){
-            availableSlots.push({ key: slotsKey[key], 
-              remaining: parseInt(fleboResult.data.flebo - result.data[key])
-            });
+            availableSlots.push({ key: slotsKey[key] });
           }
         }
         else if(result.data[key] < parseInt(fleboResult.data.flebo)){
-          availableSlots.push({ key: slotsKey[key], 
-                                remaining: parseInt(fleboResult.data.flebo - result.data[key])
-                              });
+          availableSlots.push({ key: slotsKey[key] });
         }
       }
       setCurrentAvailableSlots(availableSlots);
-    }catch(err){
+
+    }
+    catch(err){
       console.log(err);
       setCurrentAvailableSlots([]);
-      toast.error('Something went wrong, please try again', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-      });
+      showToast('Something went wrong, please try again');
     }
   };
 
+  const verifyCoupon = async () => {
+    // setFinalCoupon(couponCode); showToast(`"${couponCode}" code applied Successfully!`
+    try{
+      // console.log(couponCode);
+      if(couponCode === '' || couponCode === null){
+        throw {message: "Please enter coupon code", code: 404};
+      }
+      const result = await axios.get(apiLinks.applyCoupon, {params: {coupon: couponCode}});
+      // console.log(result.data);
+      if(result.data.code === 200){
+        sessionStorage.setItem("discountedPrice", result.data.discount);
+        showToast(result.data.message, 0);
+        setFinalCoupon(couponCode);
+      }
+      else{
+        setCouponCode('');
+        setFinalCoupon('');
+        sessionStorage.setItem("discountedPrice", 0);
+        throw result.data;
+      }
+    }
+    catch(err){
+      showToast(err.message);
+    }
+  }
+
   const getContact = () => {
     try{
+      const result = sessionStorage.getItem("directBooking");
+      if(result === null)
+        throw 404;
       return(JSON.parse(sessionStorage.getItem('directBooking')).contact);
     }
     catch(err){
-      toast.error('Something went wrong, please try again', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
+      showToast('Something went wrong, couldn\'t find contact number');
+      return null;
+    }
+  }
+
+  const handlePaymentTypeCoupon = () => {
+    try{
+      setShowPayment(false);
+      let discountAmount = 0;
+      if(sessionStorage.getItem("discountedPrice") !== null){
+        discountAmount = JSON.parse(sessionStorage.getItem("discountedPrice"));
+        sessionStorage.removeItem("discountedPrice");
+      }
+      const paymentDetails = JSON.stringify({
+        type: radioVal,
+        finalCoupon,
+        discountAmount
       });
+      sessionStorage.setItem('paymentDetails', paymentDetails);
+      handlePayment();
+    }
+    catch(err){
+      showToast(err);
     }
   }
 
@@ -514,6 +792,74 @@ export default function Confirm(props) {
             <title>Confirm Payment || APT Diagnostics</title>
           </Head>
           <NavBar testList={testList} cartValue={props.cartValue} updateCartValue={props.updateCartValue}/>
+
+          {showPayment &&
+            <div className="show-payment-container">
+              <Card className="payment-box">
+                <CardBody>
+                  <div className='verify-cancel-button'> 
+                      <span style={{cursor: 'pointer'}} onClick={() => {setRadioVal(null); setShowPayment(false); sessionStorage.removeItem('paymentDetails');}}>
+                        <CancelIcon />
+                      </span> 
+                  </div>
+                  <Row>
+                    <Col>
+                        <h4 className="text-center mt-1">Select Payment Type</h4>
+                    </Col>
+                  </Row>
+
+                    <RadioGroup className="mt-3" value={radioVal} onChange={event => setRadioVal(event.target.value)}>
+                      <Row>
+                        <Col style={{textAlign: "right"}}>
+                          <FormControlLabel
+                            value="paynow"
+                            control={ <Radio /> }
+                            style={{textAlign:"center",color:"#0a4275"}}
+                            label="Pay Now"
+                            name="payment-type"
+                            labelPlacement="end"
+                          />
+                        </Col>
+                        <Col>
+                          <FormControlLabel
+                            value="paylater"
+                            control={ <Radio /> }
+                            style={{textAlign:"center",color:"#0a4275",fontWeight:"700"}}
+                            label="Pay Later"
+                            name="payment-type"
+                            labelPlacement="end"
+                          />
+                        </Col>
+                      </Row>
+                    </RadioGroup>
+
+                  <Row className="mb-4">
+                    <Col xs="8" className="pt-2">
+                      <TextField label="Add Coupon Code" value={couponCode} onChange={(event) => setCouponCode(event.target.value)} placeholder="Add Coupon Code" 
+                        title='Add Coupon Code' size="small" variant="outlined" />
+                    </Col>
+                    <Col xs="4" className="pt-2" style={{textAlign: "center"}}>
+                      <Button variant="contained" style={{ color:"#fff", background:"#175d9c", borderRadius: '5px'}}
+                        onClick={verifyCoupon}
+                      >
+                        Apply 
+                      </Button>
+                    </Col>
+                  </Row>
+                  
+                  <Row className="mt-2" >
+                    <Col style={{textAlign: "center"}}>
+                      <Button onClick={handlePaymentTypeCoupon} 
+                        variant="contained" style={{width:"100%", height : "45px", color:"#fff",background:"#175d9c", borderRadius: '5px'}}>
+                          Book Now
+                      </Button>
+                    </Col>
+                  </Row>
+                </CardBody>
+              </Card>
+            </div>
+          }
+
           <Container>
             <Row className="mt-3">
               <Col>
@@ -568,16 +914,14 @@ export default function Confirm(props) {
                                     <Label for="contact">Contact ( फ़ोन नंबर ) <span style={{color:"#ff6363"}}> *</span></Label>
                                     <InputGroup size="sm">
                                     <InputGroupAddon addonType="prepend">+91</InputGroupAddon>
-                                      <Input disabled id="contact" onChange={(event)=>{validateContact(event)}} value={getContact()} 
-                                        valid={contactIsValidated} invalid={contactIsValidated === null ? false : !contactIsValidated}  
-                                        placeholder="Contact Number" />
+                                      <Input disabled id="contact" value={getContact()} placeholder="Contact Number" />
                                     </InputGroup>
                                   </FormGroup>
                                 </Col>
                                 <Col>
-                                  <FormGroup size="sm">
+                                  <FormGroup>
                                     <Label for="email">Email ( ईमेल )</Label>
-                                    <Input size="sm" id="email" onChange={(event)=>{validateEmail(event)}}
+                                    <Input bsSize="sm" id="email" onChange={(event)=>{validateEmail(event)}}
                                       invalid={emailIsValidated === null ? false : !emailIsValidated} 
                                       placeholder="Email" />
                                   </FormGroup>
@@ -586,11 +930,11 @@ export default function Confirm(props) {
 
                               <Row>
                                 <Col sm="7">
-                                  <FormGroup size="sm">
+                                  <FormGroup bsSize="sm">
                                     <Label for="name">Full Name ( नाम ) <span style={{color:"#ff6363"}}> *</span></Label>
-                                    <InputGroup size="sm">
+                                    <InputGroup bsSize="sm">
                                       <InputGroupAddon addonType="prepend">
-                                        <Input  id="prefix-name" type="select" size="sm" >
+                                        <Input  id="prefix-name" type="select" bsSize="sm" >
                                           <option>Mr</option>
                                           <option>Mrs</option>
                                           <option>Master</option>
@@ -598,14 +942,14 @@ export default function Confirm(props) {
                                           <option>Dr</option>
                                         </Input>
                                       </InputGroupAddon>
-                                      <Input  id="name" onChange={(event)=>{validateName(event)}} 
+                                      <Input bsSize="sm" id="name" onChange={(event)=>{validateName(event)}} 
                                         invalid={nameIsValidated === null ? false : !nameIsValidated} 
                                         placeholder="Full Name" />
                                     </InputGroup>
                                   </FormGroup>
                                 </Col>
                                 <Col sm="5">
-                                  <FormGroup size="sm">
+                                  <FormGroup bsSize="sm">
                                       <Label for ="dob"> DOB ( जन्म तिथि )<span style={{color:"#ff6363"}}> *</span> </Label>
                                       <Input type="date" placeholder="Select Your Date Of Birth" max={today}
                                         className="form-control-sm form-control" id="dob" />
@@ -617,7 +961,7 @@ export default function Confirm(props) {
                                 <Col>
                                   <FormGroup>
                                       <Label for="gender">Gender  (लिंग) <span style={{color:"#ff6363"}}> *</span></Label>
-                                      <Input  size="sm" type="select" name="select" id="gender">
+                                      <Input  bsSize="sm" type="select" name="select" id="gender">
                                         <option>Male</option>
                                         <option>Female</option>
                                         <option>Other</option>
@@ -625,9 +969,9 @@ export default function Confirm(props) {
                                   </FormGroup>
                                 </Col>
                                 <Col>
-                                  <FormGroup size="sm">
+                                  <FormGroup bsSize="sm">
                                     <Label for="age">Age ( उम्र ) <span style={{color:"#ff6363"}}> *</span></Label>
-                                    <Input  size="sm" id="age" placeholder="Age" />
+                                    <Input  bsSize="sm" id="age" placeholder="Age" />
                                   </FormGroup>
                                 </Col>
                               </Row>
@@ -636,7 +980,7 @@ export default function Confirm(props) {
                                 <Col>
                                     <FormGroup>
                                       <Label for="address">Address  ( पता ) <span style={{color:"#ff6363"}}> *</span></Label>
-                                      <InputGroup size="sm">
+                                      <InputGroup bsSize="sm">
                                         <Input  id="address" placeholder="Address" />
                                       </InputGroup>
                                     </FormGroup>
@@ -653,7 +997,7 @@ export default function Confirm(props) {
                                 
                               <Row>
                                 <Col>
-                                  <FormGroup size="sm">
+                                  <FormGroup bsSize="sm">
                                     <Label for="appointment-date">Select Date</Label>
                                       <Input type="date" placeholder="Select Your Appointment Date" 
                                         min={today} onChange={handleDateTimeChange} value={appointDate}
@@ -689,7 +1033,6 @@ export default function Confirm(props) {
                                     >
                                       <CardBody className="text-center">
                                         <CardText>{item.key}:00 - {(item.key)+1}:00</CardText>
-                                        <CardText style={{textAlign: 'center'}}>Remaining - {item.remaining}</CardText>
                                       </CardBody>
                                     </Card>
                                   </Col>)
@@ -698,7 +1041,7 @@ export default function Confirm(props) {
                             </CardBody>
                           </Card> : <React.Fragment/>
                         }
-                        <div>
+                        <div style={{overflow: "hidden"}}>
                           <Row className="mt-4">
                             <Col className="align-center-row">
                                 <Button className="button quickconfirm-button" 
@@ -706,7 +1049,7 @@ export default function Confirm(props) {
                             </Col>
                             <Col className="align-center-row">
                               <Button className="button quickconfirm-button" 
-                                onClick={activeStep === steps.length - 1 ? handlePayment : handleNext } disabled={activeStep === steps.length - 1 && !selectedTimeSlot}> 
+                                onClick={activeStep === steps.length - 1 ? updatePayment : handleNext } disabled={activeStep === steps.length - 1 && !selectedTimeSlot}> 
                                 {activeStep === steps.length - 1 ? 'Pay' : 'Proceed'}
                               </Button>
                             </Col>

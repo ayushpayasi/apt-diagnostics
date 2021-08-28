@@ -6,6 +6,7 @@ export const apiLinks = {
 
 apiLinks.priceList = apiLinks.baseUrl+"priceList"
 apiLinks.adminPackageList = apiLinks.baseUrl+"admin/getAllPackage"
+apiLinks.getLiveHealthPackages = apiLinks.baseUrl + "admin/getLiveHealthPackages";
 apiLinks.adminGetPackageById = apiLinks.baseUrl+"admin/getPackageById"
 apiLinks.checkAndFetchPackageDetails = apiLinks.baseUrl+"admin/dialogueBoxCheck"
 apiLinks.adminPostPackage = apiLinks.baseUrl+"admin/postPackage"
@@ -45,4 +46,6 @@ apiLinks.loginUser = apiLinks.baseUrl+"login"
 apiLinks.quickLogin = apiLinks.baseUrl+"quickLogin"
 apiLinks.registerUser = apiLinks.baseUrl+"register"
 apiLinks.getMemberDetails = apiLinks.baseUrl+"getMemberDetails"
-apiLinks.sendUserOtp = apiLinks.baseUrl+"bookingotpverify"
+apiLinks.sendUserOtp = apiLinks.baseUrl+"bookingVerification"
+apiLinks.prescriptionOtp = apiLinks.baseUrl+"prescriptionOtp"
+apiLinks.postPrescription = apiLinks.baseUrl+"postPrescription"

@@ -1,14 +1,1 @@
-<svg width="92" height="93" viewBox="0 0 92 93" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M36.2773 75.9986C36.2773 75.9986 35.9915 45.9485 36.2773 28.6127C36.5631 11.277 38.5945 0.290779 31.6428 0.00532189C24.6911 -0.280135 16.8897 10.9838 11.9694 17.9197C7.04913 24.8555 -4.47528 84.3849 1.85078 89.0062C8.17685 93.6275 11.1893 93.6352 18.3804 89.0062C25.5716 84.3771 34.2535 83.5131 36.2773 75.9986Z" fill="url(#paint0_linear)"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M54.7997 75.9986C54.7997 75.9986 55.0932 45.9485 54.7997 28.6127C54.5062 11.277 52.4824 0.290779 59.4342 0.00532189C66.3859 -0.280135 74.195 10.9838 79.1075 17.9197C84.0201 24.8555 95.5986 84.3849 89.2339 89.0062C82.8692 93.6275 79.9031 93.6352 72.7042 89.0062C65.5053 84.3771 56.8234 83.5131 54.7997 75.9986Z" fill="url(#paint1_linear)"/>
-<defs>
-<linearGradient id="paint0_linear" x1="18.3859" y1="0" x2="18.3859" y2="92.4751" gradientUnits="userSpaceOnUse">
-<stop stop-color="#ff6363"/>
-<stop offset="1" stop-color="#e0c0c0"/>
-</linearGradient>
-<linearGradient id="paint1_linear" x1="72.6999" y1="0" x2="72.6999" y2="92.4751" gradientUnits="userSpaceOnUse">
-<stop stop-color="#ff6363"/>
-<stop offset="1" stop-color="#e0c0c0"/>
-</linearGradient>
-</defs>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="92" height="93" fill="none" viewBox="0 0 92 93"><path fill="url(#paint0_linear)" fill-rule="evenodd" d="M36.2773 75.9986C36.2773 75.9986 35.9915 45.9485 36.2773 28.6127C36.5631 11.277 38.5945 0.290779 31.6428 0.00532189C24.6911 -0.280135 16.8897 10.9838 11.9694 17.9197C7.04913 24.8555 -4.47528 84.3849 1.85078 89.0062C8.17685 93.6275 11.1893 93.6352 18.3804 89.0062C25.5716 84.3771 34.2535 83.5131 36.2773 75.9986Z" clip-rule="evenodd"/><path fill="url(#paint1_linear)" fill-rule="evenodd" d="M54.7997 75.9986C54.7997 75.9986 55.0932 45.9485 54.7997 28.6127C54.5062 11.277 52.4824 0.290779 59.4342 0.00532189C66.3859 -0.280135 74.195 10.9838 79.1075 17.9197C84.0201 24.8555 95.5986 84.3849 89.2339 89.0062C82.8692 93.6275 79.9031 93.6352 72.7042 89.0062C65.5053 84.3771 56.8234 83.5131 54.7997 75.9986Z" clip-rule="evenodd"/><defs><linearGradient id="paint0_linear" x1="18.386" x2="18.386" y1="0" y2="92.475" gradientUnits="userSpaceOnUse"><stop stop-color="#ff6363"/><stop offset="1" stop-color="#e0c0c0"/></linearGradient><linearGradient id="paint1_linear" x1="72.7" x2="72.7" y1="0" y2="92.475" gradientUnits="userSpaceOnUse"><stop stop-color="#ff6363"/><stop offset="1" stop-color="#e0c0c0"/></linearGradient></defs></svg>

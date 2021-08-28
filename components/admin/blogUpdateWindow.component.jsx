@@ -92,7 +92,7 @@ export default function BlogUpdateWindow(props) {
                     <Col xs="6">
                     <FormGroup>
                             <Label for="blogId"> Blog ID</Label>
-                            <Input size="sm" id="blogId" placeholder="Blog Id"></Input>
+                            <Input bsSize="sm" id="blogId" placeholder="Blog Id"></Input>
                         </FormGroup>                                
                     </Col>
                     <Col xs="4" style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
@@ -103,12 +103,12 @@ export default function BlogUpdateWindow(props) {
                     <Col>
                         <FormGroup>
                             <Label for="author"> Author</Label>
-                            <Input size="sm" id="author" placeholder="Author"></Input>
+                            <Input bsSize="sm" id="author" placeholder="Author"></Input>
                         </FormGroup>
                     </Col>
                     <Col className="d-flex align-items-center justify-content-center">
                         <FormGroup >
-                            <Input size="sm" type="checkbox" id="isVideoBlog" onChange={(event)=>{setVideoCheckBox(true)}}></Input>
+                            <Input bsSize="sm" type="checkbox" id="isVideoBlog" onChange={(event)=>{setVideoCheckBox(true)}}></Input>
                             <Label for="isVideoBlog"> Video Blog</Label>
                         </FormGroup>
                     </Col>
@@ -117,7 +117,7 @@ export default function BlogUpdateWindow(props) {
                     <Col>
                         <FormGroup>
                             <Label for="blogHeading"> Heading</Label>
-                            <Input size="sm" id="blogHeading" placeholder="Blog Heading"></Input>
+                            <Input bsSize="sm" id="blogHeading" placeholder="Blog Heading"></Input>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -125,7 +125,7 @@ export default function BlogUpdateWindow(props) {
                     <Col>
                         <FormGroup>
                             <Label for="blogSubHeading"> Sub Heading</Label>
-                            <Input size="sm" id="blogSubHeading" placeholder="Sub Heading"></Input>
+                            <Input bsSize="sm" id="blogSubHeading" placeholder="Sub Heading"></Input>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -133,23 +133,23 @@ export default function BlogUpdateWindow(props) {
                     <Col>
                     <FormGroup>
                         {/* <Label for="authorThumbnail">Author Thumbnail</Label>
-                        <Input size="sm" id="authorThumbnail" onChange={(event)=>{setAuthorImage(event.target.files[0])}} type="file" placeholder="Author Image">
+                        <Input bsSize="sm" id="authorThumbnail" onChange={(event)=>{setAuthorImage(event.target.files[0])}} type="file" placeholder="Author Image">
                         </Input> */}
                         <Label for="catgory">Category</Label>
-                        <Input size="sm" id="category" placeholder="category">    
+                        <Input bsSize="sm" id="category" placeholder="category">    
                         </Input>
                     </FormGroup>
                     </Col> 
                     <Col>
                     <FormGroup>
                         <Label for="blogVideo">Video File</Label>
-                        {videoCheckBox?<Input size="sm" id="blogVideo" onChange={(event)=>{setVideoFile(event.target.files[0]); setVideoCheckBox(false);}} type="file" placeholder="Blog Video"></Input>:<Input size="sm" id="blogVideo" type="file" disabled></Input>}
+                        {videoCheckBox?<Input bsSize="sm" id="blogVideo" onChange={(event)=>{setVideoFile(event.target.files[0]); setVideoCheckBox(false);}} type="file" placeholder="Blog Video"></Input>:<Input bsSize="sm" id="blogVideo" type="file" disabled></Input>}
                     </FormGroup>
                     </Col>
                     <Col>
                     <FormGroup>
                         <Label for="imageFiles">Image Files</Label>
-                        <Input size="sm" id="imageFiles" multiple onChange={(event)=>{setBlogImages(event.target.files);}} type="file" placeholder="Blog Images">
+                        <Input bsSize="sm" id="imageFiles" multiple onChange={(event)=>{setBlogImages(event.target.files);}} type="file" placeholder="Blog Images">
                         </Input>
                     </FormGroup>
                     </Col>

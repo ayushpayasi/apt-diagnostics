@@ -159,7 +159,8 @@
 }
 
 .otp-verification-window{
-  width:100vw;height:100vh;
+  width: 100vw;
+  height:100vh;
   position: fixed;
   top:0px;
   left:0px;
@@ -637,14 +638,16 @@ padding-top: 5px;
 
 
 @media only screen and (max-width: 1024px){
-  .report{display:none;}     
+  .report{
+    display:none;
+  }     
   .left-panel{
-    width:50vw;
-}
-.indexCarouselCard{
-  // width:300px;
-  margin: auto;
-}
+    // width:50vw;
+  }
+  .indexCarouselCard{
+    // width:300px;
+    margin: auto;
+  }
 }
 
 @media only screen and (max-width: 768px){

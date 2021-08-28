@@ -12,7 +12,7 @@ import OtpVerify from '../components/otpverify.component';
 export default function Register(props) {
     const [nameIsValidated,setNameIsValidated] = useState(null)
     const [emailIsValidated,setEmailIsValidated] = useState(null)
-    const [contactIsValidated,setContactIsValidated] = useState(null)
+    const [contactIsValidated,setContactIsValidated] = useState(true)
     const [otpWindow,setOtpWindow] = useState(false)
     const [verified,setVerified] = useState(false)
 
@@ -46,7 +46,7 @@ export default function Register(props) {
     }
 
     const handleOtpVerify = ()=>{
-        if(contactIsValidated){setOtpWindow(true)}
+        if(contactIsValidated){setOtpWindow(false)}
         else{toast("Contact number is not valid!")}
     }
 
@@ -160,7 +160,7 @@ export default function Register(props) {
                 id:"register_dob",
                 size:"small",
                 disabled:!verified,
-                autocomplete:"false",
+                autoComplete:"false",
                 className:"form-control-sm form-control"
                 }}/>
                 </FormGroup>

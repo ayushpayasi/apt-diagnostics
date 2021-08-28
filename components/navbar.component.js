@@ -30,19 +30,20 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import $ from "jquery"
 import Badge from '@material-ui/core/Badge';
+import { toast } from 'react-toastify';
 import { withStyles } from '@material-ui/core/styles';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Checkbox from '@material-ui/core/Checkbox';
 
 const Navigation = (props) => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [panelIsOpen,setPanelIsOpen] = useState(false);
   const [downloadReportWindow,setDownloadReportWindow] = useState(false);
   const [requestCallBackWindow,setRequestCallBackWindow] = useState(false);
   const [uploadPrescriptionWindow,setUploadPrescriptionWindow] = useState(false);
   const [cart, setCart] = useState([]);
-
 
   const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -82,6 +83,7 @@ const Navigation = (props) => {
   }
 
   useEffect(() => {
+
     // $("#navbar-search").click((obj)=>{$(obj).toggleClass("search-navbar-active")})
     //   var prevScrollpos = window.pageYOffset;
     //     window.onscroll = function() {
@@ -93,17 +95,19 @@ const Navigation = (props) => {
     //     }
     //     prevScrollpos = currentScrollPos;
     //   }
-      if(JSON.parse(localStorage.getItem("cart")) !== null){
-        if(JSON.parse(localStorage.getItem("cart")).length !== 0){
-          handleCartValueChange(JSON.parse(localStorage.getItem("cart")).length)
-        }
-      }
 
-      let cart = JSON.parse(localStorage.getItem("cart"));
-      setCart(cart);
+    if(JSON.parse(localStorage.getItem("cart")) !== null){
+      if(JSON.parse(localStorage.getItem("cart")).length !== 0){
+        handleCartValueChange(JSON.parse(localStorage.getItem("cart")).length)
+      }
+    }
+    
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    setCart(cart);
+
   }, []);
 
-  const addToCart = useCallback((event, product)=>{
+  const addToCart = useCallback((event, product) => {
 
       event.stopPropagation();
       if(product === null ) return;
@@ -112,8 +116,25 @@ const Navigation = (props) => {
       let existing = cart.filter(item => item.testID === product.testID);
 
       if(existing && existing.length){
-          window.alert('Item Already added to cart!');
+          toast.warning('Item already exists in cart 🛒', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+          });
       }else{
+            toast.success(`${product.testName} added to Cart!`, {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+          });
           cart.push(product);
           props.updateCartValue(cart.length);
           localStorage.setItem("cart", JSON.stringify(cart));
@@ -398,7 +419,7 @@ const Navigation = (props) => {
           <Row className="left-panel-icon-holder"><Col onClick={()=>{setRequestCallBackWindow(true)}} className="align-center-column-col">  
             <Row >
               <Col className="align-center-row">
-                <img className="sidebar-icon3" src="/svg/aptIcons/light/request_callback.svg"/>
+                <img className="sidebar-icon3" src="/svg/aptIcons/light/request_callback.svg" />
               </Col>
             </Row>
             <Row>
@@ -432,7 +453,7 @@ const Navigation = (props) => {
           <Col onClick={()=>{location.href="/contactus"}} className="align-center-column-col">
             <Row>
               <Col className="align-center-row">
-                <img className="sidebar-icon2" src="/svg/aptIcons/light/feedback.svg"/>
+                <img className="sidebar-icon2" src="/svg/aptIcons/dark/APT_SVG_FEEDBACK.svg" />
               </Col>
             </Row>
             <Row>
@@ -444,7 +465,7 @@ const Navigation = (props) => {
           <Col onClick={()=>{setRequestCallBackWindow(true)}} className="align-center-column-col">  
             <Row >
               <Col className="align-center-row">
-                <img className="sidebar-icon3" src="/svg/aptIcons/light/request_callback.svg"/>
+                <img className="sidebar-icon3" src="/svg/aptIcons/dark/APT_SVG_REQUEST_CALLBACK.svg" />
               </Col>
             </Row>
             <Row>
